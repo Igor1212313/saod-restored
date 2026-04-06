@@ -1,0 +1,867 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_dinam.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:27 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Динамическое программирование</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/alg_dinam.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Динамическое программирование"><!--webbot bot="Navigation" i-checksum="5544" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_jadn.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="graph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="9854" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="left"><a href="#Оптимальное дерево поиска"><font size="2">Оптимальное
+        дерево поиска</font></a></p>
+  <center>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        В типичном случае динамическое
+        программирование применяется к
+        задачам оптимизации. У такой задачи может быть много
+        вариантов решения, их качество
+        оценивается значением какого-либо
+        параметра. Выбирается оптимальное
+        решение, при котором значение этого
+        параметра минимально или максимально.
+        В общем случае оптимум может
+        достигаться&nbsp; для нескольких разных решений. </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        оптимизационных задач, решаемых с
+        помощью метода динамического
+        программирования, характерны два
+        признака [<a href="content.html">3</a>]:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l1 level1 lfo1; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore">1.
+        </span>Оптимальность для подзадач.</font></span>
+        <font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">При
+        решении оптимизационной задачи
+        необходимо сначала описать структуру
+        оптимального решения.&nbsp; Задача<span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA"> </span>обладает
+        свойством оптимальности для подзадач, если оптимальное решение
+        задачи содержит оптимальные решения её
+        подзадач. При улучшении решения
+        подзадачи, улучшается и решение
+        исходной задачи. Если установлено
+        свойство оптимальности, становится
+        ясно, какое множество вариантов
+        решения подзадач должно войти в
+        решение задачи в целом.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">2.&nbsp;&nbsp;Перекрывающиеся
+        подзадачи.</font></span> <span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Второе
+        свойство обеспечивает эффективность
+        метода динамического программирования
+        – небольшое число решаемых подзадач.
+        При решении задачи происходит
+        неоднократный выход на одни и те же
+        подзадачи. То есть,&nbsp; у оптимизационной
+        задачи имеются перекрывающиеся
+        подзадачи.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Пример<u>:</u></span><span style="mso-bidi-font-size: 10.0pt">
+        процесс перебора поддеревьев при
+        построении оптимального дерева поиска:</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dinprog1.gif" width="412" height="126"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Метод
+        динамического программирования
+        использует перекрытие следующим
+        образом: каждая из подзадач решается
+        только один раз и ответ заносится в
+        специальную таблицу. Когда эта же
+        подзадача встречается вновь, программа
+        берет готовое решение из таблицы.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Алгоритм,
+        основанный на динамическом
+        программировании, строится следующим
+        образом:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">1)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">выбирается
+        некоторый параметр, относительно
+        которого ищется оптимальное решение.
+        Оптимальное решение дает максимальное
+        или минимальное значение параметра.
+        Иногда оптимум достигается для
+        нескольких разных решений;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">2)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">описывается
+        строение оптимальных решений и схема
+        разделения задачи на подзадачи;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">3)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">выводится
+        рекуррентное соотношение, связывающее
+        оптимальные значения параметра
+        подзадачи и подподзадачи;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">4)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">двигаясь
+        снизу вверх, вычисляется оптимальное
+        значение параметра для подзадач;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">5)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">пользуясь
+        полученной на предыдущих шагах
+        информацией, на каждом шаге
+        определяется оптимальное решение и, в
+        конце концов, оптимальное решение
+        задачи.</span></font></p>
+        <p class="MsoBodyText" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Основную
+        часть работы составляют шаги 1 – 4. Если
+        интересует только оптимальное
+        значение параметра, то шаг 5 не нужен.
+        Если же отыскивается другая информация,
+        связанная с оптимальным значением
+        параметра, то попутно вычисляется и
+        запоминается дополнительная
+        информация при выполнении шага 4.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><b style="mso-bidi-font-weight:
+normal"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Программирование
+        сверху – вниз</span></font></b></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Решение
+        задачи методом динамического
+        программирования можно реализовать и
+        сверху вниз. Используется тот же прием
+        исключения повторного решения. Для этого нужно
+        запоминать ответы<span style="mso-spacerun:yes">&nbsp; </span>к
+        уже решенным подзадачам в специальной
+        таблице. Сначала вся таблица пуста, то
+        есть заполнена специальным значением,
+        символизирующим отсутствие решения
+        для подзадачи. Когда в процессе решения
+        задача встречается в первый раз, её
+        решение заносится в таблицу. В
+        дальнейшем решение подзадачи берется
+        из таблицы, когда подзадача
+        встречается снова. В этом случае
+        возможна только рекурсивная схема
+        алгоритма, следующая схеме разделения
+        задачи на подзадачи и подзадач на
+        подподзадачи.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">За
+        счет учета решенных задач исключается
+        повторный вход в рекурсию для этих
+        подзадач, и экспоненциальная
+        трудоемкость рекурсии сводится к
+        полиномиальной. Но метод
+        программирования “снизу вверх”
+        обычно эффективнее, чем рекурсия с
+        запоминанием ответов, поскольку не
+        предполагает затрат на проверку в
+        таблице присутствия решения и
+        реализацию самой рекурсии.</span></font></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Но
+        если нахождение оптимума не требует
+        решения всех подзадач, то метод решения
+        “сверху вниз” имеет то преимущество,
+        что решаются лишь те подзадачи, которые
+        действительно нужны.</span></font></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</h3>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><a name="Оптимальное дерево поиска">Оптимальное
+        дерево поиска</a></font></span></b></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Метод
+        динамического программирования
+        используется в алгоритме построения
+        оптимального двоичного дерева поиска [<a href="liter.html">5</a>].&nbsp;
+        </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        рассмотренных ранее <a href="bst_tree.html">BST - деревьев</a>
+        используется предположение, что частота
+        обращения к узлам одинакова, то есть все
+        ключи равновероятны при поиске. Но
+        существуют случаи, когда имеется
+        информация о вероятности обращения к
+        отдельным ключам дерева. Для таких
+        деревьев характерно, что множество
+        таких ключей постоянно и не
+        подвергается включениям и удалениям.
+        Дерево сохраняет постоянную структуру.
+        Примерами служат сканер транслятора,
+        который для каждого идентификатора
+        определяет, является ли он ключевым
+        словом языка программирования или сканер
+        ключевых слов в поисковых системах, по
+        которым ищутся разделы тем учебника
+        или перечень URL-адресов в поисковых
+        системах сети Интернет и т.п.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Проведенные
+        статистические измерения, проведенные
+        на сотнях транслируемых программ или
+        обращения при поиске в сети, дают
+        точные сведения о частоте обращения к
+        отдельным ключам, и следовательно, о
+        вероятности обращения к ним. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        p<sub>i</sub> - вероятность обращения к узлу i с
+        ключом k<sub>i</sub> , <img border="0" src="images/opt_tree1.gif" align="middle" width="63" height="47">,
+        где n - количество узлов в дереве.</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Необходимо
+        организовать дерево поиска так, чтобы
+        общее число шагов поиска для
+        достаточно большого количества
+        обращений было минимальным. Для этого
+        припишем каждому узлу вес. Узлы, к
+        которым часто обращаются, считаются
+        тяжелыми, а посещаемые редко – легкими.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В
+        таком дереве вводится понятие </font></span><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">общей
+        <a name="взвешенной длины"><i>
+        взвешенной длины</i></a> пути поиска – суммы
+        длин всех путей от корня к каждому узлу
+        умноженных на вероятность обращения к
+        этим узлам:</font></span>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/opt_tree2.gif" width="77" height="45"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">,
+        где h<sub>i</sub> – глубина i - го узла +1, а p<sub>i</sub> –
+        вероятность обращения к этому узлу.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify" class="MsoNormal"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Необходимо
+        минимизировать взвешенную длину пути
+        для заданного распределения
+        вероятностей.<b style="mso-bidi-font-size: 10.0pt">&nbsp; </b></span></font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify" class="MsoNormal"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">В качестве примера
+        рассмотрим множество ключей 1, 2, 3 с
+        вероятностями обращения р<sub>1</sub> = 1/7, р<sub>2</sub>
+        = 2/7, р<sub>3</sub> = 4/7 Возможны 5 разновидностей дерева из
+        этих ключей:</span></font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center" class="MsoNormal"><img border="0" src="images/opt_tree3.gif" width="318" height="558">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Из
+        примеров видно, что наилучшим случаем,
+        является отнюдь не сбалансированное
+        дерево, а вырожденное дерево.</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пример
+        сканера транслятора показывает, что
+        при решении оптимизационной задачи
+        следует учитывать и случаи поиска
+        идентификаторов, не являющихся
+        ключевыми словами. Все слова, не
+        являющиеся ключевыми в дереве можно
+        обозначить специальными узлами. Каждый
+        такой узел означает группу слов,
+        которые в лексикографическом порядке
+        находятся между ключевыми словами </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k<sub>i</sub></span><span style="mso-bidi-font-size: 10.0pt">
+        и </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k<sub>i</sub></span><sub><span style="mso-bidi-font-size: 10.0pt">+1</span></sub><span style="mso-bidi-font-size: 10.0pt">.
+        Такие специальные узлы являются
+        внешними узлами (листьями) в
+        оптимальном дереве поиска. Если
+        известна и вероятность того, что
+        аргумент поиска х лежит между ключами </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k<sub>i</sub></span><span style="mso-bidi-font-size: 10.0pt">
+        и </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k<sub>i</sub></span><sub><span style="mso-bidi-font-size: 10.0pt">+1</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        это может повлиять на структуру
+        оптимального дерева поиска. Обозначим
+        вероятность специальных узлов через </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">q<sub>i</sub></span><span style="mso-bidi-font-size: 10.0pt">.</span></font></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Обобщим
+        формулу взвешенной длины дерева поиска:</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/opt_tree4.gif" width="135" height="47"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">,где&nbsp;
+        <img border="0" src="images/opt_tree5.gif" align="middle" width="107" height="46"> , </span></font>h<sub>i</sub>
+        <font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">-<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">уровень
+        внутреннего узла, </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">i</span><span style="mso-bidi-font-size: 10.0pt"><span style="mso-ansi-language: EN-US" lang="EN-US">
+        </span>= 1, . . . ,</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt">,&nbsp;</span></font>
+        h'<sub>j</sub> <font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">-<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt">уровень
+        внешнего узла, </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">j</span><span style="mso-bidi-font-size: 10.0pt">=0,
+        . . . ,</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">При
+        построении оптимального дерева вместо
+        вероятностей p</font></span><sub>i</sub><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+  и p</span></font><sub>j</sub><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+  удобнее использовать
+        частоты обращений к у</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">злам:
+  a</font></span><sub>i</sub><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;
+  -
+        частота поиска ключа k</span></font><sub>i</sub><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">,&nbsp;
+  b</font></span><sub>j</sub><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+  -
+        частота поиска&nbsp;слова x (k</span></font><sub>i </sub><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">&lt;
+  x &lt; k</font></span><sub>i+1</sub><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">).
+  </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Тогда
+        оптимальное дерево можно изобразить
+        так:</span></font>
+  </p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/opt_tree6.gif" width="268" height="153"></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">,
+        где b<sub>0 </sub>-<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;</span></font></span><font size="2"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">число
+        поисков слов&nbsp; x &lt; k<sub>1</sub>,</span></font></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-spacerun:yes"><font face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </font></span></span><font face="MS Sans Serif"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">b<sub>i
+        </sub>-<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt">число
+        поисков слов&nbsp; k<sub>i</sub> &lt;&nbsp; x &lt; k<sub>i+1</sub>,</span></font></font></p>
+  <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </font></span><font face="MS Sans Serif"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">b<sub>n
+  </sub>-<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt">число
+        поисков слов&nbsp; x &gt; k<sub>n</sub>.</span></font></font></p>
+  <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Общая
+        взвешенная длина пути равна:</font></span><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/opt_tree7.gif" width="134" height="48">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Итак,
+        имея экспериментально измеренные
+        частоты ключевых слов и групп не
+        ключевых слов можно построить
+        оптимальное дерево поиска с
+        минимальной общей взвешенной длиной
+        пути.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Число
+        возможных конфигураций дерева из </font> </span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt">
+        </span><span style="mso-bidi-font-size: 10.0pt">узлов растет
+        экспоненциально и при больших </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt">
+        кажется невозможным найти оптимизм. </span><span style="mso-bidi-font-size: 10.0pt">Но
+        оптимальное дерево обладает важным
+        свойством: все поддеревья оптимального
+        дерева также оптимальны. </span><span style="mso-bidi-font-size: 10.0pt">На
+        приведенном выше рисунке если дерево с корнем </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k</span><sub><span style="mso-bidi-font-size: 10.0pt">2</span></sub><span style="mso-spacerun:yes">&nbsp;
+        </span><span style="mso-bidi-font-size: 10.0pt">оптимально,
+        то оптимальны и его поддеревья с
+        корнями </span><span lang="EN-US" style="mso-ansi-language:EN-US">k</span><sub>1</sub><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-ansi-language:EN-US">k</span><sub>3</sub><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-ansi-language:
+EN-US">k</span><sub>4</sub><span style="mso-bidi-font-size: 10.0pt">.
+        Поэтому алгоритм нахождения
+        оптимального дерева строит все большие
+        и большие поддеревья начиная с
+        отдельных узлов, как наименьших
+        возможных поддеревьев. Таким образом,. оптимальное
+        дерево можно построить методом
+        динамического программирования снизу
+        вверх от листьев к
+        корню.</span></font></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Рассмотрим
+  поддерево с некоторым корнем k<sub>i</sub>.</span></font></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/opt_tree8.gif" width="118" height="91"></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Пусть
+  <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P<sub>L</sub></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt">
+        </span>и <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P<sub>R</sub></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt">
+        </span>– взвешенная
+        длина левого и правого оптимальных
+        поддеревьев&nbsp; корня.<span style="mso-spacerun:yes">&nbsp;
+  </span>Общая взвешенная длина поддерева с
+  корнем равна:</span></font></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">P
+  = P<sub>L</sub> + W + P<sub>R</sub></span></font></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-style: normal; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">,
+  где </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-style: normal; mso-ansi-language: EN-US" lang="EN-US">W</span>
+  – вес поддерева, равный&nbsp; сумме частот всех
+  входящих в него&nbsp; узлов:</span></font></p>
+  <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/opt_tree9.gif" width="111" height="43"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Средняя
+        взвешенная длина пути к узлу в поддереве равна </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P</span><span style="mso-bidi-font-size: 10.0pt">/</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">W</span><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2"><font face="MS Sans Serif">Для
+        построения оптимального дерева располагаем
+        ключи&nbsp; {</font></font></span><font size="2"><font face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k</span><sub><span style="mso-bidi-font-size: 10.0pt">1</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k</span><sub><span style="mso-bidi-font-size: 10.0pt">2</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        . . .,</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k<sub>n</sub></span><span style="mso-bidi-font-size: 10.0pt">}
+        в возрастающем порядке и в том же
+        порядке располагаем&nbsp; соответствующие веса ключей {</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">a</span><sub><span style="mso-bidi-font-size: 10.0pt">1</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">a</span><sub><span style="mso-bidi-font-size: 10.0pt">2</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        . . .&nbsp; </span></font>,<font face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">a<sub>n</sub></span><span style="mso-bidi-font-size: 10.0pt">}
+        и веса специальных узлов {</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">b</span><sub><span style="mso-bidi-font-size: 10.0pt">0</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">b</span><sub><span style="mso-bidi-font-size: 10.0pt">1</span></sub><span style="mso-bidi-font-size: 10.0pt">,
+        . . . ,</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">b<sub>n</sub></span><span style="mso-bidi-font-size: 10.0pt">}.</span></font></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><font size="2">Двигаясь
+        снизу вверх, постепенно выстраиваем
+        оптимальное дерево из оптимальных
+        поддеревьев.<span style="mso-spacerun:yes">&nbsp; </span>Обозначим
+        через </font> </span><font size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2">
+        </font></span><font size="2"><font size="2"><span style="mso-bidi-font-size: 10.0pt">– некоторое
+        оптимальное поддерево, включающее
+        ключи</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        {k<sub>i</sub>, …,k<sub>j</sub>} из исходного множества ключей</span><span style="mso-bidi-font-size: 10.0pt">.
+        Пусть </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">w</span></font></font><span style="mso-bidi-font-size: 10.0pt"><span style="mso-ansi-language: EN-US; mso-bidi-font-size: 10.0pt" lang="EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2" face="MS Sans Serif">
+        –</font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        </span><span style="mso-bidi-font-size: 10.0pt">вес
+        поддерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2"><font size="2"><span style="mso-bidi-font-size: 10.0pt">, а </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P</span></font></font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        – взвешенная длина пути поддерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Эти
+        величины определяются рекуррентными
+        соотношениями:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l1 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l1 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">1)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-list: Ignore">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Вес
+        поддерева из 0 узлов равен:</span></font></p>
+  <blockquote>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="2">w</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font face="MS Sans Serif" size="2"><sub>
+        </sub>= b</font><font face="MS Sans Serif" size="3"><sub>i</sub></font><font face="MS Sans Serif" size="2"> ,<span style="mso-spacerun:yes">&nbsp; </span>0
+        &#8804; i &#8804; n.</font></span></p>
+  </blockquote>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l1 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">Вес
+        поддерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        из </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">h
+        = j – i </span><span style="mso-bidi-font-size: 10.0pt">узлов</span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">&nbsp;</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="2">
+        {k</font><font face="MS Sans Serif" size="3"><sub>i</sub></font><font face="MS Sans Serif" size="2">, …,
+        k</font><font face="MS Sans Serif" size="3"><sub>j</sub>} </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">равен:</span></font></p>
+  <blockquote>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="2">w</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font face="MS Sans Serif" size="2"><sub>
+        </sub>= w</font><font face="MS Sans Serif" size="3"><sub>ij-1</sub></font><font face="MS Sans Serif" size="2">+ a</font><font face="MS Sans Serif" size="3"><sub>j</sub></font><font face="MS Sans Serif" size="2"> + b</font><font face="MS Sans Serif" size="3"><sub>j</sub></font><font face="MS Sans Serif" size="2"><sub> </sub>,
+        </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">где
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">w</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i,j-1</sub></font><font face="MS Sans Serif" size="2"><sub>
+        </sub>– вес поддерева из узлов {k</font><font face="MS Sans Serif" size="3"><sub>i</sub></font><font face="MS Sans Serif" size="2">, …,
+        k</font><font face="MS Sans Serif" size="3"><sub>j-1</sub>}</font><font face="MS Sans Serif" size="2">,
+        </font><font face="MS Sans Serif" size="2"><span style="mso-spacerun:yes">&nbsp;
+        </span>0 &#8804; i &lt; j &#8804; n.</font></span></p>
+  </blockquote>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l1 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">3)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">Длина
+        взвешенного пути поддерева из 0 узлов
+        равна:</span></font></p>
+  <blockquote>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="2">P</font><font face="MS Sans Serif" size="3"><sub>ii</sub></font><font face="MS Sans Serif" size="2">
+        = w</font><font face="MS Sans Serif" size="3"><sub>ii</sub></font><font face="MS Sans Serif" size="2"> ,&nbsp;</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">0
+        &#8804; i &#8804; n.</span></font></p>
+  </blockquote>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l1 level1 lfo2; tab-stops: list 18.0pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">4)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">Общая
+        взвешенная длина пути поддерева из </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">j
+        - i
+        </span><span style="mso-bidi-font-size: 10.0pt">узлов:</span></font></p>
+  <blockquote>
+    <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="2">P</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font face="MS Sans Serif" size="2">
+        = w</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font face="MS Sans Serif" size="2"> + min (P</font><font face="MS Sans Serif" size="3"><sub>i,r-1</sub></font><font face="MS Sans Serif" size="2">+ P</font><font face="MS Sans Serif" size="3"><sub>rj</sub></font><font face="MS Sans Serif" size="2">),&nbsp;
+    i &lt; k
+        &#8804; j ,</font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">где
+    </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">r</span><span style="mso-bidi-font-size: 10.0pt">
+        – индекс ключа, который является
+    корнем&nbsp;
+        оптимального поддерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+  </blockquote>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif"><font size="2"><span style="mso-bidi-font-size: 10.0pt">Существует
+        приблизительно 1/(2</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n<sup>2</sup>)
+        </span><span style="mso-bidi-font-size: 10.0pt">поддеревьев
+        в пределах</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        множества ключей и групп слов {x<sub>0</sub>, k<sub>1</sub>,
+        x<sub>1</sub>, k<sub>1</sub>, …,k<sub>n</sub>, x<sub>n</sub>}</span><span style="mso-bidi-font-size: 10.0pt">,
+        для которых нужно вычислить </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">минимум
+        взвешенной длины </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P</span></font></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">. Причем
+        для каждого поддерева нужно перебрать </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">0
+        &#8804; i - j &#8804; n </span><span style="mso-bidi-font-size: 10.0pt">возможных
+        значений индекса корня r</span><span style="mso-bidi-font-size: 10.0pt">,
+        чтобы найти корень, для которого взвешенная
+        длина </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P</span></font><span lang="EN-US"><font face="MS Sans Serif" size="3"><sub><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">ij
+        </span></sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        минимальна. То есть,&nbsp; общий поиск потребует
+        1/(6</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n<sup>3</sup>)
+        </span><span style="mso-bidi-font-size: 10.0pt">проб
+        различных поддеревьев.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif"><font size="2"><span style="mso-bidi-font-size: 10.0pt">Сложность
+        этого алгоритма можно свести к O(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n<sup>2</sup></span><span style="mso-bidi-font-size: 10.0pt">),
+        воспользовавшись следующей <a name="эвристикой"><i> эвристикой</i></a>:</span></font></font>
+        <font size="2"><span style="mso-bidi-font-size: 10.0pt">поддерево
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        имеет два возможных поддерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i,,j-1</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        и </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i+1,j</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">.&nbsp;
+        Если </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i,j-1</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        и </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i+1,j</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        оптимальны и для них найдены корни </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">r</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i,j-1</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        и </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">r</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i+1,j</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">,
+        то</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        </span><span style="mso-bidi-font-size: 10.0pt">корень
+        дерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        лежит между этими корнями:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font size="2"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>r</font><font face="MS Sans Serif" size="3"><sub>i,j-1</sub></font></span><font size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&#8804;
+        r</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2"> &#8804;
+        </font> </span><font size="2"><span style="mso-spacerun: yes; mso-bidi-font-size: 10.0pt" lang="EN-US">&nbsp;</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">r</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i+1,j</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><span style="mso-bidi-font-size: 10.0pt">То
+        есть,&nbsp; корень можно искать не на всем
+        интервале </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">k</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">
+        ,</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        k</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>j</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-ansi-language: EN-US; mso-bidi-font-size: 10.0pt" lang="EN-US">]</span>, а на
+        интервале между </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">корнями
+        [r</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>i,j-1</sub></font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">r</font><font face="MS Sans Serif" size="3"><sub>i+1,</sub></font><font size="2"><sub>j</sub>]</font></span><font size="2"><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Все
+        приведенные выше отношения и
+        эвристики положены в основу алгоритма
+        построения оптимального дерева.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Общий
+        ход алгоритма следующий:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Обозначим
+        ширину поддерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">h=j
+        - i;</span></font></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">Вычисляем
+        веса всех<span style="mso-spacerun:yes">&nbsp; </span>поддеревьев
+        снизу<span style="mso-spacerun:yes">&nbsp; </span>вверх,
+        начиная<span style="mso-spacerun:yes">&nbsp; </span>с<span style="mso-spacerun:yes">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">w</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ii</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        для поддеревьев шириной h =&nbsp;</span><span style="mso-spacerun: yes; mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">0,
+        1, 2, …, n, </span><span style="mso-bidi-font-size: 10.0pt">пользуясь
+        уравнениями 1) и 2).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">Задаем
+        общие взвешенные длины путей для
+        поддеревьев шириной 0 и 1:</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif"><font size="2"><span style="mso-tab-count: 1; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P</font></font><font face="MS Sans Serif" size="3"><sub>ii</sub></font><font size="2">
+        = w</font><font face="MS Sans Serif" size="3"><sub>ii</sub></font><font size="2"> ,
+        </font> </span><font size="2"><span style="mso-bidi-font-size: 10.0pt">для
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">h
+        = 0;</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2"><font face="MS Sans Serif"><span style="mso-tab-count: 1; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif">P</font></font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font face="MS Sans Serif" size="2">
+        = w</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font face="MS Sans Serif" size="2"> + P</font><font face="MS Sans Serif" size="3"><sub>ii</sub></font><font face="MS Sans Serif" size="2"> + P</font><font face="MS Sans Serif" size="3"><sub>jj</sub></font><sub><font face="MS Sans Serif" size="2">,
+        </font> </sub></span><font size="2"><font face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">для</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        h=1.</span></font></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Задаем
+        корни поддеревьев, </span><span style="mso-bidi-font-size: 10.0pt">состоящих
+        из одного узла, равными номерам узлов.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l3 level1 lfo3; tab-stops: list 18.0pt left 21.3pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-bidi-font-size: 10.0pt">Далее,
+        пользуясь уравнением 4) постепенно
+        вычисляем минимальные длины </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">P</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        и соответствующие им корни </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">r</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        для поддеревьев с шириной </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">2,
+        3, …, n. </span><span style="mso-bidi-font-size: 10.0pt">В конце
+        мы получаем индекс корня всего дерева </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>0,n</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        и корни его оптимальных поддеревьев.</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        решения задачи определим следующие
+        таблицы:</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>
+		<i><font face="Arial" size="2">key
+        [1 .. n]</font></i></b></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> – </span><span style="mso-bidi-font-size: 10.0pt">ключи </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">key<sub>1</sub>,…,
+        key<sub>n</sub></span><span style="mso-bidi-font-size: 10.0pt">,</span></font></p>
+  <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b><i>
+	<font face="Arial" size="2">a
+  [1 .. n]</font></i></b></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> – </span><span style="mso-bidi-font-size: 10.0pt">массив
+        весов ключей,</span></font></p>
+  <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b><i>
+	<font face="Arial" size="2">b
+  [0 .. n]</font></i></b></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> – </span><span style="mso-bidi-font-size: 10.0pt">массив
+        весов групп не ключевых значений,</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>
+		<i><font face="Arial" size="2">w
+        [0 .. n][0 .. n]</font></i></b></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> – </span><span style="mso-bidi-font-size: 10.0pt">таблица
+        весов поддеревьев </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">,</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>
+		<i><font face="Arial" size="2">p
+        [0 .. n][0 .. n]</font></i></b></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> – </span><span style="mso-bidi-font-size: 10.0pt">таблица
+        минимальных взвешенных длин </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">,</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">
+		<font face="Arial" size="2">r[0
+        .. n][0 .. n]</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+        – </span><span style="mso-bidi-font-size: 10.0pt">таблица
+        корней </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">r</span></font><font face="MS Sans Serif" size="3"><span style="mso-bidi-font-size: 10.0pt"><sub><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">ij</span></sub>
+        </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        поддеревьев </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">T</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">.</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><a name="Алгоритм построения таблиц оптимального дерева">Алгоритм
+        построения таблиц оптимального
+        дерева</a>:</span></font>
+    </h3>
+  <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="tab-stops: 21.3pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+	<font size="2" face="Arial"><b>Root_Opt_Tree
+        (</b></font></span><b><i><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">a
+  [1 .. n]</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font size="2" face="Arial">,
+  </font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;b
+  [0 .. n]</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font size="2" face="Arial">,
+  </font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;w
+  [0 .. n][0 .. n]</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font size="2" face="Arial">,&nbsp;
+  </font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">p
+  [0 .. n][0 .. n]</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font size="2" face="Arial">,
+  </font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;r[0
+  .. n][0 .. n]</span></font></i><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font size="2" face="Arial">)</font></span></b></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>for</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> i 
+		&#8592; 0 </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>to
+		</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		n</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>do</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<i><b>w</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,i</sub> &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>b</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-spacerun:yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>&nbsp;for</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		j &#8592; i+1 </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>to</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp; 
+		n</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-spacerun:yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>&nbsp;do</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>w</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub> &#8592; 
+		<i><b>w</b></i><sub>i,j-1</sub> + </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>a</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i</sub> + </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>b</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>j</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>for</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> i &#8592; 0&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> to</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp; n<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><img border="0" src="images/comment.gif" align="middle" width="14" height="14"> h=0</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>d</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>o</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>p</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,i</sub> &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>w</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,i</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;
+        </span></span><b>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp; for
+        </span></b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">i &#8592; 0&nbsp; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>to</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp; n -1<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">h=1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">8.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>do</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        j &#8592; i+1</span></font></p>
+  <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">9.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>p</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub>
+        &#8592; </span>
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>w</b></i></span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub><font face="Arial" size="2">i,j</font><font face="Arial" size="2"> </font> </sub>
+	<font face="Arial" size="2"> + </span>
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>p</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,i</sub> + </span>
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>p</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>j,j</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">10.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span>
+		<span style="mso-spacerun:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>r</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub>
+        &#8592; j</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">11.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;</span>f</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>or</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		h &#8592; 2 </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>&nbsp;to</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp; 
+		n</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">12.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span style="mso-spacerun:yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>&nbsp;do&nbsp;
+        for</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> i 
+		&#8592; 0</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> 
+		to</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		n - h</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">13.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>do</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        j &#8592; i+h</span></font></p>
+        <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">14.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>t &#8592;
+        k</span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2"><sub>i,j-1</sub></font></span></p>
+        <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">15.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">
+        </span>min &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>p</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,t-1</sub> +&nbsp;
+        </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>p</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>t,j</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">16.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>
+		for</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		m &#8592; t+1 </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>to</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>r</b></i></span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2"><sub>i+1,j</sub></font></span></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">17.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>do</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		x &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>p</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,m-1</sub> + </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>p</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>m
+        j</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">18.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span style="mso-spacerun:yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> if</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp; </span>x &lt; min</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">19.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>then</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        t &#8592; m</span></font></p>
+        <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">20.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">
+        </span>min &#8592; x</span></font></p>
+        <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">21.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>p</b></i></span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub>
+        &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>w</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub> + min</span></font></p>
+        <p class="MsoNormal" style="mso-list: l4 level1 lfo4; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">22.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span style="mso-spacerun:yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>&nbsp;r</b></i></span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2"><sub>i,j</sub>
+        &#8592; </font></span><span lang="EN-US"><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">t</span></font></span></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Построение
+        оптимального дерева выполняется на
+        основе трассировки таблицы корней </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">r[0
+        .. n][0 .. n].&nbsp;</span><span style="mso-bidi-font-size: 10.0pt">
+        Рекурсивный алгоритм построения&nbsp; оптимального дерева&nbsp;</span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+        имеет вид</span><span style="mso-bidi-font-size: 10.0pt">:</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><b>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Create_Opt_Tree
+        (<i>key [1 .. n], r[0 .. n][0 .. n], i, j</i>)</span></b></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<b>if</b> i = j</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US"><b>then</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun: yes">
+        </span>x </span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        Create_Speshial_Node ()</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> return</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        x</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		x &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>
+		Create _Node</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		()</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">left
+        [x] &#8592;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> Create_Opt_Tree</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>(key</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">, </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>r</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">,</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b> i</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">,</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b> 
+		r</b></i></span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2"><sub>i,j</sub>-1)</font></span></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        m </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&#8592;</span></font><font face="Arial" size="2"><b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		</i><i>r</i></span></b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub></span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>key</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		[x] &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>key</b></i></span></font><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2"><sub>
+        </sub>[m]</font></span></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">8.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">right
+        [x] &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>Create_Opt_Tree
+		</b><i><b>(key</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">,</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b> 
+		r</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">, </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i>
+		<b>r</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><sub>i,j</sub>,</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b> 
+		j</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">)</span></font></p>
+        <p class="MsoNormal" style="mso-list: l2 level1 lfo5; tab-stops: 21.3pt list 39.0pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">9.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>return</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        x</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Первый
+        вызов&nbsp; функции <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Create_Opt_Tree<b>
+        </b></span>имеет вид:
+        root [T] &#8592; <b>Create_Opt_Tree </b>(key, r, 0, n).</span></font></p>
+        <p class="MsoNormal" style="tab-stops: 21.3pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+  </center><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_jadn.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="graph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="17203" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_dinam.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:29 GMT -->
+</html>

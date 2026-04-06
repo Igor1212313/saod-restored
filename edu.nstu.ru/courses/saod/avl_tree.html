@@ -1,0 +1,1123 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/avl_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:07 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>AVL - дерево</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/avl_tree.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="AVL - дерево"><!--webbot bot="Navigation" i-checksum="64229" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="rand_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="2_3_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="15068" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#Включение нового элемента в AVL - дерево">Включение
+        нового элемента в AVL - дерево</a></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#Удаление элемента из AVL - дерева">Удаление
+        элемента из AVL - дерева</a></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Структура
+        </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">сбалансированного
+        дерева была предложена&nbsp; Адельсоном-Вельским
+        и Ландисом в 1962 году [<a href="liter.html">5</a>].
+        Дается следующее определение
+        сбалансированности дерева.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Дерево
+        является сбалансированным тогда и
+        только тогда, когда для каждого узла
+        высота его двух поддеревьев
+        различается не более чем на 1. </font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        Для контроля сбалансированности узлов
+        в&nbsp; структуру каждого узла введён <a name="критерий"><i>критерий</i></a>
+        <i>
+        сбалансированности</i>&nbsp; bal = h<sub>R</sub>
+        - h<sub>L</sub>&nbsp; , где h<sub>L</sub> и h<sub>R </sub>–
+        высота левого и правого поддеревьев
+        узла. Узел сбалансирован, если значение
+        bal равно –1, 0 или +1. Операции вставки и
+        удаления элементов могут привести к
+        изменению высот поддеревьев в узлах,
+        лежащих на пути к вставленному или
+        удалённому элементу. После вставки или
+        удаления элемента выполняется
+        восходящая проверка и корректировка
+        критериев сбалансированности всех
+        узлов, лежащих на пути операции. Если в
+        результате корректировки критерия
+        значение bal в узле становится равным –2
+        или +2, то выполняется балансировка
+        разбалансированного узла.
+        Балансировка заключается в выполнении
+        поворота узла для выравнивания высот
+        поддеревьев. В AVL-дереве используются
+        четыре вида поворотов в зависимости о
+        конфигурации поддеревьев узла с
+        нарушенным критерием
+        сбалансированности. </span></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Включение нового элемента в AVL - дерево">Включение
+        нового элемента в AVL - дерево</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Рассмотрим
+        операцию включения в сбалансированное
+        дерево нового узла. </span></font> <span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Пусть
+        дан узел <b>a</b>&nbsp; с левым и правым
+        поддеревьями L и R. Предположим, что
+        новый узел включается в L, вызывая
+        увеличение его высоты на 1. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/avl1.gif" width="288" height="200"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Возможны
+        3 случая после включения:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">1.<span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Если h<sub>L </sub>= h<sub>R</sub> до включения,
+        то L и R становятся неравной высоты, но
+        критерий сбалансированности не
+        нарушен.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">2.<span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Если h<sub>L</sub> &lt; h<sub>R</sub> до включения,
+        то L и R становятся равной высоты и
+        сбалансированность даже<span style="mso-spacerun: yes; mso-bidi-font-size: 10.0pt">&nbsp;
+        </span>улучшается.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">3.<span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Если h<sub>L</sub> &gt; h<sub>R </sub>до включения,
+        то критерий сбалансированности
+        нарушается, и дерево нужно
+        перестраивать.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Рассмотрим
+        случаи нарушения сбалансированности</font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/avl2.gif" width="514" height="246"></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Простые
+        преобразования этих двух структур
+        восстанавливают сбалансированность. В
+        случае 1 достаточно выполнить
+        однократный R - поворот узла x&nbsp; вправо:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/avl3.gif" width="524" height="186"></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        случае 2 выполняется двойной LR - поворот,
+        эквивалентный выполнению двух
+        последовательных поворотов узлов y и x.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/avl4.gif" width="598" height="226"></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Повороты
+        узла, разбалансированного вправо,
+        выполняются по симметричной схеме и
+        носят названия однократного L-поворота
+        и двойного RL-поворота.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">В
+        общих чертах процесс включения узла в
+        сбалансированное дерево состоит из
+        трех этапов:</font></span></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Поиск места включения узла в каком-либо
+        листе.</span></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Включение нового узла и определение
+        нового показателя сбалансированности
+        в месте включения.</span></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Обратный проход по пути включения и
+        проверка сбалансированности у каждого
+        узла на этом пути.</span></font></p>
+        <h3 style="line-height: 100%; word-spacing: 0; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">&nbsp;
+        <font size="2" face="MS Sans Serif">
+		<span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        вставки элемента в AVL-дерево</span></font></h3>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 10px; margin-bottom: 0">
+		<font face="Arial" size="2"><b><span style="line-height: 150%">
+		AVL_Insert( <i>t, k, data, h, inserted</i> )</span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><i>t
+		</i>– </font></span></b><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%">корень дерева / поддерева</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">&nbsp;<i>k</i> 
+		–</font></span></b><font face="Arial" size="2"><span lang="EN-US" style="line-height: 150%">ключ 
+		нового элемента<b> </b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">&nbsp;<i>data</i> 
+		– </font></span></b><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%">данные нового элемента</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><i>inserted</i>
+		</font></span></b><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%">– возвращаемый признак 
+		вставки</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="line-height: 150%">h<b> 
+		– </b>возвращаемый признак увеличения высоты</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">1</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>t</i> = </font><i><font size="2">nil</font></i></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">1</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>t</i> &#8592; Create_Node(<i>k, data</i>)</font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">bal<b>
+		</b></font><b><font size="2">[ <i>t</i> ] &#8592; 0</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>h</i> &#8592; </font></span></b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">TRUE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>inserted</i> &#8592; </font></span></b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">TRUE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		return <i>t</i></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">12.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">h<b> 
+		&#8592; </b>FALSE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">13.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">2</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>k</i> = </font></span></b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">key</font><font size="2"><b>
+		</b></font><font size="2"><b>[ <i>t</i> ]</b></font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">14.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">2</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>inserted </i>&#8592; FALSE</font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">15.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return t</span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">16.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">3</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>k</i> &lt; </font></span></b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">key</font><b><font size="2">[
+		<i>t</i> ]</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">17.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">3</font></span></sub><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		left<b> </b></font><font size="2"><b>[ <i>t</i> ] &#8592; AVL_Insert</b>(left<b>
+		</b></font><font size="2"><b>[ <i>t</i> ] <i>k, data</i>, </b>hh, ins</font><b><font size="2">)</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">18.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">4</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">hh = TRUE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">19.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">4</font></span></sub></font><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="line-height: 150%">выросла 
+		левая ветвь</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">20.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">5</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] = </b>1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">21.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">5</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] &#8592;</b> 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">22.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">5</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">6</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] = </b>0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">23.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">6</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ]&#8592;</b> -1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">24.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">h 
+		&#8592; TRUE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">25.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><b><span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="line-height: 150%">балансировка</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">26.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">6</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">7</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b>[</b>left</font><font size="2"><b> </b></font>
+		<font size="2"><b>[ <i>t</i> ]</b></font><b><font size="2">] = -1</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">27.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">7</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>t </i>&#8592; R (<i> t </i>) </font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">28.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">7</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>t</i> &#8592; LR (<i> t </i>)</font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">29.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp; 
+		else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">3</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">right<b> </b></font><font size="2"><b>[ <i>t</i> ] &#8592; 
+		AVL_Insert(</b>right<b> </b></font><font size="2"><b>[ <i>t</i> ], <i>k, 
+		data</i>, </b>hh, ins</font><b><font size="2">)</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">30.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">8</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">hh = TRUE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">31.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">8</font></span></sub></font><b><span lang="EN-US" style="line-height: 150%"><font face="Arial" size="2">
+		</font></span></b><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="line-height: 150%">выросла 
+		правая ветвь</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">32.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">9</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] = </b>-1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">33.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">9</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] &#8592;</b> 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">34.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">9</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">10</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] = </b>0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">35.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">10</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b> </b></font><font size="2"><b>[ <i>t</i> ] &#8592; </b>1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">36.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">h 
+		&#8592; TRUE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">37.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><b><span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="line-height: 150%">балансировка</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">38.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">10</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		if</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">11</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">bal<b>[</b>right<b> </b></font><font size="2"><b>[ <i>t</i> 
+		]] = </b>1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">39.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">11</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>t</i> &#8592; L (<i> t </i>) </font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">40.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</font></span></b><sub><span lang="EN-US" style="line-height: 150%"><font size="2">11</font></span></sub><b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<i>t</i> &#8592; RL (<i> t </i>)</font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">41.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;<i>inserted</i> 
+		&#8592;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		ins</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">42.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;return <i>t</i></span></b></font></p>
+        <p style="line-height: 100%; text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <p style="line-height: 100%; text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin: 0" class="MsoNormal" align="center"><a href="flash/test29.html"><b><font face="MS Sans Serif" size="3" color="#0000FF">Тест</font></b></a></p>
+        <p style="line-height: 100%; text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <h3 style="line-height: 100%; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font size="2">Алгоритм
+        R - поворота узла t:</font></h3>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 10px; margin-bottom: 0">
+		<font face="Arial" size="2"><b><span style="line-height: 150%">R ( <i>t</i> 
+		)</span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">x&#8592; left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b></font><font size="2"><b>[ <i>t</i> ]</b></font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b></font><font size="2"><b>[ <i>t</i> ]</b></font></span></font><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font face="Arial" size="2"> 
+		&#8592; right[x]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">right[x] <b><i>&#8592;</i></b> <b><i>t</i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		bal[x] = -1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b></font><font size="2"><b>[ <i>t</i> ]</b></font></span></font><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font face="Arial" size="2">
+		<b><i>&#8592;</i></b> bal[x] <b><i>&#8592;</i></b> 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b></font><font size="2"><b>[ <i>t</i> ]</b></font></span></font><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font face="Arial" size="2">
+		<b><i>&#8592;</i></b> -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bal[x] <b><i>&#8592;</i></b> 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		x</font></span></font></p>
+        <p style="line-height: 100%; text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <h3 style="line-height: 100%; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font size="2">Алгоритм
+        LR - поворота узла t:</font></h3>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 10px; margin-bottom: 0">
+		<font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">LR ( <i>t</i> )</span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">x &#8592; left [ <b><i>t</i></b> ]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">y &#8592; right [ x ]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">right [ x ] &#8592; left [ y ]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">left [ y ] &#8592; x</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">left [ <b><i>t </i></b>] &#8592; right [ y ]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">right [ y ] &#8592; <b><i>t</i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if </font>
+		</span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;bal [ y ] = -1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp; 
+		bal [<b><i> t</i></b> ] &#8592; 1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">bal 
+		[ x ] &#8592; 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if </font>
+		</span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;bal [ y ] = 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp; 
+		bal [ <b><i>t</i></b> ] &#8592; bal [x ] &#8592; 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">12.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp; 
+		bal [ y ] = 1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">13.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp; 
+		bal [<b><i> t</i></b> ] &#8592; 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">14.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">bal 
+		[ x ] &#8592; -1</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">15.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">bal [ y ] &#8592; 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">16.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		y</font></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Математический
+        анализ этого алгоритма сложен.
+        Эмпирические проверки этого алгоритма
+        показывают, что ожидаемая высота
+        сбалансированного дерева равна h=log<sub>2</sub>
+        n+0.25. То есть AVL - деревья ведут себя как
+        идеально сбалансированные полные
+        деревья.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Однако,
+        затраты на балансировку AVL - дерева
+        значительны. Балансировка необходима
+        приблизительно 1 раз на два включения и
+        однократный и двукратный повороты
+        равновероятны.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Из-за
+        сложности операций балансировки AVL –
+        деревья рекомендуется использовать в
+        случае, если число операций поиска
+        значительно превышает число операций
+        включения и удаления.</span></font></p>
+        <p style="line-height: 100%; text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Удаление элемента из AVL - дерева">Удаление
+        элемента из AVL - дерев</a></span><a name="Удаление элемента из AVL - дерева"><span style="mso-bidi-font-size: 10.0pt">а</span></a></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">При
+        удалении узлов из AVL – дерева операция
+        балансировки в основном остается такой
+        же, что и при включении и заключается в
+        однократном или двукратном повороте.
+        При этом булевская переменная h,
+        возвращаемая операцией удаления
+        означает уменьшение высоты поддерева.
+        При&nbsp; восходящем пересчете критерия
+        сбалансированности выполняется
+        балансировка тех узлов, у которых
+        критерий стал равным +2 или -2.
+        Балансировка выполняется с помощью тех
+        же&nbsp; L - , R - , RL -&nbsp; и LR - поворотов.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="line-height: 100%; text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; margin: 0" class="MsoNormal" align="center"><img border="0" src="images/avl5.gif" width="560" height="366"></p>
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; mso-list: l0 level1 lfo1; tab-stops: list 71.45pt; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Удаление
+        элементов также имеет стоимость О(log<sub>2</sub>
+        n). Но если включение может вызвать один
+        поворот, удаление может потребовать
+        повороты в каждом узле пути поиска при
+        обратном ходе рекурсии. Но
+        эмпирические проверки показали, что
+        если при включении выполняется один
+        поворот на каждые два включения, то при
+        удалении один поворот приходится на 5
+        удалений.</span></font><h3 style="margin-top: 20px; margin-bottom: 0">
+		<a name="_Toc284594699"><span style="line-height: 150%"><font size="2">
+		Рекурсивный алгоритм удаления элемента из AVL-дерева</font></span></a></h3>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 20px; margin-bottom: 0">
+		<b><span lang="DE"><font size="2">AVL</font></span><span lang="EN-US"><font size="2">_</font></span><span lang="DE"><font size="2">Delete</font></span><span lang="EN-US"><font size="2"> 
+		(</font></span><i><span lang="DE"><font size="2">t</font></span><span lang="EN-US"><font size="2">,
+		</font></span><span lang="DE"><font size="2">k</font></span><span lang="EN-US"><font size="2">,
+		</font></span><span lang="DE"><font size="2">h</font></span><span lang="EN-US"><font size="2">,
+		</font></span><span lang="DE"><font size="2">deleted</font></span></i><span lang="EN-US"><font size="2">)</font></span></b></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">1.&nbsp; </font></span>
+		<font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2">t</font></i></b></span><i><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span></i><span style="line-height: 150%"><font size="2">– 
+		корень дерева / поддерева</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">2.&nbsp; </font></span>
+		<font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;k</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		–ключ удаляемого элемента </font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">3.&nbsp; </font></span>
+		<font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2">h</font></i></b></span><span style="line-height: 150%"><font size="2"> 
+		– возвращаемый признак уменьшения высоты</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">4.&nbsp; </font></span>
+		<font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2">deleted</font></i></b></span><span style="line-height: 150%"><font size="2"> 
+		– возвращаемый признак удаления</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">5.&nbsp; <b><i>h</i></b>&#8592;FALSE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">6.&nbsp; <b>if</b>
+		<b><i>t </i></b>= </font><b><i><font size="2">nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">7.&nbsp;&nbsp; <b>then</b>
+		<b><i>deleted</i></b> &#8592; FALSE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return</b> </font><b><i><font size="2">nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">9.&nbsp; <b>if</b>
+		<b><i>k </i></b>&lt; key</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">10.&nbsp; <b>
+		&nbsp;then</b> left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; <b>AVL_Delete</b>( left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">,
+		<b><i>k</i></b>, hh, del )</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>if</b> hh = TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		12.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		13.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; 0;</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		14.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>h </i></b>&#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		15.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&nbsp;else</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		16.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		17.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b>&nbsp; <b>if</b> 
+		bal[right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		18.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b>
+		<b><i>t</i></b> &#8592; <b>L</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		19.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<b>else</b>&nbsp;&nbsp;
+		<b><i>h</i></b> &#8592; TRUE</font><b><font size="2"> </font></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">20.<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if</b> bal[right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		= 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		21.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then</b> <b><i>t</i></b> &#8592; <b>L</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		22.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>else</b> <b><i>t</i></b> &#8592; <b>RL</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		23.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>deleted</i></b> &#8592; del</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		24.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return</b> </font><b><i><font size="2">t</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">25.&nbsp; <b>if</b>
+		<b><i>k </i></b>&gt; key</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">26.&nbsp;&nbsp;&nbsp; <b>
+		then</b> right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; <b>AVL_Delete</b>( right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">,
+		<b><i>k</i></b>, hh, del )</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		27.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>if</b> hh=TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		28.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		29.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; 0;</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">30.&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>h </i></b>&#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		31.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">32.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		33.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b>&nbsp; <b>if</b> bal[left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		34.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> <b><i>t
+		</i></b>&#8592; <b>R</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		35.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b> <b><i>h
+		</i></b>&#8592; TRUE</font><b><font size="2"> </font></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&nbsp;if</b> 
+		bal[left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		= -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		37.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b>
+		<b><i>t </i></b>&#8592; <b>R</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		38.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b>
+		<b><i>t </i></b>&#8592; <b>LR</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">39.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b><i>deleted</i></b> &#8592; del</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">40.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>return</b> </font><b><i><font size="2">t</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">41.&nbsp; </font>
+		</span><font size="2" face="Arial">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><span style="line-height: 150%"><font size="2">найден 
+		удаляемый узел </font><b><i><span lang="DE"><font size="2">t</font></span></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">42.&nbsp; <b><i>
+		deleted </i></b>&#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">43.&nbsp; <b>if</b> 
+		left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= <b><i>nil</i></b> <b>and</b> right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font><b><i><font size="2">= nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">44.&nbsp; <i>&nbsp;&nbsp;&nbsp;</i><b>&nbsp;then</b>
+		<b>Delete_Node</b> (<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		45.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>h</i></b> &#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		46.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return</b> </font><b><i><font size="2">nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">47.&nbsp; <b>if
+		</b>left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">=
+		</font><b><i><font size="2">nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">48.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+		then</b> x &#8592; right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">49.&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Delete_Node</b> (<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		50.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>h </i></b>&#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		51.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return</b> x</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">52.&nbsp; <b>if
+		</b>right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		=</font><b><i><font size="2"> nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">53.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+		then</b> x &#8592; left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">54.&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Delete_Node</b> (<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		55.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>&nbsp;h</i></b> &#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		56.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return</b> x</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">57.&nbsp; right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="DE" style="line-height: 150%"><font size="2"> 
+		&#8592; <b>Del</b> (right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="DE" style="line-height: 150%"><font size="2">,
+		<b><i>t</i></b>, hh)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">58.&nbsp; <b>if</b> 
+		hh = TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">59.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+		then if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		60.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal[<b><i>t</i></b>] &#8592; 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		61.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>h</i></b> &#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">62.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		63.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		64.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b> x &#8592; left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		65.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&nbsp;if</b> bal[x] = 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		66.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> <b><i>t</i></b> &#8592;
+		<b>R</b>(<b><i>t</i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		67.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> <b><i>h</i></b> &#8592; 
+		TRUE</font><b><font size="2"> </font></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">68<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		if</b> bal[x] = -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		69.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> <b><i>t</i></b> 
+		&#8592; <b>R</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		70.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b> <b><i>t</i></b> 
+		&#8592; <b>LR</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">71.&nbsp; <b>return</b>
+		</font><b><i><font size="2">t</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">&nbsp;</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">&nbsp;</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<b><span lang="DE" style="line-height: 150%"><font size="2">Del</font></span></b><span lang="DE" style="line-height: 150%"><font size="2">(<b><i> 
+		t, t0, h </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">1.&nbsp; <b><i>h</i></b> 
+		&#8592; FALSE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">2.&nbsp; <b>if</b> 
+		left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8800; </font><b><i><font size="2">nil</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+		then</b> left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; <b>Del</b> (left</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">,
+		<b><i>t0</i></b>,hh)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>if</b> hh = TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= -1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal[<b><i>t</i></b>] &#8592; 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>h </i></b>&nbsp;&#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">8.&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> <b>if</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b> bal</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		10.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b> <b>if</b> 
+		bal[right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		= 0</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b>&nbsp; <b>
+		<i>t</i></b>&nbsp; &#8592; <b>L</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">12.<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else <i>h </i></b>&nbsp;&#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">13.<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		if</b> bal[right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		= 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b>
+		<b><i>t</i></b>&nbsp; &#8592; <b>L</b>(<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font size="2">
+		12.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b>&nbsp;
+		<b><i>t</i></b> &#8592; <b>RL</b> (<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		13.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b> </font><b><i><font size="2">t</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">14.&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> 
+		key[<b><i> t0 </i></b>] &#8592; key</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">15.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		data[<b><i> t0 </i></b>] &#8592; data</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">16.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		x &#8592; right</font></span><font face="Arial"><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		</b>[<b> <i>t</i> </b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">17.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>Delete</b>_<b>Node</b> (<b><i> t </i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">18.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b><i>&nbsp;h</i></b>&nbsp; &#8592; TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">19.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>return</b> x</font></span><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="rand_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="2_3_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="33675" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/avl_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:08 GMT -->
+</html>

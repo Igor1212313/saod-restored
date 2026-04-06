@@ -1,0 +1,503 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/bfs.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:32 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Обход графа в ширину</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/bfs.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Обход графа в ширину"><!--webbot bot="Navigation" i-checksum="62947" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="graph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="32853" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">&nbsp;<a href="#Дерево обхода в ширину">Дерево
+        обхода в ширину</a></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Алгоритм построения пути между вершинами">Алгоритм
+        построения пути между вершинами</a></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Поиск
+        в ширину <span lang="EN-US" style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:RU;mso-bidi-language:AR-SA">(breadth
+        - first search) </span>- один из базовых
+        алгоритмов , лежащий в основе многих
+        других алгоритмов для графов. Например,
+        алгоритм Дейкстры для поиска
+        кратчайших путей для заданной&nbsp;
+        вершины или<b style="mso-bidi-font-weight:
+normal"> </b>алгоритм Прима<b style="mso-bidi-font-weight:normal"> </b>поиска
+        минимального покрывающего дерева
+        являются обобщениями поиска в ширину.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        задан граф G=(V, E) и начальная<b style="mso-bidi-font-size: 10.0pt">
+        </b>вершина s. Алгоритм поиска в ширину
+        перечисляет все допустимые из s вершины
+        в порядке возрастания расстояния от s.
+        Расстоянием считается длина (число
+        ребер) кратчайшего пути. В результате
+        из графа выделяется часть, называемая
+        &quot;деревом поиска в ширину&quot; с корнем </span><span style="mso-bidi-font-size: 10.0pt">s</span><span style="mso-bidi-font-size: 10.0pt">.
+        В этом дереве путь из корня </span><span style="mso-bidi-font-size: 10.0pt">s</span><span style="mso-bidi-font-size: 10.0pt">
+        в любую вершину будет одним из
+        кратчайших путей из </span><span style="mso-bidi-font-size: 10.0pt">s</span><span style="mso-bidi-font-size: 10.0pt">
+        в графе. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        применим к орграфам и
+        неориентированным графам.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        называется <a name="поиском в ширину"><i> поиском в ширину</i></a>, так как
+        поиск идет вширь: сначала выбираются
+        все соседние для заданной вершины s,
+        затем соседи соседей и так далее. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        наглядности будем использовать
+        раскраску вершин[<a href="liter.html">3</a>]. Будем
+        различать белые, серые и черные вершины<b style="mso-bidi-font-weight:
+normal">. </b>Белая вершина - вершина, которая еще
+        не обнаружена при поиске в вершину.&nbsp;
+        Изначально все вершины графа белые. <span style="mso-bidi-font-weight: normal">Серая</span>
+        - это вершина, уже обнаруженная при
+        поиске в качестве соседней, но у
+        которой не просмотрены ее соседи.
+        Черная - вершина, обнаруженная при
+        поиске и у нее просмотрены все ее
+        соседи. В ходе поиска обнаруженные
+        вершины поочередно&nbsp; становятся
+        серыми и в дальнейшем, - черными, когда
+        будут просмотрены их соседи. Различие
+        между серыми и черными вершинами
+        используется&nbsp;&nbsp; для управления
+        порядком обхода.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font size="2"><font face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Вначале
+        дерево поиска состоит только из корня
+        вершины </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">
+        = </span></font></font><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">s</span><span style="mso-bidi-font-size: 10.0pt">.
+        Вершина s</span><span style="mso-bidi-font-size: 10.0pt">
+        сразу окрашивается в серый цвет. Как
+        только алгоритм поиска обнаруживает
+        новую смежную для u вершину - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-bidi-font-size: 10.0pt">,
+        которая имеет белую окраску, вершина </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-bidi-font-size: 10.0pt">
+        вместе с соответствующим ребром (</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-bidi-font-size: 10.0pt">)
+        добавляется к дереву поиска. Вершина </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-bidi-font-size: 10.0pt">
+        окрашивается в серый цвет. Далее для
+        вершины </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u
+        </span><span style="mso-bidi-font-size: 10.0pt">просматриваются
+        и обнаруживаются следующие смежные
+        белые вершины </span><span style="mso-bidi-font-size: 10.0pt">.
+        </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font size="2"><font face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Все
+        обнаруженные и перекрашенные в серый
+        цвет смежные вершины помещаются в&nbsp;
+        очередь для дальнейшего просмотра, а
+        вершина </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">
+        после этого перекрашивается в черный
+        цвет. Далее из очереди извлекается
+        первая серая вершина и для нее
+        выполняется аналогичный просмотр
+        смежных белых вершин. </span></font></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        </span><span style="mso-bidi-font-size: 10.0pt">поиска в
+        ширину </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">BFS</span><span style="mso-bidi-font-size: 10.0pt">(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">G</span><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span style="mso-bidi-font-size: 10.0pt">s) имеет
+        входные данные - структуру графа </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">G</span><span style="mso-bidi-font-size: 10.0pt">
+        и выделенную вершину </span><span style="mso-bidi-font-size: 10.0pt">s</span><span style="mso-bidi-font-size: 10.0pt">.
+        Для фиксации дерева введем в структуру
+        вершин графа поле - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">p</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        - указатель на родителя вершины в
+        дереве и </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">поле
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        - расстояние от </span><span style="mso-bidi-font-size: 10.0pt">s</span><span style="mso-bidi-font-size: 10.0pt">
+        до </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">.
+        Для управления обходом также введем
+        поле&nbsp; цвета </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">вершины
+        - color</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">].</span></font></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><a name="BFS">BFS
+        </a>(<i>G, s</i>)</font></h3>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-style: normal; font-variant: normal; font-weight: 700">
+        </span></span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700">for</span><span style="mso-bidi-font-size: 10.0pt">
+        для каждой вершины </span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		u <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">V</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">G</span><span style="mso-bidi-font-size: 10.0pt">]</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>do</b>&nbsp;&nbsp; color [u] <span style="mso-no-proof:
+yes">&#8592;</span></span><span style="mso-bidi-font-size: 10.0pt"> БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;
+        </span>d[u]
+        <span style="mso-no-proof:
+yes">&#8592; <img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"></span></span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>p[u] <span style="mso-no-proof:
+yes">&#8592;</span>
+        nil</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color
+        [</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">s</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">] <span style="mso-no-proof:yes">&#8592;</span>&nbsp; </span><span style="mso-bidi-font-size: 10.0pt">СЕРЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">s</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]&nbsp;
+        <span style="mso-no-proof:
+yes">&#8592; </span>0</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="queue.html#Enqueue (Q, x)"></a></span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-no-proof: yes" lang="EN-US">
+		<a href="queue.html#Enqueue (Q, x)">Enqueue</a>(Q,
+        s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Q -
+        очередь FIFO</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">8.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b>while</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> Q
+        не пуста</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">9.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> do</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> u <span style="mso-no-proof:
+yes">&#8592;</span><span style="mso-no-proof: yes"> </span>
+		<a href="queue.html#Dequeue (Q)">Dequeue</a>(Q)
+        </span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">10.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span style="mso-spacerun: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> 
+		f</b></span><b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">or</span></b><span style="mso-bidi-font-size: 10.0pt"> 
+		для </span><span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt"> </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 10.0pt; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman; mso-ansi-language: EN-US" lang="EN-US">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]&nbsp;
+        </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-no-proof: yes" lang="EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14"></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        - список смежности вершины u</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">11.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><b> do if</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> color [v]&nbsp; = </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">12.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700"> then</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp; color [v] <span style="mso-no-proof:yes">&#8592;</span><span style="mso-no-proof: yes">
+        </span>СЕРЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">13.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>d[v] <span style="mso-no-proof:yes">&#8592;</span><span style="mso-no-proof: yes">
+        </span>d[u]+1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">14.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>p[v]<span style="mso-no-proof:yes">&#8592;</span>u<span style="mso-spacerun:yes">&nbsp;
+        </span></span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">15.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; 
+        </span><a href="queue.html#Enqueue (Q, x)">Enqueue</a>
+        (Q, v)</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">16.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>color [u] <span style="mso-no-proof:yes"> &#8592; </span></span><span style="mso-bidi-font-size: 10.0pt">ЧЕРНЫЙ</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        </span></font></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Иллюстрация
+        обхода в ширину:</font></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_bfs.gif" width="226" height="572">
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">&nbsp;Дерево
+        обхода в ширину</font></h3>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">В
+      ходе работы алгоритма в вершинах
+      фиксируются параметры d[v] - расстояние от
+      исходной вершины s до&nbsp; вершины v, p[v]
+      -&nbsp; вершина - предшественник, через
+      которую была обнаружена вершина v при
+      обходе.</font>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_bfs1.gif" width="168" height="122"></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">&nbsp;То
+      есть в графе выделяется некоторый
+      подграф - дерево поиска, задаваемое
+      полями p[v].&nbsp;</font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">В
+      частности для рассматриваемого примера
+      получилось дерево:&nbsp;</font></p>
+      <h3 align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><img border="0" src="images/graph_bfs2.gif" width="150" height="144"></h3>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Это
+      дерево называется подграфом
+      предшествования или <i><a name="деревом поиска в ширину"> деревом поиска в
+      ширину</a></i> для заданного графа G=(V, E) и
+      заданной начальной вершины s.&nbsp;</font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+      <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Алгоритм построения пути между вершинами">Алгоритм
+      построения пути между вершинами</a></span></font></h3>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Если
+      алгоритм BFS вычисляет для каждой вершины
+      родителя в дереве - p[v], то можно
+      построить любой кратчайший путь между
+      вершиной s&nbsp; и вершиной v дерево,
+      пользуясь построенным деревом обхода в
+      ширину.</font></p>
+      <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">&nbsp;Path
+      (<span style="font-style: italic">G, s, v</span>)</font></h3>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>if &nbsp;</b>v = s</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>then </b><b>Enqueue</b>(Q,
+      <span style="font-style: italic; font-weight: 700">v</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Q -<a href="queue.html"> очередь
+      FIFO</a></font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>else if </b>p[<span style="font-style: italic; font-weight: 700">v</span>] = nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img border="0" src="images/comment.gif" align="middle" width="14" height="14">nil = -1</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>then </b>error &quot;пути из&nbsp;
+		<span style="font-style: italic; font-weight: 700">s</span>&nbsp; в&nbsp;
+		<span style="font-style: italic; font-weight: 700">v</span> нет&quot;</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>else</b> <b>Path</b> (<span style="font-style: italic; font-weight: 700">G</span>, 
+		<span style="font-style: italic; font-weight: 700">s</span>, p[<span style="font-style: italic; font-weight: 700">v</span>])&nbsp;</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>Enqueue</b>(Q, <span style="font-style: italic; font-weight: 700">v</span>)&nbsp;</font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">После
+      работы рекурсивного алгоритма </font><font face="Microsoft Sans Serif" size="2">BFS_Path,
+      путь зафиксирован в очереди Q в виде
+      последовательности вершин от s до v.
+      Например, путь от вершины 1 до вершины 3
+      будет храниться в очереди Q: 1, 2, 5, 3.</font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">
+      &nbsp;
+      <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+      <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Алгоритм
+      полного обхода в ширину</font></h3>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Если
+      граф не звязный, то есть состоит из
+      отдельных связных компонент, то вместо
+      дерева обхода&nbsp; необходимо строить лес
+      обхода в ширину. Для этого необходимо
+      выполнить полный обход в ширину с
+      помощью дополнительной функции BFS_Full(G).</font>
+      <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><a name="BFS_Ful">BFS_Ful</a>l(<i>G</i>)</font></h3>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>for</b> <span lang="ru">каждой вершины</span> s<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"></span>V[<b><i>G</i></b>]</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;<b>do</b>&nbsp;</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      d[s] &#8592; <span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"></span></font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p[s] &#8592;
+      nil</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color
+      [s] <span style="mso-no-proof:yes">&#8592;</span>&nbsp; </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>for</b>&nbsp; s 
+		<span style="mso-no-proof:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">&#8592;
+      1 t</span><b>o</b><span style="mso-no-proof:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US"> |</span>V[<b><i>G</i></b>]|</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do if</b> color [s] = БЕЛЫЙ</font></p>
+      <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> BFS_Visit (s)&nbsp;</font></p>
+      <h3 align="justify" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0">&nbsp;</h3>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">BFS_Visit
+        (<b><i>G, s</i></b>)
+        </font></h3>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>Clear</b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">(Q)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-no-proof: yes" lang="EN-US">&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">очистка
+        Q - очереди FIFO</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color
+        [<i><b>s</b></i>] <span style="mso-no-proof:yes">&#8592;</span>&nbsp; </span><span style="mso-bidi-font-size: 10.0pt">СЕРЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d[</span><b><i>s</i></b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]&nbsp;
+        <span style="mso-no-proof:
+yes">&#8592; </span>0</span></font></p>
+      <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="queue.html#Enqueue (Q, x)"></a></span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-no-proof: yes" lang="EN-US"><a href="queue.html#Enqueue (Q, x)">Enqueue</a>(Q,
+        s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><b> 
+		while</b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		Q не пуста
+        </span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;
+        </span>
+        </span><b>do</b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp; u <span style="mso-no-proof:
+yes">&#8592;</span><span style="mso-no-proof: yes"> </span><a href="queue.html#Dequeue (Q)">Dequeue</a>(Q)
+        </span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span style="mso-spacerun: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>for</b><span style="mso-bidi-font-size: 10.0pt"> для </span>
+		<span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt"> </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 10.0pt; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman; mso-ansi-language: EN-US" lang="EN-US">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]&nbsp;
+        </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-no-proof: yes" lang="EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14"></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        - список смежности вершины u</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">8.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span> </span><b>do if </b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color [v]&nbsp; = </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font size="2">9.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></font></span><font size="2">
+		<span style="mso-spacerun:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b> then</b><span style="mso-bidi-font-size: 10.0pt"> color [v]
+        &#8592; СЕРЫЙ</span></font></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">10.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d[v] &#8592; d[u]+1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">11.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>p[v]<span style="mso-no-proof:yes">&#8592;</span>u<span style="mso-spacerun:yes">&nbsp;
+        </span></span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">12.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></span>
+		<span style="mso-spacerun:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font><font face="Microsoft Sans Serif"><a href="queue.html#Enqueue (Q, x)"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">Enqueue</font></span></a></font><font face="Arial"><font size="2">
+		</font>
+        <span style="mso-bidi-font-size: 10.0pt"><font size="2">
+        (Q, v)</font></span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font size="2">13.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;
+        </span></font></span>
+		<span style="mso-spacerun:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+        </span><font size="2"><span style="mso-bidi-font-size: 10.0pt">&nbsp; color [u] &#8592;
+        ЧЕРНЫЙ</span></font></font></p>
+      <p align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+      <p align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">Пусть
+      дан не звязный граф:</font></p>
+      <p align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+      <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><img border="0" src="images/graph_bfs3.gif" width="264" height="80"></p>
+      <p align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">Алгоритм
+      полного обхода в ширину выделит&nbsp;
+      следующий подграф предшествования:</font></p>
+      <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><img border="0" src="images/graph_bfs4.gif" width="274" height="106"></p>
+      <p align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+      <p align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">То
+      есть построены два дерева, образующие <a name="лес обхода в ширину"><i>
+      лес обхода в ширину</i></a>:</font></p>
+      <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><img border="0" src="images/graph_bfs5.gif" width="310" height="158"></p>
+      <h3 align="justify" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">Анализ
+      времени выполнения алгоритма</font></h3>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Каждая
+      вершина помещается в очередь не более
+      одного раза&nbsp; Операции с очередью Enquene,
+      Dequeue требуют O(1) времени. Таким образом,&nbsp;
+      для операций с очередью требуется&nbsp; O(v)
+      времени. Для каждой вершины полностью
+      просматриваются их списки смежности и
+      сумма длин всех&nbsp; просмотренных
+      списков равна </font><font face="Microsoft Sans Serif" size="2">числу
+      ребер&nbsp; |E|&nbsp; и на их обработку
+      требуется O(E) времени. Инициализация
+      алгоритма обхода в ширину требует O(v)
+      шагов. В итоге для выполнения обхода в
+      ширину требуется&nbsp; O(V+E) времени. </font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Алгоритм
+      BFS находит расстояния от начальной
+      вершины s до каждой из достижимых вершин
+      для заданной вершины s. Под расстоянием
+      понимается длина кратчайшего пути -
+      число ребер на пути от вершины s до
+      вершины v. Путей может быть несколько,
+      они определяются порядком выбора вершин
+      из списков смежности.</font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;<!--mstheme--></font></td>
+    </tr>
+  <center>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="graph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="33260" endspan --></font><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/bfs.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:33 GMT -->
+</html>

@@ -1,0 +1,699 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/exhaustive_search.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:22 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Исчерпывающий поиск</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%" height="36"><!--mstheme--><font face="Arial">
+        <p align="center"><font face="MS Sans Serif" size="2">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/exhaustive_search.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Исчерпывающий поиск"><!--webbot bot="Navigation" i-checksum="33667" endspan -->
+        </font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" height="22"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="file_structure.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_jadn.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="45091" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" valign="top" align="justify"><!--mstheme--><font face="Arial">
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Задача коммивояжера">Задача
+        коммивояжера</a></font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Задача о рюкзаке">Задача
+        о рюкзаке</a></font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Игровые задачи">Игровые
+        задачи</a></font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Альфа – бета отсечение">Альфа
+        – бета отсечение</a></font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Метод ветвей и границ">Метод
+        ветвей и границ</a></font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Исчерпывающий
+        поиск (перебор) встречается в задачах с
+        комбинаторными свойствами,
+        исследующими в процессе решения
+        перебор перестановок элементов,
+        сочетаний или подмножеств данного
+        множества. Как правило, в этих задачах
+        выполняется поиск оптимального
+        решения с минимальным или максимальным
+        значением некоторого критерия.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Иногда
+        при решении оптимизационной задачи не
+        удается применить методы
+        динамического программирования или
+        жадные алгоритмы. Поэтому приходится
+        прибегнуть к полному перебору всех
+        возможных решений. Метод полного
+        перебора иначе называется поиском с
+        возвратом.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Как
+        метод решения задач, исчерпывающий
+        поиск (перебор) предполагает генерацию
+        всех возможных элементов из области
+        определения задачи, выбор тех из них,
+        которые удовлетворяют ограничениям,
+        накладываемым условиями задачи,&nbsp;&nbsp;
+        последующий поиск нужного решения.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Как
+        правило, решение комбинаторных задач
+        методом исчерпывающего поиска
+        является исключительно неэффективным
+        способом, имеющим экспоненциальную
+        трудоемкость О(2<sup>n</sup>) или O(n!). Задачи,
+        решаемые методом исчерпывающего
+        поиска, называются <a name="NP - сложными задачами"><i>NP
+        - сложными задачами</i></a>.&nbsp; Ни для одной из NP
+        - сложных задач не известен алгоритм,
+        решающий их за полиномиальное время. Но
+        для многих NP - сложных задач известны
+        альтернативные приближенные методы,
+        позволяющие получить решение с меньшей
+        трудоемкостью. К таким методам
+        относятся <a href="alg_jadn.html">метод жадного
+        выбора</a> и <a href="alg_dinam.html">метод
+        динамического программирования</a>.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"></p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="4" color="#0000FF"><b><a href="flash/test40.html">Тест</a></b></font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Наглядной
+        иллюстрацией исчерпывающего поиска
+        служат задача коммивояжера и задача о
+        рюкзаке [<a href="liter.html">8</a>].</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Задача коммивояжера">Задача
+        коммивояжера</a></font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Задача
+        коммивояжера звучит так: определить
+        кратчайший путь по заданным n городам
+        таким образом, чтобы каждый город
+        посещался только один раз и конечным
+        пунктом оказался город, с которого
+        началось путешествие. Задачу можно
+        смоделировать при помощи взвешенного
+        графа, вершины которого представляют
+        города, а веса ребер определяются
+        расстояниями между городами.&nbsp; После
+        этого задача может быть сформулирована
+        как&nbsp; задача построения кратчайшего
+        гамильтонова цикла для
+        неориентированного графа.&nbsp;</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Гамильтонов цикл"><i>Гамильтонов
+        цикл</i></a>&nbsp; можно определить как
+        последовательность n+1 вершин v<sub>1</sub>, v<sub>2</sub>,
+        . . . , v<sub>n</sub>, v<sub>1</sub>, где первая вершина
+        в последовательности совпадает с
+        последней, а все остальные вершины
+        различны.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Задачу
+        можно решить, составляя все возможные
+        циклы путем генерации&nbsp; всех
+        перестановок n - 1 вершин,&nbsp; вычисления
+        длин соответствующих путей и выбора
+        кратчайшего из них.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Общее
+        количество перестановок равно (n-1)!, что
+        делает исчерпывающий поиск для больших
+        n неприемлемым.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Задача о рюкзаке">Задача
+        о рюкзаке</a></font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Дано
+        n предметов весом w<sub>1</sub>, w<sub>2</sub>, . . . ,w<sub>n</sub>
+        и ценой v<sub>1</sub>, v<sub>2</sub>, . . . , v<sub>n</sub>, а
+        также рюкзак, выдерживающий вес W.
+        Необходимо найти подмножество
+        предметов, которое можно разместить в
+        рюкзаке, и которое имеет максимальную
+        стоимость.&nbsp;</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Исчерпывающий
+        перебор приводит к рассмотрению всех
+        подмножеств из n предметов, вычислению
+        общего веса каждого подмножества,
+        выбору подмножества с допустимым весом,
+        меньшим или равным W и выбору
+        подмножества с максимальной
+        стоимостью.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Общее
+        количество подмножеств, которые нужно
+        перебрать, равно 2<sup>n</sup>, что также
+        становится неприемлемым для больших n.</font></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Игровые задачи">Игровые
+        задачи</a></font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">В
+        качестве примера <a name="поиска с возвратом"><i> поиска с возвратом</i></a>&nbsp;
+        рассмотрим
+        задачу игры с участием двух игроков (крестики – нолики,
+        шахматы. шашки) [<a href="liter.html">1</a>]. Игроки переменно делают ходы.
+        Назовем игрока, проставляющего на
+        игровой доске крестики, игроком x, а
+        игрока, проставляющего на игровой
+        доске нолики - игроком 0. Состояние игры отражается
+        соответствующей позицией на игровой
+        доске. Допустим, на доске есть конечное
+        число позиций и в игре предусмотрены
+        правила игры и &quot;правило остановки&quot;,
+        являющееся критерием ее завершения. С
+        игрой можно ассоциировать дерево,
+        называемое <a name="деревом игры"><i> деревом игры</i></a>.&nbsp;
+        Каждый узел
+        дерева игры представляет определенную,
+        сложившуюся в процессе игры позицию.
+        Начальная позиция игры соответствует
+        корню дерева. Пусть позиции игры, в
+        которой делает ход игрок x,&nbsp; соответствует узел дерева n. Тогда
+        совокупности допустимых ходов из
+        позиции x соответствуют потомки узла n
+        и каждому потомку соответствует
+        результирующая позиция на доске.</font><u></p>
+        </u>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Рассмотрим
+        часть дерева игры:</font></p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/exhaustive_search2.gif" width="539" height="414"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Алгоритм
+        игры &quot;крестики нолики&quot; в каждой
+        позиции&nbsp;строит поддерево игры
+        вплоть до листьев.</font> <font face="MS Sans Serif" size="2">Листья
+        этого поддерева соответствуют таким
+        позициям на доске, на которых
+        невозможно сделать ход или потому, что
+        один из игроков уже одержал победу, или
+        потому, что все клетки заполнены и игра
+        закончилась вничью.&nbsp;</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">При
+        возврате от листа до текущего узла (текущей
+        позиции игры) каждому
+        узлу дерева назначается цена. Сначала
+        назначается цена листьям. Каждому листу назначается
+        цена&nbsp; {– 1, 0 , +1} в зависимости от того,
+        получил ли игрок х в этой позиции
+        проигрыш (-1), ничью (0) или выигрыш (+1). Эти
+        цены возвращаются&nbsp; вверх по дереву в соответствии со
+        следующим правилом: если какой – либо
+        узел соответствует позиции, где ход
+        должен сделать игрок x, тогда этому узлу
+        соответствует максимальная цена среди
+        цен его потомков (режим MAX). При этом
+        предполагается, что игрок сделает
+        самый выгодный для себя ход. Если же
+        узел соответствует ходу игрока 0, тогда
+        соответствующая цена узла выбирается
+        минимальной среди цен его потомков. При
+        этом предполагается, что игрок 0
+        сделает самый выгодный для себя ход,
+        который при благоприятном для него
+        исходе приведет к проигрышу игрока x,
+        или, по крайней мере, к ничьей&nbsp; (режим
+        MIN).&nbsp;</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">После
+        исследования цен возможных ходов в
+        текущей позиции игрок выбирает
+        наиболее выгодный для себя ход с учетом
+        режима (MAX или MIN).</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/exhaustive_search1.gif" width="537" height="429"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">На
+        уровне 8, где остается одна пустая
+        клетка и ход - за игроком x,&nbsp; ценой всех
+        разрешенных позиций является максимум
+        уровня 9, то есть -&nbsp; 1.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">На
+        уровне 7, где ход - за игроком 0 и остается
+        два варианта решения, ценой узла является
+        минимум уровня 8, то есть вариант,
+        который&nbsp; имеет цену (–1)</font><font face="MS Sans Serif" size="2">.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Одна
+        позиция уровня 6 имеет цену 1, то есть
+        максимум уровня 7, так как&nbsp; ход - за игроком x.
+        Это значит, что на этом уровне игроку x
+        нужно сделать оптимальный&nbsp; выбор и
+        выигрыш последует немедленно.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Если
+        цена корня равна 1, что выигрышная
+        стратегия находится в руках игрока x.
+        Действительно, когда наступает очередь
+        ходить, игрок x может выбрать ход,
+        который приведет к позиции с ценой 1.
+        Когда настанет черед игрока 0, ему не
+        останется ничего другого, как выбрать
+        ход, ведущий к той же позиции с ценой 1,
+        что означает для него проигрыш. Если же
+        цена корня 0, как в случае игры &quot;крестики
+        – нолики&quot;, тогда ни один из игроков
+        не обладает выигрышной стратегией и
+        может рассчитывать лишь на ничью, если
+        будет играть без ошибок.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Если
+        цена корня равна (–1), то выигрышная стратегия
+        находится в руках игрока 0.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">&nbsp;</font></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Функция выигрыша">Функция
+        выигрыша</a></font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Идею
+        дерева игры можно обобщить, если
+        листьям в качестве цены присваиваются
+        любые числа, играющие роль цены игры.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">В
+        качестве примера можно привести игру в
+        шахматы. В этой игре дерево игры&nbsp; настолько&nbsp;
+        огромно, что
+        любые попытки оценить его методом &quot;снизу
+        - вверх&quot; обречены на неудачу.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Любые
+        шахматные программы строят для каждой
+        промежуточной позиции на шахматной
+        доске дерево игры. Корнем дерева
+        является текущая позиция, дерево
+        распространяется на несколько уровней
+        вниз. Точное количество уровней
+        зависит от быстродействия компьютера.
+        Когда большинство листьев поддерева
+        проявляют неоднозначность, то есть не
+        ведут ни к выигрышу, ни к ничьей, ни к
+        проигрышу, программа использует
+        определенную функцию выигрыша на доске,
+        которая определяет вероятность
+        выигрыша компьютера в этой позиции. На
+        вероятность влияет наличие у
+        одной из сторон материального перевеса,
+        прочность защиты королей и другие
+        факторы, специфичные для игры.&nbsp; Используя
+        такую функцию выигрыша, компьютер
+        может оценить вероятность выигрыша
+        после выполнения им каждого из
+        возможных очередных ходов, и выбрать
+        ход с максимальным выигрышем.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">&nbsp;</font></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><a name="Реализация поиска с возвратом для дерева игры">Реализация
+        поиска с возвратом для дерева игры</a></font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Пусть заданы правила игры, то
+        есть допустимые ходы и правила завершения
+        игры. Нужно построить дерево игры и
+        оценить стоимость его кореня. Можно построить
+        дерево обычным способом, а затем
+        совершить обход его узлов в обратном
+        порядке.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Объем
+        памяти для хранения такого дерева
+        может оказаться столь велик, что будет
+        невозможно реализовать задачу. Но если
+        принять определенные меры, можно
+        обойтись хранением в памяти в данный момент времени лишь одного пути от
+        корня к тому или иному узлу.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Сделаем
+        несколько допущений:</font></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Выигрыши
+            являются действительными числами на
+            интервале [-1, . . . ,1].</font>
+              <!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Константа
+            <img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"> больше
+            любого положительного
+            выигрыша, а -<img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"> – меньше
+            любого отрицательного выигрыша.</font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Используется
+            режим
+            mode = {MIN, MAX} , задающий ход игрока.</font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Задан
+            тип данных boardtype, представляющий
+            позицию на игровой доске для
+            конкретной игры.</font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Задана
+            функция payoff , которая
+            вычисляет выигрыш в любой позиции.</font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+		<h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0">
+		<font face="MS Sans Serif" size="2">Алгоритм&nbsp;
+        поиска с возвратом&nbsp;
+        в дереве игры</font></h3>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="exhaustive_ search">exhaustive_
+        search</a> (<i>t, mode</i>)</font></h3>
+        <ol>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2"><i><img border="0" src="images/comment.gif" align="middle" width="14" height="14"><b>t
+            -</b></i> узел дерева игры </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2"><img border="0" src="images/comment.gif" align="middle" width="14" height="14">
+            <i><b>mode</b></i> = {MIN, MAX}&nbsp; </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2"><b>if </b><i><b>t</b> </i>- лист </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+            <b>then return</b> <b>payoff </b>(t) </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2"><b>if </b><i><b>mode </b></i>= MAX </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+            <b>then</b> val </font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+			<font face="Arial" size="2"> &#8592;</font></span><font face="Arial" size="2">
+            <img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"> </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+            <b>else</b> val </font>
+            <span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+			<font face="Arial" size="2"> &#8592;</font></span><font face="Arial" size="2">
+            -<img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"> </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2"><a name="for"><b>for</b></a>
+            для каждого сына&nbsp; p узла&nbsp;<i> </i><b><i>t </i></b></font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+            <b>do</b><b> if</b> <b><i>mode </i></b>= MAX </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>then</b> val </font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+			<font face="Arial" size="2"> &#8592;</font></span><font face="Arial" size="2">
+			<b>max </b>(val, exhaustive_
+        search (p, MIN)) </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> else</b> val </font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+			<font face="Arial" size="2"> &#8592;
+            </font></span><font face="Arial" size="2"><b>min </b>(val, exhaustive_
+        search (p, MAX)) </font>
+          <li>
+            <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+			<font face="Arial" size="2"><b>return</b>
+            val</font></li>
+        </ol>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Можно
+        реализовать поиск с возвратом
+        итеративным способом, если функция
+        поиска использует стек позиций,
+        соответствующих последовательности
+        вызов функции </font><font face="MS Sans Serif" size="2">exhaustive_
+        search</font><font size="2" face="MS Sans Serif">.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">&nbsp;</font></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Альфа – бета отсечение">Альфа
+        – бета отсечение</a> [<a href="liter.html">1</a>]</font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Существенно
+        сократить дерево игры может следующий
+        момент. В цикле&nbsp; <a href="#for">for (строка 8)</a> можно
+        проигнорировать часть сыновей
+        очередного узла t.</font></p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/exhaustive_search3.gif" width="315" height="180"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Допустим,
+        мы рассматриваем узел t и уже
+        определили, что цена первого сына p<sub>1</sub>
+        равна 20. Поскольку узел t находится в
+        режиме MAX, то цена узла t не меньше 20.
+        Допустим, продолжая поиск, мы
+        определили, что у сына есть p<sub>2</sub> есть
+        потомок d с выигрышем 15. Так как узел p<sub>2</sub>
+        находится в режиме MIN, то значение p<sub>2</sub>
+        не
+        может быть больше 15. Таким образом,
+        каково бы ни было значение p<sub>2</sub>, оно не
+        может быть выбрано узлом t, так как его
+        цена уже меньше цены сына p<sub>1</sub> (20). То
+        есть, p<sub>2</sub> не влияет на цену узла t и цену любого
+        предка узла t. Ввиду
+        этого можно проигнорировать
+        рассмотрение остальных потомков узла p<sub>2</sub>.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Общее
+        правило отбрасывания или &quot;отсечения&quot;
+        узлов связано с понятием
+        ориентировочных и конечных значений
+        выигрыша для узлов. Конечное значение – это то,
+        которое называется просто значением (выигрышем)
+        в результате полного обхода
+        поддеревьев узла.
+        Ориентировочное значение – верхний
+        предел значений выигрыша в узле в режиме MIN или
+        нижний предел&nbsp; в режиме
+        MAX (20).</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Правила
+        вычисления конечных и ориентировочных
+        значений следующие:</font></p>
+        <ol>
+            <li>
+              <p align="justify" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Если
+              уже рассмотрены или отсечены все
+              потомки узла t, то ориентировочное
+              значение узла t равно конечному
+              значению.</font>
+            <li>
+              <p align="justify" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Если
+              ориентировочное значение узла t в
+              режиме MAX равно v<sub>1</sub>, а конечное
+              значение одного из его потомков
+              равно v<sub>2</sub>, тогда ориентировочное
+              значение узла t равно max(v<sub>1</sub>,v<sub>2</sub>). Если
+              узел t находится в режиме MIN, тогда
+              ориентировочное значение узла t равно min(v<sub>1</sub>,v<sub>2</sub>).</font>
+            <li>
+              <p align="justify" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Если
+              p является узлом в режиме MIN и имеет
+              родителя q в режиме MAX, а
+              ориентировочные значения узлов p и q
+              равны v<sub>p</sub> и v<sub>q</sub>, причем v<sub>p</sub> &lt;
+              v<sub>q</sub>, то можно
+              отсечь всех нерассмотренных
+              потомков узла p.</font>
+            <li>
+              <p align="justify" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Если
+              p является узлом в режиме MAX, а его
+              родитель q – в режиме MIN и v<sub>p</sub> &gt; v<sub>q</sub>, то
+              также можно отсечь всех
+              нерассмотренных потомков узла p.</font></li>
+        </ol>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Рассмотрим
+        дерево игры:</font></p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/exhaustive_search4.gif" width="490" height="164"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">&nbsp;Полагая,
+        что значения листьев соответствуют
+        значениям на рисунке, необходимо
+        вычислить значение корня. Начинаем
+        обход дерева в обратном порядке. снизу -
+        вверх. Достигнув узла D, в соответствии
+        с правилом 2 назначим узлу C
+        ориентировочное значение 2, которое
+        является конечным значением узла D.
+        Просматриваем узел E и возвращаемся в
+        узел C, а затем переходим в узел B. В
+        соответствии с правилом 1 конечное
+        значение узла C равно 2, а
+        ориентировочное значение узла B - 2.
+        Далее обход дерева продолжается вниз к
+        узлу G, а затем обратно - в узел F.
+        Ориентировочное значение узла F равно 6.
+        В соответствии с правилом 3 можно
+        отсечь узел H, поскольку
+        ориентировочное значение узла F
+        уменьшиться не может и оно уже больше
+        значения узла B, которое не может
+        увеличиться.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Далее
+        в процессе обратного обхода для узла A&nbsp;
+        назначим ориентировочное значение 2 и
+        переходим к узлу K. Для узла J
+        назначается ориентировочное значение
+        8. Значение узла L не влияет на значение
+        узла J. Для узла I&nbsp; назначается
+        ориентировочное значение 8. При
+        переходе к узлу N, узлу M назначается
+        ориентировочное значение 5. Необходимо
+        выполнить просмотр узла O, поскольку
+        ориентировочное значение узла M (5)
+        меньше ориентировочного значения узла
+        I. Далее просматриваются
+        ориентировочные значения узлов I и A.
+        При переходе к узлу R выполняется
+        просмотр узлов Rи S и узлу P назначается
+        ориентировочное значение 4. Просмотр
+        узла T и всех его потомков не
+        выполняется, поскольку это не может
+        понизить значение узла P, которое уже и
+        так достаточно мало, чтобы повлиять на
+        значение узла A.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Метод ветвей и границ">Метод
+        ветвей и границ</a></font></h3>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Дерево решений"><i>Дерево
+        решений</i></a>&nbsp; используют не только игровые
+        задачи. Многие задачи, связанные
+        поиском минимальной или максимальной
+        конфигурации того или иного типа,
+        решаются с помощью поиска с возвратом,
+        применяемого к дереву возможностей.
+        Узлы такого дерева рассматриваются как
+        совокупности конфигураций, а каждый
+        потомок узла – некоторое подмножество
+        конфигураций. Каждый лист – отдельная
+        конфигурация. Каждую такую
+        конфигурацию можно оценить и выяснить,
+        не является ли она наилучшей среди уже
+        найденных решений.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Если
+        просмотр организован рационально,
+        каждый из потомков некоторого узла
+        представляет намного меньше
+        конфигураций, чем этот узел. Поэтому,
+        чтобы достичь листьев не придется
+        добираться слишком глубоко.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Рассмотрим
+        <a href="#Задача коммивояжера">
+        задачу коммивояжера</a>, которая сводится
+        к поиску в неориентированном графе
+        минимального&nbsp;&nbsp; гамильтонова
+        цикла.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Пусть
+        дан неориентированный граф, вершины
+        которого заданы координатами на
+        декартовой плоскости (города):</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/alg_jadn8.gif" width="201" height="64"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Возможны
+        следующие варианты гамильтонова цикла
+        в этом графе:</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/alg_jadn9.gif" width="462" height="83"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Длина
+        гамильтонова цикла в случаях следующая:</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2">а)<font face="MS Sans Serif">
+        l</font></font><font face="MS Sans Serif" size="2"> = 50.00,</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2">б)
+        <font face="MS Sans Serif">l </font></font><font face="MS Sans Serif" size="2">=
+        49.73,</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2">в)
+        l </font><font face="MS Sans Serif" size="2">= 48.39,</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2">г)&nbsp;
+        </font><font face="MS Sans Serif" size="2">l = 49.78.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">То
+        есть кратчайшим гамильтоновым циклом
+        является вариант в) и, следовательно,
+        является решением задачи коммивояжера.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Задача
+        решается несколькими методами, в том
+        числе и с помощью <a href="alg_jadn.html#задачу &quot;коммивояжера&quot;"> жадного выбора</a>. Но
+        здесь мы рассмотрим поиск методом
+        систематического просмотра маршрутов.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif">Это
+        можно было бы сделать, рассмотрев все
+        перестановки узлов и, определив
+        маршрут, который проходит узлы в
+        соответствующей последовательности,
+        учитывая наилучший из найденных до сих
+        пор маршрутов. Время на реализацию
+        такого подхода на графе с n узлами равно
+        O(n!).</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">&nbsp;Рассмотрим
+        иной подход, который в сочетании с
+        методом ветвей и границ в среднем
+        получает решение гораздо быстрее, чем
+        метод &quot;перебора&quot; всех
+        перестановок. Построение дерева
+        начинается с корня, представляющего
+        все маршруты. Маршруты соответствуют
+        конфигурациям. Каждый узел делит
+        группу конфигураций на группу с ребром
+        и группу без ребра.</font></p>
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/exhaustive_search5.gif" width="558" height="418"></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Будем
+        проходить ребра дерева в
+        лексикографическом порядке: (a, b), (a, c), ...
+        ,(a, f), (b, c), ... , (b, f), (c, d) и т. д.</font></p>
+        <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Не
+        у каждого узла в этом дерева есть 2 сына.
+        Некоторых сыновей можно удалить,
+        поскольку выбранные ребра не могут
+        входить в маршрут. Не существует
+        маршрутов с ребрами (a, b), (a, c), (a, d), т. к.
+        вершина a имела бы степень 3,&nbsp; а результат
+        не был бы маршрутом. Точно также,
+        спускаясь по дереву можно удалить
+        некоторые узлы, поскольку какой – то
+        город будет иметь степень меньше 2.
+        Например, нет ни одного узла для
+        маршрутов без (a, b), (a, c), (a, d) и (a, f).</font></p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" height="18"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="file_structure.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_jadn.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="47382" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/exhaustive_search.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:24 GMT -->
+</html>

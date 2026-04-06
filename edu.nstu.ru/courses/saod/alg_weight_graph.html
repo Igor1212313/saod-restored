@@ -1,0 +1,1358 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_weight_graph.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:42 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Задачи для взвешенных графов</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/alg_weight_graph.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Задачи для взвешенных графов"><!--webbot bot="Navigation" i-checksum="173" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_orgraph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a><!--webbot bot="Navigation" i-checksum="45142" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Построение минимального покрывающего дерева">Построение
+        минимального покрывающего дерева</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#Алгоритм Крускалла">Алгоритм
+        Крускалла</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Алгоритм Прима">
+        Алгоритм Прима</a></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#Поиск кратчайших путей из одной вершины">Поиск
+        </a></span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Поиск кратчайших путей из одной вершины">кратчайших
+        путей из одной вершины</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><a href="#Алгоритм Дейкстры"><font size="2" face="MS Sans Serif">Алгоритм
+        Дейкстры</font></a></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Алгоритм Беллмана-Форда.">&nbsp;</a></span></font><a href="#Алгоритм Беллмана-Форда."><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Алгоритм
+        Беллмана-Форда</font></span></a></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Кратчайшие пути в ациклическом ориентированном графе">Кратчайшие
+        пути в DAG</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Кратчайшие пути для всех пар вершин взвешенного ориентированного графа">Кратчайшие
+        пути для всех пар вершин</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Кратчайшие пути в ациклическом ориентированном графе"></a></font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Алгоритм Флойда">Алгоритм
+        Флойда</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a href="#Алгоритм Джонсона нахождения всех пар кратчайших путей">Алгоритм
+        Джонсона</a></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Минимальные
+        покрывающие<span style="mso-spacerun:yes">&nbsp; </span>деревья</font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Задача
+        построения минимального покрывающего
+        дерева </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">MST
+        (</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Minimum
+        - Spanning - Tree</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">)
+        рассматривается для
+        взвешенного неориентированного графа [<a href="liter.html">3</a>].</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        имеется связный неориентированный
+        граф </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">G</span><span style="mso-bidi-font-size: 10.0pt">
+        = (</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">V</span><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">E</span><span style="mso-bidi-font-size: 10.0pt">).
+        Для каждого ребра задан
+        неотрицательный вес </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">w</span><span style="mso-bidi-font-size: 10.0pt">(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">,
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v</span><span style="mso-bidi-font-size: 10.0pt">).
+        Задача состоит в нахождении
+        подмножества </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">ребер
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">A<img border="0" src="images/belong_to.gif" width="12" height="10">E</span><span style="mso-bidi-font-size: 10.0pt">,
+        связывающего все вершины, для которого
+        суммарный вес ребер&nbsp; минимален.</span></font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight1.gif" width="186" height="54"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Такое
+        подмножество является деревом и не
+        содержит циклов. Такое дерево
+        называется минимальным покрывающим<span style="color:red">
+        </span>деревом графа<span style="color:red"> </span>или <a name="остовным деревом"><i>
+        остовным деревом</i></a>.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight2.gif" width="168" height="126"></p>
+        <p>&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Суммарный
+        вес остовного дерева равен 14. Это
+        дерево не единственное, если заменить
+        ребро (2, 7) на ребро (3, 7), то получается
+        другое остовое дерево с весом 14.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Построение минимального покрывающего дерева">Построение
+        минимального покрывающего дерева</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Общая
+        схема алгоритма следующая. Остовое
+        дерево строится постепенно. К
+        изначально пустому множеству ребер А
+        на каждом шаге добавляется одно ребро.
+        Множество А всегда является
+        подмножеством некоторого минимального
+        остова.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial"><b>Generic
+        - MST (<i>G, W</i>)</b>&nbsp;</font><font size="2" face="MS Sans Serif">&nbsp; <img border="0" src="images/comment.gif" width="14" height="14"><i><b>W</b></i>
+        - весовая функция графа G</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        A &#8592; </span></font><font face="Arial"><img border="0" src="images/empty_set.gif" align="middle" width="14" height="16"></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>while</b> A не является остовом&nbsp; </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>do </b>найти безопасное ребро (u,
+        v) для A</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A &#8592; A <img border="0" src="images/union.gif" align="middle" width="14" height="16">
+        {(u, v)}</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>return</b> A</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Безопасным"><i>Безопасным</i></a>&nbsp;
+        является такое ребро, что объединение A <img border="0" src="images/union.gif" align="middle" width="14" height="16">
+        {(u, v)} остается подмножеством
+        минимального остова и </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">при
+        добавлении к А не может приводить к
+        образованию цикла в множестве ребер А.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Общее
+        правило выбора безопасных ребер
+        связано с понятием разреза. <a name="Разрезом"><i> Разрезом</i></a>&nbsp;
+        (S,
+        V\S) неориентированного графа G = (V, E)
+        называется разбиение множества его
+        вершин на два подмножества. Ребро (u, v)<img border="0" src="images/belong_to.gif" width="12" height="10">E
+        пересекает<b style="mso-bidi-font-size: 10.0pt"> </b>разрез
+        (S, V\S), если один из его концов лежит в S, а
+        другой - V\S. Разрез согласован с
+        множеством ребер<b style="mso-bidi-font-size: 10.0pt"> </b>А,
+        если ни одно ребро из А не пересекает
+        этот разрез. В множестве пересекающих
+        разрез ребер выделяют ребра
+        наименьшего веса, называемые
+        безопасными.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight3.gif" width="207" height="141"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Здесь
+        S = {1,2,3,4,5},&nbsp; V\S = {6,7},&nbsp; A = {(1,2), (2,3), (4,5)}.
+        Безопасными ребрами для данного
+        разреза являются ребра (1,6), (2,7) или (3,7).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">При
+        построении остового дерева постепенно
+        формируется остовый лес G<sub>A</sub>=(V, A).
+        Если взять одну из связных компонент
+        леса C, рассмотреть относительно ее
+        ребра , соединяющими вершины из С с
+        вершинами не из С, и выбрать среди них
+        ребро наименьшего веса, то это ребро
+        будет безопасным, то его можно добавить
+        к множеству А.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Известны
+        два алгоритма построения минимального
+        остовного дерева - алгоритма Крускалла
+        и алгоритм Прима. Оба алгоритма следуют
+        схеме отбора безопасных ребер и
+        являются <a href="alg_jadn.html">жадными
+        алгоритмами</a>: </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">
+        на каждом шаге выбирается локально
+        наилучший вариант.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">В
+        алгоритме Крускалла<b style="mso-bidi-font-size: 10.0pt">
+        </b>множество ребер А представляет собой
+        лес из нескольких связных компонент. На
+        каждом шаге добавляется безопасное
+        ребро, концы которого лежат в разных
+        компонентах.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">В
+        алгоритме Прима множество А
+        представляет собой одно дерево.
+        Безопасное ребро, добавляемое к А,
+        выбирается как ребро наименьшего веса,
+        соединяющее это строящееся дерево с
+        некоторой новой вершиной.</font></span></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Алгоритм Крускалла">Алгоритм
+        Крускалла</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">В
+        любой момент работы алгоритма
+        Крускалла множество&nbsp; выбранных
+        ребер </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">А
+        </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">(часть
+        будущего остова) не содержит циклов.
+        Оно соединяет вершины графа в
+        несколько отдельных связных компонент,
+        каждая из которых является деревом.
+        Среди всех ребер, соединяющих вершины
+        из разных компонент, берется ребро
+        наименьшего веса. Это ребро является
+        безопасным и добавляется к множеству А.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        Крускалла использует <a href="mfset.html"> структуру данных
+        для непересекающихся множеств</a>,
+        фиксирующую отдельные связные
+        компоненты. Элементами множеств
+        являются вершины графа, вошедшие в
+        отдельные связные компоненты. Для
+        структур непересекающихся множеств
+        используется операция Find_Set(u), которая
+        возвращает структуру - множество,
+        содержащую элемент u<b style="mso-bidi-font-size: 10.0pt">.
+        </b>Кроме того используется операция Union(u,
+        v), объединяющая два множества, которым
+        принадледат элементы u и v.&nbsp; </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Псевдокод
+        алгоритма Крускалла выглядит
+        следующим образом:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><b><a name="MST_Kruskall">MST_Kruskall</a>
+        (<i>G, W</i>)</b>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;<img border="0" src="images/comment.gif" width="14" height="14">W - весовая
+        функция&nbsp; графа G&nbsp; </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        A &#8592; </span><img border="0" src="images/empty_set.gif" align="middle" width="14" height="16"></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> for
+		</b>(для) каждой вершины u<img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">V[<i><b>G</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> <b>Make_Set</b> (u)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>for</b> (для) каждого ребра (u, v)<img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">E[<i><b>G</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> <b>Enqueue </b>(Q, (u,v),
+        w)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">Q
+        - <a href="queue.html#Очередь с приоритетом">очередь
+        с приоритетом</a> w</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>while </b>Q</font></span><font face="Arial" size="2"> <span style="mso-bidi-font-size: 10.0pt">не
+        пуста</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> (u, v) &#8592;<b> Dequeue</b>(Q)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if
+		</b>Find_Set(u) <img border="0" src="images/neravno.gif" align="middle" width="12" height="13">
+        Find_Set(v)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>
+        A &#8592; A<img border="0" src="images/union.gif" align="middle" width="14" height="16">
+        {(u,
+        v)}</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>Union_Set</b> (u, v)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">11.&nbsp;&nbsp;&nbsp;
+        <b>return </b>A</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+        &nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Сначала
+        множество ребер остова - А пусто (строка
+        1) и есть |V| связных компонент, каждая из
+        которых содержит по одной вершине(строки
+        2 - 3). Ребра упорядочиваются по
+        возрастанию веса (строки 4 - 5). Для этого
+        целесообразно занести ребра в очередь
+        с приоритетом по весу ребер - w. В цикле (строки
+        6 - 10) выбирается ребро с минимальным
+        весом, из очереди и проверяется, лежат
+        ли концы ребра в разных компонентах.
+        Если да, то ребро безопасное и
+        добавляется к множеству А, то есть, к
+        лесу. Если концы ребра принадлежат
+        одной связной компоненте, то выбор
+        ребра отвергается. При добавлении
+        ребра к множеству А две компоненты,
+        соединяемые ребром, объединяются в
+        одну (строка 10).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        Крускалла с учетом использования
+        очереди с приоритетом для ребер имеет
+        трудоемкость O(E log<sub>2</sub> Е).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        работы алгоритма Крускалла:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight4.gif" width="430" height="454"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><b><font color="#0000FF" face="MS Sans Serif" size="4"><a href="flash/test38.html">Тест</a></font></b>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Алгоритм Прима">Алгоритм
+        Прима</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        Прима также постепенно строит&nbsp;
+        остовное дерево, выбирая безопасные
+        ребра. Но здесь растущая часть остова
+        представляет собой единое дерево,
+        множество ребер которого есть
+        множество ребер минимального
+        остовного дерева -&nbsp; A.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Формирование
+        дерева начинается с произвольной
+        корневой вершины r. На каждом шаге к
+        дереву добавляется ребро наименьшего
+        веса среди ребер, соединяющих вершины
+        растущего дерева с вершинами, еще не
+        включенными в дерево.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">При
+        реализации важно быстро выбирать
+        безопасное ребро. Для этого в ходе
+        алгоритма все вершины, еще не попавшие
+        в остовное дерево,&nbsp; хранятся в
+        очереди с приоритетом. Приоритет
+        вершины u определяется значением pr[u],
+        которое равно минимальному весу ребра,
+        соединяющего u с одной из вершин дерева
+        A. Если таких ребер нет, то pr[u]=<img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13">.
+        Также для вершины задается поле p[u],&nbsp;
+        указывающее на вершину - родитель, если
+        вершина включена в дерево. Если вершина
+        находится еще в очереди, то p[u]
+        указывает на вершину дерева, в которое
+        ведет одно из ребер веса pr[u]. </font></span> <span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Множество
+        ребер A явно не формируется. Его можно
+        восстановить </font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">по
+        значениям полей </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">p[u],
+        подобно <a href="bfs.html#Алгоритм построения пути между вершинами">алгоритму
+        построения пути</a> в дереве обхода
+        графа в ширину.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Псевдокод
+        алгоритма Прима:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial"><b><a name="MST_Prim">MST_Prim</a>(G,
+        W, r) </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14">W
+        - весовая функция&nbsp; графа G </span></font></p>
+        <ol style="margin-top:0cm" start="1" type="1">
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+			<b>for</b> для каждой вершины u<img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">V[G]</span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> do Enqueue</b>(Q, u, 
+			pr[u] =<img border="0" src="images/sort_p22.gif" width="16" height="13" align="middle">)</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">Q
+            - </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><a href="queue.html#Очередь с приоритетом">очередь
+            с приоритетом</a></span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+			<font size="2" face="Arial">pr[r]
+            &#8592; 0</font></span></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+			<font size="2" face="Arial">p[r]
+            &#8592; nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14">
+            nil = -1</span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+			<b>while</b>
+            Q не пуста</span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>do</b>&nbsp; u &#8592; <b>Dequeue</b>(Q)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> for</b> (для) каждой вершины v <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+            Adj[u]&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">Adj[u] -
+            список смежности вершины u</span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> do if</b> v <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"> Q
+            and&nbsp; w(u, v)&lt;pr [v]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">w(u,
+            v) - вес ребра (u, v)</span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+			<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;<b>then</b>&nbsp;&nbsp; p[v] &#8592; u</font></span></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr[v] &#8592; w(u, v)</span></font></li>
+          <li class="MsoNormal" style="mso-list:l0 level1 lfo1;tab-stops:list 36.0pt">
+            <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+			<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+			<b>return</b></span></font></li>
+        </ol>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Трудоемкость
+        алгоритма Прима определяется в
+        основном внутренним циклом в строках
+        7-10, который в целом выполняется |E| раз.
+        Наиболее сложной&nbsp; операцией в этом
+        цикле является операция изменения
+        приоритета вершины, находящейся в
+        очеренди (строка 10). Она имеет
+        трудоемкость&nbsp; log<sub>2</sub> V. Таким
+        образом, в целом&nbsp; алгоритм Прима
+        имеет нотацию трудоемкости O(E log<sub>2</sub>
+        V).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        работы алгоритма Прима:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight5.gif" width="444" height="542"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Поиск кратчайших путей из одной вершины">Поиск
+        </a></span></font><a name="Поиск кратчайших путей из одной вершины"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">кратчайших
+        путей из одной вершины</font></span></a></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        различных задачах весами ребер могут
+        быть длины, времена, стоимости, штрафы,
+        убытки и так далее, то есть, любые
+        величины, обладающие свойством
+        аддитивности. Алгоритм поиска
+        кратчайших путей во взвешенном графе
+        применим во многих задачах,</span></font></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;в
+              задачах поиска кратчайших путей в
+              одну вершину. Задача решается
+              поиском кратчайших путей из этой
+              вершины не транспонированном&nbsp;
+              графе,</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">в
+              задачах поиска кратчайшего пути
+              между заданной парой вершин.
+              Алгоритма, более эффективного, чем
+              алгоритм поиска всех кратчайших
+              путей не существует,</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">в
+              задачах поиска кратчайших путей для
+              всех пар вершин.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Задача
+        поиска кратчайших путей имеет
+        ограничения. Задача не имеет решения,
+        если при построении кратчайшего пути
+        встретился цикл с отрицательным весом.
+        Это возможно если на орграфе задана
+        весовая функция с отрицательными
+        весами ребер. В этом случае по такому
+        циклу можно проходить бесконечно при
+        постоянном уменьшении веса
+        кратчайшего пути.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Если
+        цикл имеет положительный вес, то его
+        можно отбросить из рассмотрения, так
+        как. это не увеличит веса кратчайшего
+        пути.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Существует
+        несколько алгоритмов поиска
+        кратчайших путей из заданной вершины
+        во взвешенном орграфе. Алгоритм
+        Дейкстры решает задачу для орграфа с
+        неотрицательными весами. Алгоритм
+        Беллмана - Форда&nbsp; допускает ребра с
+        отрицательным весом и обнаруживает
+        циклы с отрицательным весом. Есть и
+        другие специфические алгоритмы для
+        специальных видов графов.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Рассмотрим&nbsp;
+        задачу нахождения кратчайших путей для
+        ориентированного взвешенного графа G=(V,
+        E, W) с вещественной весовой функцией W. <a name="Весом пути"><i>
+        Весом пути</i></a>&nbsp; p = (v</font><font face="MS Sans Serif" size="3"><sub>0</sub></font><font size="2" face="MS Sans Serif">,
+        v</font><font face="MS Sans Serif" size="3"><sub>1</sub></font><font size="2" face="MS Sans Serif">,
+        ... , v</font><font face="MS Sans Serif" size="3"><sub>k</sub></font><font size="2" face="MS Sans Serif">)
+        является сумма весов ребер входящих в
+        этот путь</font></span>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight6.gif" width="144" height="54">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Вес кратчайшего пути">Вес
+        кратчайшего пути</a> из вершины u в вершину
+        v равен:</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight7.gif" width="454" height="80"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Кратчайший путь из u в v"><i>Кратчайший
+        путь</i>&nbsp; из u в v</a> -&nbsp; это любой путь p из u в v,
+        для которого <i>w </i>(<i>p</i>) = </span></font><img border="0" src="images/graph_weight8.gif" align="middle" width="46" height="21">.<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight9.gif" width="606" height="112"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Например,
+        в представленном графе существуют два
+        кратчайших пути с минимальным весом
+        между вершинами 1 и 5: (1, 6, 5) и (1, 7, 4, 5).</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        задаче поиска кратчайших путей нужно
+        найти не веса кратчайших путей, а сами
+        пути. Для этого используется тот же
+        прием, что и при построении дерева
+        поиска&nbsp; в ширину. Для каждой вершины
+        на кратчайшем пути фиксируется ее
+        предшественник p[u] и вес пути от
+        исходной вершины d[u].</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Любой
+        из перечисленных алгоритмов поиска
+        кратчайших путей основывается на
+        приеме, называемом <a name="релаксацией ребра"><i> релаксацией ребра</i></a>,
+        который заключается в постепенном
+        уточнении верхней границы веса
+        кратчайшего пути для каждой вершины [<a href="liter.html">3</a>].</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Для
+        каждой вершины u<img border="0" src="images/belong_to.gif" width="12" height="10">
+        V хранится некоторое число d[u],
+        являющееся верхней оценкой веса
+        кратчайшего пути из s в u. Изначально d[u]=<img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13">.
+        Изначально необходимо
+        инициализировать все вершины:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">Initialize_Single_Source(<i>G,
+        s</i>)</font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.<img border="0" src="images/comment.gif" width="14" height="14"><i><b>s</b></i>&nbsp;
+        - исходная вершина</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.
+        <b>for</b>&nbsp; для каждой вершины u<img border="0" src="images/belong_to.gif" width="12" height="10">V[<i><b>G</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>do </b>d[u] &#8592; <img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13"></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p[v] &#8592; nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">nil
+        = -1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.
+        d[<i><b>s</b></i>] &#8592; 0</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Релаксация
+        ребра (u, v)<img border="0" src="images/belong_to.gif" width="12" height="10">E
+        состоит в следующем: d[v] уменьшается до d[u]
+        + w(u,v), если эта сумма меньше d[v]. Новое
+        значение становится верхней оценкой
+        кратчайшего пути, а вершина u
+        становится родителем вершины v, то есть,
+        p[v] = u.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">Relax
+        (<i><b>u, v, w</b></i>)</font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">1.&nbsp;
+        <b>if</b> d[<i><b>v</b></i>] &gt; d[<i><b>u</b></i>] + <i><b>w</b></i>(u,v)</font></span><font face="Arial" size="2">
+		</font>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;<b>
+        then</b> d[<i><b>v</b></i>] &#8592; d[<i><b>u</b></i>] +<i><b> w</b></i>(u, v)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;p[<i><b>v</b></i>] &#8592; <i><b>u</b></i></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Алгоритм Дейкстры">Алгоритм
+        Дейкстры</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        Дейкстры решает задачу&nbsp; о кратчайших
+        путях из одной вершины для взвешенного
+        орграфа G=(V, E) с исходной вершиной s, в
+        котором веса ребер неотрицательны.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        процессе работы алгоритм поддерживает
+        множество A<img border="0" src="images/belong_to.gif" width="12" height="10">V,
+        состоящее из вершин u, для которых
+        кратчайший путь уже найден, то есть,&nbsp;
+        d[u]=<img border="0" src="images/graph_weight10.gif" width="13" height="13">(s, u).
+        Алгоритм выбирает вершину u<img border="0" src="images/belong_to.gif" width="12" height="10">V
+        \ A с наименьшим весом d[u], добавляет u к
+        множеству А и производит релаксацию
+        всех ребер, исходящих из u, после чего
+        действие повторяется.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Вершины,
+        не лежащие в A, хранятся в <a href="queue.html#Очередь с приоритетом">очереди
+        с приоритетами</a> Q, в которой приоритет
+        определяется минимальным значением d[u].</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial"><a name="Dijkstra">Dijkstra</a>(<i>G,
+        W, s</i>)</font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1. <img border="0" src="images/comment.gif" width="14" height="14"><i><b>W
+        </b></i>- весовая функция графа</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.
+        <img border="0" src="images/comment.gif" width="14" height="14"><i><b>s</b></i>&nbsp; - исходная
+        вершина</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">3.&nbsp;<b> Initialize_Single_Source</b>(<i><b>G, s</b></i>)</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;
+        A &#8592; <img border="0" src="images/empty_set.gif" width="14" height="16"></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;
+        <b>for&nbsp; </b>для каждой вершины u<img border="0" src="images/belong_to.gif" width="12" height="10">V[G]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do Enqueue</b>(Q, u, d[u])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" width="14" height="14">Q - очередь с
+        приоритетом d[u]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;<b>
+        while </b>Q не пуста</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        do</b> u &#8592; <b>Dequue</b> (Q)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A &#8592; A <img border="0" src="images/union.gif" align="middle" width="14" height="16">
+        {u}</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10.&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>for&nbsp; </b>для каждой вершины v <img border="0" src="images/belong_to.gif" width="12" height="10">
+        Adj[u]&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">Adj[u]
+        - список смежности вершины u</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">11.&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> <b>Relax</b> (u,&nbsp;
+        v,&nbsp;
+        w)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">w
+        - вес ребра (u, v)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">12.&nbsp;
+        <b>return</b> A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" width="14" height="14">A - множество
+        вершин с построенными кратчайшими
+        путями</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        работы алгоритма Дейкстры (s = 1:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight11.gif" width="423" height="524"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><b><font color="#0000FF" face="MS Sans Serif" size="4"><a href="flash/test39.html">Тест</a></font></b>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><b><font color="#0000FF" face="MS Sans Serif" size="4"><a href="DijkstraVisualisator/DijkstraVisualisator.html">Демонстрация
+        работы алгоритма Дейкстры </a></font></b>
+        <b><font color="#0000FF" face="MS Sans Serif" size="4"><a href="DijkstraVisualisator/DijkstraVisualisator.html">и
+        тренажер</a></font></b><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;<a href="visualisator.html#Инструкция">Инструкция
+        к демонстрации и тренажеру</a>&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Кратчайшие
+        пути можно построить, пользуясь
+        ссылками на вершины - предшественники -
+        p[u], зафиксированные в вершинах при
+        построении кратчайших путей. Для этого
+        можно воспользоваться алгоритмом
+        построения путей в дереве обхода в
+        ширину <a href="bfs.html#Алгоритм построения пути между вершинами"></a></span></font><a href="bfs.html#Алгоритм построения пути между вершинами"><font face="Microsoft Sans Serif" size="2">Path
+        (G, s, v)</font></a><font face="Microsoft Sans Serif" size="2">.</font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Оценка
+        времени работы алгоритма Дейкстры</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;Если
+        очередь с приоритетом - Q реализована в
+        виде обычного массива, то стоимость
+        операции Dequeue(Q) равна&nbsp; O(V). Поскольку
+        алгоритм Дейкстры делает |V| таких
+        удалений из очереди, то суммарная
+        стоимость удалений из очереди
+        оценивается O(V<sup>2</sup>). Общая стоимость
+        релаксаций оценивается количеством
+        ребер и в конечном счете равна O(E). Таким
+        образом, общая стоимость алгоритма
+        Дейкстры равна O(V<sup>2</sup> + E) = O(V<sup>2</sup>).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Если
+        граф разреженный, то имеет смысл
+        организовать очередь с приоритетом в
+        виде двоичной кучи. Тогда стоимость
+        операции Dequeue(Q) равна&nbsp; O(log<sub>2</sub> V).
+        Стоимость построения очереди Q равна O(V).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Присваивание
+        d[v] &#8592; d[u] + w(u, v) в функции Relax
+        реализуется при сканировании двоичной
+        кучи и оценивается как&nbsp; O(log<sub>2</sub>V).
+        Количество релаксации равно E. Таким
+        образом,&nbsp; общая стоимость&nbsp;
+        алгоритма Дейкстры равна&nbsp; O((V + E) log<sub>2</sub>
+        V). Поскольку E <img border="0" src="images/m_e.gif" align="middle" width="13" height="16">|V|
+        + 1, то оценка трудоемкости алгоритма
+        Дейкстры имеет вид O(E log V).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Алгоритм Беллмана-Форда.">Алгоритм
+        Беллмана-Форда.</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        Беллмана-Форда решает задачу о
+        кратчайших путях из одной вершины для
+        случая, когда веса ребер могут быть
+        отрицательными. Алгоритм возвращает
+        значение TRUE если в кратчайших путях нет
+        отрицательного цикла и FALSE, если такой
+        цикл есть. В первом случае алгоритм
+        находит кратчайшие пути и их веса, во
+        втором случае - кратчайших путей нет.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Подобно
+        алгоритму Дейкстры алгоритм
+        производит | V[G] | - 1 релаксацию всех
+        ребер графа, пока вес кратчайшего пути d[u]
+        у вершин графа не сравняются с
+        минимальным весом&nbsp; <img border="0" src="images/graph_weight10.gif" width="13" height="13">(s,
+        u) для всех&nbsp; вершин u<img border="0" src="images/belong_to.gif" width="12" height="10">V
+        \ A, где A - </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        множество вершин с построенными
+        кратчайшими путями.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial"><a name="Bellman_Ford">Bellman_Ford</a>
+        (<i>G, W, s</i>)</font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.<img border="0" src="images/comment.gif" width="14" height="14"><i><b>W</b></i>
+        - весовая функция графа</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.
+        <img border="0" src="images/comment.gif" width="14" height="14"><i><b>s</b></i>&nbsp; - исходная
+        вершина</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;
+        <b>Initialize_Single_Source</b>(<i><b>G, s</b></i>)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;<b>
+        for</b> i &#8592;1 <b>to </b>| V[<i><b>G</b></i>] | - 1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do for </b>для каждого ребра (u, v)<img border="0" src="images/belong_to.gif" width="12" height="10">E[<i><b>G</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> Relax (u, v, w)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;<b>
+        for </b>для каждого ребра (u, v)<img border="0" src="images/belong_to.gif" width="12" height="10">E[<i><b>G</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;do</b> <b>if </b>d[v]&gt;d[u] + w(u, v)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;then
+        return </b>FALSE</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10.
+        <b>return </b>TRUE.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">После
+        инициализации вершин алгоритм |V| - 1 раз
+        перебирает по все ребра и подвергает
+        каждое из них релаксации. </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Количество
+        итераций равно |V| - 1,&nbsp;&nbsp;&nbsp;&nbsp; так
+        как на кратчайших путях не может быть
+        более |V| - 1 ребер.</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">После
+        релаксаций&nbsp; алгоритм проверяет нет
+        ли цикла отрицательного веса,
+        достижимого из исходной вершины.
+        Признаком этого является наличие на
+        кратчайшем пути ребер (u, v), для которых&nbsp;
+        d[v] &gt; d[u] + w(u, v). Время работы алгоритма - O(VE<b style="mso-bidi-font-size: 10.0pt">).
+        </b></span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        работы алгоритма Беллмана - Форда (s = 1):</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight12.gif" width="438" height="407"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Кратчайшие пути в ациклическом ориентированном графе">Кратчайшие
+        пути в ациклическом ориентированном
+        графе</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        ациклическом орграфе G = (V, E) кратчайшие
+        пути из одной вершины можно найти за
+        время O(V + E),<b style="mso-bidi-font-size: 10.0pt"> </b>если&nbsp;
+        проводить релаксацию ребер в порядке,
+        заданном топологической сортировкой. В
+        ациклическом графе кратчайшие пути
+        всегда определены, поскольку циклов
+        нет.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Алгоритм
+        топологической сортировки располагает
+        вершины орграфа в линейном порядке так,
+        что все ребра идут в одном направлении.
+        После этого вершины просматриваются в
+        этом порядке и для каждой вершины
+        подвергаются релаксации все исходящие
+        ребра.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">DAG_Pathes
+        (<i>G, W, s</i>)</span></font></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.<img border="0" src="images/comment.gif" width="14" height="14"><i><b>W</b></i>
+        - весовая функция графа</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.
+        <img border="0" src="images/comment.gif" width="14" height="14"><i><b>s&nbsp;</b></i> - исходная
+        вершина</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Q &#8592; <b>Topological_Sort</b>
+        (<i><b>G</b></i>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" width="14" height="14">Q
+        -<a href="queue.html">очередь FIFO</a></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>Initialize_Single_Source</b>(<i><b>G</b></i>, <i><b>s</b></i>)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>while</b> Q
+        не пуста</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<b>do</b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u &#8592; <b>Dequeue</b>(Q)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;for</b> для всех
+        вершин v <img border="0" src="images/belong_to.gif" width="12" height="10"> Adj[u]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b>
+		<b>Relax</b> (u, v, w)</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        работы алгоритма&nbsp; (s = 1):</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight13.gif" width="359" height="371"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Оценка
+        времени алгоритма поиска кратчайших
+        путей в DAG</font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Время
+        топологической сортировки (время
+        обхода в глубину) равно O(V + E).<b style="mso-bidi-font-size: 10.0pt">
+        </b>Время инициализации вершин равно&nbsp;
+        O(V). В цикле 5 - 9 каждое ребро
+        обрабатывается один раз, то есть, общее
+        время обработки ребер равно O(E). Таким
+        образом,&nbsp; общее время алгоритма
+        оценивается величиной O(V + E).</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Кратчайшие пути для всех пар вершин взвешенного ориентированного графа">Кратчайшие
+        пути для всех пар вершин взвешенного
+        ориентированного графа</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Задача
+        нахождения кратчайших путей из всех
+        вершин формирует таблицу весов, в
+        которой на пересечении строки i &nbsp;и
+        столбца j, находится вес кратчайшего
+        пути из i&nbsp; в j&nbsp; и информация о самом
+        пути.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Эту
+        задачу можно решить для орграфа G = (V, E) с
+        заданной весовой функцией W,&nbsp; если V
+        раз, поочередно применить алгоритм
+        поиска кратчайших путей для каждой из
+        вершин графа . Если ребра имеют
+        неотрицательные веса, то можно
+        применить алгоритм Дейкстры. Общее
+        время алгоритма составит O(V<img border="0" src="images/mul.gif" align="middle" width="9" height="8">(V<sup>2</sup>+E))
+        = O(V<sup>3</sup>) или O(V<img border="0" src="images/mul.gif" align="middle" width="9" height="8">E
+        log V), если в алгоритме Дейкстры
+        используется очередь с приоритетами.
+        Для разреженных графов это вполне
+        допустимо.&nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Если
+        в орграфе есть ребра с отрицательным
+        весом, то можно использовать более
+        медленный алгоритм Беллмана - Форда и
+        общее время составит O(V<sup>2</sup></font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/mul.gif" align="middle" width="9" height="8"></span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">E),&nbsp;
+        а для плотных графов&nbsp; - O(V<sup>4</sup>).</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Изобретены
+        более быстрые алгоритмы. Наиболее
+        удобны эти алгоритмы для орграфов,
+        представленных <a href="graph.html#M- графом">матрицей</a></font></span><a href="graph.html">
+        <font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">смежности</span></font></a><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">.
+        Исходными данными для этих алгоритмов
+        является матрица весов взвешенного
+        орграфа W = (w</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">),&nbsp;
+        элементы которой равны:&nbsp;</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight14.gif" width="274" height="82"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Веса
+        ребер могут быть отрицательными, но
+        предполагается, что циклов
+        отрицательного веса в орграфе нет.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Алгоритм
+        формирует <a name="матрицу  весов кратчайших путей"><i> матрицу&nbsp;
+        весов кратчайших путей</i></a>&nbsp; D = (d</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">),
+        элементы которой d</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">
+        = d(i, j)- весу&nbsp; кратчайшего пути. Кроме
+        того, формируется <a name="матрица предшествования"><i> матрица
+        предшествования</i></a>&nbsp; P =(p</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">),
+        в которой p</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">
+        является вершиной, </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">предшествующей
+        вершине j на одном из кратчайших
+        путей&nbsp; i <img border="0" src="images/path.gif" align="middle" width="37" height="19">&nbsp;j.
+        p</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">
+        = nil (nil = -1) для i = j или, если пути&nbsp;&nbsp; i <img border="0" src="images/path.gif" align="middle" width="37" height="19">
+        j нет. Для каждой вершины i<img border="0" src="images/belong_to.gif" width="12" height="10">V
+        можно выделить подграф
+        предшествования:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;<img border="0" src="images/graph_weight15.gif" width="320" height="44"></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Имея
+        такую матрицу предшествования, можно
+        построить путь из вершины i в j:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><b>All_Pathes</b>(<i><b>P,
+        i, j</b></i>)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>if</b> <i><b>i </b></i>= <i><b>j</b></i></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;</span><b><span style="mso-bidi-font-size: 10.0pt">
+      then</span></b> <b><span style="mso-bidi-font-size: 10.0pt">Enqueue</span></b>(Q, 
+		<i><b><span style="mso-bidi-font-size: 10.0pt">i</span></b></i>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Q -<a href="queue.html"> очередь
+        FIFO</a></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;<b>&nbsp;else</b>&nbsp; <b>if&nbsp; </b>p<sub><i><b>ij</b></i></sub>
+        = </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">nil</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then
+        return</b> error&nbsp; &quot;пути из <i><b>i</b></i> в <i><b>j</b></i> нет&quot;</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        else</b> <b>All_Pathes</b>(<i><b>P</b></i><i><b>, i</b></i>, p<sub><i><b>ij</b></i></sub>
+        )</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b><span style="mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;Enqueue(</span></b>Q,<i><b>
+        j</b></i>)</font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        результате работы алгоритма в очереди Q
+        сформирована последовательность
+        вершин, задающая кратчайший путь&nbsp; i<img border="0" src="images/path.gif" align="middle" width="37" height="19">j.</span></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Алгоритм Флойда">Алгоритм
+        Флойда</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Алгоритм
+        Флойда [<a href="liter.html">3</a>]&nbsp; является алгоритмом
+        динамического программирования.
+        Алгоритм допускает ребра с
+        отрицательным весом, но не допускает
+        циклы с отрицательным весом.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Введем
+        понятие промежуточной вершины: если
+        есть простой путь p = &lt;v</font><font face="MS Sans Serif" size="3"><sub>1</sub></font><font size="2" face="MS Sans Serif">,
+        v</font><font face="MS Sans Serif" size="3"><sub>2</sub></font><font size="2" face="MS Sans Serif">,
+        . . . ,v</font><font face="MS Sans Serif" size="3"><sub>i</sub></font><font size="2" face="MS Sans Serif">
+        &gt;, то вершины v</font><font face="MS Sans Serif" size="3"><sub>2</sub></font><font size="2" face="MS Sans Serif">,
+        v</font><font face="MS Sans Serif" size="3"><sub>3</sub></font><font size="2" face="MS Sans Serif">,
+        ... v</font><font face="MS Sans Serif" size="3"><sub>i-1</sub></font><font size="2" face="MS Sans Serif">
+        называются промежуточными.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Для
+        простоты будем обозначать вершины
+        графа G числами 1, 2, . . . ,n.&nbsp; Рассмотрим
+        подмножество вершин k <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">
+        n. Для каждой пары вершин i, j </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/belong_to.gif" width="12" height="10"></font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        V рассмотрим все пути&nbsp; i<img border="0" src="images/path.gif" align="middle" width="37" height="19">j,&nbsp;
+        включающие в путь только вершины {1, 2, . .
+        . ,k}.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Среди
+        них можно выделить <a href="#Вес кратчайшего пути">путь
+        с минимальным весом</a> - <img border="0" src="images/graph_weight23.gif" align="middle" width="14" height="16">(i,
+        j). Вес этого пути можно получить, зная
+        вес минимального пути между i и j,
+        включающего вершины {1, 2, . . . ,k-1}.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">При
+        добавлении новой промежуточной
+        вершины k между вершинами i и j может
+        возникнуть&nbsp; новый кратчайший путь,
+        проходящий через вершину k, или может
+        остаться кратчайшим старый путь,
+        включающий вершины&nbsp; {1, 2, . . . ,k-1}.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">При
+        добавлении в качестве промежуточной
+        вершины&nbsp;&nbsp; k&nbsp; новый&nbsp; путь
+        разбивается на два участка:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="center"><img border="0" src="images/graph_weight16.gif" width="234" height="124">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="center">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пути
+        <img border="0" src="images/graph_weight17.gif" align="middle" width="27" height="30"> и <img border="0" src="images/graph_weight18.gif" align="middle" width="24" height="28">
+        включают в себя вершины {1, 2, . . . ,k-1},
+        которые также должны быть кратчайшими.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Исходя
+        из этих рассуждений, согласно методу <a href="alg_dinam.html">динамического
+        программирования</a> можно определить
+        рекуррентное соотношение между
+        оптимальными решениями подзадач.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Пусть
+        </font><font size="2" face="MS Sans Serif"><img border="0" src="images/graph_weight19.gif" align="middle" width="18" height="32">
+        - вес кратчайшего пути из вершины i в j с
+        промежуточными вершинами из
+        подмножества {1, 2, . . . ,k}.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">При
+        k = 0 промежуточных путей нет и <img border="0" src="images/graph_weight20.gif" align="middle" width="17" height="33">
+        = w</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">В
+        общем случае:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="center"><img border="0" src="images/graph_weight21.gif" width="201" height="69">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Матрица
+        D<sup>n</sup> = (<img border="0" src="images/graph_weight22.gif" align="middle" width="20" height="33">)
+        содержит искомое решение, то есть,&nbsp; <img border="0" src="images/graph_weight22.gif" align="middle" width="20" height="33">
+        = <img border="0" src="images/graph_weight23.gif" align="middle" width="14" height="16">(i, j)
+        для всех&nbsp; вершин i, j </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/belong_to.gif" width="12" height="10"></font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        V, так как разрешены любые
+        промежуточные вершины.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Помимо
+        весов кратчайших путей параллельно в
+        матрице предшественников P фиксируются
+        вершины - предшественники </span></font><img border="0" src="images/graph_weight24.gif" align="middle" width="20" height="32">.</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight25.gif" width="283" height="53">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight26.gif" width="278" height="101">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Входом
+        алгоритма Флойда является граф и его весовая
+        функция, представленная в виде матрицы
+        весов -&nbsp; W, результатом - матрица весов
+        кратчайших путей D<sup>n </sup>и матрица
+        предшественников P<sup>n</sup>.</span></font>
+        <h3 style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><a name="Floyd (G, W)"><span style="mso-bidi-font-size: 10.0pt">
+		Floyd</span><span style="mso-bidi-font-size: 10.0pt; font-weight:400"> (</span><span style="mso-bidi-font-size: 10.0pt; font-style:italic">G, 
+		W</span><span style="mso-bidi-font-size: 10.0pt; font-weight:400">)</span></a></font></h3>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        n &#8592; |V[<i><b>G</b></i>]|</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        D &#8592; <i><b>W</b></i></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        for</b> i &#8592;1 <b>to </b>n</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;</span></font><font size="2" face="Arial"><b><span style="mso-bidi-font-size: 10.0pt">do&nbsp; 
+		for</span></b></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial"> 
+		j &#8592; 1 <b>to</b> n</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        do if&nbsp;</b> i <img border="0" src="images/neravno.gif" align="middle" width="12" height="13"> j
+        <b>and</b> w<sub>ij </sub><img border="0" src="images/neravno.gif" align="middle" width="12" height="13">&nbsp;
+        <img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13">&nbsp;&nbsp;</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        then</b> p<sub>ij </sub>&#8592; i&nbsp;</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;
+        else</b> p<sub>ij</sub>&#8592;nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+		<font size="2" face="Arial">
+      <img border="0" src="images/comment.gif" align="middle" width="14" height="14">nil 
+		= -1</font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>for</b> k &#8592; 1 <b>to</b> n</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do for</b> i &#8592; 1<b> to</b> n</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        do for</b>
+        j &#8592; 1 <b>to</b> n </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">11.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do</b>&nbsp; <img border="0" src="images/graph_weight19.gif" align="middle" width="18" height="32">&nbsp;
+        &#8592; <img border="0" src="images/graph_weight28.gif" align="middle" width="151" height="37"></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">12.&nbsp;&nbsp;&nbsp;&nbsp;<b> return</b> D</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">&nbsp;&nbsp;&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        работы алгоритма:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Дан
+        граф:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="center"><img border="0" src="images/graph_weight29.gif" width="148" height="148"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        начале работы алгоритма (строки 2 - 7)
+        инициализируются матрица весов
+        кратчайших путей - D и матрица
+        предшественников - P:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="center"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;<img border="0" src="images/graph_weight30.gif" width="446" height="115"></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">,
+        где /&nbsp; = nil - указатель на вершину -
+        предшественник.</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Затем
+        в цикле (строки 8 - 11) в матрицах D и P
+        пересчитываются веса кратчайших путей
+        и вершины - предшественники при
+        последовательном добавлении новых
+        промежуточных вершин в каждый из путей
+        (k = 1, 2, . . . , V):</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;<img border="0" src="images/graph_weight31.gif" width="454" height="572"></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="center">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><a name="Алгоритм Джонсона нахождения всех пар кратчайших путей">Алгоритм
+        Джонсона нахождения всех пар
+        кратчайших путей</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Этот
+        алгоритм допускает отрицательную
+        весовую функцию графа.&nbsp; Алгоритм либо формирует матрицу
+        кратчайших путей, либо сообщает, что в
+        графе имеется цикл отрицательного веса.
+        Работа алгоритма основана на
+        использовании алгоритмов <a href="#Алгоритм Беллмана-Форда."> Беллмана -
+        Форда</a> и <a href="#Алгоритм Дейкстры"> Дейкстры</a>.</span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;
+        Алгоритм Джонсона работает эффективнее, чем
+        алгоритм Флойда для
+        разреженных графов. Его время имеет
+        нотацию O(V<sup>2</sup> log V + VE) [<a href="liter.html">3</a>].&nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Особенностью
+        алгоритма является изменение весов
+        ребер графа таким образом,&nbsp; чтобы они были
+        неотрицательны&nbsp; и можно было бы
+        применить алгоритм Дейкстры для каждой
+        вершины. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">При
+        изменении весов ребер должны быть
+        соблюдены следующие условия:</font></span></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Кратчайшие пути&nbsp; в графе не
+        изменяются, то есть&nbsp; для любой пары вершин u,
+        v <img border="0" src="images/belong_to.gif" width="12" height="10">V кратчайший путь с точки зрения
+        исходной весовой функции W совпадает&nbsp;
+        с кратчайшим путем с точки зрения новой
+        весовой функции ~W.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Все новые веса&nbsp;
+              ребер ~w(u, v) неотрицательны.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Необходимо
+        подобрать способ изменения весов ребер&nbsp;
+        с соблюдением этих условий.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        дан граф G=(V, E)&nbsp; с весовой функцией W.
+        Введем весовую функцию для вершин
+        графа </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">-
+        H. Для орграфа G=(V, E) построим
+        эквивалентный орграф G'=(V', E') с
+        дополнительной вершиной s, которая
+        имеет только исходящие дуги нулевого
+        веса ко всем остальным вершинам:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight32.gif" width="486" height="260"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Введение
+        этой вершины не изменит путей в новом
+        графе, поскольку вершина s не может быть
+        вставлена в качестве промежуточной в
+        какие - либо пути, так как не имеет
+        входящих ребер. Она может быть только
+        начальной вершиной путей. Новый граф
+        содержит цикл отрицательного веса,
+        если таковой содержится в исходном
+        графе.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        граф G', как и граф G не содержит цикла
+        отрицательного веса. Пусть вес каждой
+        вершины равен весу кратчайшего пути до
+        этой вершины s, то есть, h(v) = <img border="0" src="images/graph_weight23.gif" align="middle" width="14" height="16">(s,
+        v) для всех вершин&nbsp; v <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        V'.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight33.gif" width="280" height="262"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Рассмотрим
+        новую весовую функцию ребер ~W такую,
+        что ~w(u, v)= w(u, v) + h(u) - h(v). Тогда любой
+        кратчайший путь p = (v<sub>0</sub>, v<sub>1</sub>, . . . ,
+        v<sub>k</sub>)
+        относительно весовой функции W будет совпадать с
+        кратчайшим путем относительно новой
+        весовой функции ~W.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;Вес
+        любого пути v<sub>0</sub> <img border="0" src="images/path.gif" align="middle" width="37" height="19">&nbsp;v<sub>k</sub>
+        относительно </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">~W</span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        равен:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">~w(p)
+        = w(p) + h(v<sub>0</sub>) - h(v<sub>k</sub>)</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Для
+        всех путей с фиксированным началом и
+        концом разница между старым и новым
+        весом постоянна и поэтому кратчайшие
+        пути для новой и старой весовой функции
+        совпадают:</span></font></p>
+        <p class="MsoNormal" align="center" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">~w(p)=
+        w(v<sub>0</sub>, v<sub>1</sub>) + h(v<sub>0</sub>) - h(v<sub>1</sub>) +
+        w(v<sub>1</sub>, v<sub>2</sub>) + h(v<sub>1</sub>) - h(v<sub>2</sub>) +.
+        . . + w(v<sub>k-1</sub>, v<sub>k</sub>) + h(v<sub>k-1</sub>) - h(v<sub>k</sub>)
+        =&nbsp;</span></font></p>
+        <p class="MsoNormal" align="center" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">=
+        w(v<sub>0</sub>, v<sub>k</sub>,) + h(v<sub>0</sub>) - h(v<sub>k</sub>)&nbsp;</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Второе
+        следствие при таком преобразовании</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">
+        заключается в следующем.</font></span> <font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Если
+        граф G содержит отрицательный цикл
+        относительно весовой функции W, то он
+        содержит этот же отрицательный цикл
+        относительно функции ~W. Это следствие
+        исходит из того, что вес цикла равен:&nbsp;</span></font></p>
+        <p class="MsoNormal" align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">~w(p)=
+        w(p) + h(v<sub>0</sub>) - h(v<sub>0</sub>).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Для
+        вершин, лежащих на кратчайшем пути,&nbsp;
+        выполняется свойство: h(v) <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">
+        h(u)+w(u, v).<b style="mso-bidi-font-size: 10.0pt"> </b>&nbsp;Поэтому
+        w(u, v) + h(u) - h(v) <img border="0" src="images/m_e.gif" align="middle" width="13" height="16">
+        0, то есть новая весовая функция,
+        равная&nbsp; ~w(u, v) = w(u, v) + h(u) - h(v),
+        неотрицательна. В результате пересчета
+        весов ребер получается граф с новой
+        весовой функцией ~W:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight34.gif" width="200" height="184"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Далее
+        для прокладки кратчайших путей
+        используется алгоритм Дейкстры
+        поочередно для каждой вершины:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight35.gif" width="676" height="400"><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">,
+        где </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">~</span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">d[v]
+        - вес кратчайшего пути от заданной
+        вершины до вершины v в графе с весовой
+        функцией&nbsp; </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">~</span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">W.</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Можно
+        привести веса кратчайших путей u</span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/path.gif" align="middle" width="37" height="19"></span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">v
+        к исходной весовой функции W, используя
+        формулу </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">d[v]
+        =&nbsp; ~d[v] + h[v] - h[u]:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight36.gif" width="672" height="396">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Орграф
+        для алгоритма Джонсона лучше
+        представить&nbsp; в виде списков
+        смежности. Это представление больше
+        подходит для разреженных графов.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Алгоритм
+        возвращает матрицу D = |d</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">|
+        размера |V| * |V|, где d</font><font face="MS Sans Serif" size="3"><sub>ij</sub></font><font size="2" face="MS Sans Serif">
+        = d(i, j), или возвращает сообщение о том,
+        что граф имеет отрицательный цикл.
+        Вершины нумеруются от 1 до |V|.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Псевдокод</span></font>
+        <font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">алгоритма
+        Джонсона:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><b><a name="Johnson(G)">Johnson(<i>G</i>)</a></b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Создать граф G', для которого V[G'] = V[<i><b>G</b></i>]<img border="0" src="images/union.gif" align="middle" width="14" height="16">{s}
+        и E[G'] = E[<i><b>G</b></i>]<img border="0" src="images/union.gif" align="middle" width="14" height="16">{(s,
+        v): v</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+        <img border="0" src="images/belong_to.gif" align="absmiddle" width="12" height="10"></span> </font>
+        <span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">V[<i><b>G</b></i>]}</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>if <a href="#Алгоритм Беллмана-Форда.">Bellman_Ford</a></b>(G',
+        W, s) = FALSE</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>then&nbsp; return</b> ошибка &quot;имеется
+        цикл отрицательного веса&quot;</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<b>&nbsp;else for&nbsp;</b> для каждой
+        вершины v<img border="0" src="images/belong_to.gif" align="absmiddle" width="12" height="10">V[G']</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;do</b> h[v] &#8592; d[v]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><img border="0" src="images/comment.gif" align="middle" width="14" height="14"><span style="mso-bidi-font-size: 10.0pt">d[v]&nbsp;
+        вычислено в <a href="#Алгоритм Беллмана-Форда.">алгоритме
+        Беллмана - Форда</a></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>for</b> для каждого ребра (u, v)<img border="0" src="images/belong_to.gif" align="absmiddle" width="12" height="10">E[G']</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do</b> ~w(u, v) &#8592; w(u, v) + h(u) - h(v)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>for</b> для каждой вершины u<img border="0" src="images/belong_to.gif" align="absmiddle" width="12" height="10">V[G']</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b>
+		<b><a href="#Алгоритм Дейкстры">Dijkstra</a></b>(G', ~W, u)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><img border="0" src="images/comment.gif" align="middle" width="14" height="14"></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">вычисление&nbsp;
+        весов&nbsp; |~d<sub>uj</sub></font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">|,
+        j = 1, 2, . . . V</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10.&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        for</b> для каждой вершины v<img border="0" src="images/belong_to.gif" align="absmiddle" width="12" height="10">V[G']</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">11.&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> d[v] &#8592; ~d[v] + h[v] - h[u]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><img border="0" src="images/comment.gif" align="middle" width="14" height="14"><span style="mso-bidi-font-size: 10.0pt">вычисление </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">весов</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+        |d</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial"><sub>uj</sub></font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">|,
+        j = 1, 2, . . . V</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">12.&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        return</b> D</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Общее
+        время работы алгоритма Джонсона - O(VE log
+        V), что меньше, чем в алгоритме Флойда - O(V<sup>3</sup>).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav4h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_orgraph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav4"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav5h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav6h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav6"></a><!--webbot bot="Navigation" i-checksum="62795" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">&nbsp;<!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">&nbsp;<!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_weight_graph.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:50 GMT -->
+</html>

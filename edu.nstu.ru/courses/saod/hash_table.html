@@ -1,0 +1,1750 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/hash_table.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:16 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Хеш - таблица</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/hash_table.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Хеш - таблица"><!--webbot bot="Navigation" i-checksum="51939" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="RB_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="file_structure.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="48709" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a href="#Функция хеширования">Функция
+        хеширования</a></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a href="#коллизией">Хеш
+        - таблица с цепочками коллизий</a></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a href="#линейном зондировании">Хеш
+        - таблица с&nbsp; открытой адресацией</a></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a href="#Эффективность операций в хеш - таблице">Эффективность
+        операций в хеш - таблице</a></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Рассмотренные
+        ранее коллекции на основе деревьев
+        поиска позволяют строить абстрактный
+        тип данных «Таблица», типичными
+        операциями которой являются поиск,
+        вставка и удаление элементов по ключу.
+        Но эти коллекции обладают
+        логарифмической трудоёмкостью
+        операций, зависящей от числа элементов
+        в таблице. Встречаются приложения,
+        требующие быстрого и гарантированного
+        по времени выполнения, не зависящего от
+        объёма данных в таблице. В частности,
+        это требование свойственно
+        программным системам, работающим в
+        реальном времени. В этом случае
+        используется<span style="mso-spacerun:yes">&nbsp; </span>специальная
+        организация таблицы с постоянным
+        временем выполнения операций – хеш-таблица
+        [<a href="liter.html">1 - 4</a>].</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Прообразом
+        хеш-таблицы является таблица с<a href="search.html#Таблица с прямой индексацией по ключу">
+        прямой индексацией по ключу</a>,&nbsp;
+        представляющая собой массив, каждая
+        позиция которого соответствует
+        отдельному значению ключа. В этом
+        случае ключ используется как индекс
+        массива и, тем самым, обеспечивается
+        быстрый, прямой доступ к элементам
+        таблицы.&nbsp;</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Прямая
+        адресация обладает очевидным
+        недостатком. Если множество U возможных
+        ключей велико, то хранить в памяти
+        массив Т размером &#9474;U&#9474;непрактично,
+        а то и невозможно. Кроме того, если
+        число реально присутствующих в таблице
+        записей мало по сравнению с &#9474;U&#9474;, то
+        много памяти тратится зря.&nbsp;</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Если
+        количество записей в таблице
+        существенно меньше, чем количество
+        возможных ключей, то используется хеш-таблица.
+        Хеш-таблица требует памяти О(&#9474;m&#9474;),
+        где m – множество включенных в таблицу
+        записей. Время поиска в хеш-таблице по-прежнему
+        О(1).</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">В
+        хеш-таблице элементу отводится индекс h(k),
+        где k – ключ элемента h(k) – хеш - функция.
+        Число h(k) называют <a name="хеш-значением"><i> хеш-значением</i></a><b style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;
+        </b>ключа k. Процесс преобразования ключа
+        элемента в индекс хеш - таблицы
+        называется <a name="хешированием."><i>хешированием.</i></a></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Для
+        хеш-таблицы требуется массив размером m,
+        а не &#9474;U&#9474;.</span></font>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/hash1.gif" width="444" height="172"></p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Функция хеширования">Функция
+        хеширования</a></span></font></h3>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Хорошая
+        хеш-функция должна обеспечивать
+        равномерное хеширование, то есть для
+        любого ключа все m хеш-значений должны
+        быть равновероятны.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Пусть
+        на множестве ключей U зафиксировано
+        распределение вероятностей Р.
+        Предполагается, что ключи выбираются
+        из U независимо друг от друга, и каждый
+        ключ распределен в соответствии с Р.</font></span>
+        <span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Тогда
+        равномерное хеширование означает, что&nbsp;&nbsp;
+        </font></span><img border="0" src="images/hash3.gif" align="middle" width="99" height="38"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">,
+        для j = 1, . . , m.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Как
+        правило, распределение Р неизвестно, да
+        и выбор ключей из U также редко не
+        коррелирован. Если, все таки,&nbsp; Р
+        известно, например ключи – случайные
+        действительные числа, равномерно
+        распределенные на промежутке [0 . . 1], то
+        можно использовать хеш-функцию h(k) = <img border="0" src="images/hash4.gif" align="middle" width="53" height="20">,
+        которая удовлетворяет условию
+        равномерного хеширования. (<img border="0" src="images/hash5.gif" align="middle" width="40" height="19">
+        - целая часть вещественного числа).</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">При
+        выборе хеш-функций пользуются
+        различными эвристиками, основанными на
+        специфике задачи. Например, компилятор
+        языка программирования хранит таблицу
+        символов, в которой ключами являются
+        идентификаторы программы. Часто в
+        программе встречаются похожие
+        идентификаторы (например, pt и pts).
+        Хорошая хеш-функция будет стараться,
+        чтобы хеш-значения у таких похожих
+        идентификаторов были различны. Хеш-функцию
+        стараются подобрать так, чтобы её
+        поведение не коррелировало с
+        различными закономерностями в
+        хешируемых данных.&nbsp;</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Но
+        на практике&nbsp; заранее неизвестно,
+        какие именно значения ключей будут
+        храниться в хеш-таблице. На всякий
+        случай хеш-функцию разумно сделать “случайной”,
+        обеспечивающей равномерное
+        хеширование, т.е. для любого ключа все m
+        хеш - значений должны быть
+        равновероятны. Но случайная функция
+        должна быть детерминированной в том
+        смысле, что при повторных вызовах с
+        одним и тем же ключом она должна
+        возвращать одно и то же хеш-значение.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Существует
+        много способов создания функций
+        хеширования, использующих
+        преобразование произвольного
+        натурального числа к натуральному
+        индексу, лежащему в заданном диапазоне
+        0 .. m. Поэтому перед хешированием
+        значения ключей приводятся к
+        натуральному значению, если по своей
+        природе они таковыми не являются.
+        Например, последовательности ASCII-символов
+        можно интерпретировать как целые числа,
+        записанные в системе счисления с
+        основанием 256. Вещественные числа можно
+        привести к натуральному типу с
+        некоторой заданной точностью,
+        предварительно умножив на
+        соответствующую степень 10.</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b><a name="Метод деления с остатком (модульное хеширование)">Метод
+        деления с остатком (модульное
+        хеширование)</a></b> даёт простые и
+        эффективные хеш-функции. Ключу k
+        ставится в соответствие остаток от
+        деления k на m. Хеш-функция вычисляется,
+        как уравнение h(k) = k mod m.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Например,
+        если m=13, k=100, то h(k)=9.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">При
+        этом некоторых значений m стоить
+        избегать. Например, если m=2<sup>P</sup>, то h(k)
+        – просто р младших разрядов ключа k.
+        Если нет уверенности, что все
+        комбинации р младших битов ключей
+        равновероятны, то степень двойки в
+        качестве m не выбирается.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Не
+        рекомендуется также&nbsp; m=10<sup>P</sup>, если
+        ключи – десятичные числа. Тогда уже
+        часть младших цифр полностью
+        определяет хеш-значение.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;Плохо,
+        если m – кратно 2, в этом случае h(k)
+        четных k – четные, а нечетных k –
+        нечетные. Плохо, если m кратно 3 для
+        символьных и десятичных ключей, т. к. 10<sup>P</sup>/3
+        = 4<sup>P</sup>/3 =1, а 4<sup>P</sup> – основание
+        символьных ключей.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Можно
+        поэкспериментировать с реальными
+        данными для исследования того,
+        насколько равномерно будут
+        распределены их хеш-значения.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Пример:
+        плохого и хорошего значений m:</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">М1=100,&nbsp;
+        h1(k)=k mod 100</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">М2=101,&nbsp;
+        h2(k)=k mod 101</span></font></p>
+        <!--mstheme--></font><table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-table-layout-alt: fixed; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-border-insideh: .5pt solid windowtext; mso-border-insidev: .5pt solid windowtext; border-style: none; border-width: medium; margin-left: 19.6pt" width="712" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+          <tr>
+            <td width="71" valign="top" style="mso-border-alt: solid windowtext .5pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">k</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">199</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1099</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">4399</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">200199</span></font></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">303</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">707</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="72" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">100</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="72" valign="top" style="mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">200</font></span></p>
+            <!--mstheme--></font></td>
+          </tr>
+          <tr>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">h1</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">7</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="72" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">0</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="72" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">0</font></span></p>
+            <!--mstheme--></font></td>
+          </tr>
+          <tr style="mso-yfti-lastrow:yes">
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">h2</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">98</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">89</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">56</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">8</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">0</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="71" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">0</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="72" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">100</font></span></p>
+            <!--mstheme--></font></td>
+            <td width="72" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: 1.0pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">99</font></span></p>
+            <!--mstheme--></font></td>
+          </tr>
+        </table><!--mstheme--><font face="Arial">
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Значения,
+        дающие коллизии при любом М – числа,
+        кратные m, m + 1, . . . , m + m-1.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Метод&nbsp;
+        хорошо работает, если в качестве m
+        выбирать простые числа, близкие к
+        степени двойки. Ниже приведены
+        рекомендуемые размеры хеш-таблиц (числа
+        Мерсенне) для модульного хеширования [<a href="liter.html">4</a>]:</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <div align="center">
+          <!--mstheme--></font><table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+ mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+ mso-border-insideh:.5pt solid windowtext;mso-border-insidev:.5pt solid windowtext" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+            <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">n</font></span></b></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">d</span></font></b></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">2n
+                &nbsp;- </span><b style="mso-bidi-font-size: 10.0pt; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">d</span></b></span></font></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:1">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">8</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">5</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">251</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:2">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">9</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">509</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:3">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">10</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1
+                021</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:4">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">11</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">9</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">2
+                039</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:5">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">12</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">4
+                093</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:6">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">13</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">8
+                191</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:7">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">14</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">16
+                381</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:8">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">15</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">19</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">32
+                749</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:9">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">16</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">15</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">65
+                521</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:10">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">17</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">131
+                071</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:11">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">18</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">5</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">262
+                139</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:12">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">19</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">524
+                287</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:13">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">20</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1
+                048 573</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:14">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">21</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">9</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">2
+                097 143</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:15">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">22</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">4
+                194 301</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:16">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">23</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">15</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">8
+                388 593</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:17">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">24</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">3</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">16
+                777 213</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+            <tr style="mso-yfti-irow:18;mso-yfti-lastrow:yes">
+              <td width="35" valign="top" style="width:26.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">25</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="38" valign="top" style="width:28.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">39</font></span></p>
+              <!--mstheme--></font></td>
+              <td width="115" valign="top" style="width:85.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt"><!--mstheme--><font face="Arial">
+                <p class="MsoBodyText2" align="justify" style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">33
+                554 393</font></span></p>
+              <!--mstheme--></font></td>
+            </tr>
+          </table><!--mstheme--><font face="Arial">
+        </div>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b><a name="Метод умножения (мультипликативный">Метод
+        умножения (мультипликативный</a>)</b> </span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">[<a href="liter.html">4</a>]
+        </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">вычисляет
+        хеш- функцию по формуле </span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/hash7.gif" width="127" height="21"></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">,
+        </span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">где
+        A- некоторая константа, удовлетворяющая
+        условию 0 &lt; A &lt;1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/hash8.gif" align="middle" width="43" height="21">
+        – дробная часть произведения. </span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Достоинство
+        метода умножения заключается в том, что
+        качество хеш-функции мало зависит от
+        выбора m. Но обычно в качестве m выбирают
+        степень двойки, так как в большинстве
+        компьютеров умножение на степень
+        двойки реализуется быстро, как сдвиг
+        слова. Метод умножения работает при
+        любом выборе константы А, но некоторые
+        значения А могут быть лучше других.
+        Удачным значением является число – «золотое
+        сечение» [<a href="liter.html">7</a>]:</font></span></p>
+        <p class="MsoBodyText2" align="center" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">А
+        = <img border="0" src="images/hash9.gif" align="middle" width="60" height="43"> 0,6180339887</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Если&nbsp;
+        рассмотреть&nbsp; интервал, &nbsp; на&nbsp;
+        котором лежат значения&nbsp; <img border="0" src="images/hash8.gif" align="middle" width="43" height="21">,
+        то&nbsp; можно&nbsp; заметить,&nbsp; как&nbsp;
+        ведут&nbsp; себя&nbsp; последовательные
+        значения <img border="0" src="images/hash8.gif" align="middle" width="43" height="21">
+        при&nbsp; k&nbsp; = 1, 2, 3&nbsp; . . .&nbsp; и т.д.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><img border="0" src="images/hash10.gif" width="80" height="108"></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/hash11.gif" width="399" height="75"></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Каждая
+        последующая&nbsp; точка делит наибольший из
+        интервалов золотым сечением. Соответственно ведет себя и
+        хеш-функция&nbsp; <img border="0" src="images/hash7.gif" align="middle" width="127" height="21">
+        на
+        интервале [1 . . m].</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Проиллюстрируем
+        метод на конкретном примере. Пусть
+        размер хеш - таблицы m = 10000. При вставке
+        ключа 123456 получится хеш - значение:</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/hash12.gif" width="615" height="30"></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Можно
+        использовать хеш- функции, учитывающие
+        специфику ключей. Например для &quot;длинных&quot;
+        ключей с большим количеством цифр
+        можно использовать&nbsp; выбор отдельных
+        цифр или свертку [ <a href="liter.html">2 </a>].</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Метод выбора цифр">Метод
+        выбора цифр</a></span></b></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Хеш-функция,
+        основанная на выборе цифр, формирует
+        хеш-значение, как комбинацию отдельных
+        цифр ключа. Например, для хеш-таблицы с
+        размером m = 1000 из 12-значного ключа <b>1</b>23769<b>4</b>5012<b>3</b><sub>10
+        </sub>
+        можно выбрать первую, шестую и
+        двенадцатую цифры и сформировать
+        индекс 143<sub>10&nbsp;</sub> или 341<sub>10 </sub>, если выбирать цифры в
+        обратном порядке. Для уменьшения
+        вероятности коллизий рекомендуется </span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">также
+        учитывать номера позиций, из которых
+        выбираются цифры. Для этого значение
+        выбранной цифры можно складывать с
+        номером позиции по модулю основания
+        системы счисления.</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        Например для ключа <b>7</b>7777<b>7</b>7777<b>7</b><sub>10</sub><sub>
+        </sub>с учетом номеров позиций цифр
+        получается индекс&nbsp; 727<sub>10 </sub>, а для
+        ключа <b>7</b>7<b>7</b>7<b>7</b><sub>10</sub><sub> </sub>- 197<sub>10
+        </sub>.&nbsp;</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Запись цифр в
+        позиционной десятичной системе и будет
+        представлять хеш-значение, лежащее в
+        диапазоне от 0 до 999</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">. Но такой способ
+        хеширования оправдывает себя, если
+        ключи элементов, вставляемых в таблицу,
+        равномерно распределены на всём
+        диапазоне значений.&nbsp;</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b><a name="Метод свёртки">Метод
+        свёртки</a></b></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Метод
+        свёртки группирует цифры ключа и
+        складывает группы цифр по модулю m.
+        Например, для m = 1000 ключ 123769450123<sub>10&nbsp;</sub>
+        можно
+        преобразовать по схеме:</span></span></font></p>
+        <p class="MsoBodyText2" align="center" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">(123</font><font face="MS Sans Serif" size="1"><sub>10</sub></font><sub><font face="MS Sans Serif" size="2">&nbsp;</font></sub></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">
+        + 769</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>10&nbsp;</sub></span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">
+        + 450</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>10&nbsp;</sub></span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">
+        + 123</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>10
+        </sub></span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">) mod 1000 =
+        465</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>10
+        </sub></span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Для
+        уменьшения вероятности коллизий
+        рекомендуется также учитывать номера групп,
+        которые выбираются из ключа. Для этого
+        значение цифр в выбранной группе&nbsp;
+        можно складывать с номером группы по
+        модулю основания системы счисления.&nbsp;
+        Например, без учета номеров групп&nbsp;
+        ключи 987123456 и 456987123 дадут одинаковое хеш
+        - значение по методу свертки:</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(987</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 123</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 456</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">)
+        mod 1000 = 566</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(456</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 987</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 123</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">)
+        mod 1000 = 566</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Если
+        с каждой цифрой сложит номер ее позиции
+        по модулю 10, то получатся хеш - значения:</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(109</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 234</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 456</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">)
+        mod 1000 =799</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(678</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 098</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        + 123</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">)
+        mod 1000 = </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">899</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Можно
+        применять свёртку, комбинированную с
+        выбором цифр. Например, сначала
+        выполняется простое суммирование
+        групп цифр ключа, а из полученной суммы
+        выбирается нужное количество цифр.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Конкатенация битовых образов">Конкатенация
+        битовых образов</a></span></b></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Если
+        ключ является строкой символов
+        произвольной длины, то можно применить
+        преобразование строки к натуральному
+        числу и затем применить к этому числу
+        один из описанных выше методов. Но
+        такой способ хеширования не всегда
+        себя оправдывает. Существуют
+        специальные методы хеширования строк.
+        Например, если строки включают только
+        заглавные буквы латинского алфавита,
+        то каждой букве от A до Z можно поставить
+        в соответствие числа от 1 до 26. Строка
+        символов заменяется конкатенацией
+        битовых образов этих чисел,
+        соответствующих символам строки. К
+        десятичному значению получившейся
+        битовой последовательности можно
+        применить любой из описанных выше
+        методов хеширования [<a href="liter.html">2</a>].&nbsp;
+        Например строковый ключ &quot;ALPHA&quot;
+        можно преобразовать этим способом в
+        следующем виде:</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Буква
+        А кодируется числом 1, или 00001 в двоичной
+        системе.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Буква
+        L кодируется числом 12, или 01100 в двоичной
+        системе.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Буква
+        P кодируется числом 16, или 10000 в двоичной
+        системе.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Буква
+        H кодируется числом 8, или 01000 в двоичной
+        системе.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Конкатенируя
+        двоичные величины, получаем двоичное
+        число 0000101100100000100000001, которое равно 1458433</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">. системе счисления. К этому
+        числу можно применить один из
+        описанных выше методов хеширования
+        натуральных ключей.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Правило
+        Горнера</span></b></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Можно
+        вычислить это же число, как число,
+        записанное&nbsp; в позиционной системе
+        счисления с основанием 2<sup>5</sup> = 32:</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="center"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">1<img border="0" src="images/mul.gif" width="9" height="8">32<sup>4
+        </sup>+ 12<img border="0" src="images/mul.gif" width="9" height="8">32<sup>3</sup> + 16<img border="0" src="images/mul.gif" width="9" height="8">32<sup>2</sup>
+        + 8<img border="0" src="images/mul.gif" width="9" height="8">32<sup>1</sup> + 1<img border="0" src="images/mul.gif" width="9" height="8">32<sup>0
+        </sup>= 1458433</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span></p>
+      <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Такие
+      степенные полиномы эффективнее
+      вычисляются с помощью схемы Горнера:</span></font></p>
+      <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="center"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(((1<img border="0" src="images/mul.gif" width="9" height="8">32
+      + 12)<img border="0" src="images/mul.gif" width="9" height="8">32 + 16)<img border="0" src="images/mul.gif" width="9" height="8">32
+      +8)<img border="0" src="images/mul.gif" width="9" height="8">32 + 1 = 1458433</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="1"><sub>10</sub></font></span></p>
+  <center>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify" class="MsoBodyText2">&nbsp;</p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Хеш - таблица с цепочками коллизий">Хеш
+        - таблица с цепочками коллизий</a></span></font></h3>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify" class="MsoBodyText2"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Проблема
+        хеш - таблицы заключается в том, что хеш-значения
+        двух разных ключей могут совпадать.
+        Такой случай называется <a name="коллизией"><i> коллизией</i></a>&nbsp;
+        или
+        столкновением. Эта ситуация неизбежна,
+        поскольку &#9474;U&#9474; много больше m и
+        существуют разные ключи, имеющие одно и
+        то же значение h(k). При выборе хеш-функции
+        заранее неизвестно, какие именно ключи
+        будут храниться в хеш-таблице. На
+        всякий случай хеш-функцию разумно
+        сделать “случайной” в некотором
+        смысле, хорошо перемешивающей ключи по
+        ячейкам массива (to hash -&nbsp; мелко
+        порубить, помешивая). Но случайная
+        функция должна быть детерминированной
+        в том смысле, что при повторных вызовах
+        с одним и тем же ключом она должна
+        возвращать одно и то же хеш-значение.&nbsp;
+        </span></font></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify" class="MsoBodyText2"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Технология
+        сцепления элементов<b style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </b>состоит в том, что элементы множества
+        с одним и тем же хеш-значением
+        связываются в цепочку-список. В позиции
+        j хранится указатель на голову списка
+        тех элементов, у которых хеш-значение
+        ключа равно j. Если таких элементов в
+        таблице нет, то позиция j содержит nil.
+        Такой способ разрешения коллизий
+        позволяет хранить множества с
+        потенциально бесконечным
+        пространством ключей, снимая
+        ограничения на размер множества.
+        Поэтому этот способ организации хеш-таблицы
+        называется открытым или внешним
+        хешированием.<b style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </b></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Каждый
+        элемент хранит указатель на голову
+        списка или nil.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="center"><img border="0" src="images/hash2.gif" width="590" height="164"></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="center">&nbsp;</p>
+      </center>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="center"><a href="flash/test32.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+  <center>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="center">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Основная
+        идея при открытом хешировании
+        заключается в том, что потенциальное
+        множество разбивается на конечное
+        число подмножеств. Для m подмножеств,
+        пронумерованных от 0 до m-1, строится хеш-функция
+        h такая, что для любого элемента из
+        исходного множества h(k) принимает
+        целочисленное значение на интервале
+        [0…m]. Значение хеш-функции определяет
+        индекс в массиве указателей Т.&nbsp; </span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Операции
+        добавления, поиска и удаления
+        реализуются легко :</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>Chained_Hash_Insert
+        (T, x)</b></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        добавить x в голову списка T[h(key[x])]</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>Chained_Hash_Search
+        (T, k)</b></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        найти элемент всписке T[h((key[x]))]</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>Chained_Hash_Delete
+        (T, x)</b></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        найти и&nbsp; </span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">удалить
+        х из списка T[h(key[x])]</font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify" class="MsoBodyText2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">При
+        анализе хеширования с цепочками
+        учитывается фактор заполнения таблицы
+        Т -&nbsp; </font><font face="MS Sans Serif" size="3"><i>&#945;</i></font><font face="MS Sans Serif" size="2">.</font></span>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify" class="MsoBodyText2"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Коэффициентом
+        заполнения хеш - таблицы <b style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </b></span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">называется
+        число<b style="mso-bidi-font-size: 10.0pt; line-height: 150%"> </b></font><font face="MS Sans Serif" size="3">&#945;</font><font face="MS Sans Serif" size="2">
+        = n/m, где n – число занесенных в таблицу
+        элементов, m – число элементов массива
+        Т. </font><font face="MS Sans Serif" size="3">&#945;</font><font face="MS Sans Serif" size="2">
+        может быть и меньше и больше единицы.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">В
+        худшем случае, когда хеш-значения всех
+        ключей совпали, таблица сводится к
+        одному списку длины <b style="mso-bidi-font-size: 10.0pt; line-height: 150%">n,</b>
+        и на поиск элемента будет тратиться
+        время О(n), как в списке, плюс ещё время
+        на вычисление хеш-функции.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Средняя
+        стоимость поиска зависит от того,
+        насколько равномерно хеш-функция
+        распределяет хеш-значения ключей по
+        позициям таблицы. </font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Если
+        сделать предположение о равномерном
+        хешировании, когда каждый элемент
+        может попасть в любую позицию таблицы с
+        равной вероятностью, то путем
+        несложных доказательств можно сделать
+        вывод, что время поиска элемента
+        оценивается величиной O(1+ </font><font face="MS Sans Serif" size="3">&#945;</font><font face="MS Sans Serif" size="2">).</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Если&nbsp;&nbsp;
+        количество позиций&nbsp; в хеш-таблице m
+        пропорционально числу n, т. е. n = O(m),&nbsp;
+        то </font><font face="MS Sans Serif" size="3">&#945;</font><font face="MS Sans Serif" size="2">
+        = n/m = О(1) и О(1+ </font><font face="MS Sans Serif" size="3">&#945;</font><font face="MS Sans Serif" size="2">)
+        = O(1).</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Поскольку
+        стоимость добавления и удаления в хеш-таблицу
+        также равно О(1), то при оптимистических
+        предположениях о распределении
+        вероятностей стоимость любой&nbsp;
+        операции равна O(1).</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Хеш - таблица с  открытой адресацией">Хеш
+        - таблица с&nbsp; открытой адресацией</a></span></font></h3>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Хеш-таблица
+        с открытой адресацией представляет
+        собой массив Т, в который помещаются
+        элементы таблицы по индексу, равному хеш-значению ключа. При возникновении
+        коллизии выполняется поиск другой
+        ячейки массива (проба, <a name="зондирование"><i> зондирование</i></a><a name="зондирование"><i>
+        </i></a>), в
+        которой может разместиться элемент.
+        Эта ячейка должна быть свободной (открытой).
+        Для пометки состояния в ячейки таблицы
+        вводится специальный признак
+        состояния ячейки state. Ячейка хеш-таблицы
+        может быть в одном из трех состояний:
+        свободна (free), занята (busy), свободна
+        после удаления из неё элемента (deleted).
+        Открытой считается ячейка, находящаяся
+        в состоянии free или deleted.</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">При
+        поиске свободной ячейки вычисляется и
+        просматривается последовательность
+        индексов ячеек массива.
+        Последовательность зависит от ключа. k
+        и номера пробы i. Для вычисления
+        последовательности к хеш-функции
+        добавляется второй аргумент - номер
+        пробы (нумерация начинается с 0).
+        Последовательность ячеек для
+        некоторого ключа k имеет вид&nbsp; &lt;h (k, 0),
+        h (k, 1), .. , h (k, m-1)&gt;.</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Функция
+        h (k, i)&nbsp; должна быть такой, чтобы каждое
+        из чисел 0, . . ,m-1 встречалось ровно один
+        раз.</span></font></p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Алгоритм
+        вставки&nbsp; в таблицу с открытой
+        адресацией:</span></font></h3>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt; line-height:150%"><font face="MS Sans Serif" size="2">Hash_Insert
+        (</font></span><font face="Arial" size="2"><b><i>T, k, data</i></b></font><span style="mso-bidi-font-size: 10.0pt; line-height:150%"><font face="MS Sans Serif" size="2">)</font></span></h3>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+      </center>
+        <p class="MsoBodyTextIndent" align="left" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">Hash</span><span style="line-height: 150%">_</span><span lang="EN-US" style="line-height: 150%">Insert</span></b> 
+		(<b><i><span lang="EN-US">T</span>, <span lang="EN-US">k</span>,
+		<span lang="EN-US">data</span></i></b>)</font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="font-weight:normal"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><i><b>&nbsp;k, 
+		data </b>–</i><span style="font-weight:normal">вставляемые ключ и данные</span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="font-weight:normal"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><b><i>T</i></b><span style="font-weight:normal">[{</span><span lang="EN-US" style="font-weight: normal">state</span><span style="font-weight:normal">,
+		</span><span lang="EN-US" style="font-weight: normal">key</span><span style="font-weight:normal">,
+		</span><span lang="EN-US" style="font-weight: normal">data</span><span style="font-weight:normal">}] 
+		– массив <span lang="ru">для </span>хеш-таблицы </span>
+		<span lang="EN-US" style="font-weight: 700; font-style: italic">T</span><span lang="ru"> 
+		размерностью </span>m</font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="font-weight:normal"><font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="font-weight: normal">state</span><span style="font-weight:normal">[</span><b><i>T</i></b><span style="font-weight:normal">[</span><span lang="EN-US" style="font-weight: normal">j</span><span style="font-weight:normal">]] 
+		– состояние ячейки таблицы (</span><i><span lang="EN-US">free</span> /
+		<span lang="EN-US">busy</span> / <span lang="EN-US">deleted</span></i><span style="font-weight:normal">)</span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="font-weight:normal"><font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="font-weight: normal">key</span><span style="font-weight:normal">[</span><b><i>T</i></b><span style="font-weight:normal">[</span><span lang="EN-US" style="font-weight: normal">j</span><span style="font-weight:normal">]] 
+		– ключ поиска элемента таблицы</span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="font-weight:normal"><font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><span lang="EN-US" style="font-weight: normal">data</span><span style="font-weight:normal">[</span><b><i>T</i></b><span style="font-weight:normal">[</span><span lang="EN-US" style="font-weight: normal">j</span><span style="font-weight:normal">]] 
+		– данные элемента таблицы</span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial" size="2">i&#8592; 0</font></span></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial" size="2">pos &#8592; -1</font></span></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%; font-weight: 700">repeat</span><span lang="EN-US" style="font-weight: normal"> 
+		j &#8592; h(</span><i><b>k</b></i><span lang="EN-US" style="font-weight: normal">, 
+		i)</span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font face="Arial"><font size="2"><span style="line-height: 150%; font-weight: 700">if</span><span lang="EN-US" style="font-weight: normal"> 
+		state[</span><b><i>T</i></b><span lang="EN-US" style="font-weight: normal">[j]] 
+		= </span><i><span lang="EN-US">deleted </span></i>
+		<span style="line-height: 150%; font-weight: 700">and</span></font><span lang="EN-US" style="font-weight: normal"><font size="2"> 
+		pos = -1</font></span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font face="Arial" size="2"><span style="line-height: 150%; font-weight: 700">&nbsp;then</span></font><font face="Arial"><span lang="EN-US" style="font-weight: normal"><font size="2"> 
+		pos &#8592; j</font></span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font face="Arial"><font size="2"><span style="line-height: 150%; font-weight: 700">if</span><span lang="EN-US" style="font-weight: normal"> 
+		state[</span><b><i>T</i></b><span lang="EN-US" style="font-weight: normal">[j]] 
+		= </span><i><span lang="EN-US">busy</span></i><span lang="EN-US" style="font-weight: normal">
+		</span><span style="line-height: 150%; font-weight: 700">and</span><span lang="EN-US">
+		</span><span lang="EN-US" style="font-weight: normal">key[T[j]] = </span>
+		</font><i><font size="2" face="Arial"><b>k</b></font></i></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">12.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font face="Arial"><font size="2"><span style="line-height: 150%; font-weight: 700">then</span><span lang="EN-US" style="font-weight: normal">
+		</span><span lang="EN-US">return</span></font><span lang="EN-US" style="font-weight: normal"><font size="2"> 
+		FALSE</font></span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">13.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i &#8592; i+1</font></span></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">14.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2">
+		<span style="line-height: 150%; font-weight: 700">&nbsp;&nbsp; until</span><span lang="EN-US" style="font-weight: normal"> 
+		i = m </span><span style="line-height: 150%; font-weight: 700">or</span><span lang="EN-US" style="font-weight: normal"> 
+		state[</span><b><i>T</i></b><span lang="EN-US" style="font-weight: normal">[j]] 
+		= </span><i><span lang="EN-US">free</span></i></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">15.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2">
+		<span style="line-height: 150%; font-weight: 700">&nbsp;&nbsp; if<span style="font-weight: 700; line-height: 150%">
+		</span></span><span lang="EN-US" style="font-weight: normal">i = m
+		</span><span style="line-height: 150%; font-weight: 700">and</span><span lang="EN-US" style="font-weight: normal"> 
+		pos = -1</span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">16.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</font></span><font face="Arial"><font size="2" face="Arial"><span style="line-height: 150%; font-weight: 700">then<span style="font-weight: 700; line-height: 150%">
+		</span>return</span></font><span lang="EN-US" style="font-weight: normal"><font size="2"> 
+		FALSE</font></span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">17.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2">
+		<span style="line-height: 150%; font-weight: 700">&nbsp;&nbsp; if</span></font><font face="Arial"><span lang="EN-US" style="font-weight: normal"><font size="2"> 
+		pos = -1</font></span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">18.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;</font></span><font face="Arial"><font size="2" face="Arial"><span style="line-height: 150%; font-weight: 700">&nbsp;&nbsp; 
+		then</span></font><span lang="EN-US" style="font-weight: normal"><font size="2"> 
+		pos &#8592; j</font></span></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">19.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp; key[</font></span><font size="2" face="Arial"><b><i>T</i></b><span lang="EN-US" style="font-weight: normal">[pos]] 
+		&#8592;</span></font><font face="Arial"><i><font size="2"><span lang="EN-US">
+		</span><b>k</b></font></i></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">20.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp; data[</font></span><font size="2" face="Arial"><b><i>T</i></b><span lang="EN-US" style="font-weight: normal">[pos]] 
+		&#8592; </span></font><font face="Arial"><i><font size="2" face="Arial"><b>
+		data</b></font></i></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-weight: normal">
+		<font face="Arial" size="2">21.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span><font size="2" face="Arial">&nbsp;&nbsp; state[</span><span lang="EN-US" style="font-weight: 700"><i>T</i></span><span lang="EN-US" style="font-weight: normal">[pos]] 
+		&#8592; </span></font><font face="Arial"><i><span lang="EN-US"><font size="2">
+		busy</font></span></i></font></p>
+  <center>
+        <p class="MsoBodyTextIndent" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="font-weight:normal"><font face="Arial" size="2">22.</font></span><font face="Arial" size="2"><span style="line-height: 150%; font-weight: 700"><span style="font-weight: 700; line-height: 150%"> 
+		&nbsp;&nbsp; </span>return<span style="font-weight: 700; line-height: 150%">
+		</span></span><span lang="EN-US" style="font-weight: normal">TRUE</span></font></p>
+  <center>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+      </center>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="center"><a href="flash/test33.html"><b><font face="MS Sans Serif" size="3" color="#0000FF">Тест</font></b></a></p>
+  <center>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">При
+        поиске элемента с ключом k в таблице
+        ячейки просматриваются в том же
+        порядке, что и при вставке элемента с
+        ключом k. Если встречается ячейка в
+        состоянии&nbsp; free, то это значит, что
+        искомого элемента в таблице нет.</span></font></p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+		Алгоритм&nbsp;
+        поиска в таблице с открытой адресацией:
+        </span></font></h3>
+        <h3 style="line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Hash_Search
+        (<i>T, k</i>)</span></font></h3>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </span></span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><b><i>T</i></b><span style="font-weight:normal">[{</span><span lang="EN-US" style="font-weight: normal">state</span><span style="font-weight:normal">,
+		</span><span lang="EN-US" style="font-weight: normal">key</span><span style="font-weight:normal">,
+		</span><span lang="EN-US" style="font-weight: normal">data</span><span style="font-weight:normal">}] 
+		– массив <span lang="ru">для </span>хеш-таблицы </span>
+		<span lang="EN-US" style="font-weight: 700; font-style: italic">T</span><span lang="ru"> 
+		размерностью </span>m</font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">2.
+        <img border="0" src="images/comment.gif" width="14" height="14">state[<i><b>T</b></i>[j]]
+        – состояние ячейки таблицы (<i>free / busy /
+        deleted</i>)</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="14">key[<i><b>T</b></i>[j]]
+        – ключ поиска элемента таблицы</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">4.
+        <img border="0" src="images/comment.gif" width="14" height="14">data[<i><b>T</b></i>[j]]
+        – данные элемента таблицы</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">5.&nbsp;
+        i&#8592; 0</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">6.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;
+        <b>repeat</b> </span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        j&#8592; h(<b><i>k</i></b>, i)</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">8.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b>&nbsp; key[<b><i>T</i></b>[j]] = 
+		<b><i>k </i>and<i> </i></b></span></span>
+		<span lang="EN-US" style="font-weight: normal">state[</span><b><i>T</i></b><span lang="EN-US" style="font-weight: normal">[j]] 
+		= </span><i><span lang="EN-US">busy</span></i><span lang="EN-US" style="font-weight: normal">
+		</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then&nbsp;
+        return</b> data[<b><i>T</i></b>[j]]</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">10.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; i&#8592; i + 1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">11.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        <b>until </b>state[<b><i>T</i></b>[j]] = <i>free</i>&nbsp;<b>or</b> i = m</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">12.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        <b>return</b> &quot;error&quot;</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Удаление
+        элемента из таблицы с открытой
+        адресацией не так просто. Если записать
+        на его место nil, то в дальнейшем нельзя
+        будет найти те элементы, в момент
+        добавления которых это место вошло в
+        число проб и было занято, и из-за этого
+        была выбрана более удаленная позиция.
+        Возможное решение – записывать на
+        место удаленного элемента не nil, а
+        специальное значение deleted (&quot;удален&quot;),
+        и при добавлении рассматривать ячейку
+        со значением deleted, как свободную. При
+        поиске эту ячейку нужно рассматривать,
+        как занятую. Недостаток этого подхода в
+        том, что время поиска может оказаться
+        большим даже при низком коэффициенте
+        заполнения. </span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Поэтому,
+        если требуется удалять записи из хеш-таблицы,
+        то предпочтение отдается хешированию с
+        цепочками.</font></span></p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Алгоритм&nbsp;
+        удаления из таблицы с открытой
+        адресацией: </span></font></h3>
+        <h3 style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Hash_Delete
+        (<i>T, k</i>)</span></font></h3>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+		<i><img border="0" src="images/comment.gif" width="14" height="14"><b>T</b></i>[{state,
+        key, data}] – массив хеш-таблицы</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="16">state[<i><b>T</b></i>[j]]
+        – состояние ячейки таблицы (<span style="font-style: italic">free / busy /
+        deleted</span>)</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="14">key[<i><b>T</b></i>[j]]
+        – ключ поиска элемента таблицы</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;
+        i&#8592; 0</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;
+        <b>repeat</b> </span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        j &#8592; h(<i><b>k</b></i>, i)</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">7.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;<b>if&nbsp; </b>key[<i><b>T</b></i>[j]] = <i><b>k</b></i> <b>and</b> state[<i><b>T</b></i>[j]] = </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; font-style:italic">busy</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">8.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then</b>&nbsp; state[<i><b>T</b></i>[j]] &#8592; 
+		<span style="font-style: italic">deleted</span></span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b>
+        TRUE</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">10.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        &nbsp;&nbsp;&nbsp;&nbsp;i&#8592; i + 1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">11.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>until</b> state[<i><b>T</b></i>[j]] = 
+		<span style="font-style: italic">free&nbsp;</span> <b>or</b> i = m</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">12.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        <b>return </b>FALSE</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">На
+        практике используются обычно три
+        способа вычисления последовательности
+        проб: линейный, квадратичный и двойное
+        хеширование. В каждом из этих способов
+        последовательность&nbsp; &lt; h (k, 0), h (k, 1), …,
+        h (k, m-1) &gt;&nbsp; будет перестановкой
+        множества {0, 1, …, m-1} при любом значении
+        ключа k. Ни один из этих способов не
+        является равномерным по той причине,
+        что они дают не более m2 перестановок из
+        m! возможных. Больше всего перестановок
+        получается при двойном хешировании. </span></font></p>
+        <p style="line-height: 100%; text-indent: 10; word-spacing: 0; tab-stops: 134.7pt; margin: 0" class="MsoBodyText2" align="justify">&nbsp;</p>
+        <h3 style="line-height: 100%; text-indent: 10; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Разрешение
+        коллизий в хеш-таблице с открытой
+        адресацией</span></font></h3>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Обычно
+        используются три способа поиска
+        свободных ячеек, называемых линейное
+        зондирование, квадратичное
+        зондирование и зондирование с двойным
+        хешированием.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">При
+        <a name="линейном зондировании"><i>
+        линейном зондировании</i></a>&nbsp; хеш-функция при
+        каждой попытке поиска вычисляет новую
+        ячейку по формуле</font></span></p>
+        <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">h
+        (k, i) = (h(k) + i) mod m</span></font></span> <span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">,
+        где h(k) <span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%">-</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        обычная хеш-функция, i – номер пробы
+        поиска свободной ячейки. </span></font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">При
+        работе с ключом k первой выбирается
+        ячейка T[h(k)], а затем перебираются
+        ячейки таблицы подряд: T[h(k)+1], T[h(k)+2], . . .&nbsp;
+        После ячейки T[m] следует ячейка T[1]. </font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">У
+        метода очевидный недостаток: он может
+        привести к <a name="образованию кластеров"> образованию
+        <i> кластеров</i></a>&nbsp; –
+        длинных последовательностей занятых
+        ячеек, идущих подряд. Это удлиняет
+        поиск. В самом деле, если в таблице из m
+        ячеек все ячейки с четными номерами
+        заняты, а ячейки с нечетными номерами –
+        свободны, то среднее число проб при
+        поиске элемента, отсутствующего в
+        таблице равно 1.5. Если же m/2 занятых
+        ячеек идут подряд, то среднее число
+        проб равно m/8=n/4&nbsp; (n – число занятых
+        мест в таблице) [<a href="liter.html">3</a>].</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">При
+        <a name="квадратичном зондировании"><i>
+        квадратичном зондировании</i></a>&nbsp; хеш-функция,
+        задаёт квадратичную
+        последовательность ячеек по формуле:</font></span></p>
+        <p class="MsoBodyText2" align="justify" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">h
+        (k, i) = (h (k) + c <img border="0" src="images/mul.gif" width="9" height="8">&nbsp; i + c2</span></span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        <img border="0" src="images/mul.gif" width="9" height="8"> i<sup>2</sup>) mod m,</span></font>
+        <span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        где c1&#8800; 0 <span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;</span>и
+        c2 &#8800; 0 – некоторые константы. Пробы
+        начинаются с ячейки T[h(k)], но дальше
+        ячейки просматриваются не подряд.
+        Номер пробуемой ячейки квадратично
+        зависит от номера пробы. Для того, чтобы
+        использовались все ячейки таблицы,&nbsp;
+        константы c1 и c2 нужно тщательно
+        подбирать. Хорошую квадратичную
+        последовательность проб даёт алгоритм,
+        явно не использующий константы <span style="mso-bidi-font-size: 10.0pt; line-height: 150%">c1
+        и c2[<a href="liter.html">3</a>]. Алгоритм
+        продемонстрирован на примере вставки
+        элемента в хеш-таблицу.</span></font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Hash_Insert
+        (<i>T, k, data</i>)</span></font></h3>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">1.
+        i&#8592; 0</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        pos &#8592; -1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">3.
+        </span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+		<font face="Arial" size="2">j&#8592;
+        h(<i><b>k</b></i>)</font></span></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        <b>repeat</b></span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;<b>if </b>state[<i><b>T</b></i>[j]] = <i>deleted</i><b> and</b> pos = -1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">6.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;<b>then</b> pos &#8592; j</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">7.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        &nbsp; &nbsp;<b>&nbsp;if</b> key[<i><b>T</b></i>[j]] = <i><b>k</b></i><b><span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>and</b> state[<i><b>T</b></i>[j]] = </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; font-style:italic">busy</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <b>then return</b> FALSE</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">10.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        &nbsp;&nbsp; i &#8592; i+1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">11.&nbsp;&nbsp;&nbsp;
+        </span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+		<font face="Arial" size="2">j&#8592;
+        (j + i) <b>mod</b> m</font></span></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">12.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>
+        until</b> i = m <b>or</b> state[<i><b>T</b></i>[j]] =<i> free</i></span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">13.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>
+        if</b> i = m<b> and </b>pos = -1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">14.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>then return</b> FALSE</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">15.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><b>
+        if </b>pos = -1</span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">16.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        &nbsp;&nbsp;&nbsp;<b>then </b>pos &#8592; </span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">j</span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">17.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        key[<i><b>T</b></i>[pos]] &#8592; <i><b>k</b></i></span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">18.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        data[<i><b>T</b></i>[pos]] &#8592; <i><b>data</b></i></span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">19.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        state[<i><b>T</b></i>[pos]] &#8592; <i>busy</i></span></span></font></p>
+        <p class="MsoBodyText2" style="line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">20.<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        <b>return</b> TRUE</span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">При
+        квадратичном зондировании тенденция к
+        образованию кластеров частично
+        устраняется. Хотя и остается эффект
+        кластеризации в более мягкой форме –
+        образование вторичных кластеров.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Двойное хеширование"><i>Двойное
+        хеширование</i></a>&nbsp; – один из лучших методов
+        открытой адресации.
+        Последовательности индексов,
+        возникающие при зондировании с двойным
+        хешированием, близки к равномерному
+        хешированию. При двойном хешировании
+        хеш - функция&nbsp; имеет вид </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">h
+        (k, i) = (h(k) + i</span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><img border="0" src="images/mul.gif" width="9" height="8">h1(k))
+        mod m</span><span style="mso-bidi-font-size: 10.0pt">,&nbsp; <span style="mso-bidi-font-size: 10.0pt; line-height: 150%">где
+        h(k) &nbsp;и h1 (k) – обычные хеш-функции. То
+        есть, последовательность проб при
+        зондировании является арифметической
+        прогрессией по модулю m с первым членом
+        h(k) и шагом h1(k). </span></span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Чтобы
+        последовательность зондируемых ячеек
+        охватывала всю таблицу, значение h1(k)
+        должно быть взаимно простым с размером
+        хеш-таблицы m. Простой способ добиться
+        этого условия – выбрать в качестве m
+        степень двойки, а функцию h1(k) взять
+        такую, чтобы она принимала только
+        нечетные значения. В другом варианте,
+        если m – простое число, значения h1(k) -
+        целые положительные числа, меньшие m.
+        Например, если используется модульное
+        хеширование, в котором размер хеш-таблицы
+        выбирается, как простое число, то можно
+        положить:</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">h
+        (k) = k mod m</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">h<span style="mso-bidi-font-size: 10.0pt; line-height: 150%">1(k)
+        = 1 + (k mod m1), </span>, где <span style="mso-bidi-font-size: 10.0pt; line-height: 150%">m1
+        чуть меньше, чем m (m1= m-1 или m-2).</span></span></font></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; tab-stops: 134.7pt; margin: 0" align="justify" class="MsoBodyText2">&nbsp;
+  <h3 style="line-height: 100%; text-indent: 10; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Эффективность операций в хеш - таблице">Эффективность
+  операций в хеш - таблице</a></span></font></h3>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Алгоритмы
+  чтения или модификации, вставки и удаления
+  элементов зависят от структуры хеш-таблицы.
+  Если используется хеш-таблица с цепочками
+  коллизий, то алгоритмы поиска, вставки и
+  удаления элемента действуют по однотипной
+  схеме:</font></span></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  хеширование ключа элемента и вычисление
+  индекса заголовка списка в массиве
+  цепочек коллизий,</span></font></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  поиск в списке элемента с заданным ключом,</span></font></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  выполнение операции над элементом.</span></font></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Трудоёмкость
+  операций зависит от средней длины списков,
+  которую можно вычислить как &#945; = n/m, где n –
+  число занесенных в таблицу элементов, m –
+  размер хеш-таблицы. С учётом
+  первоначального хеширования ключа перед
+  просмотром списка оценку трудоёмкости
+  можно записать, как O(1+&#945;/2) [<a href="liter.html">2</a>].
+  Величина &#945; учитывает фактор заполнения
+  таблицы и называется коэффициентом
+  заполнения таблицы. Трудоёмкость операций
+  в хеш-таблице зависит не от числа
+  элементов n, содержащихся в ней, а от
+  коэффициента заполнения &#945;. Для хеш-таблиц
+  с цепочками коллизий величина &#945; может
+  быть меньше и больше единицы.</span></font></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Зависимость
+  трудоёмкости операций от заполнения
+  справедлива и для хеш-таблиц с открытой
+  адресацией. Чем более заполнена хеш-таблица,
+  тем больше возникает коллизий и проб при
+  зондировании. Приведённые в приложении 5
+  алгоритмы трёх основных операций для хеш-таблицы
+  с открытой адресацией демонстрируют этот
+  процесс. </font></span></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Так
+  же, как при анализе хеширования с
+  цепочками коллизий, трудоёмкость операций
+  с открытой адресацией оценивается в
+  терминах коэффициента заполнения &#945;. Для
+  открытой адресации &#945; &#8804; 1. Анализ
+  трудоёмкости операций для хеш-таблиц с
+  открытой адресацией более сложен, чем для
+  хеш-таблиц с цепочками коллизий. Помимо
+  коэффициента &#945; трудоёмкость операции
+  зависит от её алгоритма, метода
+  зондирования, вероятности промахов
+  операций. Поскольку в основе всех операций
+  лежит определение наличия или отсутствия
+  ключа в таблице, то трудоёмкость операций
+  оценивается в количестве проб
+  зондирования, выполненных при поиске
+  ключа. Ниже приведены оценки трудоёмкости
+  успешного или не успешного поиска ключа в
+  зависимости от метода зондирования [<a href="liter.html">6</a>]:</font></span></p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+  <div align="center">
+    <center>
+    <!--mstheme--></font><table border="1" width="600" cellspacing="0" cellpadding="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+      <tr>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Метод
+          зондирования</font></span><!--mstheme--></font></td>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Успешный
+          поиск ключа</font></span><!--mstheme--></font></td>
+        <td width="34%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Не
+          успешный поиск ключа</font></span><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 0; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Линейное
+          зондирование</font></span><!--mstheme--></font></td>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1/2<img border="0" src="images/mul.gif" width="9" height="8">(1+
+          1/(1- &#945;))</font></span><!--mstheme--></font></td>
+        <td width="34%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">(1/2<img border="0" src="images/mul.gif" width="9" height="8">(1+
+          1/(1- &#945;))2</font></span><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 0; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Квадратичное
+          зондирование</font></span><!--mstheme--></font></td>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">-ln(1-
+          &#945;)/ &#945;</span></font><!--mstheme--></font></td>
+        <td width="34%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1/(1-
+          &#945;)</font></span><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 0; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Зондирование
+          с двойным хешированием</font></span><!--mstheme--></font></td>
+        <td width="33%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">-ln(1-
+          &#945;)/ &#945;</span></font><!--mstheme--></font></td>
+        <td width="34%" bgcolor="#FFFFFF" bordercolor="#000000" align="center"><!--mstheme--><font face="Arial">
+          <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">1/(1-
+          &#945;)</font></span><!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="Arial">
+    </center>
+  </div>
+  <p class="MsoBodyText2" align="justify" style="line-height: 100%; tab-stops: 134.7pt; text-indent: 10; word-spacing: 0; margin: 0">&nbsp;</p>
+  <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Обход
+  хеш-таблицы заключается в просмотре всех
+  элементов, хранящихся в хеш-таблице для
+  выполнения над ними некоторой операции.
+  Для хеш-таблиц с цепочками коллизий обход
+  сводится к просмотру всех непустых
+  списков. Поэтому трудоёмкость обхода
+  можно оценить, как сумму длин
+  просмотренных списков, которая равна
+  числу элементов в таблице. То есть,
+  трудоёмкость обхода имеет оценку O(n). В хеш-таблице
+  с открытой адресацией ведётся поиск&nbsp;
+  всех занятых ячеек, хранящих данные.
+  Трудоёмкость просмотра соответствует
+  размеру хеш-таблицы и выражается оценкой O(m).</span></font></center><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="RB_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="file_structure.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="18618" endspan --></span></font><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/hash_table.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:19 GMT -->
+</html>

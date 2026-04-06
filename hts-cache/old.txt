@@ -1,0 +1,2 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+21:27:50	22234/22234	---MCZ	200	added ('OK')	text/html	etag:W/%224d6c62dd-56da%22	http://edu.nstu.ru/courses/saod/	C:/saod-mirror/_mirror/edu.nstu.ru/courses/saod/index.html	(from )

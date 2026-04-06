@@ -1,0 +1,378 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/graph.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:29 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Графы</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/graph.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Графы"><!--webbot
+        bot="Navigation" endspan i-checksum="2671" --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2"><!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_dinam.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="bfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" endspan i-checksum="9326" --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font size="2"><a href="#Основные определения">Основные
+        определения</a></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font size="2"><a href="#Представление графов в оперативной памяти">Представление
+        графов в оперативной памяти</a></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-weight:bold"><font face="Microsoft Sans Serif" size="2">Графы
+        как структуры данных широко
+        применяются при решении многих задач.
+        Они могут использоваться для
+        представления данных, моделей
+        процессов, структур программ и т</font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-weight: bold">ак
+        далее.</span></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-weight:bold"><font face="Microsoft Sans Serif" size="2">При
+        решении многих задач приходится
+        моделировать объекты со сложной
+        структурой, которые представляются в
+        виде множества элементов, между
+        которыми существуют заданные
+        отношения (связи). В технике такие
+        объекты называются сетями.</font></span></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-weight:bold"><font face="Microsoft Sans Serif" size="2">Задачи,
+        решаемые с использованием графов,
+        относятся к задачам выбора. Все они
+        могут быть решены с помощью алгоритмов,
+        выполняющих полный перебор всех
+        возможных решений. Однако сложность
+        таких алгоритмов оценивается нотацией
+        O(2<sup>n</sup>) и практически такие алгоритмы
+        не могут быть реализованы за
+        приемлемое время. Поэтому большинство
+        алгоритмов для графов основываются на
+        эвристических методах при поиске
+        оптимального решения.</font></span></p>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-weight:bold"><font face="Microsoft Sans Serif" size="2"><a name="Основные определения">Основные
+        определения</a></font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><a name="Граф"><i>Граф</i>
+        </a>
+        задается в виде пары множеств G = (V, E),
+        где V - конечное множество элементов,<span style="mso-spacerun:yes">&nbsp;&nbsp;</span>E - множество бинарных отношений
+        между элементами.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Элементы
+        называются <a name="вершинами"><i> вершинами</i></a>, а бинарные
+        отношения - ребрами или
+        дугами.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Графы
+        делятся на ориентированные (орграфы) и
+        неориентированные графы.</span></font></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">В
+        <a name="ориентированном графе"><i>ориентированном
+        графе</i></a> (<a name="орграфе"><i>орграфе</i></a>) бинарные отношения между
+        вершинами упорядочены, то есть
+        отношения между парой вершин u, v (u, v} </span><img border="0" src="images/neravno.gif" width="12" height="13"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">
+        (v, u). В орграфе такие отношения
+        называются <a name="дугами"><i> дугами</i></a>. Дуги<span style="mso-spacerun:yes">&nbsp;
+        </span>направлены от одной вершины к
+        другой.</span></font>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph1.gif" width="155" height="87"></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify" class="MsoNormal">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">В
+        <a name="неориентированном графе"><i>
+        неориентированном графе</i></a> отношения
+        симметричны, то есть (u, v) = (v, u). В
+        неориентированном графе нет дуг, связи
+        называют <a name="ребрами"><i> ребрами</i></a>.</span></font>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph2.gif" width="156" height="63"></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">Под
+        <a name="взвешенным графом"><i>взвешенным
+        графом</i></a>&nbsp; понимается граф, ребрам
+        которого поставлены в соответствие
+        числа - веса или цены, или стоимости.
+        Весовая функция графа&nbsp; W - это
+        отображение множества весов на
+        множество ребер графа. Весовая функция
+        может храниться в структуре графа (списках
+        смежности или матрице смежности) или в
+        отдельной матрице весов.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="Подграфом"><i>Подграфом</i></a>&nbsp;
+        графа G(V, E) является граф G'(V', E') такой,
+        что V'<img border="0" src="images/belong_eq.gif" align="middle" width="16" height="16">V и
+        E'<img border="0" src="images/belong_eq.gif" align="middle" width="16" height="16">E.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Для
+        орграфа<b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>приняты понятия <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">входящих
+        и выходящих дуг</span>.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Для
+        неориентированного графа используется
+        понятие <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="инцидентного"><i>инцидентного</i></a>
+        ребра</span>.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Для
+        вершины 1 в орграфе есть одна выходящая
+        и одна входящая дуга, в
+        неориентированном графе вершина 1
+        имеет 3 инцидентных ребра.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Для
+        графов введено понятие <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="смежных"><i>смежных</i></a>
+        вершин.</span><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>В орграфе с дугой (u, v) вершина v
+        является смежной с вершиной u, если дуга
+        (u, v) - выходящая для u и входящая для v. В
+        неориентированном графе с ребром (u, v)
+        вершина v -&nbsp; смежная с вершиной u и
+        наоборот, вершина u - смежная с вершиной
+        v.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">В
+        орграфе вершина 1 -&nbsp; смежная с
+        вершиной 4 , но вершина 4 - не смежная с
+        вершиной 1.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">В
+        неориентированном графе 1 и 4 - смежные
+        друг другу.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><a name="Степенью"><i>Степенью</i></a>
+        вершины в неориентированном графе
+        называется число инцидентных ей ребер.
+        В орграфе различают <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">исходящую
+        и входящую степени.</span><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>Сумма исходящей и входящей степеней
+        вершины называется <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">степенью
+        вершины орграфа.</span></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><a name="Путь"><i>Путь</i></a>
+        длины k из <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">вершины</span>
+        u в вершину v определяется как
+        последовательность вершин &lt;v<sub>0</sub>, v<sub>1</sub>,
+        v<sub>2</sub>, ...,v<sub>k</sub>&gt;, в которой v<sub>0</sub>=u,
+        v<sub>k</sub> = v и (v<sub>i-1</sub>, v<sub>i</sub>)<img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">E
+        для всех i=1, 2, …,k. Вершина u называется <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">началом
+        пути</span>, v - концом пути.&nbsp;</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font size="2">Под
+        <a name="взвешенной длиной пути"><i>взвешенной
+        длиной пути</i></a> во взвешенном графе
+        понимается сумма весов ребер,
+        соединяющих вершины пути <font face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"> &lt;v<sub>0</sub>, v<sub>1</sub>,
+        v<sub>2</sub>, ...,v<sub>k</sub>&gt;.</span></font></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"> Если для вершин
+        u и v существует путь P, то <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">вершина
+        v достижима</span><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>из вершины<span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        u</span> по пути P.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><a name="Простой путь"><i>Простой
+        путь</i></a> не содержит одинаковых вершин
+        и ребер.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><a name="Циклом"><i>Циклом</i></a>
+        в графе называется путь, в котором
+        начальная&nbsp; вершина совпадает с
+        конечной. Цикл <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">называется
+        <a name="простым"><i>
+        простым</i></a>,</span> если в нем нет одинаковых
+        вершин кроме первой и последней<span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">.
+        Граф,</span> не содержащий циклов, <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">называется
+        <a name="ациклическим"><i>ациклическим</i></a>.</span> Граф,&nbsp;
+        содержащий хотя бы один цикл,&nbsp; называется
+        <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="циклическим"><i>циклическим</i></a>.</span></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Неориентированный
+        граф <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">называется
+        <a name="связным"><i>
+        связным</i></a>,</span><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>если для любой пары вершин
+        существует путь. В неориентированном
+        графе отношение достижимости является
+        отношением эквивалентности на
+        множестве вершин. Такое множество
+        называется <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="связной компонентой"><i>связной
+        компонентой</i></a>.</span></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Орграф
+        называется&nbsp; <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="сильно связным"><i>сильно
+        связным</i></a>,</span> если из любой его вершины
+        достижима любая другая вершина.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Любой
+        орграф можно разбить на сильно связные
+        компоненты, которые определяются как
+        классы эквивалентности с <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">отношениями
+        &quot;u</span> достижимо <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">из
+        v&quot; и &quot;v</span><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>достижимо <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">из
+        u&quot;.</span></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Орграф
+        сильно связен тогда, когда состоит из
+        одной сильно связной компоненты.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Два
+        графа G = (V, E) и G' = (V', E') <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">называются
+        <a name="изоморфными"><i>
+        изоморфными</i></a>,</span> если существует
+        взаимно однозначное соответствие f : v <img border="0" src="images/ekvivalent.gif" width="23" height="16">
+        v' между множествами их вершин, при
+        котором ребрам одного графа
+        соответствуют ребра другого графа.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph3.gif" width="287" height="206"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><a name="Полным"><i>Полным</i></a>
+        графом<b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>называется неориентированный граф,
+        содержащий все возможные ребра для
+        данного множества вершин, то есть любая
+        вершина смежна с любой другой.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Неориентированный
+        граф (V, E) называется <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="двудольным"><i>двудольным</i></a>,</span>
+        если множество вершин можно разбить на
+        две части таким образом , что концы
+        любого ребра окажутся в разных частях.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Ациклический
+        неориентированный граф называется <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="лесом"><i>лесом</i></a>,</span><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        </b>связный ациклический
+        неориентированный граф называется <span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">деревом
+        без выделенного корня.</span></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2"><b style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt"><a name="Представление графов в оперативной памяти">Представление
+        графов в оперативной памяти</a></b></font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Существуют
+        два способа представления графа G = (V, E) -
+        в виде набора списков смежных вершин и
+        в виде матрицы смежности.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Первый
+        способ предпочтительней для<span style="mso-bidi-font-weight: bold; mso-bidi-font-size: 10.0pt">
+        <a name="разреженных"><i>разреженных</i></a></span> 
+        графов, когда |E| много
+        меньше |V|<sup>2</sup>. Представление с
+        помощью матрицы смежности удобнее
+        использовать для <a name="насыщенных"><i>насыщенных</i></a>
+        графов, когда
+        |E| сравнимо |V|<sup>2</sup>. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Представление
+        графа G = (V, E) в виде <a name="списков смежности"><i> списков смежности</i></a>
+        использует массив Adj из |V| списков, по
+        одному&nbsp;&nbsp; для каждой вершины.
+        &nbsp;&nbsp;&nbsp;Для&nbsp;&nbsp; каждой&nbsp; вершины
+        список&nbsp; смежных вершин Adj [u] содержит
+        в произвольном порядке все смежные с
+        ней вершины v, для которых существует
+        ребро (u, v)<img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">E.&nbsp;
+        Граф, представленный с помощью списков
+        смежности, называется<a name="L - графом">  <i> L - графом</i></a>.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Неориентированный
+        граф в форме L- графа:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><img border="0" src="images/graph4.gif" width="465" height="117"></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Ориентированный
+        граф в форме L- графа:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph5.gif" width="351" height="110"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Для
+        неориентированного графа сумма длин
+        всех списков равна удвоенному числу
+        ребер, так как&nbsp; ребро (u, v) порождает
+        элементы в списках вершины u&nbsp; и
+        вершины v. Для орграфа сумма длин
+        списков равна числу ребер. В обоих
+        случаях количество памяти для
+        представления графа оценивается как O(V
+        + E). </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Списки
+        смежности удобны, когда наряду с
+        номером вершины нужно хранить
+        дополнительную информацию (например,
+        вес ребра, родителя вершины, метку
+        вершины).</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Недостатком
+        представлений является то, что для того,
+        чтобы узнать есть ли ребро из вершины u
+        и v приходится просматривать весь
+        список.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Этого
+        можно избежать в представлении с
+        помощью <a name="матрицы смежности"><i> матрицы смежности</i></a>. Эта форма
+        представления графа называется <a name="M- графом"><i>M-
+        графом</i></a>.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Неориентированный
+        граф в форме M- графа:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph6.gif" width="277" height="100"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Ориентированный
+        граф в форме M- графа:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph7.gif" width="306" height="119"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Элемент
+        матрицы&nbsp; a</font><font face="Microsoft Sans Serif" size="3"><sub>ij
+        </sub></font><font face="Microsoft Sans Serif" size="2">=1, если
+        есть ребро или дуга (i, j)<img border="0" src="images/belong_to.gif" width="12" height="10">E
+        и </font></span><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">
+        a</font><font face="Microsoft Sans Serif" size="3"><sub>ij </sub></font><font face="Microsoft Sans Serif" size="2">=</font></span><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">
+        0 в противном случае.</font></span>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Для
+        орграфа и неориентированного графа
+        матрицы требует O(V<sup>2</sup>) памяти.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold"><font face="Microsoft Sans Serif" size="2">Для
+        неориентированного графа матрица
+        смежности симметрична относительно
+        главной диагонали. Поэтому достаточно
+        хранить только элементы от главной
+        диагонали и выше.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">В
+        матрице смежности вместо 0 и 1 можно
+        хранить веса ребер w(u, v). Для
+        отсутствующих ребер можно
+        использовать специальное значение nil (0
+        или <img border="0" src="images/sort_p22.gif" align="middle" width="16" height="13">).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">Матрица
+        смежности удобнее для небольших графов.
+        Если не нужно хранить веса, то для
+        элементов матрицы сме</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">Д<font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-weight: bold">ля
+        взвешенного графа в структуру списков
+        смежности или матрицы смежности
+        заносятся веса ребер (весовая функция):</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_weight37.gif" width="532" height="384"><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2"><!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_dinam.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="bfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" endspan i-checksum="41370" --></font><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/graph.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:32 GMT -->
+</html>

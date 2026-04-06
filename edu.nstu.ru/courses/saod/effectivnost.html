@@ -1,0 +1,553 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/effectivnost.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:38 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Новая страница 1</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+
+<p align="center" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0">
+<!--webbot bot="Navigation" S-Type="banner"
+S-Rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan
+--><img src="_derived/effectivnost.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Эффективность алгоритмов"><!--webbot bot="Navigation" i-checksum="10891" endspan -->
+</p>
+<p align="center" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0">
+<!--webbot bot="Navigation" S-Type="arrows"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="psevdocod.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_princ.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="6690" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+        <p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000"><a href="#Критерии эффективности">Критерии
+эффективности</a></font></p>
+
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000"><a href="#Порядок роста.">Порядок
+роста</a></font></p>
+
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000"><a href="#Классификация алгоритмов по трудоемкости">Классификация
+  алгоритмов по трудоемкости</a></font></p>
+
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Основными
+критериями при выборе представления
+структур и алгоритмов являются адекватность
+структуры конкретной задаче, объем
+памяти, требующийся для её
+представления, и временная эффективность.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">При
+этом приходится учитывать множество
+факторов – внутреннюю архитектуру
+компьютера, объем памяти для размещения
+данных и методы управления ею, сложность
+алгоритмов. Как правило, это необходимо
+делать на ранних стадиях проектирования
+программы при выборе структуры и алгоритма.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">В
+связи с этим очень важную роль играет
+анализ вычислительной сложности алгоритма.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Для
+структур данных применяется методика
+оценки эффективности алгоритмов в
+терминах размера структуры,  т. е.
+количества элементов в ней. Преимущество
+этого метода заключается в том, что здесь
+нет необходимости учитывать архитектурные
+особенности конкретной вычислительной
+машины. Метод дает абстрактные
+характеристики эффективности 
+алгоритмов.</font></p>
+        <h3 ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000"><a name="Критерии эффективности">Критерии
+эффективности</a></font></h3>
+  <center>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">В
+конечном счете алгоритм выполняется на
+вычислительной системе со специфическим
+набором команд и периферийными
+устройствами. Алгоритм может быть
+разработан для отдельной системы для
+полного использования её преимуществ.
+Критерий, называемый <a name="системной эффективностью"><i>системной
+эффективностью</i></a> <a name="системной эффективностью">
+</a>,  сравнивает скорость выполнения двух или
+более алгоритмов задачи, выполняя
+алгоритмы задачи с одними и теми же
+наборами данных. Можно определить
+относительное время, используя системные
+часы. Оценка этого времени становится мерой
+системной эффективности для каждого из
+алгоритмов.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">При
+работе с некоторыми алгоритмами могут
+стать проблемой ограничения памяти. Может
+потребоваться большой объем памяти для&nbsp;
+временного хранения, ограничивающий размер
+набора данных, или дисковая подкачка данных.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><a name="Эффективность пространства"><font size="2" face="MS Sans Serif" color="#000000"><i>Эффективность
+пространства</i></font></a><font size="2" face="MS Sans Serif" color="#000000">
+<a name="Эффективность пространства"> </a>
+ – это мера относительного количества
+внутренней памяти, используемой алгоритмом.
+Эта мера может указать тип компьютера,
+который может выполнять алгоритм, и
+полную системную эффективность. Вследствие
+увеличения памяти в новых системах, анализ
+пространственной эффективности становится
+менее важным.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Третий
+критерий рассматривает внутреннюю
+структуру алгоритма, анализируя его работу,
+количество операций в алгоритме. Эти
+измерения не зависят от вычислительной
+системы. Критерий измеряет вычислительную
+сложность алгоритма относительно n -
+количества
+элементов в структуре. Этот критерий
+называется <i> <a name="вычислительной эффективностью">вычислительной
+эффективностью</a>  </i> <a name="вычислительной эффективностью">
+</a>     и выражается через нотацию O(n) - Big-O.
+
+</font>
+        </p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Рассмотрим
+определение <i>нотации</i> <a name="Big-O"><i>Big-O</i></a>&nbsp;
+для алгоритма
+сортировки вставками [<a href="liter.html">3</a>].</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Время
+сортировки вставками зависит от размера
+сортируемого массива и от исходной
+упорядоченности массива. Размер входных
+данных алгоритма может задаваться либо числом
+элементов в структуре или массиве, числом
+битов , иногда несколькими
+числами (числом вершин и числом ребер в графе).</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font color="#000000" face="MS Sans Serif" size="2">Время
+работы алгоритма определяется числом шагов,
+которые он выполняет. Будем считать, что
+одна строка псевдокода, требует не более, чем
+фиксированного числа
+ элементарных операций, если строка не
+является формулировкой каких-либо сложных
+действий.&nbsp;</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">При
+анализе алгоритма сортировки вставками -
+Insertion-Sort около каждой
+строки будем отличать ее стоимость – число
+операций и число раз, которое эта строка
+выполняется.&nbsp;</font>
+</p>
+        <b>
+<div align="center">
+  <!--mstheme--></font><table BORDER="1" CELLSPACING="0" CELLPADDING="0" WIDTH="633" height="267" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="19" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">&nbsp;<!--mstheme--></font></td>
+</b>
+
+    <td WIDTH="60%" VALIGN="TOP" height="19" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY">
+
+      <font size="2" face="MS Sans Serif" color="#000000">Insertion-Sort
+      (А[1..n])</font><!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="19" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">Стоимость</font><!--mstheme--></font></td>
+    <td WIDTH="15%" VALIGN="TOP" height="19" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">Число
+      раз</font><!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" HEIGHT="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">1</font><!--mstheme--></font></td>
+
+    <td WIDTH="60%" VALIGN="TOP" HEIGHT="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">for
+      j &lt;- 2 to n</font><!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" HEIGHT="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">C<sub>1</sub></font><!--mstheme--></font></td>
+
+    <td WIDTH="15%" VALIGN="TOP" HEIGHT="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">n</font><!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">2</font><!--mstheme--></font></td>
+    <td WIDTH="60%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+      <font size="2" face="MS Sans Serif" color="#000000">&nbsp; do
+      Key &lt;- A[j]</font><!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">C<sub>2</sub></font><!--mstheme--></font></td>
+
+    <td WIDTH="15%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">n-1</font><!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">3</font><!--mstheme--></font></td>
+    <td WIDTH="60%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img border="0" src="images/comment.gif" width="15" height="15">  добавить A[j] в отсортированной части
+      A [1.. j-1] </font>
+    <!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER">&nbsp;<!--mstheme--></font></td>
+  <b>
+    <td WIDTH="15%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER">&nbsp;<!--mstheme--></font></td>
+  </tr>
+</b>
+
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">4</font><!--mstheme--></font></td>
+
+    <td WIDTH="60%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      i &lt;-&nbsp; j - 1</font><!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">C<sub>4</sub></font><!--mstheme--></font></td>
+
+    <td WIDTH="15%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">n
+      –1</font><!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="1" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;5</font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="60%" VALIGN="TOP" height="1" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY">
+
+      <font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      while
+      i &gt; 0 and A[i] &gt; Key&nbsp;</font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="1" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;C<sub>5</sub></font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="15%" VALIGN="TOP" height="1" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000"><i>&nbsp;<img SRC="images/Image17.gif" WIDTH="38" HEIGHT="54"></i></font></p>
+    <!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">6</font><!--mstheme--></font></td>
+    <td WIDTH="60%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY">
+
+      <font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      do A[i+1]&lt;-&nbsp; A[i]&nbsp;</font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;C<sub>6</sub></font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="15%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p align="center"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;<img SRC="images/Image18.gif" WIDTH="65" HEIGHT="57"></font></p>
+    <!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">7</font><!--mstheme--></font></td>
+    <td WIDTH="60%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY">
+
+      <font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      i &lt;-&nbsp; i -1&nbsp;</font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;C<sub>7</sub></font></p>
+    <!--mstheme--></font></td>
+    <td WIDTH="15%" VALIGN="TOP" height="38" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p align="center"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;<img SRC="images/Image18.gif" WIDTH="65" HEIGHT="54"></font></p>
+    <!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="6%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">8</font><!--mstheme--></font></td>
+
+    <td WIDTH="60%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      A[i+1] &lt;-&nbsp; Key</font><!--mstheme--></font></td>
+    <td WIDTH="19%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">C<sub>8</sub></font><!--mstheme--></font></td>
+
+    <td WIDTH="15%" VALIGN="TOP" height="16" bgcolor="#FFFFFF"><!--mstheme--><font face="Arial">
+      <p ALIGN="CENTER"><font size="2" face="MS Sans Serif" color="#000000">n -1</font><!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Arial">
+      </div>
+
+<p ALIGN="JUSTIFY">&nbsp;</p>
+      </center><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial"><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Для
+каждого j&nbsp; от 2&nbsp; до n&nbsp; обозначим, сколько раз
+будет исполнена строка 5 -&nbsp; t<sub>j</sub>. . Строка стоимостью С,
+повторенная в алгоритме m раз, вносит вклад в общее время
+выполнения алгоритма - c <img border="0" src="images/mul.gif" width="9" height="8">
+m
+операций.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Сложив
+вклады всех строк, получим:</font></p>
+<p ALIGN="center"><img border="0" src="images/Image19.gif" width="644" height="47"></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Стоимость
+зависит не только от объема данных - n, но и от
+их упорядоченности. Наиболее
+благоприятный случай, когда массив уже
+отсортирован по возрастанию. Тогда цикл в строке 5
+завершается после первой же проверки, т. к. A[i]
+&lt; Key при i = j -1 и t<sub>j</sub> = 1. Тогда общее время
+есть:</font></p>
+<p ALIGN="center"><font size="2" face="MS Sans Serif" color="#000000">&nbsp;<img border="0" src="images/Image20.gif" width="468" height="63"></font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Таким образом,
+T(n) –
+линейная функция имеет вид: T(n) =
+a <img border="0" src="images/mul.gif" width="9" height="8"> n+b</font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Если же
+массив расположен в обратном убывающем
+порядке, время работы функции будет
+максимальным: каждый элемент A[j] придется
+сравнивать со всеми элементами A[1],...,A[j-1].&nbsp;</font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">
+При этом t<sub>j</sub> = j.&nbsp;
+и <img border="0" src="images/Image21_1.gif" align="middle" width="279" height="50"></font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Поскольку&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img border="0" src="images/Image21.gif" align="middle" width="130" height="46">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+и&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/Image22.gif" width="138" height="46" align="middle">
+, то в худшем случае получим:</font></p>
+<p align="center"><img border="0" src="images/Image23.gif" width="664" height="102"></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Теперь
+функция T(n) – квадратичная и имеет вид:
+ <img border="0" src="images/Image23_1.gif" align="center" width="171" height="29"></font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Константы a,
+b,
+c&nbsp; определяются значениями С<sub>1</sub>,...,С<sub>8</sub>.</font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Время
+работы в худшем случае</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Итак,
+время работы в худшем и лучшем случаях
+могут сильно отличаться. Большей частью нас
+интересует время работы в худшем случае
+ по нескольким причинам:</font></p>
+<ol>
+  <li><font size="2" face="MS Sans Serif" color="#000000">Зная время
+    работы в худшем случае, можно
+    гарантировать, что выполнение алгоритма
+    закончится за некоторое время, даже не
+    зная, какой данные указанного&nbsp; размера </font><font face="MS Sans Serif" color="#000000" size="2">n&nbsp;
+    будут обрабатываться.</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">На практике
+    “плохие входные данные” могут попадаться часто (например,
+    поиск отсутствующего элемента в базе
+    данных).</font></li>
+  <li>
+    <p ALIGN="JUSTIFY"><font size="2" color="#000000" face="MS Sans Serif">Время
+    работы в среднем может быть близким к
+    времени в худшем случае. Для функций
+    Insertion_Sort для цикла 5 – 8 в среднем&nbsp;&nbsp;
+    половина элементов массива </font><font color="#000000" face="MS Sans Serif" size="2">A[1..j-1] больше
+    A[j]
+    и t<sub>j</sub><sub>
+    </sub>= j/2&nbsp; в среднем. Тогда T(n)
+    квадратично зависит от n.</font></li>
+</ol>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">В
+некоторых случаях интересно также среднее
+время работы алгоритма. Эта величина
+зависит от распределения вероятностей и
+распределения входных данных и&nbsp; может отличаться от
+предполагаемого, равномерного
+распределения . Иногда можно достигнуть
+равномерности, используя датчик случайных
+чисел.</font></p>
+<h3 ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><a name="Порядок роста."><font size="2" face="MS Sans Serif" color="#000000">Порядок
+роста</font></a></h3>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Вывод
+T(n) основан на нескольких упрощающих
+предположениях. Сначала предположим, что
+время выполнения j - й строки постоянно и
+равно C<sub>i</sub>.&nbsp;
+Затем огрубим оценку до
+an<sup>2</sup>+bn+c.&nbsp;
+Если пойти дальше и в худшем случае
+определить порядок роста  n<sup>2</sup>,
+отбрасывая члены меньшего порядка и
+коэффициент при  n<sup>2</sup>,&nbsp;
+то получим T(n)= O (n<sup>2</sup>)&nbsp; .</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Алгоритм
+с меньшим порядком роста предпочтительнее.
+Если один алгоритм имеет порядок O (n<sup>3</sup>)&nbsp;
+,
+а другой - O (n<sup>2</sup>)&nbsp; , то можно сделать вывод,
+что второй алгоритм эффективнее.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Сравнивая
+алгоритмы путем анализа T(n), не обязательно
+искать точное количество выполняемых
+действий. Достаточно оценить асимптотику
+роста времени алгоритма при стремлении n к бесконечности. Если у одного
+алгоритма она меньше, чем у другого, то в
+большинстве случаев он будет эффективнее.
+Порядок роста определяет зависимость
+времени выполнения от размера структуры n.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font color="#000000" face="MS Sans Serif" size="2">Традиционно
+значение аппроксимирующей функции для
+порядка роста выбирается среди небольшого
+набора полиномиальных,
+логарифмических и экспоненциальных
+функций. Для классических структур эти
+функции дают наилучшие оценки
+вычислительной сложности алгоритма.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">При
+выполнении аппроксимации T(n) используется
+понятие <a name="доминирующего терма.">доминирующего</a> <a name="доминирующего терма."> терма.
+</a> Например, для функции T(n)=n+2 терм n
+доминирующий и функция T(n) огрубляется
+за счет отбрасывания не доминирующих
+термов.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Например,
+для функции T(n)=n+2 терм n - доминирующий
+и функция T(n) огрубляется
+за счет отбрасывания
+не доминирующих термов:</font></p>
+<p ALIGN="center"><font color="#000000" face="MS Sans Serif" size="3">T(n) = <img border="0" src="images/Image23_2.gif" align="center" width="254" height="25">,</font><font size="2" face="MS Sans Serif" color="#000000">&nbsp;</font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Следовательно,</font></p>
+<p ALIGN="center"><font color="#000000" face="MS Sans Serif" size="2">T(n) = O(n
+) = 2(n ).</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Для
+функции T(n) = n<sup>2</sup> + n +1:</font></p>
+<p ALIGN="center"><font color="#000000" face="MS Sans Serif" size="2">T(n) = <img border="0" src="images/Image23_3.gif" align="center" width="337" height="22">.</font></p>
+<p ALIGN="JUSTIFY"><font face="MS Sans Serif" size="2">&nbsp;</font></p>
+  <h3 ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000"><a name="Классификация алгоритмов по трудоемкости">Классификация
+  алгоритмов по эффективности</a></font></h3>
+<ol>
+  <li>
+    <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Если
+    алгоритм имеет порядок О(1), то его
+    вычислительная сложность не зависит от
+    количества элементов в структуре. Примеры:
+    поиск минимального или максимального
+    значения в упорядоченном массиве, присоединение элемента к концу или началу
+    очереди, извлечение элемента а из стека;</font></li>
+  <li>
+    <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Алгоритм с
+    порядком роста О(n) называется <a name="линейным"><i>линейным</i></a>.&nbsp;
+    Например, присоединение элемента к концу
+    очереди , если заголовок очереди не
+    хранит указатель на конец списка, нахождение минимального
+    или максимального
+    элемента в массиве.</font></li>
+  <li>
+    <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Алгоритм
+    порядка О(log<sub>2</sub>  n) называетс<a name="я логарифмическим">я
+    <i>
+    логарифмическим</i></a>.&nbsp; К таким относятся алгоритмы обработки
+    бинарного дерева, алгоритм бинарного
+    поиска в упорядоченном массиве.</font></li>
+  <li>
+    <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Алгоритм
+    порядка О(n<sup>2</sup>) называется <a name="квадратическим"><i>квадратическим</i></a>&nbsp;
+    (алгоритмы сортировки вставками,
+    обменной сортировки).</font></li>
+  <li>
+    <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Алгоритм
+    порядка О(n<sup>3</sup>) называется <a name="кубический"><i>кубическим</i></a>.&nbsp;
+    Примером может служить алгоритм Уоршалла
+    на графе, алгоритм умножения матриц.</font>
+  <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Квадратические
+  и кубические алгоритмы не рекомендуется
+  использовать при больших </font><font color="#000000" face="MS Sans Serif" size="3"> n</font><font size="2" color="#000000" face="MS Sans Serif">, т. к. их
+  вычислительная сложность резко
+  возрастает.</font></p>
+  <li>
+    <p align="justify"><font size="2" color="#000000" face="MS Sans Serif">Алгоритмы
+    порядка О(2<sup>n</sup>) называются <a name="экспоненциальными"><i>экспоненциальными</i></a>.&nbsp;
+    Эти алгоритмы настолько медленные, что их
+    можно использовать только при малых </font><font color="#000000" face="MS Sans Serif" size="2"> n.
+    Обычно такие алгоритмы называют NP -
+    сложными алгоритмами.</font></li>
+</ol>
+<p ALIGN="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif" color="#000000">Итак,
+при выборе структуры представления данных
+и алгоритмов обработки необходимо на
+ранней стадии проектирования программы
+оценить вычислительную
+сложность с помощью нотации Big – O. Это
+позволяет либо подтвердить обоснованность
+выбора структуры и алгоритма либо
+отказаться от принятого решения без
+тяжёлых последствий. Если оценка
+показывает неприемлемость сделанного
+выбора, нужно подобрать или иной алгоритм
+или иную структуру данных, дающих более
+эффективное решение.&nbsp;</font></p>
+
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="50%" align="center"><!--mstheme--><font face="Arial">&nbsp;
+        <p><b><font face="MS Sans Serif" size="4" color="#0000FF"><a href="flash/test1.html">Тест</a></font></b></p>
+        <p>&nbsp;<!--mstheme--></font></td>
+      <td width="50%" align="center"><!--mstheme--><font face="Arial">&nbsp;
+        <p><b><font face="MS Sans Serif" size="4" color="#0000FF"><a href="flash/test2.html">Тест</a></font></b></p>
+        <p>&nbsp;<!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+
+<p align="center">
+<!--webbot bot="Navigation" S-Type="arrows"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="psevdocod.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_princ.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="49628" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/effectivnost.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:40 GMT -->
+</html>

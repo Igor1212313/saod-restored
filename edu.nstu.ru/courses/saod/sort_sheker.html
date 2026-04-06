@@ -1,0 +1,295 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_sheker.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:43 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Шейкер _ сортировка</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/sort_sheker.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Шейкер - сортировка"><!--webbot bot="Navigation" i-checksum="29024" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_shell.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_razdel.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="23538" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Шейкер-сортировка
+является усовершенствованным методом<a href="sort_exch.html">
+пузырьковой сортировки</a>. Во-первых, вводится
+досрочное прерывание проходов, если на
+очередном проходе обнаруживается, что файл
+уже отсортирован. Для этого на каждом
+проходе запоминается, производился ли
+обмен на этом проходе. </font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;
+Во-вторых, если запоминать не только факт
+обмена, но и место (индекс) последнего
+обмена, то можно ограничить просмотр пар на
+следующем проходе этим индексом.
+Действительно, поскольку левее этого
+индекса не было обменов, значит все пары
+левее этого индекса уже упорядочены и нет
+смысла их просматривать.</font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;
+Алгоритм пузырьковой сортировки
+демонстрирует асимметрию : один
+неправильно расположенный &quot;легкий&quot;
+элемент всплывает на положенное место за один проход,&nbsp;
+а
+неправильно расположенный &quot;тяжелый&quot;
+элемент&nbsp; опускается за один
+проход на одну позицию в сторону правильного
+места.</font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;Например,
+массив 12&nbsp;&nbsp; 18&nbsp;&nbsp; 42&nbsp;&nbsp; 44&nbsp;&nbsp;
+55&nbsp;&nbsp; 67&nbsp;&nbsp; 94&nbsp;&nbsp; 06&nbsp; будет
+отсортирован за один проход, а массив
+94&nbsp;&nbsp; 06&nbsp;&nbsp; 12&nbsp;&nbsp; 18&nbsp;&nbsp; 42&nbsp;&nbsp;
+44&nbsp;&nbsp; 55&nbsp;&nbsp; 67 будет отсортирован за 7
+проходов.</font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;
+Эта асимметрия подсказывает третье
+улучшение - менять направление следующих
+один за другим проходов. Поэтому алгоритм
+называется шейкер - сортировкой.</font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font color="#000000" size="2" face="MS Sans Serif">&nbsp;&nbsp;
+Для массива
+94&nbsp;&nbsp; 06&nbsp;&nbsp; 12&nbsp;&nbsp; 18&nbsp;&nbsp; 42&nbsp;&nbsp;
+44&nbsp;&nbsp; 55&nbsp;&nbsp; 67 вместо 7 проходов шейкер - сортировка дает 5 проходов причем на каждом
+проходе количество просматриваемых пар
+уменьшается.</font></p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-align:justify;line-height:
+150%"><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><b><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US; mso-bidi-font-style: italic"><font face="MS Sans Serif" size="2">
+<a name="Sheiker_Sort">Sheiker_Sort</a></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+( <i>A</i> </b>[<b><i>1..n </i></b>]<b> )</b></span></font></span><b><font face="MS Sans Serif" size="2"><span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt;line-height:150%;
+mso-ansi-language:EN-US">&nbsp;
+</span></font></b></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<img border="0" src="images/comment.gif" width="14" height="14"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2">A</font></i></b></span><span style="line-height: 150%"><font size="2">[<i><b>1 
+		.. </b></i></font></span><i><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">n</font></span></b></i><span style="line-height: 150%"><font size="2">] 
+		– массив размерностью </font></span><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">n</font></span></i></b></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">l </font></span></i></b><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;1</span></font></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">r</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2">&nbsp;</font><b><i><font size="2">n</font></i></b></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;
+		</font><b><i><font size="2">l &lt; r</font></i></b></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">5.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; 
+		do</b>&nbsp; <b>for</b>&nbsp;&nbsp; j </font></span></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;<b><i>r</i></b>&nbsp;
+		<b>down</b> <b><i>l </i></b>+1</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">6.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;</span></font><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font></span><font size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b>&nbsp; <b>if</b>&nbsp;
+		<b><i>A</i></b>[j-1] &gt;<b><i> A</i></b>[j]</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">7.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b></font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>&nbsp; temp </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;<b><i>A</i></b>[j-1]</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">8.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b></font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>A</i></b>[j-1] </font>
+		</span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;<b><i>A</i></b>[j]</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">9.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b></font>
+		</span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>A</i></b>[j] </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;temp</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">10.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;j</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">11.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp; <i>l</i></b> </font>
+		</span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;k</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">12.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font size="2">&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; 
+		for</b>&nbsp;&nbsp; j </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font size="2">&nbsp;<b><i>l</i></b> 
+		to </font><b><i><font size="2">r</font></i></b></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">13.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font></span><font size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b>&nbsp; <b>if</b>&nbsp;
+		<b><i>A</i></b>[j-1] &gt; <b><i>A</i></b>[j]</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">14.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b></font>
+		</span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> temp </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;<b><i>A</i></b>[j-1]</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">15.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b></font>
+		</span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>A</i></b>[j-1] </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;<i><b>A</b></i>[j]&nbsp;&nbsp;
+		</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">16.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b></font>
+		</span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>A</i></b>[j] </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;temp</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">17.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp; </b>
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;k </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;j</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%">18.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font size="2">&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;
+		</b></font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2"><b><i>r</i></b> </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;k</span></font><span style="line-height: 150%"><font size="2">-1</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 18.0pt; margin-top: 0; margin-bottom: 0">
+		<font size="2">19.&nbsp; <b>&nbsp;return</b></font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;
+Анализ алгоритма Шейкер-сортировки
+довольно сложен. Кнут утверждает, что
+среднее число проходов пропорционально n- k*<span lang="EN-US" style="mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA">&#8730;n и
+среднее число сравнений пропорционально </span> </font><span lang="EN-US" style="mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA"><font face="MS Sans Serif" size="4" color="#000000">
+&frac12; </font><font face="MS Sans Serif" size="2" color="#000000">(n&sup2; - n(k+ln n)). Но число обменов, как и в
+методе пузырька равно </font><font face="MS Sans Serif" size="4" color="#000000"> &frac14;
+</font><font face="MS Sans Serif" size="2" color="#000000">(n&sup2; -n) [<a href="liter.html">7</a>].</font></span></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><font face="MS Sans Serif" size="2" color="#000000"><span style="mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA" lang="EN-US">&nbsp;</span>
+Эмпирические исследования показали, что
+алгоритм шейкер - сортировки выгодно
+использовать, когда элементы файла почти
+упорядочены.</font></p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_shell.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_razdel.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="24908" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_sheker.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:43 GMT -->
+</html>

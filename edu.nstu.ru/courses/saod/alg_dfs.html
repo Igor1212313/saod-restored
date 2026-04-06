@@ -1,0 +1,556 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_dfs.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:35 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Алгоритмы класса DFS</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/alg_dfs.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Задачи класса DFS"><!--webbot bot="Navigation" i-checksum="10944" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_orgraph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="3519" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача обнаружения циклов в графе">Задача
+        обнаружения циклов в графе</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача определения простого пути между вершинами">Задача
+        определения простого пути между
+        вершинами</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача о простой связности">Задача
+        о простой связности</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача подсчета связных компонент">Задача
+        подсчета связных компонент</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача определения принадлежности двух вершин одной связной компоненте">Задача
+        определения принадлежности двух
+        вершин одной связной компоненте</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача определения двудольности графа">Задача
+        определения двудольности графа</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача определения реберной связности графа">Задача
+        определения реберной связности графа</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача определения двусвязности графа">Задача
+        определения двусвязности графа</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача определения гамильтонова цикла">Задача
+        определения гамильтонова цикла</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Многие
+        задачи исследующие свойства графов,
+        используют в качестве базового
+        алгоритма обход графа в глубину с
+        построением остовного&nbsp; <a href="dfs.html#Дерево обхода в глубину">дерева
+        в глубину</a> или леса и <a href="dfs.html#Классификация ребер графа">классификацию
+        ребер</a> остовного леса&nbsp; или дерева [<a href="liter.html">4</a>].</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача обнаружения циклов в графе">Задача
+        обнаружения циклов в графе</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        процессе поиска в глубину при
+        обнаружении первого же <a href="dfs.html#Классификация ребер графа">обратного
+        ребра </a>(u, v), у которого d[v] &lt; d[u] и p[v] <img border="0" src="images/neravno.gif" align="middle" width="12" height="13">
+        u, можно сделать вывод, что граф
+        содержит циклы. Если жк обход в глубину
+        завершается полностью бе обнаружения
+        обратных ребер, то можно сделать вывод,
+        что граф не содержит циклов.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача определения простого пути между вершинами">Задача
+        определения простого пути между
+        вершинами</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Для
+        заданной пары вершин u и v задача
+        решается в процессе обхода в глубину от
+        вершины. Если в процессе обхода
+        встретится вершина v, то простой путь
+        между вершинами u и v&nbsp; существует и
+        его можно <a href="bfs.html#Алгоритм построения пути между вершинами">построить
+        по ссылкам </a>на предшественников,
+        сформированных в вершинах графа.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача о простой связности">Задача
+        о простой связности</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Задача
+        отвечает на вопрос, существуют ли пути
+        в неориентированном графе между каждой
+        парой вершин. Если единственный вызов
+        функции <a href="dfs.html#DFS -Visit">DFS_Visit</a>
+        формирует дерево, включающее все
+        вершины графа, то граф представляет
+        собою единую связную компоненту, в
+        которой существуют пути между каждой
+        парой вершин.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача подсчета связных компонент">Задача
+        подсчета связных компонент</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        процессе обхода в глубину в функции
+        полного обхода в глубину <a href="dfs.html#DFS">DFS</a>
+        подсчитывается число вызовов функции <a href="dfs.html#DFS -Visit">DFS_Visit</a>.
+        Это число соответствует числу
+        отдельных связных компонент в
+        неориентированном графе.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача определения принадлежности двух вершин одной связной компоненте">Задача
+        определения принадлежности двух
+        вершин одной связной компоненте</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        процессе полного обхода в глубину <a href="dfs.html#DFS">DFS</a>
+        формируется вектор, индексированный
+        номерами вершин. В векторе по номеру
+        вершины заносится&nbsp; номер&nbsp; вызова
+        функции <a href="dfs.html#DFS -Visit">DFS_Visit</a> из
+        функции полного обхода <a href="dfs.html#DFS">DFS</a>,
+        который обнаружил данную вершину. Если
+        после завершения&nbsp; DFS в векторе для
+        двух вершин u и v зафиксирован один и тот
+        же номер вызова DFS_Visit, то они
+        принадлежат одной связной компоненте.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg1.gif" width="322" height="144"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Этим
+        же вектором можно воспользоваться для
+        задач о простом пути, простой связности
+        графа, о количестве и размере связных
+        компонент.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача определения двудольности графа">Задача
+        определения двудольности графа</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Граф
+        называется двудольным, если можно
+        разбить множество его вершин на такие
+        два подмножества, что каждое ребро
+        графа будет соединять вершины из
+        разных подмножеств.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Задача
+        использует алгоритм полного обхода в
+        глубину&nbsp; <a href="dfs.html#DFS">DFS</a>,
+        раскрашивая соседние уровни дерева
+        обхода в глубину поочередно одним из
+        двух цветов. При обнаружении обратного
+        ребра, проверяется цвет двух вершин,
+        объединенных этим ребром. Если вершины
+        имеют одинаковый цвет, то граф не
+        является двудольным. Если после&nbsp;
+        завершения полного обхода в глубину
+        таких ребер не обнаружено, граф
+        является двудольным.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">С
+        помощью поочередной раскраски вершин в
+        два цвета в ходе обхода в глубину
+        решаются также задачи раскраски вершин
+        в два цвета, определения циклов
+        нечетной длины.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg2.gif" width="202" height="162"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача определения реберной связности графа">Задача
+        определения реберной связности графа</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Свойство
+        реберной связности отвечает на вопросы:
+        существуют ли в связном графе два
+        различных пути между любыми двумя
+        вершинами или останется ли связным
+        граф после удаления какого - либо ребра.&nbsp;
+        Задача определяе, существуют ли в графе
+        ребра - мосты. Ребро графа является <a name="мостом"><i>
+        мостом</i></a>, если после его удаления граф
+        разбивается на два не связанных между
+        собой подграфа, то есть, на две
+        отдельные связные компоненты.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Граф
+        называется <a name="реберно связным"><i> реберно связным</i></a>, если в нем
+        отсутствуют мосты. И, наоборот, граф
+        называется <a name="реберно отделимым"><i> реберно отделимым</i></a>. если у
+        него есть ребра - мосты. Ребра - мосты
+        называются <a name="ребрами отделимости"><i> ребрами отделимости</i></a>.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg3.gif" width="154" height="100"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Чтобы
+        выявить в графе ребра - мосты,
+        достаточно применить обход в глубину. В
+        дереве обхода в глубину ребро (u, v)
+        является тогда и только тогда, когда не
+        существует обратное ребро, которое
+        соединяет одного из потомков вершины v
+        с каким - либо предком вершины v в дереве
+        обхода в глубину.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Алгоритм
+        поиска мостов [<a href="liter.html">4</a>] выполняет
+        обход в глубину, фиксируя для каждой
+        вершины помимо меток времени
+        обнаружения (d[v]) и&nbsp; завершения
+        обработки вершин (f[v]) также минимальное
+        значение d[v] в цикле, в который входит
+        вершина v - low[v].&nbsp; Ребро (u, v) считается
+        мостом, если после обхода у вершины v&nbsp; d[v]
+        = low[v].</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><a name="Search_Bridges">Search_Bridges</a>(<span style="font-style: italic">G</span>)</font></h3>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">1.&nbsp;
+        <b>for</b> для <span lang="ru">каждой вершины</span> u <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        V[<b><i>G</i></b>]</font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do</b>&nbsp; color[u] <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; БЕЛЫЙ</span> </span> </font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        p[u] </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; nil</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        low[u] </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; -1</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">5.
+        time </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; 0</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">6.
+        bridges </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; 0</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">7.&nbsp;</span><b>for</b> для 
+		<span lang="ru">каждой</span> вершин<span lang="ru">ы</span> u <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        V[<b><i>G</i></b>]</font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do </b><b>if</b> color[u] = &lt; БЕЛЫЙ</font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then</b> DFS_Visit_Bridges (<b><i>G</i></b>, u, bridges)</font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">10.bridges
+        <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; bridges - 1</span> </span>
+        </font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		11.</span><b>return </b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		bridges</span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">DFS_Visit_Bridges
+        (<b><i>G, u, bridges</i></b>)</font></h3>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">1.&nbsp;
+        color[<b><i>u</i></b>]
+		<span style="mso-no-proof:
+yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">&#8592; СЕРЫЙ</span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="ru">
+		2</span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">.&nbsp;
+        time </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; time + 1</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="ru">
+		3</span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">.&nbsp; d[</span><b><i>u</i></b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">] </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; time</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.&nbsp;
+        low[</span><b><i>u</i></b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">] </span><span style="mso-no-proof:
+yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&#8592; d[</span></span><b><i>u</i></b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">]</span> </span></font></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">5.&nbsp;
+        for </span><span style="font-weight: 400">для <span lang="ru">каждой</span>
+        вершин<span lang="ru">ы</span> v</span> <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        <span style="font-weight: 400">Adj </span>[<b><i>u</i></b>]</font></h3>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do if</b> color[v] = БЕЛЫЙ</font></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        then<span style="font-weight: 400"> p[v]</span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-no-proof:yes">
+		&#8592; </span><b><i>u</i></b><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span> </font>
+		</h3>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>DFS_Visit_Bridges</b> (<i><b>G</b></i>,
+        v, bridges)</font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> if</b> low[<i><b>u</b></i>] &gt; low[v]</font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">10.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> then</b> low[<i><b>u</b></i>] <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; low[v]</span> </span> </font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>if</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> low[v] = d[v]</span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		12.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b>then</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> 
+		bridges </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; bridges +1</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		13.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b><span lang="ru">&nbsp;</span>else&nbsp; if</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> color[v] = СЕРЫЙ</span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">14.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>
+        then</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> low[</span><i><b>u</b></i><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">] &#8592; d[v]</span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">15.
+        time </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; time + 1</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">16.
+        f[</span><i><b>u</b></i><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">] </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; time</span> </span></font></p>
+        <p style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">17.
+        color[</span><i><b>u</b></i><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">] </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-no-proof:
+yes">&#8592; ЧЕРНЫЙ</span> </span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Иллюстрация
+        работы алгоритма поиска мостов:</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg4.gif" width="188" height="334"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача определения двусвязности графа">Задача
+        определения двусвязности графа</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Точкой сочленения"><i>Точкой
+        сочленения</i></a>&nbsp; графа является вершина, при
+        удалении которой граф разделяется по
+        меньшей мере на две отдельные связные
+        компоненты. Точка сочленения иначе
+        называется <a name="вершиной отделимости"><i> вершиной отделимости</i></a>.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg5.gif" width="158" height="130"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Поиск
+        точек сочленения можно выполнять с
+        помощью алгоритма поиска мостов,
+        поскольку вершина с инцидентным ребром
+        - мостом обязательно является точкой
+        сочленения ( если это не единственное
+        инцидентное ребро у вершины).</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Например,
+        вершина 4 имеет два инцидентных моста и
+        является точкой сочленения.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Но
+        это условие не является достаточным.
+        Например, вершина 5 в приведенном ниже
+        графе не имеет инцидентных мостов, но
+        является точкой сочленения.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg7.gif" width="146" height="82"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Точку
+        сочленения можно выявить в процессе
+        обхода в глубину с проверкой, не
+        является ли корень дерева обхода
+        точкой сочленения. Корень дерева
+        является точкой сочленения тогда и
+        только тогда. когда у него имеется два
+        или более потомков.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg8.gif" width="72" height="126"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Граф
+        называется <a name="двусвязным"> <i> двусвязным</i></a>,&nbsp;
+        если каждая
+        пара вершин связана двумя
+        непересекающимися путями и в нем нет
+        точек сочленения. Двусвязность
+        отличается от <a href="#Задача определения реберной связности графа">реберной
+        связности</a>. При реберной связности
+        два не пересекающихся пути не могут
+        иметь общих ребер, но могут иметь общие
+        вершины. В двусвязном графе не
+        пересекающиеся пути не имеют общих
+        ребер и вершин. Каждый двусвязный граф
+        является реберно связным, но реберно
+        связный граф не обязательно является
+        двусвязным.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Пример
+        двусвязного графа:</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg6.gif" width="148" height="80"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача определения гамильтонова цикла">Задача
+        определения гамильтонова цикла</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Гамильтонов
+        путь - простой путь, соединяющий две
+        вершины и проходящий через каждую
+        вершину графа один раз.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Гамильтонов
+        цикл - простой цикл, включающий все
+        вершины графа.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/dfs_alg9.gif" width="152" height="130"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Алгоритм
+        начинает выстраивать цикл от заданной
+        исходной вершины при обходе в глубину.
+        Очередному рекурсивному вызову DFS_Visit
+        задается дополнительный параметр -
+        расчетная длина оставшегося пути до
+        исходной вершины. При возврате из
+        рекурсии возвращается признак
+        удачного или неудачного построения
+        пути заданной длины. Если возвращен
+        признак удачного построения пути, то
+        полученное решение включается в общее
+        решение. Иначе неудачное решение
+        отбрасывается вместе с пометкой
+        вершины (цвет вершины становится белым).
+        Это приводит к тому, что при новых
+        попытках поиска другого пути эта
+        вершина может быть выбрана вновь и
+        будут исследованы заново все пути,
+        исходящие из этой вершины.</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Данная
+        схема решения соответствует полному
+        перебору всех перестановок ребер в
+        графе и в пределе имеет трудоемкость O(n!),
+        то есть экспоненциальную трудоемкость.</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Алгоритм
+        построения гамильтонова цикла:</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><a name="DFS_Gamilton">DFS_Gamilton</a>(<i>G,
+        St</i>)</font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">1.&nbsp;&nbsp;
+        <span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14"><i><b>u</b></i>
+        - заданная начальная вершина
+        гамильтонова цикла</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2.&nbsp;&nbsp;&nbsp;<img border="0" src="images/comment.gif" align="middle" width="14" height="14"></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>St</b></i></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> - стек
+        для сохранения гамильтонова цикла</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">2.&nbsp;&nbsp;
+        <b>for</b> для <span lang="ru">каждой вершины</span> u <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        V[<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">G</span></b></i>]</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do</b> color[<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span></b></i>] <span style="mso-no-proof:
+yes">&#8592; БЕЛЫЙ</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">4.&nbsp;
+        </span><b>Clear</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">(</span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>S</b></i></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><i><b>t</b></i>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="15" height="15">очистка
+        стека St&nbsp;</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		5.&nbsp;&nbsp; </span><b>for</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> </span>для
+		<span lang="ru">каждой вершины </span>v <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        Adj [1]</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do if </b><b>DFS_Visit_Gamilton</b>(G, 1, v, |V|,St) = TRUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14">|V|
+        - длина гамильтонова цикла = числу
+        вершин в графе</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>
+        then return </b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">TRUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="15" height="15">St
+        содержит перестановку вершин
+        гамильтонова цикла</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		8.&nbsp;&nbsp; </span><b>return</b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> 
+		FALSE</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">DFS_Visit_Gamilton(<i>G,
+        s, u, d, St</i>)</font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">1.&nbsp;&nbsp;
+        <span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14"><i><b>s</b></i>
+        - исходная вершина гамильтонова цикла</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2.&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14"></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>u</b></i></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> - текущая вершина гамильтонова цикла</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14"></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>d</b></i></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> - </span>длина
+        оставшегося пути до исходной вершины s</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">4.&nbsp;&nbsp;&nbsp;<b>
+        if</b><i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> u</span></b></i> = 
+		<i><b>
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">s</span></b></i></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then if </b><i><b>
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d 
+		</span></b></i>= 0</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then</b> <b>Push</b> (<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">St</span></b></i>, 
+		<i><b>
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span></b></i>)</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>return</b> TRUE</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">8.&nbsp;&nbsp;&nbsp;
+        color[<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span></b></i>] <span style="mso-no-proof:
+yes">&#8592; СЕРЫЙ</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">9.&nbsp;&nbsp;&nbsp;</span><b> Push 
+		</b>(<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">St, u</span></b></i>)</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">10.&nbsp;
+        <b>for
+        </b>для <span lang="ru">каждой вершины</span> v <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        Adj [<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span></b></i>]</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do if </b>color[v] = БЕЛЫЙ</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">12.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then if</b> <b>DFS_Visit_Gamilton</b>(<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">G</span></b></i>, 
+		<i><b>
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">s</span></b></i>, v, 
+		<i><b>
+		<span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d
+		</span></b></i>-1,<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> St</span></b></i>) = TRUE</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">13.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then return</b> TRUE</font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">14.&nbsp;
+        color[<i><b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span></b></i>]&nbsp; <span style="mso-no-proof:
+yes">&#8592; БЕЛЫЙ</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		15.&nbsp; </span><b>Pop </b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		(</span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><i><b>St</b></i></span><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">)</span></font><p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2"><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		16.&nbsp; </span><b>return </b><span style="mso-no-proof: yes; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		FALSE</span></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_orgraph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="6009" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_dfs.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:37 GMT -->
+</html>

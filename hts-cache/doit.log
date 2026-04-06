@@ -1,0 +1,8 @@
+http://edu.nstu.ru/courses/saod/ -O "C:\\saod-mirror\\_mirror" -r10 -s0 -%k -%! -c4 -T30 +*.swf
+File generated automatically on Mon, 06 Apr 2026 21:30:55, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+

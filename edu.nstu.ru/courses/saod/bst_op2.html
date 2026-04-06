@@ -1,0 +1,1751 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/bst_op2.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:03 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Дополнительные операции BST</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="File-List" href="bst_op2.files/filelist.xml">
+
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+</style>
+<![endif]-->
+<!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/bst_op2.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Дополнительные операции BST"><!--webbot bot="Navigation" i-checksum="56986" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="bst_op1.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="rand_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="649" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Обход BST – дерева">Обход
+        BST –
+        дерева</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+		<a href="#Вставка  в корень BST – дерева">Вставка&nbsp;
+        в корень BST – дерева</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#задач о порядковых статистиках">Поиск
+        предыдущего по ключу узла в дереве для
+        заданного узла x</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#задач о порядковых статистиках">Поиск
+        К – го по порядку узла BST – дерева</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+		<a href="#Разбиение BST – дерева на два дерева">Разбиение
+        BST – дерева на два дерева</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Объединение BST – деревьев">Объединение
+        BST – деревьев</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Обход BST – дерева">Обход
+        <span lang="EN-US" style="mso-ansi-language:EN-US">BST</span> –
+        дерева</a></font></h3>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Наиболее
+        общей функцией обработки деревьев
+        является обход всех узлов дерева, когда
+        для выполнения некоторой операции на
+        дереве, требуется выборка значений из
+        узлов дерева. В зависимости<span style="mso-spacerun:yes">&nbsp;
+        </span>от алгоритма операции возможна
+        одна из трех схем обхода:</font></p>
+        <!--mstheme--></font><table style="margin-top: 0cm" border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/blbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+				<i><a name="прямой обход"><span lang="ru">
+				<font face="MS Sans Serif" size="2">префиксный</font></span></a></i><font face="MS Sans Serif" size="2"><a name="прямой обход"><i>
+              обход</i>&nbsp;
+              </a>(сверху
+              вниз), при котором обрабатывается
+              значение в узле, а затем значения из
+              левого и правого поддеревьев узла,</font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/blbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+				<font face="MS Sans Serif" size="2"><i>
+				<a name="поперечный обход"><span lang="ru">инфиксный</span>
+              обход</a></i>&nbsp; (слева
+              направо), при котором
+              обрабатываются значения из левого
+              поддерева, затем значение узла,
+              затем значения из правого поддерева,</font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/blbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+				<font face="MS Sans Serif" size="2"><i><a name="обратный обход">
+				<span lang="ru">постфиксный</span> обход</a></i>&nbsp; (снизу
+              вверх), при котором обрабатываются
+              значения из левого и правого
+              поддеревьев, а затем значение узла.</font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <h3 style="margin-top:20px; margin-bottom:0">
+		<font face="Arial" size="2"><span style="line-height: 150%"><a name="Рекурсивный алгоритм обхода &quot;сверху вниз&quot;">Рекурсивный
+        алгоритм префиксного обхода</a>:</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><b>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">t_L_
+        R (<i> t </i>)</span></font></b></p>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><b><i>t</i></b>-</font></span><font face="Arial"><span style="line-height: 150%"><font size="2">корень 
+		дерева</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">/</font></span><span style="line-height: 150%"><font size="2">поддерева</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>t</i></b> = <b><i>nil</i></b> </font><b><font size="2">then return</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">операция над узлом <b><i><span lang="EN-US">
+		t</span></i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">t_L_ 
+		R</span></font></b><font face="Arial"><span lang="DE" style="line-height: 150%"><font size="2"> 
+		( left[<b><i> t </i></b>] ) </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="DE" style="line-height: 150%"><font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">t_L_ 
+		R</span></font></b><font face="Arial"><b><span lang="DE" style="line-height: 150%"><font size="2">
+		</font></span></b><span lang="DE" style="line-height: 150%">
+		<font size="2">( right [<b><i> t </i></b>] )</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">6. <b>&nbsp;&nbsp;&nbsp; return</b></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Над
+        деревом можно выполнять операции,
+        имеющие не рекурсивный алгоритм. Но для
+        этого операции должны использовать
+        собственный стек, чтобы иметь
+        возможность вернуться к ранее
+        пройденным, но не обработанным узлам.</font></p>
+        <h3 style="margin-top:20px; margin-bottom:0">
+		<font face="Arial" size="2"><span style="line-height: 150%">Итеративный&nbsp;
+        алгоритм <a name="Рекурсивный алгоритм обхода &quot;сверху вниз&quot;0">
+		префиксного </a>обхода:</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><b>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">t_L_ 
+		R ( </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<i>root</i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		)</span></font></b></p>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><b><i>&nbsp;root</i></b></font></span><font face="Arial"><b><span style="line-height: 150%"><font size="2"> 
+		-</font></span></b><span style="line-height: 150%"><font size="2">корень 
+		дерева</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">S</font></span><font face="Arial" size="2"><span style="line-height: 150%">-вспомогательный 
+		стек</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">Push</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">( 
+		S, <b><i>root </i></b>)</font></span></font></p>
+		<p class="MsoHeader" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		S</font></span><span style="line-height: 150%"><font size="2"> не пуст</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> <b><i>&nbsp; t</i></b> &#8592;
+		<b>Pop</b>(S)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font face="Arial" size="2"><span style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp; 
+		операция над узлом <b><i><span lang="EN-US">t</span></i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<b>if</b> right[<b><i>t</i></b>] 
+		&#8800; <b><i>nil</i></b> </font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp; then</b>
+		<b>Push </b>( S, right [<b><i> t </i></b>]</font></span><font face="Arial" size="2"> 
+		)</font></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font face="Arial"><b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp; 
+		if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		left[<b><i>t</i></b>] &#8800; <b><i>nil</i></b> </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US"><font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><span lang="EN-US" style="font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		then</b> <b>Push </b>( S, left [<b><i> t </i></b>] )</font></span></p>
+        <p class="MsoNormal" style="margin-left:40px; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">11.<b>&nbsp;&nbsp;&nbsp; return</b></font></p>
+		<h3 style="margin-top:20px; margin-bottom:0">
+		<a name="Рекурсивный алгоритм обхода &quot;снизу - вверх&quot;">
+		<font face="Arial" size="2"><span style="line-height: 150%">Рекурсивный
+        алгоритм инфиксного обхода:</span></font></a></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><b>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_t_
+        R <span style="mso-bidi-font-style:italic">(<i> t </i>) </span></span></font></b></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">1<img border="0" src="images/comment.gif" width="14" height="14"><b><span style="mso-bidi-font-style:italic"><i>t</i>-</span></b></span><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style: italic">корень</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style: italic">
+        </span><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style: italic">дерева/поддерева</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">2<span style="mso-spacerun:yes">&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">
+		<b>if</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<b><i>t</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> = nil </span> 
+		<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">
+		<b>then</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b>
+        return</b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">3<span style="mso-spacerun:yes">&nbsp;
+        </span></span></font><b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_t_
+        R</span></font></b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font>
+		<font face="Arial"><span lang="DE" style="line-height: 150%">
+		<font size="2">( left[<b><i> t </i></b>] )</font></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4<span style="mso-spacerun:yes">&nbsp;
+        </span> </span><span style="line-height: 150%">операция над узлом <b><i>
+		<span lang="EN-US">t</span></i></b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">5<span style="mso-spacerun:yes">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b><span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">
+        </span></b></span></font><b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_t_
+        R</span></font></b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font>
+		<font face="Arial"><span lang="DE" style="line-height: 150%">
+		<font size="2">( right [<b><i> t </i></b>] )</font></span></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial">6&nbsp; <b>
+		<span style="mso-bidi-font-style: italic; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		return</span></b></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">&nbsp;</p>
+		<h3 style="margin-top: 20px; margin-bottom: 0">
+		<font face="Arial" size="2"><span style="line-height: 150%">Итеративный 
+		алгоритм инфиксного обхода</span></font></h3>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0"><b>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_t_
+        R</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font></b>
+		<font face="Arial"><b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">(</font></span><i><font size="2"><span style="line-height: 150%" lang="ru">
+		</span><span lang="EN-US" style="line-height: 150%">root</span><span style="line-height: 150%" lang="ru">
+		</span></font></i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">)</font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial"><b><i><font size="2">&nbsp;root</font></i></b></font></span><font face="Arial"><b><span style="line-height: 150%"><font size="2"> 
+		-</font></span></b><span style="line-height: 150%"><font size="2">корень 
+		дерева</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial"><font size="2"><span lang="EN-US" style="line-height: 150%">S1, 
+		S2, S3 </span></font><span style="line-height: 150%"><font size="2">–вспомогательные 
+		стеки</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">Push</font></span></b><span style="line-height: 150%"><font size="2">(</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">S</font></span><span style="line-height: 150%"><font size="2">1,
+		</font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">root</font></span></i></b><span style="line-height: 150%"><font size="2">)</font></span></font></p>
+		<p class="MsoHeader" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		S</font></span><span style="line-height: 150%"><font size="2">1 не пуст 
+		или </font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2">S</font></span><span style="line-height: 150%"><font size="2">2 
+		не пуст</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">5.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial">
+		<span style="font-size: 14.0pt; line-height: 150%"><font size="2">
+		<span style="line-height: 150%">&nbsp;&nbsp;</span></font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">do 
+		if </font></span></b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">S1 </font></span><span style="line-height: 150%">
+		<font size="2">не пуст</font><b><font size="2"> </font></b></span>
+		</font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">6.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><b><span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then </font></span></b></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">7.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">t<b>
+		</b>&#8592; <b>Pop</b>(S1)</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">8.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Push</b>(S2,t)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">9.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> right[t] &#8800; </font><b><i><font size="2">nil</font></i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">10.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>
+		<b>Push</b>(S1, right [t])</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">11.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><font face="Arial">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><b><font size="2">else</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">12.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">t<b>
+		</b>&#8592; <b>Pop</b>(S2)</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">13.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Push</b>(S3,t)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">14.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><font face="Arial">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> left[t] &#8800; </font><b><i><font size="2">nil</font></i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">15.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>
+		<b>Push</b>(S1, left [t])</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">16.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span><font face="Arial">
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;<b>while</b> 
+		S3 </span></font></span><span style="line-height: 150%"><font size="2">
+		не пуст</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">17.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;</font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">do&nbsp;
+		</font></span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">18.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">t<b>
+		</b>&#8592; <b>Pop</b>(S3)</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">19.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><font face="Arial">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">операция 
+		над узлом </font></span><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">20.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;</font><b><span lang="EN-US"><font size="2">return</font></span></b></span></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0">
+		<font face="Arial" size="2"><span style="line-height: 150%"><a name="Рекурсивный алгоритм обхода &quot;слева - направо&quot;">Рекурсивный
+        алгоритм постфиксного обхода</a>:</span></font></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><b>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_
+        R _t<span style="mso-bidi-font-style:italic"> (<i> t </i>)</span></span></font></b></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" width="14" height="14"></span><b><i><span style="mso-bidi-font-style: italic; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">t<span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style:italic; mso-ansi-language:EN-US">-</span></span></i></b><span style="mso-bidi-font-size: 10.0pt">корень
+        дерева/поддерева</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<font face="Arial" size="2">2<span style="mso-spacerun:yes">&nbsp;
+        </span></font></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<font face="Arial" size="2"><b>
+		<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">if</span> 
+		</b></font></span><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<b><i>t </i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">= nil </span></font> 
+		<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">
+		<font face="Arial" size="2"><b>then
+        return</b></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">3<span style="mso-spacerun:yes">&nbsp;
+        </span></span></font><b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_
+        R _t</span></font></b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font>
+		<font face="Arial"><span lang="DE" style="line-height: 150%">
+		<font size="2">( left[<b><i> t </i></b>] )</font></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">4<span style="mso-spacerun:yes">&nbsp;
+        </span></span></font><b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_
+        R _t</span></font></b><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font>
+		<font face="Arial"><span lang="DE" style="line-height: 150%">
+		<font size="2">( right [<b><i> t </i></b>] )</font></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5<span style="mso-spacerun:yes">&nbsp;
+        </span> </span><span style="line-height: 150%">операция над узлом <b><i>
+		<span lang="EN-US">t</span></i></b></span></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">6 <b>
+		<span style="mso-bidi-font-style: italic; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;return</span></b></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">&nbsp;</p>
+		<h3 style="margin-top: 20px; margin-bottom: 0">
+		<font face="Arial" size="2">
+		<span style="line-height: 150%">Итеративный алгоритм постфиксного обхода
+		</span></font></h3>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0"><b>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">L_
+        R _t<span style="mso-bidi-font-style:italic"> </span></span></font>
+		<font face="Arial"><span lang="EN-US" style="line-height: 150%">
+		<font size="2">(</font></span><i><span style="line-height: 150%" lang="ru"><font size="2">
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2">root</font></span><span style="line-height: 150%" lang="ru"><font size="2">
+		</font></span></i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">)</font></span></font></b></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><b><i>&nbsp;root</i></b></font></span><font face="Arial"><b><span style="line-height: 150%"><font size="2"> 
+		-</font></span></b><span style="line-height: 150%"><font size="2">корень 
+		дерева</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">S1, 
+		S2 </font></span><font face="Arial" size="2">
+		<span style="line-height: 150%">–вспомогательные стеки</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">Push</font></span></b><span style="line-height: 150%"><font size="2">(</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">S</font></span><span style="line-height: 150%"><font size="2">1,
+		</font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">root</font></span></i></b><span style="line-height: 150%"><font size="2">)</font></span></font></p>
+		<p class="MsoHeader" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		S</font></span><span style="line-height: 150%"><font size="2">1 не пуст</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><span style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;</font></span><font face="Arial" size="2"><b><span lang="EN-US" style="line-height: 150%">do</span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">t<b>
+		</b>&#8592; <b>Pop</b>(S1)</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Push</b>(S2,t)</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> left[t] &#8800;
+		<b><i>nil</i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>
+		<b>Push</b>(S1, left[t])</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> right[t] &#8800;
+		<b><i>nil</i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>
+		<b>Push</b>(S1, right[t])</font></span></font></p>
+		<p class="MsoHeader" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">12.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		S2</font></span><span style="line-height: 150%"><font size="2"> не пуст</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">13.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><span style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;<b><span lang="EN-US">do</span></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">14.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">t<b>
+		</b>&#8592; <b>Pop</b>(S2)</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">15.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">операция 
+		над узлом </font><span lang="EN-US"><font size="2">t</font></span></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">16.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial" size="2">
+		<span style="line-height: 150%">&nbsp;<b><span lang="EN-US">return</span></b></span></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Существует
+        еще одна схема <a name="обхода узлов дерева – по уровням"><i> обхода узлов дерева – по
+        уровням</i></a>, при которой узлы посещаются
+        сверху вниз и слева направо на одном
+        уровне. Обход по уровням можно получить
+        из предыдущей операции <span lang="ru">инфиксного </span>обхода<span lang="ru">,</span> заменив в ней стек на очередь</font></p>
+		<p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="MS Sans Serif" size="2">&nbsp; FIFO.</font></p>
+        <h3 style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">Traverse<b><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style: italic">
+        ( </span><i>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style: italic">
+		<span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style: italic; mso-ansi-language:EN-US">
+        roo</span>t </span></i><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style: italic">)</span></b></font></h3>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b><i>roo<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">t</span></i></b></span><span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-style: italic">-корень
+        дерева</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" width="14" height="14">Q</span><span style="mso-bidi-font-size: 10.0pt">-
+        очередь<span lang="ru"> </span>FIFO</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3<span style="mso-spacerun:yes">&nbsp;
+        </span></span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700">Insert</span><span style="mso-bidi-font-size: 10.0pt">(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> Q</span><span style="mso-bidi-font-size: 10.0pt">,<b><i>
+		</i></b>
+        </span><b><i><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		root</span></i></b><span style="mso-bidi-font-size: 10.0pt"> )</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<font face="Arial" size="2">4<span style="mso-spacerun:yes">&nbsp;
+        </span></font></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<font face="Arial" size="2"><b>
+		<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">while</span> 
+		</b></font></span><font face="Arial" size="2">
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Q</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> 
+		не пуста</span></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">5<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; </span></font>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<font face="Arial" size="2"><b>
+		<span style="mso-bidi-font-style:italic; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US">do</span> 
+		</b></font></span><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<b><i>t</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> &#8592; </span></font>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<font face="Arial" size="2"><b>Deque</b></font></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2"> ( Q ) </font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">6<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="line-height: 150%">операция над узлом <b><i>
+		<span lang="EN-US">t</span></i></b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">7<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+		<span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="mso-ansi-language:EN-US"><b>if</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> left</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b> 
+		[<i>t</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]&nbsp;
+        &#8800; nil </span> <span style="mso-ansi-language:EN-US"><b>then</b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<font face="Arial" size="2"><b>Insert </b></font></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<font face="Arial" size="2">( Q</font><font face="Arial" size="2">,
+        left [ </font></span><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<b><i>t</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> ] )</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">8<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-ansi-language: EN-US"><b><span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>if </b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">right[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b><i>t</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">] &#8800; nil</span><span style="mso-ansi-language: EN-US"><b> then
+		</b></span></font>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<font face="Arial" size="2"><b>Insert</b></font></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Arial" size="2">( Q</font><font face="Arial" size="2">, right </font></span>
+		<font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic">
+		<b>[<i> t</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> ] )</span></font></p>
+		<p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="ru">9&nbsp; </span><b>return</b></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Рассмотрим
+        использование операций обхода дерева
+        для выполнения быстрого вывода дерева.</font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">
+		<span lang="ru">Например, с</span>хема&nbsp; <span lang="ru">инфиксного
+		</span>обхода удобна для
+        вертикальной распечатки дерева.</font></p>
+        <h3 style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">Show<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style: italic"><b>(<i> t,
+        level </i>)</b></span></font></h3>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US">1
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b><i>t</i></b></span><span style="mso-bidi-font-size: 10.0pt">-корень
+        дерева/поддерева</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2&nbsp;
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; mso-bidi-font-style:italic"><b><i>level</i></b></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        - глубина узла в дереве</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US; mso-bidi-font-size: 10.0pt">
+		3 </span><span style="mso-ansi-language: EN-US; "><b>&nbsp;if</b></span><span lang="EN-US" style="mso-ansi-language: EN-US; mso-bidi-font-size: 10.0pt"> </span>
+		<span style="mso-ansi-language: EN-US; mso-bidi-font-size: 10.0pt; mso-bidi-font-style:italic">
+		<b><i>t </i></b></span><span lang="EN-US" style="mso-ansi-language: EN-US; mso-bidi-font-size: 10.0pt">
+		= nil</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US">3<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="mso-spacerun: yes">&nbsp;</span></span><span style="mso-ansi-language: EN-US"><b> then</b></span><span lang="EN-US" style="mso-ansi-language: EN-US">
+		<b>return</b></span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US">4
+        </span><b>Show</b><span lang="EN-US" style="mso-ansi-language: EN-US"> ( right [</span><span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic"><b><i> t</i></b></span><span lang="EN-US" style="mso-ansi-language: EN-US"> ], </span>
+		<span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic">
+		<b><i>level</i></b></span><span lang="EN-US" style="mso-ansi-language: EN-US">+1 )</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US">5
+        <b>for</b> i</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&#8592;</span><span lang="EN-US" style="mso-ansi-language: EN-US">
+        0 </span><span style="mso-ansi-language: EN-US">
+        <b>to</b></span><span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic"><b><i> 
+		level</i></b></span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">6<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span lang="EN-US" style="mso-ansi-language: EN-US">&nbsp;&nbsp; </span>
+		<span style="mso-ansi-language: EN-US"><b>do</b></span><span style="mso-spacerun:yes">&nbsp; </span>печать
+        &quot;_&quot;</font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; tab-stops:list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">7
+        печать <span lang="EN-US" style="mso-ansi-language: EN-US">key</span>[<span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic"><b><i>t</i></b></span>]
+        и <span lang="EN-US" style="mso-ansi-language: EN-US">data</span>[<span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic"><b><i>t</i></b></span>]</font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">8
+        перевод курсора на начало следующей
+        строки</font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US">9
+        </span><b>Show</b><span lang="EN-US" style="mso-ansi-language: EN-US"> ( left [</span><span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic"><b><i> t</i></b></span><span lang="EN-US" style="mso-ansi-language: EN-US"> 
+		], </span>
+		<span style="mso-ansi-language: EN-US; mso-bidi-font-size:10.0pt; mso-bidi-font-style:italic">
+		<b><i>level</i></b></span><span lang="EN-US" style="mso-ansi-language: EN-US">+1 
+		)</span></font></p>
+		<p class="MsoNormal" style="tab-stops: list 36.0pt; word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial" size="2">10<b> return</b></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Например,
+        дерево</font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/bst_show1.gif" width="320" height="164">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">будет
+        выведено на экран в виде:</span></font></p>
+        <p align="center"><img border="0" src="images/bst_show2.gif" width="92" height="244"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        распечатать дерево по схеме <span lang="ru">префиксного </span>&nbsp;обхода, то получится схема печати,
+        аналогичная распечатке дерева
+        каталогов в файловой системе.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b>Show_Down </b>(<i><b> t,
+        level </b></i>)</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">1
+        <b>if</b> <i><b>t </b></i>= nil <b>then return</b></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2
+        <b>for </b>i &#8592; 0 <b>to<i> level</i></b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do</b>&nbsp; печать &quot;_&quot;</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4
+        печать key<span lang="ru"> </span>[<span lang="ru"> </span><i><b>t </b>
+		</i>] и data<span lang="ru"> </span>[<span lang="ru"> </span><i><b>t </b>
+		</i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">5
+        перевод курсора на начало следующей
+        строки</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">6
+        <b>Show_Down<span lang="ru"> </span></b>(<span lang="ru"> </span>left<span lang="ru">
+		</span>[<span lang="ru"> </span><b><i>t</i></b><span lang="ru"> </span>], 
+		<i><b>level</b></i>+1<span lang="ru"> </span>)</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">7
+        <b>Show_Down<span lang="ru"> </span></b>(<span lang="ru"> </span>right<span lang="ru">
+		</span>[<i><b><span lang="ru"> </span>t</b></i><span lang="ru"> </span>], 
+		<i><b>level</b></i>+1<span lang="ru"> </span>)</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial">8 <b>return</b></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+		<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt">
+		<font face="MS Sans Serif" size="2">Вид
+        дерева на экране следующий:</font></span></p>
+        <p align="center" class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/bst_show3.gif" width="90" height="230"></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Вставка  в корень BST – дерева">Вставка&nbsp;
+        в корень BST – дерева</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В
+        стандартной реализации BST-дерева
+        каждый новый элемент вставляется в
+        нижнюю часть дерева и становится
+        листом дерева. Иногда целесообразно
+        вставлять новый элемент в корень
+        дерева. В результате вновь поступившие
+        элементы располагаются ближе к корню
+        дерева. Такая схема особенно
+        целесообразна, когда приложение чаще
+        всего обрабатывает последние элементы,
+        недавно поступившие в структуру.
+        Благодаря тому, что они находятся ближе
+        к корню, среднее время поиска этих
+        элементов снижается.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Первое
+        решение, которое приходит на ум -
+        сделать новый элемент новым корнем, а
+        старый корень пристроить в качестве
+        правого или левого сына в зависимости
+        от соотношения ключей нового элемента
+        и старого корня.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Например:</span></font>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/bst_root.gif" width="646" height="280"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="font-size:12.0pt">Н</span><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">о
+        проблема заключается в том, что в левом
+        или правом поддереве могут оказаться
+        ключи, нарушающие упорядоченность
+        дерева. Поэтому нужна определенная
+        перестройка дерева.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        обеспечить упорядоченность BST-дерева,
+        при включении используется несколько
+        иная схема. Новый элемент включается,
+        как и при стандартной схеме в качестве
+        листа, но затем путем поворотов
+        поднимается в корень. Повороты
+        осуществляются снизу вверх для каждого
+        узла, лежащего на пути от нового листа к
+        корню. Могут использоваться левые и
+        правые повороты.</font></span></p>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0">
+		<span style="line-height:150%"><font face="Arial" size="2">Левый
+        поворот:</font></span></h3>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/bst_Lrotate.gif" width="240" height="124"></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b>L(<i> t </i>)</b></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1
+        x &#8592; right [<b><i> t</i></b> ]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2 right 
+		[ <b><i>t </i></b>] &#8592; left [ x<b><i> </i></b>] </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3
+        left [ x ] &#8592; <b><i>t</i></b> </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">4
+        return x</font></span></p>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0">
+		<span style="line-height:150%"><font face="Arial" size="2">Правый
+        поворот</font></span></h3>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/bst_Rrotate.gif" width="266" height="108"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt"><b>R (<i> t</i> )</b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1
+        x &#8592; left [ <i><b>t</b></i> ]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2
+        left [ <i><b>t</b></i> ] &#8592; right [ x ] </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3
+        right [ x ] &#8592; <i><b>t</b></i> </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 150%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">4
+        return x </font></span></p>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0">
+		<font face="Arial" size="2"><span style="line-height: 150%">Рекурсивная
+        функция вставки узла x в корень:</span></font></h3>
+        <h3 style="margin-left:40px; margin-top:10px; margin-bottom:0">
+		<font face="Arial" size="2"><span style="line-height: 150%">Root_Insert(t,
+        k, data, inserted)</span></font></h3>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2">&nbsp;</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		– корень дерева или поддерева</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2">&nbsp;</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">k</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		–ключ нового элемента </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2">&nbsp;</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">data</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		– данные нового элемента</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2">&nbsp;</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">inserted</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		– возвращаемый признак вставки</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>t</i></b> = </font><b><i><font size="2">nil</font></i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> <b><i>inserted</i></b> &#8592; 
+		TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b> <b>Create_Node</b>(<b><i>k, 
+		data</i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		k = key[<b><i> t </i></b>]</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> <b><i>inserted</i></b> &#8592; 
+		FALSE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp; return</b> <b>
+		<i>t</i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp; if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		k &lt; key[<b><i>t</i></b>]&nbsp; </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">12.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; then</b> left[<b><i>t</i></b>] 
+		&#8592; <b>BST_Root_Insert</b>(left[<b><i>t</i></b>], <b><i>k</i></b>, <b><i>
+		data</i></b>, ins)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">13.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>&nbsp; inserted</i></b> 
+		&#8592; ins</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">14.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; if</b> ins = TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">15.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; then</b> <b>
+		return</b> <b>R</b>(<b><i>t</i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">16.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; else</b> <b>
+		return</b> </font></span><font face="Arial" size="2"><b><i>
+		<span lang="EN-US" style="line-height: 150%">t</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">17.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; else</b>&nbsp;&nbsp; right[<b><i>t</i></b>]&#8592;<b>BST_Root_Insert</b>(right[<b><i>t</i></b>],
+		<b><i>k</i></b>, <b><i>data</i></b>, ins)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">18.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>&nbsp; inserted</i></b> 
+		&#8592; ins</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">19.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; if</b> ins = TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">20.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<b>then</b> <b>
+		return</b> <b>L</b>(<b><i>t</i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">21.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<b>else return </b>
+		</font></span><font face="Arial" size="2"><b><i>
+		<span lang="EN-US" style="line-height: 150%">t</span></i></b></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><a href="flash/test27.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+  <center>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Можно
+        заметить еще одно преимущество такой
+        вставки - балансировка высоты левого и
+        правого поддерева, что оправдывает
+        дополнительные затраты на вращения.</font></span></p>
+      </center>
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Поиск предыдущего по ключу узла в дереве для заданного узла x">Поиск
+        предыдущего по ключу узла в дереве для
+        заданного узла x</a></span></font></h3>
+  <center>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Операция
+        поиска предыдущего по ключу узла чаще
+        всего используется для организации
+        просмотра узлов дерева в порядке
+        убывания ключей. Предыдущий узел
+        отыскивается в левом поддереве
+        заданного узла x, если оно есть, или как
+        ближайший правый предок на пути от
+        корня к узлу x. </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Рекурсивный
+        алгоритм поиска предыдущего по ключу
+        узла:</font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b>BST_Predecessor(<i> root,
+        x </i>)</b></font></span></p>
+      </center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><b><i><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">&nbsp;root</font></span></i></b><font face="Arial" size="2"><span style="line-height: 150%"> 
+		– корень дерева</span></font></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2">&nbsp;<b><i>х</i></b> 
+		– узел с заданным ключом</font></span></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		left [<b><i>x</i></b>] &#8800; </font><b><i><font size="2">nil</font></i></b></span></font></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t<b>hen</b> <b>return</b> <b>Max </b>( 
+		left [<b><i>x</i></b>] )</font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> <b>return</b> <b>R_Parent</b> 
+		(<b><i> root, x </i></b>)</font></span></p>
+
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Вспомогательные
+        алгоритмы для поиска предыдущего
+        элемента – поиск максимального по
+        ключу узла в левом поддереве (<b>Max</b>) и
+        поиск ближайшего правого родителя для
+        заданного узла дерева (<b>R_Parent</b>).</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt"><font face="Arial" size="2"><b>Max(
+		t )</b></font></span></p>
+     
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>t</i></b> = <b><i>nil</i></b> </font></span></font></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">then</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b>return</b> </font><b><i><font size="2">nil</font></i></b></span></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		right [<b><i> t </i></b>] &#8800; </font><b><i><font size="2">nil</font></i></b></span></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">do</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>t</i></b> &#8592; right [<b><i> t </i></b>]</font></span></font></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font><b><i><font size="2">t</font></i></b></span></font></p>
+ 
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt"><font face="Arial" size="2"><b>R_Parent(t,
+        x)</b></font></span></p>
+  
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><b><i><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">t</font></span></i></b><font face="Arial" size="2"><span style="line-height: 150%">-корень 
+		дерева/поддерева</span></font></p>
+  
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><b><i>x</i></b></font></span><font face="Arial" size="2"><span style="line-height: 150%">- 
+		узел с заданным ключом</span></font></p>
+  
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>t</i></b> = <b><i>x</i></b>&nbsp; <b>then</b>&nbsp; <b>return</b> </font><b>
+		<i><font size="2">nil</font></i></b></span></font></p>
+  
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		key[<b><i>x</i></b>] &gt; key[<b><i>t</i></b>]</font></span></font></p>
+  
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> rp &#8592; <b>R_Parent</b>( right 
+		[<b><i> t </i></b>],<b><i> x</i></b>)</font></span></p>
+  
+  
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> rp &#8800; <b><i>nil</i></b>
+		<b>then</b> <b>return</b> rp</font></span></p>
+ 
+        <p class="MsoNormal" style="line-height: 150%; margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> <b>
+		return</b> <b><i>t</i></b></font></span></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US"><font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b><span lang="EN-US">
+		<font size="2">else </font></span></b><span lang="EN-US"><font size="2">
+		&nbsp;<b>return</b> <b>R_Parent</b>( left [<b><i> t </i></b>], <b><i>x</i></b>)</font></span></font></p>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+		<img border="0" src="images/bst_pred.gif" width="489" height="194"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Ан</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">алогично
+        выглядит алгоритм поиска следующего по
+        ключу узла в дереве для заданного узла x
+        – <b>BST_Succsessor</b>. Алгоритм является
+        зеркальным по отношению к алгоритму
+        поиска предыдущего узла. Необходимо
+        заменить ссылки left[x] на right[x] в
+        алгоритме BST_Predecessor, а также заменить
+        вспомогательные алгоритмы на
+        зеркальные алгоритмы <b>Min</b> и <b>L_Parent</b>.</font></span></p>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Поиск К – го по порядку узла BST – дерева">Поиск
+        К – го по порядку узла BST – дерева</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Одной
+        из причин распространенности BST-деревьев
+        является эффективная поддержка <a name="задач о порядковых статистиках"><i> задач о
+        порядковых статистиках</i></a>:&nbsp; сортировки,
+        определения порядкового номера
+        элемента, количества меньших или
+        больших элементов,&nbsp; минимального или
+        максимального значения,&nbsp; k-го по
+        порядку элемента</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Сортировка
+        выполняется при поперечном обходе
+        узлов дерева. Обход сопровождается
+        спуском по дереву, поэтому можно
+        ожидать, что затраты определяются
+        логарифмической зависимостью.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        поддержки многих из выше перечисленных
+        задач </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        в узлы&nbsp; BST-дерев</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">а
+        вводится дополнительный параметр n[t],
+        отражающий количество элементов в
+        поддереве, корнем которого является
+        узел t. Такое </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">BST-дерев</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">о
+        называется <a name="порядковым деревом"><i> порядковым деревом</i></a>.&nbsp;
+        Параметр n[t] модифицируется любой
+        операцией, изменяющей дерево(BST_Insert,
+        BST_Delete, L(t), R(t)). Это дополнение может
+        снизить производительность операций
+        вставки и удаления, увеличить затраты
+        памяти. Но если задачи о порядковых
+        статистика важны, то приходится идти на
+        эти затраты.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/bst_ord.gif" width="264" height="186"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        операции выбора k-го по порядку
+        элемента Select_K можно использовать идею,
+        аналогичную бинарному поиску в массиве.
+        Для отыскания в порядковом дереве
+        элемента с k-м&nbsp; ключом проверяется
+        количество узлов в левом поддереве
+        корня. Если там имеется k узлов, то
+        возвращается корневой элемент. В
+        противном случае, если левое поддерево
+        содержит более k узлов, рекурсивно
+        отыскивается k-й элемент в левом
+        поддереве. Если левое поддерево
+        содержит m узлов и m&lt;k, то k-й элемент
+        является (k-m-1)-м наименьшим элементом в
+        правом поддереве. В этом случае
+        рекурсивно отыскивается (k-m-1)-й элемент
+        в правом поддереве.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b>BST_Selectk( t,
+        k )</b></font></span></p>
+      
+     
+     
+     
+     
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><b><i>t</i></b></font></span><font face="Arial" size="2"><span style="line-height: 150%"> 
+		– корень дерева/поддерева</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2"><b><i>k</i></b></font></span><font face="Arial" size="2"><span style="line-height: 150%"> 
+		– порядковый номер узла в BST – дереве</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>t</i></b> = <b><i>nil</i></b>&nbsp; <b>then</b>&nbsp; <b>return</b> </font>
+		<b><i><font size="2">t</font></i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		left [<b><i> t </i></b>] = <b><i>nil</i></b> </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">then</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp; 
+		m &#8592; 0</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b>&nbsp; m &#8592; n [left [<b><i>t</i></b>] 
+		]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		m &gt; <b><i>k</i></b>&nbsp; </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then&nbsp; return</b> <b>BST_Selectk </b>
+		( left [<b><i> t </i></b>], <b><i>k</i></b>)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		m &lt; <b><i>k</i></b>&nbsp; </font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then return</b> <b>BST_Selectk </b>( 
+		right [<b><i> t </i></b>],<b><i>k </i></b>- m - 1)</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">t</font></span></i></b></font></p>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><a href="flash/test26.html"><b><font face="MS Sans Serif" size="3" color="#0000FF">Тест</font></b></a></p>
+ 
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Разбиение BST – дерева на два дерева">Разбиение
+        BST – дерева на два дерева</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Операция
+        заключается в спуске по дереву до K–го
+        узла и затем подъему по дереву с
+        выполнением ротаций для перемещений
+        этого узла в корень. После подъёма
+        можно разбить дерево на два, оторвав от
+        нового корня левое или правое
+        поддерево.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Иллюстрация
+        этого процесса для К = 4 приведена ниже:</font></span>
+        <h3 align="left" style="margin-top:20px; margin-bottom:0">
+		<font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/bst_part.gif" width="610" height="392"></span></font></h3>
+        <p align="justify" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Алгоритм
+        разбиения дерева</font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><b>
+		<font face="Arial" size="2">BST_Part(t,k)</font></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><!--[if gte mso 9]><![endif]--><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;root</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span><span style="line-height: 150%"><font size="2">– корень 
+		дерева</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span style="line-height: 150%"><font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+      <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%; color: red"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%"><font face="Arial" size="2"><b><i>k</i></b></font></span><font face="Arial" size="2"><span style="line-height: 150%"> 
+		– порядковый номер узла в BST – дереве</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">x &#8592; <b>BST_Selectk(<i>root, k</i>)</b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		x = </font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">nil</font></span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">then</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b>return</b> FALSE</font></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">root</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; </font><b><font size="2">Partition(<i>root</i>, x)</font></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">root</font></span></i></b></font></p>
+		<p class="MsoNormal" align="justify" style="margin-left: 0; margin-top: 10px; margin-bottom: 0; text-indent:10; word-spacing:0; line-height:100%; margin-right:0">
+		<font face="Arial" size="2"><b><span style="mso-bidi-font-size: 10.0pt">Partition(t, 
+		x)</span></b></font></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">if </font></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		= </font></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">x</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b>then</b> <b>return</b> </font></span><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">if key[</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">x</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		&lt; key[</font></span><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">]</font></span></font></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> left[</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		&#8592; <b>Partition</b>(left[<b><i>t</i></b>]<b><i>, x</i></b>)</font></span></font></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b> <b>Rn</b>[</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">]</font></span></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b>&nbsp; right[</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		&#8592; <b>Partition</b>(right[<b><i>t</i></b>]<b><i>, x</i></b>)</font></span></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b> <b>Ln</b>[<b>t</b>]</font></span></p>
+
+		<center>
+        <p class="MsoNormal" align="justify" style="margin-left: 0; margin-top: 10px; margin-bottom: 0; text-indent:10; word-spacing:0; line-height:100%; margin-right:0">
+		<font face="Arial" size="2"><b><span style="mso-bidi-font-size: 10.0pt">Rn[t]</span></b></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">if <b><i>t = nil</i></b></font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span></i><span lang="EN-US" style="line-height: 150%"><font size="2">then 
+		return</font><i><font size="2"> nil</font></i></span></b></font></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span></i><span lang="EN-US" style="line-height: 150%"><font size="2">else</font></span></b></font></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x &#8592; left[t]</font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;left[t] &#8592; right[x]</font></span></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right[x] &#8592; t</font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Calc_n(<i>t</i>)</b></font></span></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Calc_n(</b>x<b>)</b></font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return </b>x</font></span></p>
+
+        <p class="MsoNormal" align="justify" style="margin-left: 0; margin-top: 10px; margin-bottom: 0; text-indent:10; word-spacing:0; line-height:100%; margin-right:0">
+		<font face="Arial" size="2"><b>
+		<span style="mso-bidi-font-size: 10.0pt">&nbsp;Calc_n(t)</span></b></font></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">if t
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; ">
+		<font face="Times New Roman" size="2">&#8800;</font><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font face="Arial" size="2">&nbsp;<b><i>nil</i></b></font></span></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;then</span></b></font></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial" size="2"><b>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</span></b></font><span lang="EN-US" style="line-height: 150%"><font face="Arial" size="2"> 
+		left[<b><i>t</i></b>] </font><font face="Times New Roman" size="2">&#8800;</font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial" size="2">&nbsp;<b><i>nil</i></b></font></span></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> n[<b><i>t</i></b>] &#8592; 
+		1 + n[left[<b><i>t</i></b>]]</font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> n[</font></span><font face="Arial"><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">t</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		&#8592; 1</font></span></font></p>
+  
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i<b>f</b> right[<b><i>t</i></b>]
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; ">
+		<font face="Times New Roman" size="2">&#8800;</font></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial" size="2">&nbsp;<b><i>nil</i></b></font></span></p>
+ 
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="DE" style="line-height: 150%"><font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="DE" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> n[<b><i>t</i></b>] &#8592; 
+		n[<b><i>t</i></b>] + n[right [<b><i>t</i></b>]]</font></span></p>
+
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial" size="2"><b><span lang="EN-US">return</span></b></font></p>
+ 
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Объединение BST – деревьев">Объединение
+        BST – деревьев</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Существуют
+        различные алгоритмы объединения
+        деревьев. Например, можно обойти первое
+        дерево, вставляя каждый его узел&nbsp; во
+        второе дерево. В этом случае для
+        функции обхода в качестве операции
+        можно задать функцию вставки узла во
+        второе BST-дерево. Время выполнения
+        такого алгоритма не линейно, так как&nbsp;
+        для каждой вставки может потребоваться
+        линейное время в случае вырожденного
+        BST-дерева.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Другой
+        подход заключается в обходе обоих BST-деревьев,
+        помещении элементов в массив и затем
+        построении нового дерева при выборке
+        из этого массива элементов. Время этого
+        алгоритма может быть линейным, но
+        требует потенциально большего массива.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Можно
+        использовать алгоритм с линейным
+        временем выполнения и не требующим
+        дополнительной памяти. Основан этот
+        алгоритм на операции вставки элемента
+        в корень дерева.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Вначале
+        вставляем корень первого дерева в
+        корень второго дерева. После этой
+        операции образуются 4 поддерева. В
+        первом дереве это два поддерева корня,
+        во втором дереве - это два поддерева
+        нового корня. Для них справедливо то,
+        что все элементы в обоих левых
+        поддеревьях меньше элемента нового
+        корня во втором поддереве, а все
+        элементы в обоих правых поддеревьях
+        больше или равны элемента в новом корне.
+        Поэтому можно объединить два левых
+        поддерева в левое поддерево и два
+        правых поддерева во втором поддереве
+        по тому же методу, то есть можно
+        разработать рекурсивную функцию,
+        реализующую объединение двух BST-деревьев.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Иллюстрация
+        этого процесса&nbsp; приведена ниже:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/bst_union1.gif" width="424" height="306"></p>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><img border="0" src="images/bst_union2.gif" width="426" height="354"></p>
+        <p align="center" class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="margin-top:20px; margin-bottom:0" align="left"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        объединения деревьев:</span></font></h3>
+        </center>
+		<p class="MsoNormal" align="left" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font face="Arial"><b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">BST_Join(</font></span><i><span lang="EN-US" style="line-height: 150%"><font size="2">a,b</font></span></i><span lang="EN-US" style="line-height: 150%"><font size="2">)</font></span></b></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">1.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">
+		<span style="position: relative; top: 2.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1025" type="#_x0000_t75" style='width:11.25pt;
+ height:9pt'>
+ <v:imagedata src="bst_op2.files/image001.wmz" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=15 height=12
+src="bst_op2.files/image002.gif" v:shapes="_x0000_s1025"><![endif]></span></font><!--[if gte mso 9]><![endif]--><font face="Arial" size="2"><b><i>a,b</i></b>-</font></span><font face="Arial"><span style="line-height: 150%"><font size="2">корни 
+		деревьев</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">/</font></span><span style="line-height: 150%"><font size="2">поддеревьев</font></span></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">2.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>a</i></b> = <b><i>nil</i></b>&nbsp; <b>then</b>&nbsp; <b>return</b> </font>
+		<b><i><font size="2">b</font></i></b></span></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">3.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>b</i></b> = <b><i>nil</i></b>&nbsp; <b>then</b>&nbsp; <b>return</b> </font>
+		<b><i><font size="2">a</font></i></b></span></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">4.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">left &#8592; left[<b><i>a</i></b>]</font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">5.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">right &#8592; right[<b><i>a</i></b>]</font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">6.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">left[<b><i>a</i></b>] &#8592; <b><i>nil</i></b></font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">7.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">right[<b><i>a</i></b>] &#8592; <b><i>nil</i></b></font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">8.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		key[<b><i>a</i></b>] = key[<b><i>b</i></b>]</font></span></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">9.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> <b>Delete_Node</b>(<b><i>a</i></b>)</font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">10.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><span style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><b><span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font><b><i><font size="2">b</font></i></b></span></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">11.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">b</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		&#8592; <b>Root_Insert</b>(<b><i>b, a</i></b>)</font></span></font></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">12.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">left[<b><i>b</i></b>] &#8592; <b>BST_Join</b>(left, 
+		left[<b><i>b</i></b>])</font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">13.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font face="Arial" size="2">right[<b><i>b</i></b>] &#8592; <b>BST_Join</b>(right, 
+		right[<b><i>b</i></b>])</font></span></p>
+		<center>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="line-height: 150%">
+		<font face="Arial" size="2">14.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial"><font size="2">
+		</font></span></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">return</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font><b><i><font size="2">b</font></i></b></span></font></p>
+		</center></center></center></center></center></center></center></center></center></center></center></center></center></center><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="bst_op1.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="rand_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="55788" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/bst_op2.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:06 GMT -->
+</html>

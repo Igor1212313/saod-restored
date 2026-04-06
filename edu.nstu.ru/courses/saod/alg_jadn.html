@@ -1,0 +1,485 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_jadn.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:24 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Жадные алгоритмы</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/alg_jadn.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Жадные алгоритмы"><!--webbot bot="Navigation" i-checksum="35673" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="exhaustive_search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_dinam.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="2698" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#Коды Хаффмена">Коды
+        Хаффмена</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#задачу &quot;коммивояжера&quot;">Задача
+        коммивояжера</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Для
+        многих оптимизационных задач есть
+        более простые и быстрые алгоритмы, чем
+        динамическое программирование. К таким
+        алгоритмам относятся <span style="mso-bidi-font-size: 10.0pt; mso-fareast-font-family: Times New Roman; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA">жадные
+        алгоритмы</span>. <a name="Жадный алгоритм"><i> Жадный алгоритм</i></a>&nbsp;
+        на
+        каждом шаге делает локально
+        оптимальный выбор в расчете на то, что
+        итоговое решение также будет
+        оптимальным. Это не всегда оправдано,
+        но для многих задач жадные алгоритмы
+        действительно дают оптимум.</font></span></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Принцип
+        жадного выбора</font></span></b></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Говорят,
+        что к оптимизационной задаче применим
+        принцип жадного выбора<b style="mso-bidi-font-size: 10.0pt">
+        </b>(greedy choice property), если
+        последовательность локально
+        оптимальных (жадных) выборов дает
+        глобально оптимальное решение.
+        Различие между жадными алгоритмами и
+        динамическим программированием можно
+        пояснить так: на каждом шаге жадный
+        алгоритм берет “самый жирный кусок”, а
+        потом уже пытается сделать наилучший
+        выбор среди оставшихся вариантов,
+        каковы бы они ни были. Алгоритм
+        динамического программирования
+        принимает решение, просчитав заранее
+        последствие всех вариантов. </span></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Оптимальность
+        для подзадач</font></span></b></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Решаемые
+        с помощью жадных алгоритмов задачи
+        обладают свойством оптимальности для
+        подзадач<span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA">: </span>оптимальное
+        решение всей задачи содержит
+        оптимальное решение подзадач. </span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">И
+        жадные алгоритмы, и динамическое
+        программирование основываются на
+        свойстве оптимальности для подзадач,
+        поэтому может возникнуть желание
+        применить жадный алгоритм вместо
+        динамического, и наоборот. В одном
+        случае это может не дать оптимального
+        решения, во втором может привести к
+        менее эффективному решению.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Примером
+        может служить задача о рюкзаке[<a href="liter.html">3</a>]:
+        она состоит в том, чтобы уложить в
+        рюкзак вещи таким образом, чтобы их
+        суммарный вес не превышал предельного
+        значения W и суммарная стоимость вещей
+        была максимальна. Задача имеет две
+        разновидности – непрерывная задача и
+        дискретная. Например, вещи неделимы (золотой
+        слиток) и делимы (золотой песок).</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        имеется n вещей, каждая из которых имеет
+        стоимость v<sub>i</sub> и вес w<sub>i</sub>.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Стратегия
+        &nbsp;жадного &nbsp;алгоритма &nbsp;состоит
+        &nbsp;в &nbsp;следующем: &nbsp;рассчитывается
+        &nbsp;удельная &nbsp;цена &nbsp;вещи c<sub>i</sub> = v<sub>i
+        </sub>/w<sub>i</sub>. Вещи сортируются в порядке
+        убывания удельной цены. Первой
+        выбирается вещь с максимальной
+        удельной ценой, затем&nbsp; из
+        оставшегося множества снова
+        выбирается вещь с максимальной ценой и
+        т.д. При этом условием выбора является
+        то, что добавляемая вещь не приводит к
+        превышению предельного веса W.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">В
+        случае непрерывной задачи о рюкзаке
+        получается общее оптимальное решение,
+        в случае дискретной – нет. </font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn1.gif" width="560" height="233"></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</h3>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Коды Хаффмена">Коды
+        Хаффмена</a></span></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Любое
+        сообщение состоит из
+        последовательности символов
+        некоторого алфавита. Как известно, при
+        передаче сообщений, при компьютерной
+        обработке символы алфавита кодируются.
+        Всем известна кодировка символов ASCII.
+        Зачастую для экономии памяти, для
+        увеличения скорости её передачи
+        возникает задача сжатия информации . В
+        этом случае используются специальные
+        методы кодирования символов. К таким
+        относятся коды Хэффмена, которые дают
+        сжатие от 20% до 90% в зависимости от типа
+        информации </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">[<a href="liter.html">3</a>]</font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Алгоритм
+        Хэффмена находит оптимальные коды
+        символов исходя из частоты
+        использования символов в сжимаемом
+        тексте. Алгоритм Хэффмена является
+        примером жадного алгоритма .</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        в файле длины 100000 символы известны
+        частоты символов:</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn2.gif" width="542" height="80"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Нужно
+        построить двоичный код, в котором
+        каждый символ представляется в виде
+        конечной последовательности битов,
+        называемой кодовым словом. При
+        использовании равномерного кода, в
+        котором все кодовые слова имеют
+        одинаковую длину, на каждый символ
+        тратится минимум три бита и на весь
+        файл уйдет 300000 битов.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Неравномерный
+        код&nbsp; будет экономнее, если часто
+        встречающиеся символы закодировать
+        короткими последовательностями битов,
+        а редко встречающиеся символы –
+        длинными. При кодировке на весь файл
+        уйдет (45<img border="0" src="images/mul.gif" width="9" height="8">1 + 13<img border="0" src="images/mul.gif" width="9" height="8">3
+        + 12<img border="0" src="images/mul.gif" width="9" height="8">3 + 16<img border="0" src="images/mul.gif" width="9" height="8">3
+        + 9<img border="0" src="images/mul.gif" width="9" height="8">4 + 5<img border="0" src="images/mul.gif" width="9" height="8">4)<img border="0" src="images/mul.gif" width="9" height="8">1000
+        = 224000. То есть, неравномерный код&nbsp;
+        дает около 25% экономии.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Префиксные коды">Префиксные
+        коды</a></span></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Рассмотрим
+        коды, в которых для каждой из двух
+        последовательностей битов,
+        представляющих различные символы, ни
+        одна не является префиксом другой.
+        Такие коды называются префиксными
+        кодами .</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">При
+        кодировании каждый символ заменяется
+        на свой код. Например, строка abc
+        выглядит как 0101100. Для префиксного кода
+        декодирование однозначно и
+        выполняется слева направо. Первый
+        символ текста, закодированного
+        префиксным кодом, определяется
+        однозначно, так как его кодовое слово
+        не может быть началом какого-либо
+        другого символа. Определив этот символ
+        и отбросив его кодовое слово, повторяем
+        процесс для оставшихся битов и так
+        далее.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Например,
+        строка 001011101 декодируется как aabe. Для
+        эффективной реализации декодирования
+        нужно хранить информацию о коде в
+        удобной форме. Одна из возможностей –
+        представить код в виде <a name="кодового двоичного дерева"><i>кодового
+        двоичного
+        дерева</i></a>, листья которого соответствуют
+        кодируемым символам. При этом путь от
+        корня до кодируемого символа
+        определяет кодирующую
+        последовательность битов: переход по
+        дереву налево дает 0, а переход направо
+        – 1.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn3.gif" width="624" height="214">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Во
+        внутренних узлах указана сумма частот
+        для листьев соответствующего
+        поддерева.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Оптимальному
+        для данного файла коду всегда
+        соответствует двоичное дерево, в
+        котором всякая вершина , не являющаяся
+        листом, имеет двух сыновей. Равномерный
+        код не является оптимальным, так как в
+        соответствующем ему дереве есть
+        вершина с одним сыном. Ни один код не
+        начинается с 11… Такое свойство
+        оптимального кода позволяет легко
+        доказать, что дерево оптимального
+        префиксного кода для файла, в котором
+        используются все символы из некоторого
+        множества С и только они содержат ровно
+        | С | листьев по одному на каждый символ
+        и ровно | С | - 1 узлов , не являющихся
+        листьями.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Зная
+        дерево Т, соответствующее префиксному
+        коду, легко найти количество битов,
+        необходимое для кодирования файла.
+        Именно, для каждого символа с из
+        алфавита С, пусть f [c] означает число его
+        вхождений в файл, а d<sub>T</sub> (c) – глубину
+        соответствующего ему листа и,
+        следовательно, длину
+        последовательности битов, кодирующей с.
+        Тогда для кодирования файла
+        потребуется:</span></font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn4.gif" width="160" height="42"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Эта
+        величина называется стоимостью дерева
+        Т. Необходимо минимизировать эту
+        величину.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Хаффмен"><i>Хаффмен&nbsp;</i></a><i>
+        </i>предложил жадный алгоритм, который
+        строит оптимальный префиксный код.
+        Алгоритм строит дерево Т,
+        соответствующее оптимальному коду
+        снизу вверх, начиная с множества из | С |
+        листьев и делая | С | - 1 слияний. Для
+        каждого символа <img border="0" src="images/alg_jadn5.gif" align="middle" width="31" height="13">
+        задана его частота f [c]. Для нахождения
+        двух объектов для слияния используется
+        <a href="queue.html#Очередь с приоритетом">очередь
+        с приоритетами</a> Q, использующая
+        частоты f в качестве приоритетов –
+        сливаются два объекта с наименьшими
+        частотами. В результате слияния
+        получается новый объект (внутренняя
+        вершина), частота которого считается
+        равной сумме частот двух сливаемых
+        объектов. Эта вершина заносится в
+        очередь.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><b><a name="Huffman (C)">Huffman
+        (<i>C</i>)</a></b></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        n &#8592;&#9474;C&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">&#9474;<i><b>C</b></i>&#9474;-
+        мощность С</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Q &#8592; <i><b>C</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Q –
+        очередь с приоритетами</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>for</b> i &#8592; 1 <b>to</b> n-1</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; <b>do</b> z &#8592; <b>Create_Node</b> ( )&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" align="middle" width="14" height="14">z
+        – узел, состоящий из полей f, left, right</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x &#8592; left [z]
+        &#8592; <b>Dequeue</b> (Q)</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y &#8592; right [z]
+        &#8592; <b>Dequeue</b><b> </b>(Q)</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f[z] &#8592; f[x] + f[y]</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Enqueue</b> (Q, z)</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        return <b>Dequeue</b> (Q)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">вернуть
+        корень дерева</span> </font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Иллюстрация
+        построения кодового дерева :</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn6.gif" width="469" height="445"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn7.gif" width="544" height="204"></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">На
+      каждом шаге сливаются два поддерева с
+      наименьшими частотами.</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+      <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Жадные алгоритмы, как эвристики">Жадные
+      алгоритмы, как эвристики</a></span></font></h3>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Существуют
+      задачи, для которых ни один из известных жадных
+      алгоритмов не позволяет
+      получить оптимального решения. Там не
+      менее имеются жадные алгоритмы,
+      которые с большой вероятностью
+      позволяют получить &quot;хорошее&quot;
+      решение,
+      то есть почти оптимальное решение,
+      характеризующееся стоимостью, которое
+      лишь не несколько процентов превышает
+      оптимальную. В таких случаях “жадный”
+      алгоритм оказывается самым быстрым
+      способом получить “хорошее” решение.</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Рассмотрим
+      <a name="задачу &quot;коммивояжера&quot;"><i>
+      задачу &quot;коммивояжера&quot;</i></a>&nbsp; [<a href="liter.html">1</a>].</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Для
+      получения оптимального решения
+      подходит лишь алгоритм <a href="exhaustive_search.html">исчерпывающего
+      поиска</a>,
+      время выполнения которого
+      экспоненциально.</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Задачу
+      коммивояжера можно решить, используя
+      эвристические решения. <a name="Эвристика"><i>Эвристика</i></a>&nbsp;
+      - это основанные на здравом смысле
+      правила, вытекающие из опыта, а не из
+      строго доказанных математических
+      положений</span></font></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Задача
+      коммивояжера сводится к поиску в
+      неориентированном графе с весовыми
+      значениями ребер маршрута, у которого
+      сумма весов составляющих ребер будет
+      минимальной. Такой маршрут называется
+      гамильтоновым циклом.</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+      дан граф с шестью вершинами (</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">&quot;</font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">городами</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">&quot;</font></span><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">).
+      Для каждой вершины заданы координаты,
+      весом ребра считается его длина.
+      Предполагаем, что существуют все ребра,
+      то есть граф является полным. В более общем
+      случае, когда вес ребер не оценивается
+      евклидовым расстоянием, вес ребра может
+      быть равен бесконечности.</span></font>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;<img border="0" src="images/alg_jadn8.gif" width="201" height="64">
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Можно
+      проложить разные маршруты:</font></span>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn9.gif" width="462" height="83">
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Жадный
+      алгоритм задачи коммивояжера выбирает
+      на каждом шаге ребро с минимальным весом,
+      такое чтобы оно не образовало цикла с
+      ранее выбранными ребрами, и не порождало
+      вершины со степенью 3 и более, что
+      неприемлемо для маршрута. Цикл допустим,
+      только если количество ребер
+      соответствует количеству вершин, то
+      есть мы приходим к исходной вершине
+      маршрута.</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/alg_jadn10.gif" width="231" height="119"></p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Добавляется&nbsp; ребро (d , e) &nbsp;(длина
+            =3).</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Добавляются ребра (a , b),&nbsp; (b, c) , (e , f)
+            &nbsp;(длина=5).</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Отвергается ребро (a , c ) , так как
+            образует цикл.</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Отвергается ребро (d , f) , так как
+            образует цикл.</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Отвергается ребро( b, e),&nbsp; так как
+            образует степень 3 у вершин b и e.</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Отвергается ребро (b , d), так как
+            образует степень 3 у вершины b.</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Добавляется&nbsp; ребро (c , d).</span></font></p>
+            <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Добавляется&nbsp; ребро (a, f ).</span></font></p>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">На
+      рисунке сначала выбирается ребро (d, e) с
+      минимальным весом 3. Затем
+      рассматриваются ребра (b, c), (a, b) и (e, f) с
+      весом 5. Все эти ребра удовлетворяют
+      условиям выбора и можно выбрать любое из
+      них в любом порядке (наприме, (a, b), (e, f), (b,
+      c)). Все эти ребра включаются в решение.
+      Следующим кратчайшим путем является (a, c)
+      с длиной (7, 08), но это ребро образует цикл
+      с ребрами (a, b) и</font></span> <span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">(а,
+      с), и поэтому отвергается. Затем по той же
+      причине отвергается ребро (d, f). Далее
+      ребро (b, e) отвергается, так как иначе
+      вершины b и e будут иметь степень 3. По
+      этой же причине будет отвергнуто
+      следующее ребро (b, d). Затем рассмотрим
+      ребро (c, d) и добавим его к гамильтонову
+      циклу. Количество ребер соответствует
+      количеству вершин – 1 и построен маршрут:
+      a&#8594;b&#8594;c&#8594;d&#8594;e&#8594;f. Для завершения
+      добавляем ребро (a, f) для замыкания цикла.</font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">По
+      оптимальности маршрут на четвертом
+      месте среди возможных маршрутов. Его
+      стоимость на 4% больше стоимости
+      оптимального маршрута. </font></span></p>
+      <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<!--mstheme--></font></td>
+    </tr>
+  <center>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="exhaustive_search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_dinam.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="23380" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_jadn.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:26 GMT -->
+</html>

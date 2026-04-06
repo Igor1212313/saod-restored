@@ -1,0 +1,910 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_orgraph.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:37 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Задачи для ориентированных графов</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800" height="4547">
+          <tr>
+      <td width="100%" height="32"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/alg_orgraph.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Задачи для ориентированных графов"><!--webbot bot="Navigation" i-checksum="38990" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" height="22"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_weight_graph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="3513" endspan --><!--mstheme--></font></td>
+    </tr>
+          <tr>
+<td width="100%" height="4455"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача поиска сильносвязных компонент в орграфе">Задача
+        поиска сильносвязных компонент в
+        орграфе</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Задача топологической сортировки">Задача
+        топологической сортировки</a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><a href="#Задача обратной топологической сортировки">Задача
+        обратной топологической сортировк</a></span><a href="#Задача обратной топологической сортировки"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">и</span></a></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><a href="#Задача транзитивного замыкания орграфа">Задача
+        транзитивного замыкания орграфа</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Терминология
+        орграфов</font></h3>
+  <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Орграф
+        - набор вершин и набор ориентированных
+        ребер (дуг), которые соединяют
+        упорядоченные пары вершин.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Степень
+        вершины орграфа - сумма числа входящих
+        в вершину дуг и числа исходящих из
+        вершины дуг. </font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Полустепень захода"><i>Полустепень
+        захода</i></a>&nbsp; вершины - число входящих в
+        вершину дуг. </font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Полустепень исхода"><i>Полустепень
+        исхода</i></a>&nbsp; - число исходящих из вершины дуг.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Исток"><i>Исток</i></a>
+        - вершина орграфа с нулевой
+        полустепенью захода.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Сток"><i>Сток</i></a>
+        - вершина с нулевой полустепенью исхода.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Ориентированный
+        путь - список вершин, в котором дуги
+        соединяют вершину списка со следующей
+        вершиной в списке.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Ориентированный
+        путь,&nbsp; имеющий одинаковые начальную и
+        конечную вершину, называется
+        ориентироыванным <a name="циклическим путем"><i> циклическим путем</i></a>.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Простой
+              <a name="ориентированный цикл"><i>
+        ориентированный цикл</i></a>&nbsp; - циклический
+        путь, содержащий различные ребра и
+        вершины, кроме начальной и конечной
+        вершин.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Орграф,
+        не содержащий циклических путей,
+        называется ациклическим графом <i> DAG</i>&nbsp;
+              (Directed
+        Acyclic Graph).</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        орграфе термин &quot;связность вершин&quot;
+        заменяется на термин &quot;<a name="достижимость"><i>достижимость</i></a>&quot;.</font>
+              <font face="MS Sans Serif" size="2">Вершина
+        v&nbsp; достижима из вершины u, если
+        существует ориентированный путь из u в v.
+        Факт, что v достижима из u, не
+        свидетельствует, что вершина u
+        достижима из v.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Пара
+        вершин u и v <a name="сильно связана"><i> сильно связана</i></a>, если вершины
+        u и v&nbsp; взаимно достижимы.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Пара
+        вершин u и v сильно связана, если вершины
+        u и v&nbsp; лежат на некотором направленном
+        цикле.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Орграф сильно связный"><i>Орграф
+        сильно связный</i></a>, если каждая вершина
+        достижима для любой другой вершины
+        графа.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+  </table msimagelist><!--mstheme--><font face="Arial">
+        <blockquote>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Пример
+        сильно связного графа:</font></p>
+        </blockquote>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph1.gif" width="174" height="66"></p>
+  <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Орграф,
+        не являющийся сильно связным, содержит
+        набор сильно связных компонент,
+        которые представляют собой сильно
+        связные подграфы. Сильно связные
+        компоненты соединены между собой
+        дугами, не вошедшими ни в одну сильно
+        связную компоненту.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+  </table msimagelist><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Задача поиска сильносвязных компонент в орграфе">Задача
+        поиска сильносвязных компонент в
+        орграфе</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Задача
+        нахождения сильно связных компонент
+        является примером применения поиска в
+        глубину в орграфе.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Многие
+        алгоритмы, использующие орграфы,
+        первоначально организуют разложение
+        орграфа на сильно связные компоненты.
+        После этого задача решается отдельно
+        для каждой компоненты и затем решения
+        комбинируются в соответствии со
+        связями между компонентами. Этот прием
+        называется <a name="редуцированием графа"><i> редуцированием графа&nbsp;</i></a><i>
+        </i>к
+        графу компонент.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a name="Сильно связной компонентой"><i>Сильно
+        связной компонентой</i></a> орграфа G=(V, E)
+        называется множество вершин U<img border="0" src="images/belong_to.gif" width="12" height="10">V,&nbsp;
+        любые две вершины которого достижимы
+        друг из друга.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Пример
+        орграфа с тремя сильно связными компонентами:</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph2.gif" width="186" height="88"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">&nbsp;</font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Каждая
+        из вершин орграфа принадлежит какой -
+        либо сильно связной компоненте, но
+        некоторые дуги могут не принадлежать
+        никакой сильно связной компоненте.
+        Такие дуги ведут от вершины одной
+        компоненты к вершине другой компоненты.
+        Редуцированный граф всегда является
+        ациклическим орграфом.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph3.gif" width="162" height="72"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Общая
+        схема нахождения сильно связных
+        компонент следующая:</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">1.
+        Выполняется полный обход&nbsp; в глубину
+        на орграфе. Вершины помечаются метками
+        времени обнаружения и окончания
+        обработки - d[u] /f [u].</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph4.gif" width="180" height="94"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">При
+        поиске в глубину на шаге 1 вершина
+        связной компоненты, обнаруженная
+        первой становится прародителем в
+        дереве поиска всех вершин этой связной
+        компоненты и имеет максимальное время
+        завершения. В нашем примере такими
+        вершинами являются вершины 1, 2, 6. </font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">2.
+        Создается новый <a name="транспортированный орграф"><i> транспортированный
+        орграф</i></a>&nbsp;</font> <font face="MS Sans Serif" size="2">G<sup>T</sup> путем обращения
+        направления всех дуг в графе G.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph5.gif" width="178" height="70"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Исходный
+        граф G и транспортированный граф G<sup>T</sup>
+        имеют одни и те же связные компоненты,
+        поскольку, если существует путь&nbsp; u <img border="0" src="images/path.gif" align="middle" width="37" height="19">
+        v в графе G<sup>T</sup>, то существует путь v <img border="0" src="images/path.gif" align="middle" width="37" height="19">
+        u в графе G.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">3.
+        Выполняется полный обход в&nbsp; глубину
+        в графе G<sup>T</sup>, начиная с вершины с
+        наибольшей меткой f[u]. Если первый
+        обход&nbsp; не охватывает все вершины G<sup>T</sup>,
+        то начинается новый обход среди
+        оставшихся вершин, начиная с вершины,
+        имеющей наибольшую метку f[u].</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph6.gif" width="262" height="158"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Помня
+        о том, что&nbsp; связные компоненты
+        сохраняются в транспонированном
+        орграфе G<sup>T</sup>, построение дерева
+        поиска в глубину начинается с вершины -
+        прародителя связной компоненты. Обход
+        в глубину дает дерево поиска,
+        включающее все и только вершины этой
+        связной компоненты. Другие вершины не
+        достижимы, так как не входят в эту
+        связную компоненту.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Вызов
+        для вершин 2, 1, 6 функции DFS&nbsp; - Visit
+        окрашивает в черный цвет все вершины
+        очередной связной компоненты, белые на
+        этот момент. Поскольку вершины </font><font face="MS Sans Serif" size="2">2,
+        1, 6&nbsp; имеют максимальное время
+        завершения обработки, полученные&nbsp; на
+        первом шаге в исходном графе G, то при
+        обходе в глубину&nbsp; в&nbsp; графе G<sup>T </sup>они
+        становятся корнями деревьев обхода в
+        глубину.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">4.
+        Полученные деревья обхода в глубину
+        определяют состав сильно связных
+        компонент в исходном графе G.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph7.gif" width="126" height="116"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Задача топологической сортировки">Задача
+        топологической сортировки</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Топологическая
+        сортировка используется для
+        ациклических графов - DAG. Чаще всего <a name="DAG"><i> DAG</i></a>&nbsp;
+        используется для моделирования
+        отношений предшествования между
+        объектами или задачами, которые в
+        теории множеств называются
+        отношениями частичного порядка.
+        Типичным примером частичного порядка
+        является задача о включении
+        подмножеств в множество.&nbsp;</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Пусть
+        дано множество {a, b, c}. В множестве можно
+        выделить следующие подмножества: <img border="0" src="images/empty_set.gif" align="middle" width="14" height="16">
+        , {a}, {b}, {c}, {a, b}, {a, c}, {b. c}, {a, b, c}. Отношение <img border="0" src="images/include.gif" align="middle" width="13" height="12">
+        - &quot;включает, но не равно&quot;,
+        определенное на множестве подмножеств,
+        задает частичный порядок между
+        подмножествами. Например:</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><img border="0" src="images/empty_set.gif" align="middle" width="14" height="16">
+        <img border="0" src="images/include.gif" align="middle" width="13" height="12"> {a}</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">{a}
+        <img border="0" src="images/include.gif" align="middle" width="13" height="12"> {a, b}</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">{a,
+        b} <img border="0" src="images/include.gif" align="middle" width="13" height="12"> {a, b, c}</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">DAG
+        отражает эти частичные порядки
+        следующим образом:</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph11.gif" width="128" height="163"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Путь
+        в DAG отражает следующий порядок
+        включений подмножеств: подмножество.
+        представляемое предыдущей вершиной на
+        пути, содержится в подмножестве,
+        представленном следующей вершиной.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Свойства
+        отношения частичного порядка:</font></p>
+  <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Отношение
+              частичного порядка не симметрично: u
+              R v <img border="0" src="images/neravno.gif" width="12" height="13"> v R&nbsp; u</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Отношение
+              частичного порядка&nbsp; не
+              рефлексивно: не существует
+              отношение u R u</font><!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">&nbsp;Отношение
+              частичного порядка транзитивно:
+              если существуют отношения&nbsp; u R v и v
+              R , то существует отношение u R w.</font><!--mstheme--></font></td msimagelist>
+    </tr>
+  </table msimagelist><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Типичной
+        задачей, обрабатывающей отношения
+        частичного порядка, является задача
+        составления расписания. Необходимо
+        организовать завершение решения
+        некоторого подмножества задач с учетом
+        условий и ограничений, задающих
+        отношения предшествования между
+        задачами.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Постановка
+        задачи составления расписания:</font> <font face="MS Sans Serif" size="2">пусть
+        дано множество задач, на котором задан
+        частичный порядок, определяющий, что
+        решение некоторых задач должно быть
+        завершено прежде, чем начнется
+        выполнение некоторых других задач.
+        Необходимо организовать решение всех
+        задач так, чтобы все задачи были
+        успешно завершены с соблюдением
+        частичного порядка.</font>&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Задача
+        решается достаточно просто, если на
+        множестве задач задан только один вид
+        отношений предшествования. Решение
+        сводится к определению линейного
+        порядка элементов множества, в котором
+        отношения предшествования существуют
+        между элементами с меньшим номером&nbsp;
+        и элементом с большим номером в
+        линейном порядке. Установленный
+        линейный порядок задает очередность
+        или хронологию решения задач.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        интерпретации с помощью графов эта
+        задача называется <a name="топологической сортировкой"><i> топологической
+        сортировкой</i></a>.&nbsp; </font><font face="MS Sans Serif" size="2">Пусть
+        имеется орграф без циклов - DAG..
+        Необходимо указать такой
+        линейный порядок&nbsp; его вершин, что
+        любое ребро ведет от меньшей вершины к
+        большей. Очевидно, что если в графе есть
+        циклы, такого порядка не существует. </font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph8.gif" width="256" height="132"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Или
+        можно сформулировать задачу
+        топологической сортировки иначе:
+        расположить вершины графа на
+        горизонтальной прямой так, чтобы все
+        ребра шли слева направо.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/orgraph9.gif" width="404" height="90"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Алгоритм
+        топологической сортировки является
+        модифицированным алгоритмом полного
+        обхода в глубину. В момент завершения
+        обработки вершины, когда она
+        закрашивается в черный цвет, номер
+        вершины заносится в стек. По окончании
+        полного обхода порядок вершин в стеке
+        задает порядок топологической
+        сортировки.</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Алгоритм
+        имеет вид:</font></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><a name="Topological - Sort">Topological
+        - Sort</a> (<i>G</i>)</font></h3>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-style: normal; font-variant: normal; font-weight: 700">
+        </span></font></span><font face="Arial" size="2">
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700">for</span><span style="mso-bidi-font-size: 10.0pt">
+        </span>для <span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u
+        <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"> V</span><span style="mso-bidi-font-size: 10.0pt">[</span><b><i>G</i></b><span style="mso-bidi-font-size: 10.0pt">]</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">do</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        color [u]&nbsp; <span style="mso-no-proof:
+yes">&#8592;</span></span><span style="mso-bidi-font-size: 10.0pt"> БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>p[u]&nbsp; <span style="mso-no-proof:yes">&#8592;</span><span style="mso-no-proof: yes">
+        </span>nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">nil = -1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">time
+        <span style="mso-no-proof:
+yes">&#8592;</span> 0</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">for</span><span style="mso-bidi-font-size: 10.0pt">
+        </span>для <span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u
+        <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+        </span>V<span style="mso-bidi-font-size: 10.0pt">[</span><b><i>G</i></b><span style="mso-bidi-font-size: 10.0pt">]</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">do
+        if </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color [u] = </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">then</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">DFS -Visit_Sort</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> (u) </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-spacerun:yes"><font face="Microsoft Sans Serif" size="2">&nbsp;&nbsp;&nbsp;
+        </font></span></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Microsoft Sans Serif" size="2">&nbsp;&nbsp;</font><font face="Arial" size="2">DFS_Visit_Sort(</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">)</span></font></h3>
+        <p style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify" class="MsoNormal">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;
+        color
+        [</span><span style="font-style: italic; font-variant: normal; font-weight: 700">u</span><span style="font-style: normal; font-variant: normal; font-weight: normal">] &#8592; СЕРЫЙ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Вершина </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span style="font-style: italic; font-variant: normal; font-weight: 700; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:normal; font-variant:normal; font-weight:normal" lang="EN-US">была белой</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]
+        <span style="mso-no-proof:
+yes">&#8592; </span>time</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        time&nbsp; <span style="mso-no-proof:yes">&#8592; </span>time + 1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; font-weight:700">for </span>для
+		<span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt"> </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v
+        <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"> Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span style="mso-bidi-font-size: 10.0pt">]<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span style="mso-bidi-font-size: 10.0pt">]<span style="mso-spacerun:yes">&nbsp;
+        - список смежности вершины </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-weight:700">do
+        if</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> color [v] = </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-weight:700">then</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> p[v]&nbsp; <span style="mso-no-proof:
+yes">&#8592;</span><span style="mso-no-proof: yes"> </span> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>DFS -Visit_Sort</b>&nbsp; (v)</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">8.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color
+        [</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">] <span style="mso-no-proof:yes">&#8592;</span> </span><span style="mso-bidi-font-size: 10.0pt">ЧЕРНЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Push</b>(St,
+        <span style="font-style: italic; font-variant: normal; font-weight: 700; mso-ansi-language: EN-US">u</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" align="middle" width="14" height="14">St
+        - стек</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">10.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;</span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">f[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-variant:normal; font-weight:700">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]
+        <span style="mso-no-proof:
+yes">&#8592;&nbsp; </span>time</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">11.&nbsp;&nbsp;&nbsp;&nbsp;time&nbsp; <span style="mso-no-proof:yes">&#8592; </span>time + 
+		1</span></font></p>
+<p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+<font face="Arial" size="2">12.&nbsp;&nbsp;&nbsp; <b>return</b></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Иллюстрация
+        работы алгоритма топологической
+        сортировки:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph10.gif" width="386" height="176"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><a name="Задача обратной топологической сортировки">Задача
+        обратной топологической сортировк</a></span></font><font face="Microsoft Sans Serif" size="2"><a name="Задача обратной топологической сортировки"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">и</span></a></font></h3>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Иногда
+        между элементами множества необходимо
+        задавать отношения зависимости,
+        противоположные отношениям
+        предшествования. То есть, элемент
+        множества u зависит от элемента v, если v
+        предшествует u. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Типичной
+        задачей, использующей отношения
+        зависимости, является сортировка
+        словаря по определениям терминов. Если
+        в определении термина u используется
+        определение термина v, то определение
+        термина v должно предшествовать в
+        словаре определению термина u. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">В
+        интерпретации с помощью DAG термину
+        соответствует вершина DAG и существует
+        ребро (u, v),&nbsp; если термин u&nbsp; зависит
+        от v. Вершина с термином v должна
+        предшествовать вершине с термином u в
+        линейном порядке вершин.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph12.gif" width="113" height="34"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">То
+        есть,&nbsp; в DAG, моделирующем отношения
+        зависимости, нужно установить такой
+        линейный порядок, чтобы дуги были
+        направлены от вершин с большими
+        номерами к вершинам с меньшими
+        номерами. Такая задача называется
+        задачей обратной топологической
+        сортировки. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Алгоритм
+        обратной топологической сортировки
+        отличается от алгоритма прямой
+        топологической сортиовки лишь
+        использованием вместо стека очереди FIFO
+        - Q. При завершении обработки очередной
+        вершины в процессе полного обхода в
+        глубину она заносится в очередь. После
+        завершения обхода порядок вершин в
+        очереди Q определяет порядок обратной
+        топологической сортировки.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Иллюстрация
+        обратной топологической сортировки:</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph13.gif" width="400" height="284"></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center">&nbsp;</p>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><a name="Задача транзитивного замыкания орграфа">Задача
+        транзитивного замыкания орграфа</a></span></font></h3>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;<font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Задача
+  о транзитивном замыкании состоит в
+  следующем: дан орграф G (V,E) с вершинами 1, 2, .
+  . . , V. Требуется определить для любой пары
+  вершин i, j <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"> V
+  существует ли в графе путь из вершины i в
+  вершину j. <a name="Транзитивным замыканием"><i> Транзитивным замыканием</i></a>&nbsp;
+  орграфа
+  G называется орграф G<sup>*</sup>(V. E<sup>*</sup>), где E<sup>*</sup>
+  = {(i,j)} - множество ребер, соответствующих
+  путям между вершинами i и j в исходном графе
+  G.</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><font face="Microsoft Sans Serif" size="2">Транзитивное
+  замыкание можно вычислить при помощи <a name="алгоритма  Уоршолла"><i>
+  алгоритма&nbsp; Уоршолла</i></a> [<a href="liter.html">1</a>].&nbsp;
+  Алгоритм&nbsp;&nbsp; строит <a name="матрицу транзитивного замыкания"><i> матрицу
+  транзитивного замыкания</i></a>&nbsp; Т, в которой t</font><font face="Microsoft Sans Serif" size="3"><sub>ij</sub></font><font face="Microsoft Sans Serif" size="2">
+  = 1, если существует путь между вершинами i и
+  j в графе G, и t</font><font face="Microsoft Sans Serif" size="3"><sub>ij
+  </sub></font><font face="Microsoft Sans Serif" size="2">= 0 - в
+  противном случае. Фактически матрица Т
+  является матрицей смежности графа </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"> G<sup>*</sup>.
+  Матрица строится постепенно при
+  рассмотрении в качестве промежуточной
+  очередной вершины k, k = 1, 2, . . . , V на путях
+  между всеми парами вершин.</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Изначально:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph14.gif" width="290" height="86"></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">При
+  рассмотрении в качестве промежуточной&nbsp;
+  вершины k для всех путей, элементы матрицы T
+  пересчитываются по формуле:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph15.gif" width="218" height="38"></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Псевдокод
+  алгоритма Уоршолла имеет вид:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US"><font face="Microsoft Sans Serif" size="2">&nbsp;</font><font face="Arial" size="2"><b><a name="Warsall_Transitive_Closure (G)">Warsall_Transitive_Closure
+  (<i>G</i>)</a></b></font></span></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">1.&nbsp;&nbsp;n </span></font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+	<font face="Arial" size="2"> &#8592;
+  |V[<i><b>G</b></i>]|</font></span></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">2.&nbsp;<b>
+  for </b>i </span>&#8592; 1 t</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><b>o
+	</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+	n</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><b>do</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> </span>
+	<b>for</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"> j </span>
+	&#8592; 1 </span>
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+	<b>to</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> 
+	n</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><b>do</b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> </span>
+	<b>if </b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">i = j </span>
+	<b>or</b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> ребро (i, j) <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">
+  E[</span><i><b>G</b></i><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">]</span></span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2">
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><b>
+  then</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> T<sub>i,j </sub>&#8592;
+  1</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>
+  else</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> </span></font><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+	<font face="Arial" size="2">T<sub>i,j
+  </sub></font></span><font face="Arial" size="2"> &#8592;
+  <span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">0</span></font></span></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">7.&nbsp;&nbsp;</span><b>
+  for</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"> k </span>
+	&#8592; 1 </span>
+	<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+	<b>to </b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+	n</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><b>do for</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"> i </span>
+	&#8592; 1</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><b> 
+	to</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> 
+	n</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><b>do for </b> </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">j </span>
+	&#8592; 1</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><b> 
+	to</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> 
+	n</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+	10.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+	<b>do</b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> <img border="0" src="images/orgraph19.gif" align="middle" width="204" height="25"></span></span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+	<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+	11. </span><b>return </b><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+	T</span></span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">Трудоемкость
+  алгоритма Уоршолла имеет нотацию O(V<sup>3</sup>).</span></font></span></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Для
+  иллюстрации алгоритма рассмотрим
+  построение матрицы транзитивного
+  замыкания T для орграфа:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph16.gif" width="128" height="96"></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">Изначально
+  матрица транзитивного замыкания T<sup>0 </sup>имеет
+  вид:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">T<sup>0</sup></span></font></p>
+  <div align="center">
+    <center>
+    <!--mstheme--></font><table border="1" cellpadding="0" cellspacing="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+      <tr>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" bordercolor="#000000" width="30" height="30"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="Arial">
+    </center>
+  </div>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">При
+  добавлении в качестве промежуточной
+  вершины 1 матрица&nbsp; не изменяется:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">T</span><span lang="EN-US"><sup><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">1</span></sup></span></font></p>
+  <div align="center">
+    <center>
+    <!--mstheme--></font><table border="1" cellpadding="0" cellspacing="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+      <tr>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td align="center" width="30" height="30" bordercolor="#000000"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="Arial">
+    </center>
+  </div>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">При
+  добавлении в качестве промежуточной
+  вершины 2 появляются новые пути. Например,
+  выстраивается новый путь (3, 4):</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph18.gif" width="160" height="116"></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><img border="0" src="images/orgraph17.gif" width="350" height="38"></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;В
+  итоге, после рассмотрения в качестве
+  промежуточной вершины 2 матрица Т имеет
+  вид:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">T<sup>2</sup></span></font></p>
+  <div align="center">
+    <center>
+    <!--mstheme--></font><table border="1" cellpadding="0" cellspacing="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="Arial">
+    </center>
+  </div>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">После
+  рассмотрения в качестве промежуточной
+  вершины 3 матрица Т имеет вид:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">T<sup>3</sup></span></font></p>
+  <div align="center">
+    <!--mstheme--></font><table border="1" cellpadding="0" cellspacing="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="Arial">
+  </div>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">После
+  рассмотрения в качестве промежуточной
+  вершины 4 матрица Т имеет вид:</span></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">T</span><span lang="EN-US"><sup><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">4</span></sup></span></font></p>
+  <div align="center">
+    <!--mstheme--></font><table border="1" cellpadding="0" cellspacing="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">0</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+      <tr>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+        <td bordercolor="#000000" width="30" height="30" align="center"><!--mstheme--><font face="Arial"><font face="Microsoft Sans Serif" size="2">1</font><!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="Arial">
+  </div>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="justify">&nbsp;</p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center"><font color="#0000FF"><b><a href="flash/test37.html">Тест</a></b></font></p>
+  <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin: 0" align="center">&nbsp;</p>
+<!--mstheme--></font></td>
+    <tr>
+      <td width="100%" height="22"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="alg_dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_weight_graph.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="31895" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/alg_orgraph.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:42 GMT -->
+</html>

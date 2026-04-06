@@ -1,0 +1,263 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_princ.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:41 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Новая страница 1</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/sort_princ.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Сортировка"><!--webbot bot="Navigation" i-checksum="1397" endspan -->
+        </p>
+        <p align="center" style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="effectivnost.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_ins.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="56731" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+<h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+<font face="MS Sans Serif" size="2" color="#000000">Принципы построения алгоритмов сортировки</font></h3>
+<p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp; Последовательности элементов или 
+файлы элементов сортируются с использованием ключей. Как правило&nbsp;&nbsp;&nbsp;
+ключи&nbsp;&nbsp; являются&nbsp;&nbsp;&nbsp; частью&nbsp;&nbsp;&nbsp;
+элементов.&nbsp;&nbsp; В&nbsp; процессе&nbsp;&nbsp; сортировки&nbsp;&nbsp;
+элементы&nbsp;&nbsp; упорядочиваются&nbsp; по&nbsp;&nbsp;
+ключам&nbsp;&nbsp; в&nbsp;&nbsp;&nbsp; алфавитном&nbsp;&nbsp;
+или цифровом порядке.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Если сортируемый файл полностью помещается
+в оперативной памяти, то используемый метод
+сортировки называется <a name="внутренним"><i> внутренним</i></a>.&nbsp;
+Сортировка
+файлов, хранящихся на диске называется <a name="внешней"><i>
+внешней</i></a>.&nbsp; Особенностью внешней сортировки
+является последовательный доступ к
+элементам или доступ к большим блокам
+элементов.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Данные могут быть организованы в массивы
+или связные списки. Основными операциями
+сортировки являются сравнение и обмен
+элементов.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Сортировка может быть <a name="адаптивной,"><i>адаптивной,</i></a>
+когда выполняются различные
+последовательности действий в зависимости
+от результатов сравнения. Наоборот,
+неадаптивная сортировка не зависит от порядка следования
+элементов.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Часто используются методы сортировки
+элементов с несколькими ключами, когда
+сортируются элементы в различные моменты
+времени по разным ключам. Метод сортировки
+называется <a name="устойчивым"><i> устойчивым</i></a>,
+если при сортировке по одному ключу он
+сохраняет относительный порядок по другим
+ключам.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp; Ключи хранятся либо вместе с элементами,
+либо вместе с указателями. Если сортируемые элементы имеют большое
+размеры, то целесообразно применять <a name="непрямую"><i> непрямую</i></a>&nbsp;
+сортировку, когда переупорядочиваются не
+сами элементы, а указатели на элементы. </font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">Основной
+характеристикой алгоритма сортировки
+является показатель вычислительной
+сложности, зависящий от количества
+сортируемых элементов n. Элементарные
+методы сортировки требуют О(n<sup>2</sup>) шагов. Более
+совершенные методы имеют показатель О(n&times;log<sub>2</sub>
+n).</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">Аналитические
+оценки выводятся на основе подсчета
+базовых операций сравнения и обмена. Как
+правило, эти операции сосредоточены во
+внутренних циклах алгоритма. Поэтому эти
+циклы целесообразно максимально
+упрощать&nbsp; за счет удаления по
+возможности вспомогательных команд.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">Вторым
+показателем эффективности алгоритма
+сортировки является объем дополнительной
+памяти, используемый для сортировки. По
+этому показателю алгоритмы делятся на три
+группы:</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+алгоритмы, которые организуют <a name="сортировку на том же месте"><i> сортировку
+на том же месте</i></a>&nbsp; и не используют
+дополнительную память, за исключением
+стека или таблицы.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+алгоритмы, которые&nbsp; используют
+представление в виде связанного списка или
+другие структуры указателей или индексов.</font></p>
+<p align="JUSTIFY" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+<font size="2" face="MS Sans Serif">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+алгоритмы, которые требуют дополнительную
+память для размещения еще одной копии
+массива для сортировки.</font><p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+		<font size="2" face="MS Sans Serif">Алгоритмы
+сортировки условно можно разделить на 2
+группы: базовые и усовершенствованные
+алгоритмы. К базовым можно отнести
+элементарные алгоритмы, применяемые к
+небольшим по размеру массивам. К базовым
+относятся <a href="sort_select.html">сортировка
+методом выбора</a>, <a href="sort_ins.html">сортировка
+включениями</a> и <a href="sort_exch.html">обменная
+сортировка</a>. Эти алгоритмы имеют
+квадратичную трудоемкость O (n2). Кнут
+приводит уточненные оценки трудоемкости
+для этих алгоритмов [ <a href="liter.html">7</a> ].</font></p>
+<div align="center">
+  <center>
+<!--mstheme--></font><table border="1" width="41%" cellspacing="0" bordercolordark="#FFFFFF" bordercolorlight="#FFFFFF">
+  <tr>
+    <td width="15%" align="center"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+      <font face="MS Sans Serif" size="2" color="#000000">Метод</font>
+    </p>
+  	<!--mstheme--></font></td>
+    <td width="45%" align="center"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">Число сравнений</font>
+      </p>
+  	<!--mstheme--></font></td>
+  <font face="MS Sans Serif" size="2" color="#000000">
+    <td width="40%" align="center"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">Число обменов</p>
+    <!--mstheme--></font></td>
+  </tr>
+</font>
+  <tr>
+    <td width="15%" align="left"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">Включение</font>
+      </p>
+    <!--mstheme--></font></td>
+    <td width="45%"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">n&sup2;/4</font></p>
+    <!--mstheme--></font></td>
+    <td width="40%" align="center"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" color="#000000" size="2">n&sup2;/8</font></p>
+    <!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="15%" align="left"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">Выбор</font></p>
+    <!--mstheme--></font></td>
+    <td width="45%"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2" color="#000000" face="MS Sans Serif">n&sup2;/2</font></p>
+    <!--mstheme--></font></td>
+    <td width="40%" align="center"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" color="#000000" size="2">n</font></p>
+    <!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="15%" align="left"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">
+  <font face="MS Sans Serif" size="2" color="#000000">
+  Пузырьковая</font></p>
+    <!--mstheme--></font></td>
+    <td width="45%"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font size="2"><font face="MS Sans Serif" color="#000000" size="2">n&sup2;/2</font></font></p>
+    <!--mstheme--></font></td>
+    <td width="40%" align="center"><!--mstheme--><font face="Arial">
+      <p align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" color="#000000" size="2">n&sup2;/2</font></p>
+    <!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;
+Сортировка вставками и пузырьковая
+сортировка показывают хорошие результаты
+для почти упорядоченных файлов, которые
+часто встречаются на практике. Такие файлы
+часто встречаются, когда в них изменяются
+некоторые элементы, или записываются новые
+элементы в конец файла.
+</font></p>
+<p ALIGN="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;
+Усовершенствованные алгоритмы чаще всего
+являются производными от базовых
+алгоритмов и содержат приемы, ускоряющие
+работу базового алгоритма. К таким
+алгоритмам относятся <a href="sort_shell.html">сортировка
+Шелла</a>, сортировка с помощью дерева выбора
+и <a href="sort_heap.html">пирамидальная сортировка</a>, <a href="sort_sheker.html">шейкер - сортировка</a> и
+<a href="sort_razdel.html">сортировка
+разделением</a>. К этой группе также
+относится сортировка методом слияния,
+поразрядная (карманная сортировка.
+Трудоемкость этих алгоритмов приближается
+к оценке O (n log n).</font> </p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="50%" align="center"><!--mstheme--><font face="Arial">&nbsp;
+        <p><b><font face="MS Sans Serif" size="4" color="#0000FF"><a href="flash/test3.html">Тест</a></font></b></p>
+        <p>&nbsp;<!--mstheme--></font></td>
+      <td width="50%" align="center"><!--mstheme--><font face="Arial">&nbsp;
+        <p><b><font face="MS Sans Serif" size="4" color="#0000FF"><a href="flash/test4.html">Тест</a></font></b></p>
+        <p>&nbsp;<!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="50%"><!--mstheme--><font face="Arial"><!--mstheme--></font></td>
+      <td width="50%"><!--mstheme--><font face="Arial"><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="effectivnost.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_ins.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="40884" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_princ.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:41 GMT -->
+</html>

@@ -1,0 +1,509 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_heap.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:46 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Пирамидальная сортировка</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/sort_heap.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Пирамидальная сортировка"><!--webbot bot="Navigation" i-checksum="64563" endspan -->
+        </p>
+        <p style="word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_razdel.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_merge.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="50085" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif"><a href="#Дерево выбора">Дерево
+выбора</a></font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><span style="mso-tab-count: 1"><font size="2" face="MS Sans Serif"><a href="#Пирамидальная сортировка">
+Пирамидальная сортировка</a>
+</font> </span></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify">&nbsp;</p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">Этот метод возник при попытке улучшить
+<a href="sort_select.html">
+сортировку выбором</a>, эффективность которой
+– О(n2).</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">Сортировка выбором основана на
+выборе наименьшего ключа среди <span lang="EN-US" style="mso-ansi-language:EN-US">n</span>
+элементов, затем среди <span lang="EN-US" style="mso-ansi-language:EN-US">n</span>-1
+элементов и т. д. Поиск наименьшего ключа
+соответственно требует <span lang="EN-US" style="mso-ansi-language:
+EN-US">n</span>-1, <span lang="EN-US" style="mso-ansi-language:EN-US">n</span>-2,
+<span lang="EN-US" style="mso-ansi-language:EN-US">n</span>-3 <b>. . .</b>&nbsp;
+сравнений.</font></p>
+<h2 style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif"><a name="Дерево выбора">&nbsp;&nbsp;&nbsp;Дерево
+выбора</a></font></h2>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;Можно ускорить сортировку, уменьшив
+количество сравнений при поиске
+наименьшего элемента, если в результате
+каждого прохода получать больше информации,
+чем просто позицию минимального элемента.&nbsp;Например, можно сравнить попарно соседние
+элементы и определить в каждой паре меньший
+элемент. Для этого потребуется <span lang="EN-US" style="mso-ansi-language:EN-US">n</span>/2
+сравнений. Затем сравнить попарно меньшие
+элементы и определить меньшие из меньших за
+<span lang="EN-US" style="mso-ansi-language:EN-US">n</span>/4 сравнений.
+Наконец, получится одна пара меньших из
+меньших и определяется наименьший элемент.</font></p>
+<p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin-right: 0" align="center"><span style="mso-tab-count:1"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img border="0" src="images/sort_tree1.gif" width="424" height="131"></font></span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;
+Хотя в сумме получилось <span lang="EN-US" style="mso-ansi-language:EN-US">n</span>-1
+сравнений, но зато определен минимальный
+элемент и получено дерево выбора, хранящее
+информацию о наименьших элементах в
+подгруппах из двух, четырех и т. д. элементов.</font></p>
+        <p class="MsoNormal" style="text-align: justify; text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><span style="mso-tab-count:1">&nbsp;&nbsp;
+</span><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Как использовать это дерево для выбора
+следующего наименьшего элемента?</font> <font size="2" face="MS Sans Serif">Для этого из дерева выбора убирается
+наименьший элемент и переносится в
+отсортированный массив. Затем наименьший
+элемент в дереве заменяется&nbsp; на «дыру» (на
+бесконечно большой ключ <img src="images/sort_p22.gif" v:shapes="_x0000_i1025" width="16" height="13">).
+Для этого нужно спуститься в дереве по пути,
+указанному значением наименьшего ключа и
+заменить его «дырой».</font></p>
+<p class="MsoNormal" align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_tree2.gif" width="426" height="129"></p>
+<p class="MsoNormal" align="left" style="text-indent: 0; line-height: 100%; margin-right: 0"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp; При возврате
+по пройденному пути корректируем промежуточные узлы дерева,
+замененные<span style="mso-spacerun:yes">&nbsp; </span>«дырами»,
+выбирая вновь в парах наименьшие значения.</font></p>
+<p class="MsoNormal" align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_tree3.gif" width="431" height="129"></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp; В корне
+дерева вновь оказывается элемент с наименьшим
+ключом. Вновь переносим его в
+отсортированный массив и удаляем его из дерева.&nbsp;</font><span style="mso-tab-count: 1"><font size="2" face="MS Sans Serif">
+</font></span><font size="2" face="MS Sans Serif">Повторив <span lang="EN-US" style="mso-ansi-language:EN-US">n</span>
+таких шагов, дерево становится пустым (то
+есть состоит из «дыр») и процесс сортировки
+закончен.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><span style="mso-tab-count: 1"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2" face="MS Sans Serif">Поскольку операция спуска по дереву при
+исключении элемента на каждом шаге
+пропорциональна <span lang="EN-US" style="mso-ansi-language:EN-US">log</span><sub>2</sub></font><font face="MS Sans Serif" size="3"><span lang="EN-US" style="mso-ansi-language:EN-US">n</span>,</font><font size="2" face="MS Sans Serif">
+то сортировка займет время <span lang="EN-US" style="mso-ansi-language:EN-US">nlog</span><sub>2</sub><span lang="EN-US" style="mso-ansi-language:EN-US">n</span>,
+то есть это лучше, чем О(<span lang="EN-US" style="mso-ansi-language:EN-US">n</span><sup>2</sup>)
+для элементарной сортировки выбором.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><span style="mso-tab-count: 1"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2" face="MS Sans Serif">Но,&nbsp; задача сортировки стала
+сложнее. Она требует хранения
+дополнительной информации (2<span lang="EN-US" style="mso-ansi-language:EN-US">n</span>-1
+элементов)
+о структуре дерева, сам алгоритм усложнился
+и выигрыш кажется сомнительным. Желательно
+избавиться от «дыр» в дереве, которые
+приводят к ненужным сравнениям при
+удалении элементов на последних этапах
+сортировки. Кроме того, хотелось бы
+вернуться к сортировке без использования
+дополнительной памяти.</font></p>
+<h2 style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><span style="mso-tab-count: 1"><font size="2" face="MS Sans Serif"><a name="Пирамидальная сортировка">&nbsp;&nbsp;&nbsp;
+Пирамидальная сортировка</a>
+</font> </span></h2>
+<p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">Нужно найти такой способ организации
+дерева, чтобы не использовать
+дополнительной памяти и в нем не было бы «дыр».&nbsp;
+Автор Дж. Уильямс предложил организацию
+дерева в виде пирамиды, и сортировка
+соответственно называется пирамидальной
+сортировкой.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><span style="mso-tab-count: 1"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2" face="MS Sans Serif"><a name="Пирамида"><i>Пирамида</i></a>&nbsp;
+определяется как
+последовательность ключей h<sub>l</sub>,
+h<sub>l+1</sub>, ... , h<sub>r </sub>такая, что&nbsp;<span style="position:relative;top:6.0pt;
+mso-text-raise:-6.0pt">  </span>&nbsp;h<sub>i</sub> <img border="0" src="images/l_e.gif" width="13" height="16">h<sub>2i&nbsp;</sub>
+<span style="mso-spacerun:yes">&nbsp;</span>и&nbsp;h<sub>i</sub> <img border="0" src="images/l_e.gif" width="13" height="16">h<sub>2i+1</sub><span style="position:relative;top:6.0pt;mso-text-raise:-6.0pt">&nbsp;</span>
+<span style="mso-spacerun:yes">&nbsp;</span>для <span lang="EN-US" style="mso-ansi-language:EN-US">i</span>=<span lang="EN-US" style="mso-ansi-language:EN-US"><i>l</i></span>, </font><font face="MS Sans Serif" size="3">
+…, </font><font size="2" face="MS Sans Serif"><span style="mso-ansi-language: EN-US" lang="EN-US">r</span>/2, где&nbsp;
+h<sub>i</sub>&nbsp; <span style="mso-spacerun:yes">&nbsp;</span>- левый сын,&nbsp;<span style="position:relative;top:6.0pt;mso-text-raise:-6.0pt">&nbsp;</span>
+h<sub>2i+1</sub>&nbsp;- правый сын узла&nbsp; h<sub>i</sub> .&nbsp;</font></p>
+<p class="MsoNormal" align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_p11.gif" width="432" height="152"></p>
+<p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+Часто пирамиду
+называют <a name="частично упорядоченным деревом"><i> частично упорядоченным деревом</i></a>&nbsp;
+или <a name="&quot;кучей&quot;"><i>&quot;кучей&quot;</i></a>,&nbsp;
+поскольку здесь не обязательно соблюдение
+требования&nbsp;<span style="position:relative;top:6.0pt;mso-text-raise:-6.0pt">
+</span>h<sub>2i</sub>&nbsp; &lt; h<sub>2i+1</sub> . Такую последовательность (дерево) можно
+разместить в массиве. Корень дерева
+занимает первую позицию, то есть имеет
+индекс 1, сыновья корня – позиции 2, 3. В свою
+очередь сыновья сыновей занимают позиции 4
+и 5 и 6 и 7 соответственно и т. д. Попробуем
+использовать вместо дерева выбора такую
+пирамиду, поскольку пирамида является
+деревом выбора.</font></p>
+<p class="MsoNormal" align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><font size="2" face="MS Sans Serif"><img border="0" src="images/sort_p1.gif" width="380" height="170"></font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+Как построить пирамиду на базе
+сортируемого массива?<span style="mso-tab-count: 1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Во-первых, надо рассматривать алгоритм
+построения и расширения пирамиды. Пусть
+дана исходная пирамида из семи элементов,
+которую мы хотим расширить, добавив элемент&nbsp;
+h<sub>1</sub> =44.</font></p>
+<p class="MsoNormal" align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_p15.gif" width="374" height="122"></p>
+<p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;<font size="2" face="MS Sans Serif">
+Добавляем этот элемент в корень будущей
+пирамиды. Далее этот
+элемент просеивается по пути, на котором
+находятся меньшие по сравнению с ним
+элементы. Просеивание идет до тех пор, пока
+элемент не займет правильное место.
+Встречающиеся на пути меньшие элементы
+соответственно поднимаются вверх. При этом
+в корень попадает минимальный элемент.</font></p>
+<p align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_p16.gif" width="374" height="122"></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+При просеивании соблюдается правило: если
+промежуточный узел имеет сыновей, ключи
+которых меньше, то следующим выбирается сын
+с наименьшим ключом, то есть при
+просеивании 44 мы выберем узлы 6 и 12</font></p>
+<p align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_p17.gif" width="352" height="97"></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+<span style="mso-fareast-font-family: Times New Roman; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA">Как
+в сортируемом массиве выстроить пирамиду?</span></font>&nbsp;&nbsp;&nbsp;<font size="2" face="MS Sans Serif">
+Вторую половину массива можно считать
+нижним уровнем пирамиды. Здесь элементы
+взаимно не упорядочены. Будем постепенно
+добавлять к пирамиде слева элементы, и
+просеивать их.</font></p>
+<p align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_p18.gif" width="360" height="229"></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="center"><a href="flash/test5.html"><font size="3"><b>Тест</b></font></a></p>
+<p align="left" style="text-indent: 0; line-height: 100%; margin-right: 0"><font size="2" face="MS Sans Serif">После
+этого процесса в массиве сформирована
+перестановка элементов, соответствующая
+пирамиде:</font></p>
+<p align="center" style="text-indent: 0; line-height: 100%; margin-right: 0"><img border="0" src="images/sort_p20.gif" width="374" height="168"></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="mso-fareast-font-family: Times New Roman; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA">Теперь
+надо удалить элемент из пирамиды таким
+образом, чтобы в ее вершине вновь оказался
+минимальный элемент. Это можно сделать,
+взяв самый последний элемент в пирамиде и
+поставив его в вершину. Последующее
+просеивание поставит в вершину новый
+минимальный элемент.</span></font></p>
+<p align="center" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">
+<span style="mso-fareast-font-family: Times New Roman; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA"><img border="0" src="images/sort_p14.gif" width="374" height="122"></span></font></p>
+<p align="left" style="text-indent: 0; line-height: 100%; margin-right: 0">&nbsp;&nbsp;&nbsp;&nbsp;<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;
+И т. д. пока пирамида не опустеет.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0" align="justify"><span style="mso-tab-count:1"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="2" face="MS Sans Serif">Рассмотрим
+алгоритм просеивания в пирамиду. Входом является массив
+и индексы, задающие границы строящейся в
+массиве пирамиды.</font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<b><span lang="EN-US" style="line-height: 150%"><font size="2">Shift (<i>A 
+		[l .. r ] </i>)</font></span></b></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">1.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		<img border="0" src="images/comment.gif" width="14" height="14"></font><!--[if gte mso 9]><![endif]--><span style="line-height: 150%"><font size="2">Просеивание 
+		в пирамиду</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">2.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><span lang="EN-US" style="line-height: 150%">
+		i </span>&#8592; </font>
+		<span lang="EN-US" style="line-height: 150%">
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--></span><b><i><font size="2">l</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">3.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		<span lang="EN-US" style="line-height: 150%">j</span> &#8592;</font><span lang="EN-US" style="line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"> 
+		2i</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">4.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		<span lang="EN-US" style="line-height: 150%; ">
+		x </span>&#8592; </font>
+		<span lang="EN-US" style="line-height: 150%; "><!--[if gte mso 9]>
+		<![endif]--><i><b><font size="2">A</font></b></i><font size="2">[i]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">5.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="line-height: 150%">
+		if </span></b>
+		<span lang="EN-US" style="line-height: 150%">j &lt;<b><i> r</i></b>
+		<b>and</b> </span>
+		<span style="line-height: 150%"><i><b>A</b></i></span><span lang="EN-US" style="line-height: 150%">[j+1] &lt; </span>
+		<span style="line-height: 150%"><i><b>A</b></i></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">[j]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">6.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="line-height: 150%">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</span></b><span lang="EN-US" style="line-height: 150%"> 
+		j</span> &#8592;</font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		j + 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">7.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="line-height: 150%">
+		while</span></b></font><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		j &#8804;</font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2">&nbsp; 
+		r</font></i></b><font size="2"> <b>and</b> </font></span><font size="2">
+		<span style="line-height: 150%"><i><b>A</b></i></span></font><span lang="EN-US" style="line-height: 150%"><font size="2">[j] &lt; x</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">8.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="line-height: 150%">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do</span></b><span lang="EN-US" style="line-height: 150%">
+		<b><i>&nbsp;&nbsp; A</i></b>[i] </span>&#8592;</font><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2"> 
+		A</font></i></b><font size="2">[j]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">9.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i</span> &#8592; 
+		</font>
+		<span lang="EN-US" style="line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--><font size="2">j&nbsp;&#61472;&#61472;</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">10.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US"> </span>
+		<span lang="EN-US" style="line-height: 150%">&#61472;&#61472;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j</span> &#8592;</font><span lang="EN-US" style="line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2">2&times;i</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">11.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US"> </span>
+		</font><span lang="EN-US" style="line-height: 150%">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;if j &lt;<b><i> r</i></b> <b>and</b> <b><i>A</i></b>[j+1] &lt;<b><i> 
+		A</i></b>[j]</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">12.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%" lang="EN-US"> </span><b><span lang="EN-US" style="line-height: 150%">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then</span></b><span lang="EN-US" style="line-height: 150%"> 
+		j</span> &#8592; </font>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">j + 1</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span style="line-height: 150%"><font size="2">13.</font></span><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp; </span><b><i><span lang="EN-US" style="line-height: 150%">
+		A</span></i></b><span style="line-height: 150%">[</span><span lang="EN-US" style="line-height: 150%">i</span><span style="line-height: 150%">]
+		</span>&#8592;</font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		x</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2">14.<b>&nbsp;&nbsp;&nbsp; return</b></font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;<font size="2" face="MS Sans Serif">Вопрос:&nbsp;
+куда девать
+извлекаемые из пирамиды элементы? Их можно
+помещать на место последних элементов,
+которые переносятся в вершину пирамиды во
+время сортировки.</font> <span style="mso-fareast-font-family: Times New Roman; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA"><font size="2" face="MS Sans Serif">Удаляем
+элемент из вершины (06) и затем помещаем в
+вершину последний элемент (67). Значение 06
+помещаем на место 67. При этом&nbsp; в массиве правая граница
+пирамиды смещается влево на одну позицию.</font></span></p>
+<p class="MsoNormal" style="text-indent: 17.4pt; margin-left: 18.0pt" align="center"><img border="0" src="images/sort_pr1.gif" width="364" height="542"></p>
+        <p class="MsoNormal" style="text-indent: 17.4pt; margin-left: 18.0pt" align="center"><a href="flash/test6.html"><font size="3"><b>Тест</b></font></a></p>
+<p class="MsoNormal" style="line-height:150%" align="left"><span style="mso-bidi-font-size: 12.0pt"><font face="MS Sans Serif"><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US; mso-bidi-font-style: italic"><font size="2">&nbsp;&nbsp;
+</font></span></b></font><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US; mso-bidi-font-style: italic"><font size="2">
+<font face="Arial">
+<a name="Heap_Sort">Heap_Sort</a></font></font></span></b><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+ (</span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>A</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+ [<i><b>1..&nbsp; n</b></i> ] )</span></font></span><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;&nbsp;</span></font></p>
+<ol>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left">
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language:EN-US; line-height:150%">
+	<font size="2" face="Arial"><i><b>
+	<span style="mso-bidi-font-size: 12.0pt; line-height:150%; mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+    l<span style="mso-ansi-language: EN-US; mso-bidi-font-size:12.0pt; line-height:150%">
+    </span>&#8592;
+	<img src="images/sort_pr3.gif" v:shapes="_x0000_i1027" width="63" height="24" align="middle">&nbsp;&nbsp;</span></b></i></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left">
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language:EN-US; line-height:150%">
+	<font size="2" face="Arial"><i><b>
+	<span style="mso-bidi-font-size: 12.0pt; line-height:150%; mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+    r &#8592; &nbsp;n&nbsp;
+    </span></b></i></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img border="0" src="images/comment.gif" width="14" height="14">
+    </span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%">Формирование
+    пирамиды&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="Arial"><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">while</span></b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;</span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    </span>
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<i><b>l </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&gt;1&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="Arial"><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>do</span></b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    <i><b>l&nbsp; </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    <span>&#8592;</span> <span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;</span><i><b>l
+    </b></i>-1&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoBodyTextIndent2" style="margin-left:18.0pt;text-indent:-18.0pt;
+line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>Shift</b>
+    (
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<i><b>A</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"> 
+	[
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<i><b>l .. r</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"> 
+	] )&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><b><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span></b><font size="2" face="Arial">
+	<span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">
+	<img border="0" src="images/comment.gif" width="14" height="14">
+    </span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%">Сортировка<b>&nbsp;&nbsp;</b></span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;</span><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">while</span></b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%">
+    </span><i><b><span style="mso-ansi-language: EN-US">r&nbsp;<span style="mso-ansi-language: EN-US; mso-bidi-font-size:12.0pt; line-height:150%">
+    </span></span></b></i><span style="mso-bidi-font-size: 12.0pt; line-height: 150%">&gt; 1&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;</span></font></span><font size="2" face="Arial"><b><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">do</span></b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;
+    </span>x<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; mso-bidi-font-size: 12.0pt">
+    </span><span>&#8592;</span> 
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<i><b>A</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"> [ 
+	<b><i>l</i></b> ]&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;</span></font></span><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;</span></span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>A
+    </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">[ 
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<b><i>l </i></b>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">]&nbsp; <span>&#8592;</span></span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>
+    A </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	[</span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b> 
+	r </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	]&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;</span></font></span><font size="2" face="Arial"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt; line-height:150%; mso-ansi-language:EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>A</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    [
+    </span>
+	<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<i><b>r </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">]&nbsp; <span>&#8592;</span>
+    x&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;line-height:
+150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt" align="left"><span style="mso-bidi-font-size: 12.0pt"><span lang="EN-US">
+	<font size="2" face="Arial"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-bidi-font-size: 12.0pt">&nbsp;</span></font></span><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;</span></span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>&nbsp;r&nbsp;</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    <span lang="EN-US" style="mso-bidi-font-size: 12.0pt">&#8592;</span></span><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b> &nbsp;r
+    </b></i>
+    </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">-1&nbsp;
+    </span></font></span></li>
+  <li>
+    <p class="MsoNormal" align="left"><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>Shift</b> (<i><b>A</b></i>&nbsp;<span style="line-height: 150%"> [</span></span><span style="mso-bidi-font-size:12.0pt; mso-ansi-language:EN-US"><i><b> l 
+	</b></i> </span>
+	<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US; line-height:150%">..</span><span style="mso-bidi-font-size:12.0pt; mso-ansi-language:EN-US"><i><b> r 
+	</b></i> </span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US"><span style="line-height: 150%"> ] </span>)</span></font><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US"><font size="2" face="Arial">&nbsp;</font></span></li>
+	<li>
+    <p class="MsoNormal" align="left"><font face="Arial"><b><font size="2">
+	return</font><span lang="EN-US" style="mso-bidi-font-size:
+12.0pt;mso-ansi-language:EN-US"><font size="2"> </font>
+    </span></b></font></li>
+</ol>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Пирамидальная
+сортировка не эффективна для небольших
+размеров массива - n,
+но очень эффективна при больших n
+и становится сравнима с сортировкой Шелла.
+Даже в самом плохом случае сортировка имеет
+эффективность О(n logn). Неясно, какой случай плохой.
+Сортировка очень любит последовательности,
+в которых элементы более менее отсортированы.</font></p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_razdel.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_merge.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="2446" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_heap.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:49 GMT -->
+</html>

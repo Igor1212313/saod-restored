@@ -1,0 +1,220 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/2_3_4_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>2 - 3 - 4 дерево</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center"><!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/2_3_4_tree.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="2 - 3 - 4 дерево"><!--webbot
+        bot="Navigation" endspan i-checksum="5544" --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center"><!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="2_3_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="RB_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" endspan i-checksum="21595" --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial"><font face="Arial">
+        <p class="MsoBodyText2" style="MARGIN: 0px; WORD-SPACING: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%; tab-stops: 134.7pt" align="justify"><font face="MS Sans Serif" size="2"><span style="LINE-HEIGHT: 150%; mso-bidi-font-size: 10.0pt">2-3-</font></font><font face="MS Sans Serif" size="2">4
+        дерево является идеально
+        сбалансированным деревом поиска. Все
+        пути от корня до любого листа имеют
+        одинаковую длину [<a href="http://edu.nstu.ru/Р С’Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚/Р  Р В°Р В±Р С•РЎвЂЎР С‘Р в„– РЎРѓРЎвЂљР С•Р В»/Uchebnik_new/liter.htm">4</a>].</font></span></p>
+        <font face="Arial">
+        <p class="MsoBodyText2" style="MARGIN: 0px; WORD-SPACING: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%; tab-stops: 134.7pt" align="justify"><span style="LINE-HEIGHT: 150%; mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Свойства
+        структуры 2-3 </font></font><font face="MS Sans Serif" size="2">-4
+        дерева:</font></span></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Узлы
+              дерева делятся на два вида -
+              внутренние и листья.</span></font></p>
+            <!--mstheme--></font></td msimagelist>
+        </tr>
+        <tr msimagelist>
+          <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+          <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Элементы
+              множества располагаются во
+              внутренних узлах и&nbsp; листьях
+              дерева.</span></font></p>
+          <!--mstheme--></font></td msimagelist>
+      </tr>
+      <tr msimagelist>
+        <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+        <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Внутренний
+              узел имеет 2, 3 или 4 сына.</span></font></p>
+        <!--mstheme--></font></td msimagelist>
+    </tr>
+    <tr msimagelist>
+      <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+      <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Ключи,
+              хранящиеся во внутренних&nbsp; узлах,
+              служат разделяющими границами при
+              поиске в дереве.</span></font></p>
+      <!--mstheme--></font></td msimagelist>
+  </tr>
+  </table msimagelist><!--mstheme--><font face="Arial">
+        <blockquote>
+          <blockquote>
+            <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/2_3_4tree1.gif" width="400" height="120"></p>
+          </blockquote>
+        </blockquote>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">В
+        2-3-4 – дереве узлы обладают еще большей
+        гибкостью, чем в <a href="2_3_tree.html">2-3- дереве</a>
+        и соответственно количество
+        разделений и слияний узлов в нем меньше,
+        благодаря наличию 4-узлов.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Алгоритм
+        поиска ничем не отличается от поиска в
+        2-3- дереве кроме того, что здесь в 4-узлах
+        рассматриваются четыре&nbsp; интервала
+        ключей для выбора одного из сыновей для
+        последующего поиска. Поиск может
+        закончится на любом узле, а не только на
+        листе, как в 2-3- дереве.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><font face="MS Sans Serif" size="2"><span style="line-height: 150%; mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Алгоритмы
+        вставки и удаления также аналогичны
+        алгоритмам для 2-3 - дерева . Они
+        обеспечивают полную
+        сбалансированность дерева. Если поиск
+        при вставке заканчивается на 2 - узле, то
+        он преобразуется в 3 - узел. Если это 3 -
+        узел, то он преобразуется в 4 - узел. Если
+        элемент вставляется в 4 - узел, то он <a name="расщепляется"><i>расщепляется</i></a>&nbsp;
+        на два 2 - узла, при этом
+        средний элемент передается
+        родительскому узлу. Если родительский
+        узел тоже 4 - узел, то он также
+        расщепляется&nbsp; на два 2 - узла. Этот процесс</span>
+        <span style="mso-bidi-font-size: 10.0pt; line-height: 150%">может
+        распространиться вплоть до корня
+        дерева. Если корень дерева также 4 - узел,
+        то он расщепляется&nbsp; на два 2 - узла и
+        образуется новый корень – 2 - узел, к
+        которому присоединены два 2 - узла,
+        полученные при разделении бывшего
+        корня. Таким образом точкой роста 2-3-4-
+        дерева является корень дерева.</span></span></font></p>
+        <p class="MsoBodyText2" style="word-spacing: 0px; text-indent: 10px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Этот
+        процесс <a name="восходящего расщепления"><i> восходящего расщепления</i></a>&nbsp;
+        узлов
+        можно исключить, если организовать <i> <a name="нисходящее расщепление">
+        нисходящее </a></i></font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><i><a name="нисходящее расщепление">расщепление</a></i>&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">
+        4 - узлов,
+        встречающихся на пути вставки. То есть
+        если в родительском узле при выборе
+        сына для дальнейшей вставки обнаружено,
+        что это 4 - узел, то разделяется сын и
+        дальнейшая вставка продолжается уже в 2
+        - узле:</font></span>
+        <p class="MsoBodyText2" style="word-spacing: 0px; text-indent: 10px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="center"><img border="0" src="images/2_3_4tree2.gif" width="258" height="232"></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Эти
+        преобразования являются чисто
+        локальными и не задевают никакую
+        другую часть дерева.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Когда
+        корень дерева является 4 - узлом, то при
+        вставке любого элемента он
+        автоматически разделяется и
+        образуется новый 2 - узел, который
+        становится корнем дерева.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Пример
+        построения 2-3-4- дерева: </font></span></p>
+        <p class="MsoBodyText2" style="word-spacing: 0px; text-indent: 10px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="center"><img border="0" src="images/2_3_4tree3.gif" width="550" height="234"></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Поскольку
+        4 - узлы разделяются на пути от вершины
+        вниз, эти деревья называются
+        нисходящими 2-3-4 - деревьями. </font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Максимальная
+        высота 2-3-4 - дерева h=(log<sub>2</sub>n+1), и
+        вставка нового элемента, как правило,
+        не изменяет ее за исключением случая,
+        когда разделяется корень дерева.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">В
+        худшем случае, когда все узлы на пути
+        поиска при вставке являются 4 - узлами,
+        каждый узел на пути поиска
+        подвергается разделению. Но если
+        входная последовательность элементов
+        является случайной перестановкой по
+        ключам, такой случай маловероятен.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">До
+        сих пор не удалось точно
+        проанализировать аналитически
+        производительность 2-3-4 – деревьев. Но
+        эмпирически показано, что для
+        балансировки 2-3-4 – деревьев
+        используется очень мало разделений.
+        Худший случай&nbsp; 2-3-4 – дерева
+        оценивается высотой log<sub>2</sub>n, но на
+        практике высота не приближается к
+        этому значению.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10px; word-spacing: 0px; line-height: 100%; tab-stops: 134.7pt; margin: 0px" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">К
+        сожалению, реализация 2-3-4 – дерева
+        довольно громоздка. Накладные расходы,
+        связанные с манипулированием сложными
+        структурами узлов, рассмотрением
+        различных сочетаний 2 -, 3 - и 4 - узлов
+        делают алгоритмы более медленными по
+        сравнению с BST –деревьями.</font></span><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center"><!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="2_3_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="RB_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" endspan i-checksum="19469" --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/2_3_4_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:11 GMT -->
+</html>

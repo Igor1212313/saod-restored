@@ -1,0 +1,231 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/stek.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:53 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Стек</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/stek.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Стек"><!--webbot bot="Navigation" i-checksum="16362" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sets.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="queue.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="11035" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+<b>
+</b>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><a href="#Стек на базе массива"><font size="2">Стек
+на базе массива</font></a></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><a href="#Стек на базе односвязной структуры"><font size="2">Стек
+на базе односвязной структуры</font></a></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font color="#000000" size="2" face="Microsoft Sans Serif"><i><a name="Стек">Стек</a></i>&nbsp;
+- позиционное множество с дисциплиной
+доступа к элементам LIFO (Last Input - First Output).&nbsp; Стек подобен
+стопке тарелок, из которой можно взять
+только верхнюю, и на которую можно положить
+тарелку только сверху.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font color="#000000" size="2" face="Microsoft Sans Serif">Основными
+операциями над стеком являются операция
+добавления элемента - Push&nbsp; и удаления
+элемента – Рор.&nbsp; Также
+используется запрос&nbsp; - операция опроса
+пустоты стека&nbsp; - Empty.&nbsp;
+Вычислительная
+сложность операций Empty,&nbsp; Push и , Pop
+постоянна и имеет нотацию трудоемкости – О(1).</font><font face="Microsoft Sans Serif" size="2">&nbsp;</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<h3 ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font color="#000000" size="2" face="Microsoft Sans Serif"><a name="Стек на базе массива">Стек
+на базе массива</a></font></h3>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font size="2" color="#000000" face="Microsoft Sans Serif">Стек
+ёмкостью не более n элементов можно
+реализовать на базе массива S[1..n].
+Наряду с массивом хранится <a name="вершина стека"><i> вершина
+стека</i></a>&nbsp;&nbsp; top –
+индекс последнего добавленного в стек
+элемента. Нижний элемент в стеке <a name="S[1] (“дно”)">(&quot;<i>дно</i>&quot;)</a>
+– <a name="S[1] (“дно”)">S[1] </a>.</font></p>
+<p ALIGN="center"><img border="0" src="images/stack_1.gif" width="481" height="210"></p>
+<p ALIGN="center"><a href="flash/test15.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Если
+top[S] = n, то стек полностью заполнен и при попытке
+добавить новый элемент происходит переполнение
+стека (<a name="S[1] (“дно”)">&quot;</a>overflow<a name="S[1] (“дно”)">&quot;</a>).&nbsp;</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Если
+top[S] = 0, то стек пуст и при попытке удалить элемент из
+пустого стека возникает особая ситуация – <a name="S[1] (“дно”)">&quot;</a>underflow<a name="S[1] (“дно”)">&quot;</a>,
+не имеющая на русском языке названия.&nbsp;</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000"> Для
+обнаружения пустого стека используется
+запрос&nbsp; Empty: </font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000"><b>Empty ( S )</b></font></p>
+<ol>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000"><b>if</b> top&nbsp; = 0</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>then return</b> TRUE</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>else&nbsp; return</b> FALSE</font></li>
+</ol>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">&nbsp;</font><font face="Microsoft Sans Serif" size="2" color="#000000">Операция
+помещения в стек имеет вид:</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000"><b>Push
+(S [ 1..n ] ,&nbsp; x)</b></font></p>
+<ol>
+  <li><font color="#000000" size="2" face="Microsoft Sans Serif"><img border="0" src="images/coment.gif" width="17" height="18">x
+    - новый элемент</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000"><b>if</b> top = n</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>then</b> <b>return </b>error <a name="S[1] (“дно”)">&quot;</a>overflow<a name="S[1] (“дно”)">&quot;</a></font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>else</b></font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    top&nbsp; &#8592; top&nbsp; + 1</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    S[top] &#8592; x</font></li>
+</ol>
+    <p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Операция
+    извлечения из стека:</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000"><b>Pop (S)</b></font></p>
+<ol>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000"><b>if </b>Stack _Empty
+    ( S )</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>then return</b> error <a name="S[1] (“дно”)">&quot;</a>underflow<a name="S[1] (“дно”)">&quot;</a></font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>else</b> top[S] &#8592; top[S] – 1</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>return</b> S [top[S] + 1]</font></li>
+</ol>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<h3 ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000"><a name="Стек на базе односвязной структуры">Стек
+на базе односвязной структуры</a></font></h3>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Альтернативой
+является представление стека на базе
+связной структуры. Элементы, помещенные в
+стек, размещаются в динамически выделяемой
+памяти и связаны с помощью адресных
+указателей. Они представляет собою записи
+node, содержащие поля для значения
+элемента&nbsp; - val и для указателя на
+следующую запись в связной структуре - next .
+Вершиной стека&nbsp; является указатель на
+первый элемент в начале связной структуры -
+top.</font></p>
+<p align="center"><img border="0" src="images/stack_2.gif" width="465" height="53"></p>
+<p align="center"><a href="flash/test16.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Операция
+<b>Push</b> при включении нового элемента в стек,
+выделяет для него память и вставляет&nbsp;
+элемент в начало связной структуры.</font></p>
+<p style="text-indent: 10; line-height: 100%; margin: 0" ALIGN="JUSTIFY">&nbsp;</p>
+<p style="text-indent: 10; line-height: 100%; margin: 0" ALIGN="JUSTIFY"><font face="Microsoft Sans Serif" size="2" color="#000000"><b><a name="Push">Push</a>
+(S ,&nbsp; x)</b></font></p>
+<ol>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">p&nbsp;
+    &#8592;&nbsp; <b>Create node</b> ( )</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">val [p] &#8592;
+    x</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">next [p]
+    &#8592; top [S]</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;top [S]
+    &#8592; p</font></li>
+</ol>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Операция
+извлечения из стека <b>Pop</b></font><b> </b><font face="Microsoft Sans Serif" size="2" color="#000000">удаляет
+из связной структуры первую запись,
+освобождает динамическую память, занятую
+ею,&nbsp; и возвращает в качестве результата
+значение элемента - val.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p style="text-indent: 10; line-height: 100%; margin: 0" ALIGN="JUSTIFY"><font face="Microsoft Sans Serif" size="2" color="#000000"><b>Pop
+( S )</b></font></p>
+<ol>
+  <li><font size="2">p</font> <font face="Microsoft Sans Serif" size="2" color="#000000">&#8592; top[
+    S ]</font></li>
+  <li><font size="2">top [S] </font> <font face="Microsoft Sans Serif" size="2" color="#000000">&#8592;
+    next [ p ]</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">x&nbsp; &#8592;
+    val [ p ]</font></li>
+	<li><font face="Arial" size="2" color="#000000"><b>Delete_node</b> (p)</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000"><b>return </b>x</font></li>
+</ol>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000">Операция
+опроса пустоты стека сводится к проверке
+равенства указателя на первую запись&nbsp; - top
+пустому адресу<b> nil</b>.</font></p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2" color="#000000"><b>Empty ( S )</b></font></p>
+<ol>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">if top&nbsp; = <b>nil</b></font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp; then return
+	</b>TRUE</font></li>
+  <li><font face="Microsoft Sans Serif" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>else&nbsp; return </b>FALSE</font></li>
+</ol>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sets.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="queue.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="50038" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/stek.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:54 GMT -->
+</html>

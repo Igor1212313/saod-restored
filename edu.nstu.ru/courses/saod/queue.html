@@ -1,0 +1,611 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/queue.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:54 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Очередь</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/queue.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Очередь"><!--webbot bot="Navigation" i-checksum="22248" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="stek.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="list.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="27985" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+<b>
+</b>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="Microsoft Sans Serif" size="2"><a href="#Очередь на базе массива">Очередь
+на базе массива</a></font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="Microsoft Sans Serif" size="2"><a href="#Очередь на базе односвязной структуры">Очередь
+на базе односвязной структуры</a></font></p>
+        <p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font size="2"><a href="#Очередь с приоритетом">Очередь
+        с приоритетами</a></font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify">&nbsp;</p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="Microsoft Sans Serif" color="#000000" size="2">Очередь&nbsp;
+- позиционное множество элементов с
+дисциплиной доступа к элементам <i> FIFO</i> (<i>First Input -
+First Output </i>).&nbsp;</font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="Microsoft Sans Serif" color="#000000" size="2">Основными
+операциями над очередью являются операция
+добавления элемента - Enqueue&nbsp; и удаления
+элемента – Dequeue<a name=". Стек">.&nbsp;</a> Также
+используется запрос&nbsp; - операция опроса
+пустоты очереди&nbsp; - Empty.&nbsp; Вычислительная
+сложность операций Empty,&nbsp; Enqueue
+и , Dequeue
+постоянна и имеет нотацию трудоемкости – О(1).</font><font face="Microsoft Sans Serif" size="2">&nbsp;</font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="MS Sans Serif" size="2" color="#000000">У
+очереди есть голова (head) и хвост (tail)<b>.</b>
+Элемент, добавляемый к очереди, оказывается
+в её<a name="хвосте,"><i> хвосте,</i></a>&nbsp; а удаляемый элемент находится в
+<a name="голове очереди"><i>
+голове очереди</i></a></font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="Microsoft Sans Serif" size="2">Также,
+как и стек очередь можно хранить в массиве
+или в связной структуре с адресными
+указателями.</font></p>
+<h3 align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" size="2"><a name="Очередь на базе массива">Очередь
+на базе массива</a> Q [ 1 .. n ] иначе называют
+циклической очередью.&nbsp;</font></h3>
+<p ALIGN="center"><img border="0" src="images/Image30_2.gif" width="608" height="286"></p>
+<p ALIGN="center"><a href="flash/test17.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2"> Для
+очереди используются две переменные head[Q] –
+индекс головы очереди и tail[Q] – индекс
+свободной ячейки, в которую будет помещен
+следующий добавляемый элемент. Очередь
+состоит из элементов Q[head .. tail-1]. Подразумевается,
+что <a name="массив свернут в кольцо"> массив свернут в кольцо</a>: за индексом n
+следует индекс 1. Такой массив называется <i>
+циклическим</i>.</font></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2"> Если head[Q] = tail[Q], то очередь
+пуста. Первоначально очередь пуста и head[Q]=tail[Q]=1.
+Попытка удаления элемента из пустой
+очереди ведет к ошибке &quot;underflow&quot;. Если head[Q]
+= (tail[Q]+1) mod n,
+то очередь полностью заполнена, и попытка
+добавить в неё новый элемент вызовет ошибку
+переполнения &quot;overflow&quot;.</font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify">&nbsp;</p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify"><font face="Microsoft Sans Serif" color="#000000" size="2">Для
+обнаружения пустой очереди&nbsp; Q
+используется запрос&nbsp; Empty:</font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify">&nbsp;</p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify">
+<font face="Arial" color="#000000" size="2"><b>Empty
+(<i> Q</i> )</b></font></p>
+<ol>
+  <li><font face="Arial" size="2" color="#000000"><b>if</b> head [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] = tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">]</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;<b> then</b>
+	<b>return </b>TRUE</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;
+    <b>else </b><b>return</b> FALSE</font></li>
+</ol>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Операция
+помещения в очередь имеет вид:</font></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">
+<font face="Arial" color="#000000" size="2"><b><a name="Enqueue (Q, x)">Enqueue
+(<i>Q, x)</i></a></b></font></p>
+<ol>
+  <li><font face="Arial" color="#000000" size="2"><b><i>Q </i></b>[tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] ] &#8592;&nbsp;
+    </font><font face="Arial" color="#000000" size="2"><b><i>x</i></b></font></li>
+  <li><font face="Arial" size="2" color="#000000">t &#8592; tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">]</font></li>
+  <li><font face="Arial" size="2" color="#000000">tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] &#8592; (tail
+    [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">]&nbsp; + 1)
+    <b>mod</b> n</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>if </b>tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] = head [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">]</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;<b> then</b> tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] &#8592; t</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>return</b> error &quot;overflow&quot;</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>else return </b>TRUE</font></li>
+</ol>
+    <p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Операция
+    удаления из очереди имеет вид:</font></p>
+    <p ALIGN="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</p>
+    <p ALIGN="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">
+	<font face="Arial" color="#000000" size="2"><b><a name="Dequeue (Q)">Dequeue
+    (<i>Q</i>)</a></b></font></p>
+<ol>
+  <li><font face="Arial" size="2" color="#000000"><b>if </b>head [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] = tail [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">]</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp; <b>then</b> <b>return
+	</b>error &quot;underflow&quot;</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>&nbsp;&nbsp; else</b></font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x &#8592;
+    </font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000"> [head [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] ]</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; head [</font><font face="Arial" color="#000000" size="2"><b><i>Q</i></b></font><font face="Arial" size="2" color="#000000">] &#8592;
+    ( head [<i><b>Q</b></i>] +1) <b>mod</b> n&nbsp;</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp; <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return</b> x</font></li>
+</ol>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</p>
+        <h3 align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" size="2"><a name="Очередь на базе односвязной структуры">Очередь
+на базе односвязной структуры</a></font></h3>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Другой
+формой хранения очереди является
+односвязная структура элементов с
+адресными указателями. Элементы очереди&nbsp;
+представляет собою записи node, содержащие
+поля для значения элемента&nbsp; - val и для
+указателя на следующую запись в связной
+структуре - next .</font></p>
+<p ALIGN="center"><img border="0" src="images/Image30_3.gif" width="469" height="102"></p>
+<p ALIGN="center"><a href="flash/test18.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Голова&nbsp;
+очереди - head [Q] и хвост - tail [Q] являются
+адресными указателями на первый и
+последний элементы в связной структуре.
+Если очередь пуста, эти указатели содержат
+адрес <b>nil</b>.</font></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Операция
+Empty( ) сводится к сравнению указателя с
+адресом&nbsp; <b>nil:</b></font></p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify">&nbsp;</p>
+<p style="MARGIN: 0px; TEXT-INDENT: 10px; LINE-HEIGHT: 100%" align="justify">
+<font face="Arial" color="#000000" size="2"><b>Empty
+( <i>Q</i> )</b></font></p>
+<ol>
+  <li><font face="Arial" size="2" color="#000000"><b>if</b> head [<b><i>Q</i></b>] 
+	= nil</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;
+    t<b>hen return</b> TRUE</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;
+    <b>else return </b>FALSE</font></li>
+</ol>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Операция
+Enqueue помещает новый элемент в конец
+структуры:</font></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">
+<font face="Arial" color="#000000" size="2"><b>Enqueue
+(<i>Q</i>, x)</b></font></p>
+<ol style="line-height: 100%; margin-top: 0; margin-bottom: 0">
+  <li><font face="Arial" size="2" color="#000000">p&nbsp; &#8592;&nbsp;
+    <b>Create_node</b> ( )</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>if </b>head&nbsp; [<b><i>Q</i></b>] 
+	= nil</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+    then</b> head&nbsp; [<b><i>Q</i></b>]</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp; else</b> next [tail]
+    &#8592; p</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;tail&nbsp; [<b><i>Q</i></b>] 
+	&#8592; p</font></li>
+	<li><font face="Microsoft Sans Serif" size="2" color="#000000">val [p] &#8592;
+    x</font></li>
+	<li><font face="Arial" size="2" color="#000000">next[p] &#8592; nil</font></li>
+	<li><font face="Arial" size="2" color="#000000"><b>return</b></font></li>
+</ol>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" color="#000000" size="2">Операция
+Dequeue удаляет элемент из начала структуры:</font></p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</p>
+<p align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">
+<font face="Arial" color="#000000" size="2"><b>Dequeue
+(<i>Q)</i></b></font></p>
+<ol style="line-height: 100%; margin-top: 0; margin-bottom: 0">
+  <li><font face="Arial" size="2" color="#000000"><b>if </b></font>
+	<font size="2" face="Arial">head </font> 
+	<font face="Arial" size="2" color="#000000"> [<b><i>Q</i></b>] = nil</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>then return</b> error &quot;underflow&quot;</font></li>
+  <li><font size="2"><font face="Arial" color="#000000"><b><i>x</i></b></font><font face="Arial">
+	</font></font> <font face="Arial" size="2" color="#000000">&#8592; val [head 
+	[<b><i>Q</i></b>]]</font></li>
+  <li><font size="2" face="Arial">p </font> 
+	<font face="Arial" size="2" color="#000000">&#8592; head [<b><i>Q</i></b>]</font></li>
+  <li><font face="Arial" size="2" color="#000000">head [<b><i>Q</i></b>] &#8592; next 
+	[head [<b><i>Q</i></b>]]</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>if </b>head [<b><i>Q</i></b>] 
+	= nil</font></li>
+  <li><font face="Arial" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+    then </b>tail [<b><i>Q</i></b>] &#8592; nil</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>Delete_node</b> (p)</font></li>
+  <li><font face="Arial" size="2" color="#000000"><b>return <i>x</i></b></font></li>
+</ol>
+        <h3 align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;<font size="2">&nbsp;</font></h3>
+        <h3 align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px">&nbsp;</h3>
+        <h3 align="JUSTIFY" style="text-indent: 10px; line-height: 100%; margin: 0px"><font face="Microsoft Sans Serif" size="2"><a name="Очередь с приоритетом">Очередь
+        с приоритетом</a></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Очереди
+        с приоритетами – часто используемая
+        структура данных. Например, она может
+        использоваться в операционной системе
+        с разделением времени. При этом
+        хранится список заданий с приоритетами.
+        Приоритет задания выше, чем меньше
+        времени требуется для выполнения
+        задания. Когда выполнение задания
+        заканчивается, из очереди выбирается
+        задание со следующим&nbsp; наибольшим
+        приоритетом.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Другое
+        применение структуры – управляемое
+        событиями моделирование. Приоритет
+        событий определяется временем, когда
+        событие должно произойти. Выбирается
+        событие с минимальным временем
+        наступления.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Рассмотрим
+        реализацию очереди с приоритетами.
+        Очередь рассматривается как множество
+        Q, элементами которого являются пары (р,
+        x), где р – число, задающее приоритет
+        элемента, и x – связанная с приоритетом
+        дополнительная информация об объекте.
+        Эта информация хранится либо в самом
+        элементе, либо дополнительной
+        структуре данных и перемещается вместе
+        с элементом очереди.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Для
+        очереди с приоритетами возможны
+        следующие операции:</font></span></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Enqueue
+              (Q, x, p) – добавление элемента x&nbsp; с
+              приоритетом p в очередь</span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">,</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Dequeue
+              (Q)&nbsp; – изымает&nbsp; элемент&nbsp;&nbsp;
+              наибольшим приоритетом из Q,</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" color="#000000" size="2">Empty
+( Q ) - опрос пустоты очереди.</font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Очередь
+        удобно представить в виде кучи. При
+        этом элемент с максимальным
+        приоритетом хранится в голове (начале)
+        кучи.</span></font> <font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Кучу
+        можно реализовать с помощью
+        упорядоченного или не упорядоченного
+        списка, с помощью частично
+        упорядоченного дерева или&nbsp; с помощью
+        массива. Реализация с помощью списка
+        потребует в любом случае O(n) времени.
+        Использование частично упорядоченного
+        дерева потребует O( log<sub>2</sub> n) времени.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Куча
+        на базе частично упорядоченного дерева
+        требует, чтобы приоритет любого узла
+        было не меньше (не больше) приоритета</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">
+        любого его сына.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/queue3.gif" width="142" height="112"></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Все
+        новые элементы при добавлении
+        размещаются на месте отсутствующих
+        листьев. <span style="font-weight:normal">Таким
+        образом, . частично упорядоченное
+        дерево сбалансировано. Важно</span> <span style="font-weight:
+normal">то, что&nbsp; минимальный (максимальный)
+        приоритет всегда находится в корне
+        дерева. Важно, чтобы при удалении
+        элемента из очереди (из корня), в корне
+        вновь оказывается&nbsp; </span><span style="font-weight:
+normal">минимальный</span><span style="font-weight:
+normal"> (</span><span style="font-weight:
+normal">максимальный</span><span style="font-weight:
+normal">) приоритет. Чтобы не разрушить при
+        удалении дерево и сохранить частичную
+        упорядоченность приоритетов в дереве
+        выполняем следующее: сначала находим
+        на самом нижнем уровне самый правый
+        узел и временно помещаем его в корень
+        дерева. Затем этот элемент просеиваем
+        по ветвям дерева вниз, по пути меняя его
+        местами с сыновьями, имеющими меньший
+        приоритет до тех пор, пока этот элемент
+        не станет листом или не станет в
+        позицию, где его сыновья будут иметь по
+        крайней мере не меньший приоритет.</span></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Например,
+        при удалении элемента с приоритетом 3:</font></span>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/queue4.gif" width="448" height="124"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">При
+        выборе сына для обмена выбирается сын с
+        наименьшим приоритетом.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">Таким
+        образом,&nbsp; операция Dequeue(Q) требует в
+        среднем O (log<sub>2</sub> n) шагов.</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">При
+        помещении нового элемента в частично
+        упорядоченное дерево с помощью
+        операции Enqueue </span></font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">(Q,
+        x, p) </span></font><font size="2" face="MS Sans Serif"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">сначала
+        новый элемент помещается в самую
+        правую свободную позицию на самом
+        нижнем уровне. Если уровень заполнен,
+        то начинается новый уровень. Если новый
+        элемент имеет меньший приоритет p, чем
+        его родитель, то они меняются местами.
+        Если у нового родителя меньший приоритет,
+        то обмен производится вновь. Этот
+        процесс продолжается до тех пор, пока
+        новый элемент не окажется в корне
+        дерева, или не займет позицию, где
+        приоритет родителя будет&nbsp; не больше,&nbsp;
+        чем у нового элемента.</span></font>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Например,
+        при вставке элемента с приоритетом 4:</font></span>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/queue5.gif" width="425" height="98"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">Очередь
+        с приоритетом&nbsp; удобно&nbsp;
+        реализовать в виде массива Q. Элемент
+        массива содержит значение элемента
+        очереди x и приоритет элемента очереди -
+        p. В массиве первые n позиций
+        соответствуют n узлам частично
+        упорядоченного дерева. Q[1] содержит
+        корень дерева. Левый сын узла Q [i], если
+        он существует, находится в ячейке Q [2i],
+        правый сын, если он существует – в
+        ячейке Q [2i+1]. И наоборот, если сын
+        находится в ячейке Q [i], i&gt;1, то его
+        родитель – в ячейке Q [ i/2 ].</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">Например,
+        показанное дерево расположится в
+        массиве А таким образом:</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/queue6.gif" width="455" height="52"></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif">&nbsp;<a name="Алгоритм операции извлечения">Алгоритм
+        операции извлечения</a>&nbsp; элемента из
+        очереди с&nbsp; <span lang="ru">минимальным </span>приоритетом:</font></span></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><b>Dequeue
+        (<i>Q</i>)</b></span></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		1.&nbsp;&nbsp;&nbsp;&nbsp; </span><font color="#000000"><b>&nbsp;<img border="0" src="images/comment.gif" width="14" height="14"></b>n</font><b><font color="#000000">
+		</font></b><font color="#000000">- <span lang="ru">количество элементов
+		</span>(p,x) <span lang="ru">в очереди</span> </font><span style="mso-bidi-font-size: 10.0pt"><b>
+		<i>Q</i></b></span></font></p>
+		<p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">2<i><b>.</b></i><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b><font color="#000000">&nbsp;</font></b></font><font color="#000000" size="2" face="Arial"><b><img border="0" src="images/comment.gif" width="15" height="14"></b></font><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">p[</span><span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[i]] 
+		- <span lang="ru">приоритет элемента очереди с индексом </span>i</span></font></p>
+		<p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2" color="#000000">3<b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font><font size="2" face="Arial"><font color="#000000"><b>if </b>
+		</font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">n&nbsp; 
+		= 0</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial">
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;</span><b><font color="#000000">&nbsp;then</font></b><font color="#000000"><b> 
+		return </b></font></font><font face="Arial" size="2" color="#000000">error &quot;underflow&quot;</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">5<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;else</b></font></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">6<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x &#8592;</span><span style="font-weight: 700; mso-bidi-font-size: 10.0pt"> </span>
+		<span style="mso-bidi-font-size: 10.0pt">x[</span><span style="font-weight: 700; mso-bidi-font-size: 10.0pt; font-style:italic">Q</span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[1]]</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">7<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[1] &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[n]</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">8<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n &#8592; n – 1</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">9<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i &#8592; 1</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">1<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">0.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>while</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> i <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">n/2</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do&nbsp; if</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> </span></font>
+		<span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">&nbsp;2i &lt;<b><i> </i></b>n <b>and</b> </font></span>
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">p[<i><b>Q</b></i></span></font><span lang="EN-US" style="line-height: 150%"><font size="2" face="Arial">[2i+1]] &lt;<b><i> 
+		</i></b></font></span><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt">p[<b><i>Q</i></b></span></font><span lang="EN-US" style="line-height: 150%"><font size="2" face="Arial">[2i]]</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		12.&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp; then </b>
+		</font>j<span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> &#8592; 
+		2i+1</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		13.&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp; else</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp; 
+		j &#8592; 2i</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">14.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp; if</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> p[</span><span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[i]]&gt; p[</span><span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[j]]</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">15.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then&nbsp;</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+        temp &#8592; </span><span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[i</span></font><span lang="EN-US" style="line-height: 150%"><font size="2" face="Arial">]</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">16.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt"><b><i> Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[i]
+        &#8592; </span><span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[j]</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">17.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><font color="#000000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="mso-bidi-font-size: 10.0pt"><b><i>Q</i></b></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[j]
+        &#8592; temp</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">18.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><font color="#000000">
+		<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></font>
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i
+        &#8592; j</span></font></p>
+		<p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">19.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>else</b> i <span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&#8592; 
+		n</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		19.&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>return</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> 
+		x</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="MS Sans Serif">
+		<span style="mso-bidi-font-size: 10.0pt">Алгоритм
+        операции помещения нового элемента в
+        очередь:</span></font></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Enqueue
+        (<i>Q, x, p</i>)</span></font></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><font color="#000000">1.<b>&nbsp;&nbsp;&nbsp;&nbsp;
+		<img border="0" src="images/comment.gif" width="14" height="14"></b><span style="font-weight: 400">n</span></font><span style="font-weight: 400"><b><font color="#000000">
+		</font></b><font color="#000000">- <span lang="ru">количество элементов
+		</span>(p,x) <span lang="ru">в очереди</span> </font></span></font><span style="mso-bidi-font-size: 10.0pt">
+		<i><font size="2" face="Arial">Q</font></i></span></h3>
+		<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<b><i><font face="Arial" size="2">2.&nbsp;&nbsp;&nbsp;&nbsp; </font></i>
+		</b><font color="#000000" size="2" face="Arial"><b>
+		<img border="0" src="images/comment.gif" width="14" height="14"></b></font><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">capacity 
+		[</span><span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">] 
+		- <span lang="ru">емкость массива для очереди </span></span></font>
+		<span style="mso-bidi-font-size: 10.0pt"><i><font size="2" face="Arial">Q</font></i></span></h3>
+		<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial">
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>
+        if</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> n = 
+		capacity [</span><span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">]</span></font></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">4<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>then</b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> </span>
+		</font><font face="Arial" size="2" color="#000000"><b>return </b></font>
+		<font size="2" face="Arial">
+		<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">error </span></font>
+		<font face="Arial" size="2" color="#000000">&quot;overflow&quot;</font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">5<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>else</b></font></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="Arial" size="2">6<span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>n &#8592; n+1</span></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="font-weight: 400"><font face="Arial" size="2">7</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i><span style="mso-bidi-font-size: 10.0pt">Q
+		</span></i></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[n </font></span>
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		]&#8592; (</span><span style="mso-bidi-font-size: 10.0pt"><i>x,</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> </span>
+		<span style="mso-bidi-font-size: 10.0pt"><i>p</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">)</span></font></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="font-weight: 400"><font face="Arial" size="2">8</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font color="#000000"><b>while </b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">i &gt; 1&nbsp; and
+        p[</span><span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> 
+		[</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">] 
+		] &lt; p[</span><span style="mso-bidi-font-size: 10.0pt"><i>Q </i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i/2</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">]</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial"> ]</font></span></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="font-weight: 400"><font face="Arial" size="2">9</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#000000"><b>&nbsp;<span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>do </b></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">&nbsp; temp &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> 
+		[</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">]</span></font></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="font-weight: 400"><font face="Arial" size="2">10</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> 
+		[</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i
+		</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">
+		]&#8592; </span><span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">[</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i</font><font size="2" face="Arial">/2</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">]</span></font></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="font-weight: 400"><font face="Arial" size="2">11</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="mso-bidi-font-size: 10.0pt"><i>Q</i></span><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"> 
+		[</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i/2</font></span><font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">]</span></font><span style="font-weight: normal; mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">
+        &#8592; temp</font></span></h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="font-weight: normal; mso-bidi-font-size: 10.0pt">12.&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>i &#8592; i/2</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span lang="ru">1</span>3.&nbsp;&nbsp; <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		return</b></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="stek.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="list.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="8246" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/queue.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:56 GMT -->
+</html>

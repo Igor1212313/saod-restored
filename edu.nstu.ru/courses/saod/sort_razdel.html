@@ -1,0 +1,985 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_razdel.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:43 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Сортировка разделениями</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/sort_razdel.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Сортировка разделениями"><!--webbot bot="Navigation" i-checksum="16075" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_sheker.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_heap.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="3215" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif"><a href="#Сортировка разделением">Сортировка
+разделением</a></font></p>
+
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif"><a href="#Разделение массива">Разделение
+массива&nbsp;</a></font></p>
+
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif"><a href="#медианы трех">
+Итеративный алгоритм сортировки
+разделением</a></font></p>
+
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif"><a href="#&nbsp;&nbsp;Выбор разделяющего элемента">Выбор
+разделяющего элемента</a></font></p>
+
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0">&nbsp;</p>
+
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif"><a name="Сортировка разделением"><i>
+Сортировка разделением</i></a>&nbsp; является
+улучшением обменной сортировки (<a href="sort_exch.html">пузырьковой
+сортировки</a>).</font></p>
+<p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Хотя пузырьковая сортировка среди
+элементарных методов считается в среднем
+самой неэффектной, ее улучшение – быстрая
+сортировка является самым лучшим на данный
+момент методом сортировки массивов. Метод
+был предложен Хоором и назван быстрой
+сортировкой&nbsp; [ <a href="liter.html">5</a>
+].</font></p>
+<p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">В этом методе для достижения наилучшей
+эффективности перестановки производятся
+на большие расстояния, как и в <a href="sort_shell.html"> методе Шелла</a>.</font></p>
+<p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Если взять массив, отсортированный в
+обратном порядке,&nbsp; и поменять местами первый
+и последний элементы, затем второй и
+предпоследний и т. д., то можно
+отсортировать массив за n/2
+обменов</font></p>
+<p class="MsoNormal" align="center"><img border="0" src="images/sort_r1.gif" width="360" height="133"></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0">
+<font size="2" face="MS Sans Serif">Такой способ, к сожалению, не дает эффекта
+для неупорядоченных массивов, но
+подсказывает другую схему перестановок.
+При просмотре элементов с обоих концов
+массива элементы массива А[l .. r]
+переставляются таким образом, чтобы
+элементы A[l .. k]
+были не больше любого элемента&nbsp; из A[k+1
+..&nbsp; r], где k – некоторый индекс на
+интервале&nbsp;&nbsp;&nbsp;&nbsp; [l ...r] ,&nbsp; l <img border="0" src="images/l_e.gif" width="13" height="16">
+&nbsp;k <img border="0" src="images/l_e.gif" width="13" height="16">  r. То есть,&nbsp; массив разбивается на две
+части, в первой из которых сосредоточены
+меньшие значения, а во второй – большие. Эта
+операция называется разделением.</font> </p>
+<p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Затем операция рекурсивно выполняется
+для частей A[l .. k]
+и A[k+1 .. r]
+до тех пор, пока размер части не станет
+равным 1. После этого массив отсортирован.</font></p>
+<p class="MsoNormal" align="center"><img border="0" src="images/sort_r3.gif" width="475" height="289"></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"> <font size="2" face="MS Sans Serif">Общий ход быстрой сортировки имеет вид:</font></p>
+		<p class="MsoNormal" style="text-align: justify; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<b><span lang="EN-US" style="line-height: 150%"><font size="2">QSort (<i>A 
+		[l .. r] </i>)</font></span></b></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<img border="0" src="images/comment.gif" width="14" height="14"><!--[if gte mso 9]><![endif]--><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;A</font></span><span style="line-height: 150%"><font size="2"> 
+		[</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">l</font></span><span style="line-height: 150%"><font size="2"> 
+		.. </font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2">r</font></span><span style="line-height: 150%"><font size="2">]
+		</font></span></i></b><span style="line-height: 150%"><font size="2">&nbsp;– 
+		часть массива между границами</font><b><font size="2"> </font></b>
+		</span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">l </font></span></i></b><span style="line-height: 150%">
+		<font size="2">и</font><b><i><font size="2"> </font></i></b></span><b>
+		<i><span lang="EN-US" style="line-height: 150%"><font size="2">r</font></span></i></b></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">if</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		<b><i>l </i></b>&lt; </font><b><i><font size="2">r</font></i></b></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;<b>then</b> k </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><b><font size="2"> 
+		Partition</font></b><font size="2"> (<b><i>A[l .. r]</i></b>)</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>QSort</b> 
+		(<b><i>A[l .. k]</i></b>)</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">5.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>QSort</b> 
+		(<b><i>A[k+1 .. r]</i></b>)</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2">6.&nbsp;&nbsp; <b>&nbsp;return</b></font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif">Основной операцией является операция
+разделения массива на две части с
+описанными выше свойствами. Чем лучше она
+работает, тем эффективнее работает
+алгоритм в целом.
+&nbsp;</font></p>
+<p align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><font size="2" face="MS Sans Serif"><a name="Разделение массива">Разделение
+массива</a></font></h3>
+<p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">
+Наугад
+берется элемент массива в качестве <a name="опорного"><i>
+опорного</i></a>,&nbsp; относительно которого массив
+разбивается на две части. Часть массива A[l ..
+k]
+будет содержать элементы, не большие х,,&nbsp; а
+вторая часть A[k+1…r]
+– элементы, не меньшие х.
+</font></p>
+<p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Разделение происходит при просмотре
+массива с двух концов. Вначале
+просматривается&nbsp; массив от конца до тех пор,
+пока не буде найден элемент A[j] <img border="0" src="images/l_e.gif" width="13" height="16">
+x, затем просматривается массив от начала до тех пор,
+пока не буде найден элемент A[i] <img border="0" src="images/m_e.gif" width="13" height="16">
+x. Эти элементы меняются местами и&nbsp; процесс встречного просмотра и
+обмена продолжается до тех пор, пока оба просмотра не
+встретятся где-то посередине массива. В
+результате массив окажется разбитым на две
+части. В левой части будут элементы с
+ключами,&nbsp; меньшими или равными х, в правой – с
+ключами,&nbsp; большими или равными х, а значение
+индексов просмотра определяют точку
+разбиения массива на две части – k.</font></p>
+<p class="MsoNormal" style="tab-stops: 44.25pt" align="center"><img border="0" src="images/sort_r8.gif" width="386" height="60"></p>
+<p class="MsoNormal" align="justify"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA">&nbsp;&nbsp; </span><font size="2" face="MS Sans Serif">Допустим, в качестве опорного значения х
+взят ключ 42.</font></p>
+<p class="MsoNormal" style="tab-stops: 44.25pt" align="center"><img border="0" src="images/sort_r9.gif" width="379" height="161"></p>
+<p class="MsoNormal" style="tab-stops: 44.25pt" align="center"><a href="flash/test11.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif">После
+разбиения&nbsp; по рекурсии разделяются&nbsp;
+первая&nbsp; часть A[l…k]
+и вторая&nbsp; часть A[k+1…r] тем же способом.</font></p>
+<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif">В приведенном
+примере опорный элемент выбран удачно, и
+массив оказался поделенным на две равные по
+размеру части.&nbsp;</font></p>
+<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+		<p class="MsoNormal" style="text-align: justify; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<b><span lang="EN-US" style="line-height: 150%"><font size="2">Partition 
+		(A</font><i><font size="2">[l .. r]</font></i></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">)</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2">x </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2"> 
+		A</font></i></b></span><b><span style="line-height: 150%"><font size="2">[
+		</font></span></b><span style="line-height: 150%"><font size="2">(</font></span><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">l</font></span></i></b><span style="line-height: 150%"><font size="2">+</font></span><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">r</font></span></i></b><span style="line-height: 150%"><font size="2">)/2 
+		]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">i</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> 
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><!--[if gte mso 9]><![endif]--><b><i><font size="2"> 
+		l -</font></i></b><font size="2"> 1 </font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">j</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> 
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><!--[if gte mso 9]><![endif]--><b><i><font size="2"> 
+		r&nbsp; +</font></i></b><font size="2">1</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><b><span lang="EN-US" style="line-height: 150%">
+		<font size="2">while</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2">
+		</font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%"><!--[if gte mso 9]><font size="2">
+		</font><![endif]--><font size="2">TRUE</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">5.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do&nbsp; repeat </b>j </font></span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592; </span></font>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">
+		j - 1</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">6.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>until </b>
+		</span><span style="line-height: 150%"><b>A</b></span><span lang="EN-US" style="line-height: 150%">[j</span><span lang="EN-US" style="line-height: 150%">]</span></font><span lang="EN-US" style="line-height: 150%"><font face="Times New Roman" size="2"> 
+		&#8804;</font><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><font size="2"><span lang="EN-US" style="line-height: 150%"> 
+		x</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">7.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>repeat </b>i</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> 
+		&#8592; </span></font>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">
+		i + 1</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">8.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>until </b>
+		</span><span style="line-height: 150%"><b>A</b></span><span lang="EN-US" style="line-height: 150%">[i</span><span lang="EN-US" style="line-height: 150%"> 
+		] </span></font><span lang="EN-US" style="line-height: 150%">
+		<font face="Times New Roman" size="2">&#8805; </font><!--[if gte mso 9]>
+		<![endif]-->
+		</span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">x</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">9.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if </b>i &lt; j</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">10.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>&nbsp;&nbsp; t</font></span><font face="MS Sans Serif" size="2"><span style="line-height: 150%" lang="EN-US"> 
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><!--[if gte mso 9]><![endif]--><font size="2">
+		</font></span><font size="2"><span style="line-height: 150%"><b>A</b></span><span lang="EN-US" style="line-height: 150%">[i</span><span lang="EN-US" style="line-height: 150%">]</span></font></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">11.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><b>A</b></i>[i] </font>
+		</span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592;</span></font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><!--[if gte mso 9]><![endif]--><font size="2">
+		<i><b>A</b></i>[j]</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">12.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><b>&nbsp;A</b></i>[j] </font>
+		</span><font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		&#8592; </span></font>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]>
+		<![endif]--></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+		<![endif]--><font size="2"><span lang="EN-US" style="line-height: 150%">
+		t</span></font></span></p>
+		<p class="MsoNormal" style="text-align: justify; text-indent: -18.0pt; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">13.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+		</font></span>
+		<span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else return </b>j</span></font></span></p>
+<p class="MsoNormal" align="justify">&nbsp;<font size="2" face="MS Sans Serif">Реализация алгоритма разбиения содержит
+ряд тонких моментов. Во-первых, не очевидно,
+что при встречном просмотре при разделении индексы
+i
+и j не выйдут
+за пределы участка l .. r
+в процессе работы. Во-вторых, разбиение
+зависит от того, насколько удачно выбран
+опорный элемент х.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Если разбиения происходят на примерно
+равные по размеру части, то трудоемкость
+быстрой&nbsp; составляет О(n logn). В худшем случае, если размеры
+частей сильно отличаются, трудоемкость&nbsp;
+пропорциональна O(n<sup>2</sup>)
+и снижается к эффективности метода <a href="sort_ins.html">
+сортировки вставками</a>.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">В самом деле,
+если в качестве опорного элемента все время
+выбираем минимальный&nbsp; элемент, то разбиение делит участок
+A[l .. r]
+на две части. Одна из них содержит один&nbsp;
+минимальный элемент, а вторая – остальные. </font> <font size="2"> Дерево
+рекурсии в этом случае выглядит так:</font></p>
+<p class="MsoNormal" style="tab-stops: 44.25pt" align="center"><span lang="EN-US" style="mso-ansi-language:
+EN-US">&nbsp;
+<img border="0" src="images/sort_r14.gif" width="578" height="290"></span></p>
+<p class="MsoNormal" style="tab-stops: 44.25pt; text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Тем не менее, для больших по
+размеру&nbsp; массивов в среднем случае на последовательных
+рекурсиях получаются и худшие и лучшие разделения,&nbsp;
+а асимптотическая оценка
+эффективности быстрой сортировки
+совпадает с оценкой для наилучшего случая,
+то есть O(n logn).&nbsp; Часть разделений
+будут хорошо сбалансированы, часть - нет.
+Как показали теоретические и
+экспериментальные исследования 80%
+разделений дают соотношение размеров
+частей&nbsp;&nbsp; 9:1. Но, поскольку &quot;хорошие&quot;
+раделения
+уменьшают размер частей в два раза, то
+логарифмическая асимптотика сохраняется, и
+оценка эффективности остается
+логарифмической. Увеличивается лишь
+константа пропорциональности.</font></p>
+  <center>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; tab-stops: 44.25pt; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Итак, эффективность метода в
+значительной степени зависит от удачного
+выбора разделяющего элемента. Вероятность
+удачного выбора равна 1/n. Слепой случайный выбор
+опорных элементов&nbsp; не
+отличается от оптимального и&nbsp; дает почти те
+же результаты. Это показали и теоретические
+исследования, и многочисленные
+эксперименты.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; tab-stops: 44.25pt; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;Метод
+сортировки разделением имеет&nbsp; недостатки: он
+неэффективен для небольших размеров
+массивов - n.
+Алгоритм не любит упорядоченные массивы.
+Еще одно неприятное свойство – это
+проблема глубины рекурсии. Как известно,
+вызов функции образует в системном стеке
+кластер, в котором сохраняются точка
+возврата из функции, входные параметры
+функции, локальные переменные. Для больших
+массивов глубина рекурсии может быть
+значительной, особенно. если &quot;плохих&quot;&nbsp;
+разделений много.&nbsp; Количество кластеров в стеке
+колеблется от log n
+до n. Это
+может привести к переполнению стека и
+отказу системы. Для решения этой
+проблемы&nbsp; предлагается итеративная
+версия быстрой сортировки.</font></p>
+<h3 style="text-indent: 0; line-height: 100%; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;<a name="Итеративный алгоритм сортировки разделением">&nbsp;&nbsp;&nbsp;
+Итеративный алгоритм сортировки
+разделением</a></font></h3>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;Итеративный
+алгоритм использует
+собственный стек разделений. На каждом этапе
+возникают две следующих части. Только к
+обработке одной части можно приступить сразу же
+,
+другая часть заносится в стек. Каждая часть
+запоминается в стеке в виде левого и
+правого индекса. Часть, помещенная в стек
+первой,&nbsp; будет в дальнейшем выбрана из стека
+последней. С расчетом на худший случай
+разделений размер стека должен быть равным 2n.</font></p>
+<p class="MsoNormal" style="text-align: justify; line-height: 150%; margin-top: 10px; margin-bottom: 5px">
+<b><span lang="EN-US" style="line-height: 150%"><font size="2">Iterative_QSort (<i>A 
+[1 .. n]</i>)</font></span></b></p>
+  </center>
+      <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font size="2"><span style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<img border="0" src="images/comment.gif" width="14" height="14"><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2">A</font></i></b></span><b><i><span style="line-height: 150%"><font size="2">[1 
+		.. </font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2">n</font></span><span style="line-height: 150%"><font size="2">]</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		– массив размерностью </font></span><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">n</font></span></i></b></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><img border="0" src="images/comment.gif" width="14" height="14"><span style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font size="2">stack[1..2<i><b>n</b></i>] 
+– массив для стека</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span style="font-size: 14.0pt; line-height: 150%">
+<span style="line-height: 150%"><font size="2">stack[1] </font></span></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span style="line-height: 150%"> 
+1</span></font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span style="font-size: 14.0pt; line-height: 150%">
+<span style="line-height: 150%"><font size="2">stack[2] </font></span></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span style="line-height: 150%">
+</span></font></span><font size="2"><span style="line-height: 150%"><b><i>n</i></b></span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">5.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span style="font-size: 14.0pt; line-height: 150%">
+<span style="line-height: 150%"><font size="2">top </font></span></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2"><span style="line-height: 150%"> 
+1</span></font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">6.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span style="font-size: 14.0pt; line-height: 150%"><font size="2">
+<span style="line-height: 150%; font-weight: 700">repeat</span></font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">7.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">l</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="line-height: 150%"><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"> 
+stack[top]</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">8.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">r</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+stack[top+1]</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">9.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">top</font></span><font face="MS Sans Serif" size="2"> &#8592; </font>
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span><font size="2"><span style="line-height: 150%">top - 2</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">10.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><span style="font-weight: 700">if</span> 
+l &lt; r</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">11.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%; font-weight: 700"><font size="2">then</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">12.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%; font-weight: 700"><font size="2">repeat</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">13.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">i</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+l - 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">14.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">j</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+r + 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">15.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">
+<b><i>A</i></b>[ (l + r)/2 ]&nbsp;</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">16.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span style="font-size: 14.0pt; line-height: 150%"><font size="2">
+<span style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>repeat</b></span></font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">17.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>repeat</b> 
+i</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+i + 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">18.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>until</b>
+<b><i>A</i></b>[i]</font><font face="Times New Roman" size="2"> &#8805;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span></span><font size="2"><span style="line-height: 150%"> 
+x</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">19.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>repeat</b> 
+j</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+j - 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">20.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>until</b>
+<b><i>A</i></b>[j]</font><font face="Times New Roman" size="2"> &#8804;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span></span><font size="2"><span style="line-height: 150%"> 
+x</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">21.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>if</b>&nbsp; 
+i </font><font face="Times New Roman" size="2">&nbsp;&#8804;</font></span><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">&nbsp; 
+j</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">22.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>then</b>
+</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">23.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">t</font></span><font face="MS Sans Serif" size="2"> &#8592;</font><span style="line-height: 150%"><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2">
+<b><i>A</i></b>[i]</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">24.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b><i>A</i></b>[i]
+</font></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">
+<b><i>A</i></b>[j]</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">25.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b><i>A</i></b>[j]
+</font></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+t </span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">26.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>until</b> 
+i </font><font face="Times New Roman" size="2">&#8805; </font>
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span></span><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]>
+<![endif]--></span><font size="2"><span style="line-height: 150%">j</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">27.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>if</b> 
+i = r <b>or</b> j = </font><b><i><font size="2">l</font></i></b></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">28.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>then 
+if </b>i = r</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">29.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;</b></font></span><span style="line-height: 150%"><font size="2"><b>then</b> 
+r&nbsp; </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">&nbsp;i 
+– 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">30.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;</b></font></span><span style="line-height: 150%"><font size="2"><b>else</b>&nbsp;
+<b><i>l</i></b> </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">&nbsp;j 
++ 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span lang="EN-US" style="line-height: 150%">31.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%" lang="EN-US"><font size="2">
+</font></span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%">
+<font size="2"><span lang="EN-US" style="line-height: 150%">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;else if&nbsp;</b> i - </span></font></span><b><i>
+<span style="line-height: 150%"><font size="2">l</font></span></i></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+&gt; r - i</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">32.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>then</b>
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">top</font></span><font face="MS Sans Serif" size="2"> &#8592; </font>
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span><font size="2"><span style="line-height: 150%">top+2</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">33.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">stack[top]
+</font></span><font face="MS Sans Serif" size="2">&#8592;</font><i><span style="line-height: 150%"><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><font size="2"> 
+l</font></b></span></i></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">34.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">stack[top+1]
+</font></span><font face="MS Sans Serif" size="2">&#8592; </font>
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span><font size="2"><span style="line-height: 150%">i - 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">35.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><b><i><span style="line-height: 150%"><font size="2">l</font></span></i></b><span style="line-height: 150%"><font size="2">
+</font></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">&nbsp;i
+</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">36.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2"><b>else</b>
+</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">37.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">top</font></span><font face="MS Sans Serif" size="2"> &#8592; </font>
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span><font size="2"><span style="line-height: 150%">top +2</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">38.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">stack[top]
+</font></span><font face="MS Sans Serif" size="2">&#8592; </font>
+<span style="line-height: 150%">
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span><font size="2">i</font></span></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">39.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">stack[top+1]
+</font></span><font face="MS Sans Serif" size="2">&#8592; </font>
+<span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]-->
+</span><font size="2"><span style="line-height: 150%">r</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">40.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="line-height: 150%"><font size="2">r
+</font></span><font face="MS Sans Serif" size="2">&#8592;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%">&nbsp;i 
+- 1</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">41.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">
+</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;</b></font></span><span style="line-height: 150%"><font size="2"><b>until
+<i>l</i></b>&nbsp; </font><font face="Times New Roman" size="2">&#8805;</font><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span></span><span style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2"><span style="line-height: 150%"> 
+&nbsp;r</span></font></p>
+  <center>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2"><span style="line-height: 150%">42.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font></span><span style="font-size: 14.0pt; line-height: 150%"><font size="2"><span style="line-height: 150%"><b>until</b> top = -1</span></font></span></p>
+<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+<font size="2">43.</font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Times New Roman; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font size="2"><b>return</b></font></p>
+  <center>
+<p style="text-align: left; line-height: 100%; text-indent: 0; margin: 0">&nbsp;</p>
+<h3 style="text-indent: 0; line-height: 100%; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif"><a name="&nbsp;&nbsp;Выбор разделяющего элемента">&nbsp;&nbsp;Выбор
+разделяющего элемента</a></font></h3>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Несмотря на утешительные
+результаты при случайном выборе
+разделяющего элемента, допускающего&nbsp; чередование
+&quot;плохих&quot; и &quot;хороших&quot;
+разделений, предлагаются методы выбора
+разделяющего элемента -&nbsp; медианы, который
+будет делить массив на две
+равные по размеру части. Это приближает быструю
+сортировку к оптимальной.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Хоор [ <a href="liter.html">5</a> ] предложил
+выбирать разделяющий элемент в
+неупорядоченном массиве случайным образом,
+то есть задавать индекс в виде случайного
+числа. Такой алгоритм сортировки
+называется вероятностным. Для задания
+индекса можно использовать генератор
+случайных чисел. Такой способ показал
+хорошую эффективность.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Еще один способ поиска разделяющего
+элемента, близкого к медиане,&nbsp; известен, как
+&quot;метод <a name="медианы трех"><i> медианы трех</i></a><a name="медианы трех"><i>
+</i></a>&quot;, когда в качестве
+разделяющего элемента&nbsp; используется средний из трех
+случайно выбранных элементов массива.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Этот метод существенно снижает
+возникновение вероятности худшего случая,
+поскольку вероятность выбора сразу двух
+наименьших или двух наибольших значений
+существенно ниже вероятности выбора одного
+наименьшего или наибольшего значения.&nbsp; Например,
+для выбора опорного элемента &quot;методом
+медианы трех&quot; в качестве трех элементов
+можно взять&nbsp; элементы&nbsp; A[l], A[r], A[(l+r)/2]&nbsp;
+в разделяемой части массива&nbsp; A[l…r].&nbsp;</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Есть способ
+точного определения медианы [ <a href="liter.html">5</a>
+].&nbsp; Для поиска медианы используется та же
+схема просмотра
+элементов, которая используется в
+алгоритме разделения при быстрой сортировке.</font></p>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">Сначала применяется разделение
+относительно выбранного значения A[k]. Получаются значения индексов
+i
+и j такие, что</font></p>
+<p class="MsoNormal" style="margin-left:53.4pt;text-align:justify;text-indent:
+-18.0pt;mso-list:l1 level1 lfo1;tab-stops:list 53.4pt"><font size="2" face="MS Sans Serif"><span style="mso-list: Ignore; mso-ansi-language: EN-US" lang="EN-US">1)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="EN-US" style="mso-ansi-language:EN-US">A[h]<span style="position:relative;
+top:2.0pt;mso-text-raise:-2.0pt"> </span></font><span style="position:relative;
+top:2.0pt;mso-text-raise:-2.0pt"> <font size="2" face="Times New Roman">&#8804;</font></span><font size="2" face="MS Sans Serif">&nbsp;
+x </font> </span><font size="2" face="MS Sans Serif">для<span lang="EN-US" style="mso-ansi-language:EN-US"> h &lt; i</span></font></p>
+<p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin-top: 0; margin-bottom: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-list: Ignore; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="EN-US" style="mso-ansi-language:EN-US">A[h]<span style="position:relative;
+top:2.0pt;mso-text-raise:-2.0pt"> </span></font><span style="position:relative;
+top:2.0pt;mso-text-raise:-2.0pt"> <font size="2" face="Times New Roman">&#8805;</font></span><font size="2" face="MS Sans Serif"><span style="position: relative; top: 2.0pt; mso-text-raise: -2.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;</span>
+x </font> </span><font size="2" face="MS Sans Serif">для<span lang="EN-US" style="mso-ansi-language:EN-US"> h &gt; i</span></font></p>
+<p class="MsoNormal" style="margin-left:53.4pt;text-align:justify;text-indent:
+-18.0pt;mso-list:l1 level1 lfo1;tab-stops:list 53.4pt"><font size="2" face="MS Sans Serif"><span style="mso-list: Ignore; mso-ansi-language: EN-US" lang="EN-US">3)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="EN-US" style="mso-ansi-language:EN-US">i &lt; j&nbsp;</span></font></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: 10; mso-list: l1 level1 lfo1; tab-stops: list 53.4pt; word-spacing: 0; line-height: 100%; margin-left: 0t; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">Возможны
+три варианта:</font></p>
+<p class="MsoNormal" style="margin-left:53.4pt;text-align:justify;text-indent:
+-18.0pt;mso-list:l0 level1 lfo2;tab-stops:list 53.4pt"><font size="2" face="MS Sans Serif"><span style="mso-list:Ignore">1)<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="EN-US" style="mso-ansi-language:EN-US">x</span>
+слишком мало и&nbsp; искомое значение
+ищется в большей правой части:</font></p>
+<p class="MsoNormal" align="center"><img border="0" src="images/sort_r22.gif" width="410" height="79"></p>
+<p class="MsoNormal" align="left"><span style="mso-list: Ignore">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2</span><span style="mso-list:Ignore">)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span><font face="MS Sans Serif" size="2">
+<span style="font-style:normal; font-variant:normal; font-weight:normal">&nbsp;
+</span></font></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">x</span>
+слишком велико и искомое значение
+ищется в большей
+левой части:</font></p>
+<p class="MsoNormal" align="center"><img border="0" src="images/sort_r23.gif" width="410" height="79"></p>
+<p class="MsoNormal" align="left"><span style="mso-list: Ignore">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2" face="MS Sans Serif">&nbsp;
+3</font></span><span style="mso-list:Ignore"><font size="2" face="MS Sans Serif">)</font><span style="font-style:normal; font-variant:normal; font-weight:normal; font-family:MS Sans Serif"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>
+</span></span><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">k</span>
+лежит в интервале <span lang="EN-US" style="mso-ansi-language:EN-US">j</span>&lt;<span lang="EN-US" style="mso-ansi-language:EN-US">k</span>&lt;<span lang="EN-US" style="mso-ansi-language:EN-US">i</span>
+и&nbsp; элемент <span lang="EN-US" style="mso-ansi-language:EN-US">A</span>[<span lang="EN-US" style="mso-ansi-language:
+EN-US">k</span>] является медианой.</font></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: 10; mso-list: l1 level1 lfo1; tab-stops: list 53.4pt; word-spacing: 0; line-height: 100%; margin-left: 0t; margin-right: 0; margin-top: 0; margin-bottom: 0"><font size="2" face="MS Sans Serif">Процесс
+разделения продолжается до появления случая
+3.</font></p>
+<p class="MsoNormal" style="text-align:justify"><b><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">Find_median
+(<i> A </i>[ <i>n.. k</i> ] )&nbsp;
+</font></span></b></p>
+<ol>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>L<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt"> </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">
+    1&nbsp;
+    </font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>R<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt"> </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"> </span>
+	<span style="mso-ansi-language:EN-US"><b><i>n&nbsp;</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> </span>
+    </font></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>while</b> L&lt; R&nbsp;
+    </font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>do</b> <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>x<span style="position:relative;
+top:3.0pt;mso-text-raise:-3.0pt"> </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"> </span>
+	<span style="mso-ansi-language:EN-US"><b><i>A</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> [</span><span style="mso-ansi-language:EN-US"><b><i>k</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> ] </span></font></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>i<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt"> </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">
+    L</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>j<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt"> </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">
+    R</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>repeat</b></font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>repeat 
+	</b>j<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt">
+    </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">
+    j -1</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>until</b> </span>
+	<span style="mso-ansi-language:EN-US"><b><i>A </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[j]&nbsp;<span style="position:relative;top:2.0pt;mso-text-raise:-2.0pt">
+    </span></span></font><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="position:relative;
+top:2.0pt;mso-text-raise:-2.0pt"> <font size="2" face="Times New Roman">&#8804;</font></span></span><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"> x</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+	</b>
+    </span><b>repeat </b>i<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt">
+    </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">
+    i + 1</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>until</b> </span><span style="mso-ansi-language:EN-US"><b><i>A </i>
+	</b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[i]&nbsp;<span style="position:relative;top:2.0pt;mso-text-raise:-2.0pt">
+    </span></span></font><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="position:relative;top:2.0pt;mso-text-raise:-2.0pt">
+    <font size="2" face="Times New Roman">&#8805;</font></span><font size="2" face="MS Sans Serif"><span style="position: relative; top: 2.0pt; mso-text-raise: -2.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;</span>
+    x</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+	</b>
+    </span><b>if</b><span style="mso-tab-count:1"><b>&nbsp;</b>&nbsp; </span>i &lt;j&nbsp;</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>then</b><span style="mso-tab-count:1"><b>&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp; </span>t<span style="position:relative;
+top:3.0pt;mso-text-raise:-3.0pt"> </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"> </span>
+	<span style="mso-ansi-language:EN-US"><b><i>A</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> [i]</span></font></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="mso-tab-count:6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span><span style="mso-ansi-language:EN-US"><b><i>A </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[i]&nbsp;<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt">
+    </span></span></font><font face="MS Sans Serif" size="2">&#8592;</font><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;</span>
+    </span><span style="mso-ansi-language:EN-US"><b><i>A</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> [j]</span></font></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="mso-tab-count:6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span><span style="mso-ansi-language:EN-US"><b><i>A</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> [j] </span> </font><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt">&nbsp;</span>
+    t</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>until </b>i &lt; j</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>if</b><span style="mso-tab-count:1">&nbsp;&nbsp;</span>j &lt; </span>
+	<span style="mso-ansi-language:EN-US"><b><i>k</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;</span></font></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>then</b> L<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt">&nbsp;</span><span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt">
+    </span></font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-ansi-language: EN-US">&nbsp;</span>
+    i&nbsp;&nbsp;</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-ansi-language:EN-US"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>if<span style="mso-tab-count:1">&nbsp;&nbsp;</span></b>i &gt; </span>
+	<span style="mso-ansi-language:EN-US"><b><i>k</i></b></span></font></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b>then</b> R<span style="position:relative;top:3.0pt;mso-text-raise:-3.0pt">
+    </span>
+    </font></span><font face="MS Sans Serif" size="2">&#8592;</font><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif">
+    j</font></span></li>
+  <li>
+    <p class="MsoNormal" style="text-align:justify"><span lang="EN-US" style="mso-ansi-language:EN-US"><font size="2" face="MS Sans Serif"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;
+	</b>
+    </span><b>return</b> j</font></span></li>
+</ol>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+  </center>
+      <p class="MsoNormal" style="text-indent: 10; line-height: 100%; mso-list: l1 level1 lfo1; tab-stops: list 53.4pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-tab-count: 1; mso-ansi-language: EN-US"><font size="2" face="MS Sans Serif"><span lang="EN-US">&nbsp;&nbsp;&nbsp;</span></font></span><font size="2" face="MS Sans Serif">В среднем,&nbsp; каждое разбиение уменьшает размер
+следующего просматриваемого подмассива.
+Таким образом, на поиск медианы потребуется</font>
+<font size="2" face="MS Sans Serif">n+n/2+n/4+…+1=2n
+шагов. Но в худшем случае этот метод&nbsp; дает
+O(n<sup>2</sup>)
+шагов. Его не следует использовать для
+небольших массивов.</font></p>
+  <center>
+<p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;
+В общем,
+приведенный алгоритм поиска медианы
+является частным случаем задачи вычисления
+порядковых статистик. Задача заключается в
+следующем: дан неупорядоченный список из n
+элементов и целое число k.
+Необходимо найти ключ элемента, который
+стоит в отсортированном списке этих
+элементов на k - й
+позиции. Это задача нахождения k - й
+порядковой статистики. Специальные
+случаи этой задачи – нахождение
+минимального и максимального элементов.
+Это задачи нахождения порядковой
+статистики при k = 1 и k = n.
+В этих случаях задача выполняется за время,
+пропорциональное&nbsp; O(n).</font></p>
+      </center><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_sheker.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_heap.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="38845" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_razdel.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:46 GMT -->
+</html>

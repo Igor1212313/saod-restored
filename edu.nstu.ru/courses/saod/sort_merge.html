@@ -1,0 +1,691 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_merge.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:49 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Сортировка слиянием</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="File-List" href="sort_merge.files/filelist.xml">
+
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+</style>
+<![endif]--><!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/sort_merge.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Сортировка слиянием"><!--webbot bot="Navigation" i-checksum="33387" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_heap.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="msd.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="14132" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Двухпутевое слияние файлов">Двухпутевое
+        слияние файлов</a></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Нисходящая сортировка слиянием">Нисходящая
+        сортировка слиянием</a></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a href="#Восходящая сортировка слиянием">Восходящая
+        сортировка слиянием</a></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Двухпутевое слияние файлов">Двухпутевое
+        слияние файлов</a></font></h3>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">Сортировка
+        слиянием <span style="mso-bidi-font-size: 12.0pt"> [<a href="liter.html">5</a>]</span>во многом похожа на метод
+        быстрой сортировки и также относится к
+        алгоритмам типа <span lang="EN-US" style="mso-ansi-language:EN-US">O</span>(<span lang="EN-US" style="mso-ansi-language:EN-US">nlogn</span>).
+        Если сопоставить производительность
+        трех методов типа <span lang="EN-US" style="mso-ansi-language:
+EN-US">O</span>(<span lang="EN-US" style="mso-ansi-language:EN-US">n log n</span>),
+        то исследования показали, что
+        производительность сортировки
+        слиянием лежит между
+        производительностью пирамидальной и
+        быстрой сортировки. Но в отличие от
+        пирамидальной и быстрой сортировок,
+        метод сортировки слиянием ведет себя
+        стабильно, поскольку он не зависит от
+        перестановок элементов в массиве. Еще
+        одним достоинством сортировки
+        слиянием является то, что он удобен для
+        структур с последовательным доступом к
+        элементам, таким как файлы на внешнем
+        устройстве, связные списки. Этот метод,
+        прежде всего, используется для <a name="внешней сортировки"> внешней
+        сортировки</a>.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Но
+        метод имеет и недостатки. Он требует
+        дополнительной памяти по объему равной
+        объему сортируемого файла. Поэтому для
+        больших файлов проблематично
+        организовать сортировку слиянием в
+        оперативной памяти.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        случаях, когда гарантированное время
+        сортировки важно и размещение в
+        оперативной памяти, возможно, следует
+        предпочесть метод сортировки слиянием.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Сортировку
+        слиянием можно проиллюстрировать
+        примером:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Разобьем
+        на первом шаге файл на два файла:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">94<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Объединим
+        эти два файла снова в один файл,
+        содержащий упорядоченные пары:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94<span style="mso-spacerun:yes">&nbsp; </span><b>’</b><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-spacerun:yes">&nbsp; </span><b>’</b><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-spacerun:yes">&nbsp; </span><b>’</b><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Снова
+        разобьем файл и объединим пары в
+        четверки:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94<span style="mso-spacerun:yes">&nbsp; </span><b>’</b><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-spacerun:yes">&nbsp; </span><b>’</b><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Слияние
+        дает:</font></p>
+        <p class="MsoNormal" align="center"><font face="MS Sans Serif" size="2"><span style="mso-tab-count:2">&nbsp;</span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94<span style="mso-spacerun: yes; mso-ansi-language: EN-US" lang="EN-US">&nbsp;
+        </span><b>’</b><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Снова
+        разобьем файл на два и объединим
+        четверки:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center"><font face="MS Sans Serif" size="2">18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Слияние
+        дает:</font></p>
+        <p class="MsoNormal" align="center"><font face="MS Sans Serif" size="2">06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Итак,
+        основной операцией является слияние.
+        При слиянии требуется дополнительная
+        память для размещения файла,
+        образующегося при слиянии. Операция
+        линейно зависит от количества
+        элементов в объединяемых массивах.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">В
+        общем, виде можно предположить, что
+        сливаемые файлы имеют разную
+        размерность: A[1 .. n], B[1 .. m]. При слиянии
+        образуется третий массив C[1 .. n+m].</font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left"><b><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">Merge
+        (<i>A</i> [<i>1..n </i>], <i>B </i>[<i>1.. m </i>], <i>C </i>[<i>1..n+m
+		</i>])</font></span></b></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left"><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+        1<span style="mso-tab-count:1"> </span>i</font></span><span style="mso-bidi-font-size: 12.0pt"><font size="2" face="Arial"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"> &#8592;</span></font></span><span lang="EN-US" style="mso-ansi-language:EN-US"><font face="Arial" size="2"> 
+		1</font></span></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left"><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+        2<span style="mso-tab-count: 1"> </span>j &#8592; 1</font></span></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        3<span style="mso-tab-count: 1"> </span><b>for </b>k &#8592; 1 <b>to</b> </span>
+		<span style="mso-ansi-language:EN-US"><b><i>n+m</i></b></span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp; 
+		4&nbsp;&nbsp; <b>do </b><span style="mso-tab-count:1"><b>if</b>&nbsp;
+        </span>i = </span><span style="mso-ansi-language:EN-US"><b><i>n</i></b></span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        5&nbsp;&nbsp; <span style="mso-tab-count: 3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b>then</b>
+        <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span></span>
+		<span style="mso-ansi-language:EN-US"><b><i>C</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> [k]
+        &#8592; </span><span style="mso-ansi-language:EN-US"><b><i>B</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> [j]</span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left"><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+        6<span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>j &#8592; j + 1</font></span></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        7<span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>else&nbsp; </b>&nbsp; <b>if</b><span style="mso-tab-count:1"><b>
+		</b>&nbsp; </span>j = </span><span style="mso-ansi-language:EN-US"><b>
+		<i>m</i></b></span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        8<span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then </b> <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="mso-ansi-language:EN-US"><b><i>C </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[k] &#8592; </span>
+		<span style="mso-ansi-language:EN-US"><b><i>A </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[i]</span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left"><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+        9<span style="mso-tab-count:5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&nbsp;&nbsp; <span style="mso-tab-count: 5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>i &#8592; i + 1</font></span></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        10&nbsp;&nbsp; <span style="mso-tab-count: 4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>&nbsp;</b></span><b>else if</b><span style="mso-tab-count:1"><b>&nbsp;</b>&nbsp; </span></span>
+		<span style="mso-ansi-language:EN-US"><b><i>A </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[i]
+        &lt; </span><span style="mso-ansi-language:EN-US"><b><i>B </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[j]</span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        11<span style="mso-tab-count:5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>then </b> <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span></span>
+		<span style="mso-ansi-language:EN-US"><b><i>C</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[k]
+        &#8592; </span><span style="mso-ansi-language:EN-US"><b><i>A</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[i]</span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left"><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+        12<span style="mso-tab-count:6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>i &#8592; i + 1</font></span></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;
+        13&nbsp;&nbsp; <span style="mso-tab-count: 5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>else</b><span style="mso-tab-count:1"><b>&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>
+		<span style="mso-ansi-language:EN-US"><b><i>C</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[k]
+        &#8592;</span><span style="mso-ansi-language:EN-US"><b><i>B </i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[j]</span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0" align="left">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+        14<span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp; </span><span style="mso-tab-count: 6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span lang="EN-US" style="mso-ansi-language:EN-US">j </span></font><span style="mso-bidi-font-size: 12.0pt">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&#8592;</span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">j </span>+
+        1</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Такая
+        операция называется двух путевым
+        слиянием. Операция имеет и
+        самостоятельное значение. Например,
+        если достаточно большой&nbsp;
+        упорядоченный файл&nbsp; пополняется
+        новыми элементами, то новые элементы
+        группируются в пакеты и записываются в
+        файл. После этого файл с новыми данными
+        сортируется и сливается с большим
+        файлом.</font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+        <h2 align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Нисходящая сортировка слиянием">Нисходящая
+        сортировка слиянием</a></font></h2>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Эта
+        сортировка является рекурсивной
+        операцией, которая делит файл пополам и
+        выполняет по рекурсии сортировку обеих
+        половин. Дерево рекурсии выглядит
+        следующим образом:</font></p>
+        <p class="MsoBodyTextIndent" align="center"><img border="0" src="images/merge1.gif" width="473" height="288"></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Рекурсия
+        ограничена снизу размером
+        разделяемого файла, равным 1. Каждый
+        рекурсивный вызов делит файл пополам. В
+        случае если размер файла кратен 2,
+        получается полное, сбалансированное
+        дерево рекурсии.</font></p>
+        <p class="MsoNormal" style="text-indent: 35.4pt" align="center"><img border="0" src="images/merge2.gif" width="605" height="165"></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Если
+        n не кратно 2, то дерево получается
+        несбалансированным, но все равно его
+        высота оценивается log2 n.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Общий
+        алгоритм нисходящей сортировки
+        слиянием выглядит следующим образом:</font></p>
+        <p class="MsoNormal" align="center"><img border="0" src="images/merge3.gif" width="521" height="191"></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<b><font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%"><a name="Merge_Sort">
+		Merge_Sort</a> (<i>A </i></span></b>
+		<span lang="EN-US" style="line-height: 150%">[<b><i> l..r</i></b></span><span style="line-height: 150%"> 
+		]</span><i><b><span lang="EN-US" style="line-height: 150%">, C</span></b></i><span style="line-height: 150%">[</span><b><i><span lang="EN-US" style="line-height: 150%"> 
+		l..r</span></i></b><span style="line-height: 150%"> ]</span><span lang="EN-US" style="line-height: 150%"><b>)</b></span></font></p>
+		<p class="MsoNormal" style="text-align: justify; line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<span style="position: relative; top: 2.0pt">
+		<font size="2" face="Arial"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1025" type="#_x0000_t75" style='width:11.25pt;
+ height:11.25pt'>
+ <v:imagedata src="sort_merge.files/image001.wmz" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+src="sort_merge.files/image002.gif" v:shapes="_x0000_s1025"><![endif]></font></span><!--[if gte mso 9]><![endif]--></span><font face="Arial"><i><b><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;A</font></span><span style="line-height: 150%"><font size="2">
+		</font></span></b></i><span style="line-height: 150%"><font size="2">[</font></span><b><i><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		l</font></span><span style="line-height: 150%"><font size="2"> .. </font>
+		</span><span lang="EN-US" style="line-height: 150%"><font size="2">r</font></span></i></b><span style="line-height: 150%"><font size="2"> 
+		]<b><i> </i></b></font></span><span style="line-height: 150%">
+		<font size="2">&nbsp;– часть массива между границами</font><b><font size="2">
+		</font></b></span><b><i><span lang="EN-US" style="line-height: 150%">
+		<font size="2">l </font></span></i></b><span style="line-height: 150%">
+		<font size="2">и</font><b><i><font size="2"> </font></i></b></span><b>
+		<i><span lang="EN-US" style="line-height: 150%"><font size="2">r</font></span></i></b></font></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<span style="position: relative; top: 2.0pt">
+		<font size="2" face="Arial"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1026" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'>
+ <v:imagedata src="sort_merge.files/image001.wmz" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+src="sort_merge.files/image002.gif" v:shapes="_x0000_s1026"><![endif]></font></span><!--[if gte mso 9]><![endif]--></span><font face="Arial"><span style="line-height: 150%"><font size="2"><i><b>С</b></i>[<b><i> 
+		1..</i></b></font></span><b><i><span lang="EN-US" style="line-height: 150%"><font size="2">n</font></span></i></b><font size="2"><span style="line-height: 150%"> 
+		] – вспомогательный массив размерностью </span></font><b><i>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">n</font></span></i></b></font></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">if</font></span></b></font><span lang="EN-US" style="line-height: 150%"><font size="2" face="Arial">
+		<b><i>r</i></b>&nbsp; &#8804;</font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><b><i><font size="2" face="Arial">&nbsp; 
+		l</font></i></b></span></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> <b>return</b></font></span></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">5.</span></font><font size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-variant: normal; font-family: Arial; line-height: 150%" lang="EN-US">
+		</span></font><span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">m</font></span><span lang="EN-US" style="mso-ansi-language:EN-US"><font face="Arial" size="2"> 
+		&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;(<b><i>l</i></b> 
+		+ <b><i>r</i></b>)/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">6.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">Merge_Sort</font></span></b><font size="2"><span lang="EN-US" style="line-height: 150%"> 
+		(<b><i>A</i></b></span><span style="line-height: 150%">[ </span><b><i>
+		<span lang="EN-US" style="line-height: 150%">l..</span></i></b><span style="line-height: 150%">m
+		</span><span style="line-height: 150%">],</span><span lang="EN-US" style="line-height: 150%"><b><i> 
+		C</i></b>)</span></font></font></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">7.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">Merge_Sort</font></span></b><font size="2"><span lang="EN-US" style="line-height: 150%"> 
+		(<b><i>A</i></b>, </span><span style="line-height: 150%">[</span><span lang="EN-US" style="line-height: 150%"> 
+		m+1</span><span style="line-height: 150%">..</span><i><b><span lang="EN-US" style="line-height: 150%">r</span></b></i><span style="line-height: 150%"> 
+		]</span><span lang="EN-US" style="line-height: 150%"><i><b>, C</b></i>)</span></font></font></p>
+		<p class="MsoNormal" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">8.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">Merge</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		(<b><i>A</i></b></font></span><font size="2"><span style="line-height: 150%">[</span></font><span lang="EN-US" style="line-height: 150%"><font size="2"><b><i> 
+		l</i></b> ..m..<b><i>r</i></b></font></span><font size="2"><span style="line-height: 150%"> 
+		] </span></font><span lang="EN-US" style="line-height: 150%">
+		<font size="2">, <b><i>C</i></b>)</font></span></font></p>
+        <p class="MsoNormal" style="text-indent: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Для
+        нисходящей сортировки модифицируем
+        процедуру слияния [ <a href="liter.html">4 </a> ].
+        Вместо двух файлов она получает
+        границы двух сливаемых частей массива
+        А. Кроме того, результат слияния она
+        вновь помещает в исходный массив А.
+        Массив С используется как
+        вспомогательный для слияния. Его
+        размерность равна размерности массива
+        А.</font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-ansi-language: EN-US" lang="EN-US"><b>&nbsp;</b></span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US" lang="EN-US"><b><span style="mso-ansi-language:EN-US"><a name="Merge ( A [ l .. m.. r ], C [ l .. m.. r ] )">Merge
+        ( <i>A</i> [ <i>l .. m.. r </i>], <i>C</i> [<i> l .. m.. r </i>] )</a></span></b></span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">1.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">for</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		i </font></span></font><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial"><span lang="EN-US" style="line-height: 150%">&nbsp;<b><i>m</i></b>+1
+		<b>down</b> <b><i>l</i></b> +1</span></font></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">2.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> <b><i>C</i></b>[i-1] </font>
+		</span><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><!--[if gte mso 9]><![endif]--><font face="Arial"><span style="line-height: 150%"><b><i><font size="2">&nbsp;A</font></i></b></span><span lang="EN-US" style="line-height: 150%"><font size="2">[i-1]</font></span></font></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">3.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">for</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		j </font></span></font><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial"><span lang="EN-US" style="line-height: 150%">&nbsp;<b><i>m</i></b>
+		<b>to</b> <b><i>r</i></b> -1</span></font></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">4.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> </span><b>
+		<i><span style="line-height: 150%">C</span></i></b><span lang="EN-US" style="line-height: 150%">[<b><i>r</i></b> 
+		+ <b><i>m</i></b> – j] </span></font><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><!--[if gte mso 9]><![endif]--><font face="Arial"><b><i><font size="2"><span style="line-height: 150%">A</span></font></i></b><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font size="2">[j+1]</font></span></font></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">5.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font face="Arial"><b>
+		<span lang="EN-US" style="line-height: 150%"><font size="2">for</font></span></b><span lang="EN-US" style="line-height: 150%"><font size="2"> 
+		k</font></span></font><span lang="EN-US" style="mso-ansi-language:EN-US"><font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial"><b><i><font size="2">&nbsp;l</font></i></b><font size="2">
+		<b>to</b> </font><b><i><font size="2">r</font></i></b></font></span></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">6.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do if</b> </span>
+		<b><i><span style="line-height: 150%">C</span></i></b><span lang="EN-US" style="line-height: 150%">[j</span><span lang="EN-US" style="line-height: 150%">]&lt;</span><b><i><span style="line-height: 150%">C</span></i></b><span lang="EN-US" style="line-height: 150%">[i]</span></font></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">7.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b>&nbsp;&nbsp;
+		</span><b><i><span style="line-height: 150%">A</span></i></b><span lang="EN-US" style="line-height: 150%">[k</span><span lang="EN-US" style="line-height: 150%">]
+		</span></font><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><!--[if gte mso 9]><![endif]--><font face="Arial"><b><i><font size="2"><span style="line-height: 150%">C</span></font></i></b><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><font size="2">[j]</font></span></font></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">8.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j</font></span><span lang="EN-US" style="mso-ansi-language:EN-US"><font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--><font size="2" face="Arial"><span lang="EN-US" style="line-height: 150%">j-1</span></font></span></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial">
+		<span lang="EN-US" style="line-height: 150%">9.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%" lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span>
+		<span lang="EN-US" style="line-height: 150%; font-size: 14.0pt">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else </b>&nbsp;&nbsp;<b><i>A</i></b>[k]
+		</font></span><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><span lang="EN-US" style="line-height: 150%; font-size: 14.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial"><b><i><font size="2">C</font></i></b><font size="2">[i]</font></font></span></p>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">
+		<font size="2" face="Arial"><span style="line-height: 150%">10.</span></font><span style="font-style: normal; font-variant: normal; font-weight: normal; font-family: Arial; line-height: 150%"><font size="2">
+		</font></span><span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i </font></span><span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">&#8592;</font></span><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font size="2" face="Arial">&nbsp;</font></span><span lang="EN-US" style="font-size: 14.0pt; line-height: 150%"><!--[if gte mso 9]><![endif]--></span><font face="Arial"><font size="2"><span lang="EN-US" style="line-height: 150%">i</span></font><span style="line-height: 150%"><font size="2">+1</font></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Такая
+        реализация слияния избавляет от
+        необходимости проверок при слиянии
+        конца того или другого массива,
+        поскольку максимальный элемент того
+        или другого файла ограничивают
+        продвижение индекса в файле с меньшим
+        максимальным элементом.</font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><a name="Восходящая сортировка слиянием">Восходящая
+        сортировка слиянием</a></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Рассмотрим
+        последовательность слияний,
+        выполняемую рекурсивным алгоритмом:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">1
+        – с –1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>2 – с – 2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – <span lang="EN-US" style="mso-ansi-language:EN-US">c</span>
+        – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – <span lang="EN-US" style="mso-ansi-language:EN-US">c</span>
+        – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>2 – <span lang="EN-US" style="mso-ansi-language:
+EN-US">c</span> – 2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>4 – <span lang="EN-US" style="mso-ansi-language:EN-US">c</span>
+        - 4</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Порядок
+        выполнения слияний определяется
+        деревом рекурсии. Однако подфайлы
+        обрабатываются независимо и слияние
+        можно выполнять в различных
+        последовательностях.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Например,
+        так:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">1
+        – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>2 – с – 2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>2 – с – 2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>4 – с – 4</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Эта
+        схема справедлива и для n, не кратных 2.</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Например,
+        для n = 7:</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">1
+        – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>1 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>2 – с – 2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>2 – с – 1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>4 – с – 3</font></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Такая
+        схема слияний соответствует
+        восходящему порядку прохода по дереву.
+        Сначала выполняются все слияния 1 – с –
+        1, что соответствует нижнему уровню
+        дерева, затем все слияния 2 – с – 2,
+        затем слияния 4 – с – 4 и т. д. То есть
+        дерево обходится снизу, с полной
+        обработкой каждого уровня.</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2"><b>4
+        – с – 4</b></font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2"><b>2
+        – с – 2 </b><span style="mso-tab-count:5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b> 2 – с – 2</b></font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">45<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67</font></p>
+        <p class="MsoNormal" align="center" style="tab-stops: list 36.0pt"><b>1
+        - c - 1<font face="MS Sans Serif" size="2"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font>1 - c - 1<font face="MS Sans Serif" size="2"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font>1 - c - 1<font face="MS Sans Serif" size="2"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font>1 - c - 1</b></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><font face="MS Sans Serif" size="2">&nbsp;44<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>55<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>12<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>42<span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>94<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>18<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>06<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>67&nbsp;</font></p>
+        <p class="MsoNormal" align="center" style="text-align:center;tab-stops:list 36.0pt"><a href="flash/test12.html"><b><font face="MS Sans Serif" color="#0000FF" size="3">Тест</font></b></a></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Такую
+        схему сортировки можно выполнить с
+        помощью итеративного алгоритма:</font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0"><b><font face="MS Sans Serif" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">I</span></font><span lang="EN-US" style="mso-ansi-language:EN-US"><font face="Arial" size="2">terative_Merge_Sort 
+		( </font></span><font face="Arial" size="2">
+		<span style="mso-ansi-language:EN-US"><i>A</i></span><span lang="EN-US" style="mso-ansi-language:EN-US"> </span></b><span lang="EN-US" style="mso-ansi-language:EN-US">
+		[</span><b><span style="mso-ansi-language:EN-US"><i>1 ..n </i></span></b>
+		<span style="mso-ansi-language:EN-US">]</span><b><span lang="EN-US" style="mso-ansi-language:EN-US">, </span>
+		<span style="mso-ansi-language:EN-US"><i>C</i></span><span lang="EN-US" style="mso-ansi-language:EN-US"> </span></b>
+		<span style="mso-ansi-language:EN-US">[</span><i><b><span lang="EN-US" style="mso-ansi-language:EN-US">1 ..n</span></b></i><span style="mso-ansi-language:EN-US"> ] </span><b><span lang="EN-US" style="mso-ansi-language:EN-US">)</span></b></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">1&nbsp;
+        <b>for</b> h &#8592; 1</span><span style="mso-ansi-language:EN-US"><b> to <i>n</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> 
+		- 1</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="mso-ansi-language:EN-US"><b>do&nbsp;</b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> </span>
+		<span style="mso-ansi-language:EN-US"><b>for </b></span><span lang="EN-US" style="mso-ansi-language:EN-US">i 
+		&#8592; 1</span><span style="mso-ansi-language:EN-US"><b> to <i>n</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> 
+		- h</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="mso-ansi-language:EN-US"><b>do&nbsp;</b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> r &#8592; i + h + h</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language:EN-US">
+		4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="mso-ansi-language:EN-US"><b>&nbsp;if </b></span><span lang="EN-US" style="mso-ansi-language:EN-US">
+		r &gt; </span><span style="mso-ansi-language:EN-US"><b><i>n</i></b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> </span></font></p>
+		<p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2"><span style="mso-ansi-language:EN-US">5<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		then</b></span><span lang="EN-US" style="mso-ansi-language:EN-US"> r &#8592; n</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<font face="Arial" size="2">6<span lang="EN-US" style="mso-ansi-language:EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        Merge </b>( </span><span style="mso-ansi-language:EN-US"><b><i>A </i>
+		</b></span><span lang="EN-US" style="mso-ansi-language:EN-US">[ i .. h ], </span>
+		<span style="mso-ansi-language:EN-US"><b><i>A </i></b></span>
+		<span lang="EN-US" style="mso-ansi-language:EN-US">[ i+h .. r ], </span>
+		<span style="mso-ansi-language:EN-US"><b><i>C </i></b></span>
+		<span lang="EN-US" style="mso-ansi-language:EN-US">[ i .. r ] )</span></font></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i &#8592; r + 1 <span style="mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span></p>
+        <p class="MsoNormal" style="tab-stops: list 36.0pt; text-indent: 0; line-height: 100%; margin: 0">
+		<span lang="EN-US" style="mso-ansi-language:EN-US">
+		<font face="Arial" size="2">8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        h &#8592; h + h</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Итак,
+        сортировка слиянием так же, как и
+        пирамидальная и быстрая сортировки
+        имеют оценку эффективности O(nlogn). Она
+        превосходит по быстродействию
+        пирамидальную сортировку, но уступает
+        почти в два раза быстрой сортировке. Но
+        у нее есть превосходство перед быстрой
+        сортировкой – устойчивость. Главный
+        недостаток – использование
+        дополнительной памяти.</font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_heap.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="msd.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="43209" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_merge.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:51 GMT -->
+</html>

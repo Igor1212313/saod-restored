@@ -1,0 +1,206 @@
+.mstheme
+{
+	separator-image: url(ablrule.gif);
+	list-image-1: url(ablbull1.gif);
+	list-image-2: url(ablbull2.gif);
+	list-image-3: url(ablbull3.gif);
+	nav-banner-image: url(ablbnr.gif);
+	navbutton-horiz-normal: url(but_up.gif);
+	navbutton-horiz-hovered: url(but_up.gif);
+	navbutton-horiz-pushed: url(but_down.gif);
+	navbutton-vert-normal: url(but_up.gif);
+	navbutton-vert-hovered: url(but_up.gif);
+	navbutton-vert-pushed: url(but_down.gif);
+	navbutton-home-normal: url(blhomes.gif);
+	navbutton-home-hovered: url(blhomeh.gif);
+	navbutton-home-pushed: url(blhomes.gif);
+	navbutton-next-normal: url(blnexts.gif);
+	navbutton-next-hovered: url(blnexth.gif);
+	navbutton-next-pushed: url(blnexts.gif);
+	navbutton-prev-normal: url(blprevs.gif);
+	navbutton-prev-hovered: url(blprevh.gif);
+	navbutton-prev-pushed: url(blprevs.gif);
+	navbutton-up-normal: url(blups.gif);
+	navbutton-up-hovered: url(bluph.gif);
+	navbutton-up-pushed: url(blups.gif);
+}
+.mstheme-bannertxt
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 6;
+	font-style: normal;
+	font-weight: normal;
+}
+.mstheme-horiz-navtxt
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 2;
+	font-style: normal;
+	font-weight: normal;
+}
+.mstheme-vert-navtxt
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 2;
+	font-style: normal;
+	font-weight: normal;
+}
+.mstheme-navtxthome
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 1;
+	font-style: normal;
+	font-weight: normal;
+}
+.mstheme-navtxtnext
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 1;
+	font-style: normal;
+	font-weight: normal;
+}
+.mstheme-navtxtprev
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 1;
+	font-style: normal;
+	font-weight: normal;
+}
+.mstheme-navtxtup
+{
+	font-family: Arial, Arial, Helvetica;
+	color: rgb(102, 51, 0);
+	font-size: 1;
+	font-style: normal;
+	font-weight: normal;
+}
+ul
+{
+	list-style-image: url(ablbull1.gif);
+}
+ul ul
+{
+	list-style-image: url(ablbull2.gif);
+}
+ul ul ul
+{
+	list-style-image: url(ablbull3.gif);
+}
+a:link
+{
+	color: rgb(0, 51, 153);
+}
+a:active
+{
+	color: rgb(51, 102, 51);
+}
+a:visited
+{
+	color: rgb(153, 51, 0);
+}
+body
+{
+	background-color: rgb(204, 204, 204);
+	color: rgb(0, 0, 0);
+}
+table
+{
+	table-border-color-light: rgb(153, 153, 153);
+	table-border-color-dark: rgb(0, 0, 0);
+}
+h1
+{
+	color: rgb(51, 0, 153);
+}
+h2
+{
+	color: rgb(51, 0, 153);
+}
+h3
+{
+	color: rgb(51, 0, 153);
+}
+h4
+{
+	color: rgb(51, 0, 153);
+}
+h5
+{
+	color: rgb(51, 0, 153);
+}
+h6
+{
+	color: rgb(51, 0, 153);
+}
+button
+{
+	background-color: rgb(51, 0, 153);
+	color: rgb(255, 255, 255);
+}
+label
+{
+	color: rgb(0, 0, 0);
+}
+.mstheme-text
+{
+}
+textarea
+{
+	color: rgb(0, 0, 0);
+}
+fieldset
+{
+	color: rgb(0, 0, 0);
+}
+legend
+{
+	color: rgb(51, 0, 153);
+}
+select
+{
+	color: rgb(0, 0, 0);
+}
+caption
+{
+	color: rgb(51, 0, 153);
+}
+th
+{
+	color: rgb(0, 0, 0);
+}
+.mstheme     { navbutton-background-color: rgb(255,255,255); top-bar-button: url(but_up.gif) }
+.mstheme-topbar-font { color: rgb(0,0,0); font-size: 8pt; font-family: Arial, Arial, Helvetica }
+body         { background-image: url('fon.jpg'); font-family: Arial, Arial, Helvetica }
+button       { font-size: 8pt; font-style: normal; font-family: Arial, Arial, Helvetica; 
+               border-style: solid; border-width: 1pt }
+caption      { font-size: 14pt; font-family: Arial, Arial, Helvetica; font-style: normal }
+fieldset     { font-family: Arial, Arial, Helvetica; font-size: 8pt; font-style: normal; 
+               border-style: solid; border-width: 1pt }
+h1           { font-weight: normal; font-style: normal; font-size: 24pt; font-family: 
+               Arial, Arial, Helvetica }
+h2           { font-family: Arial, Arial, Helvetica; font-style: normal; font-size: 18pt; 
+               font-weight: normal }
+h3           { font-family: Arial, Arial, Helvetica; font-size: 14pt; font-weight: normal; 
+               font-style: normal }
+h4           { font-weight: normal; font-size: 12pt; font-style: normal; font-family: 
+               Arial, Arial, Helvetica }
+h5           { font-size: 10pt; font-style: normal; font-weight: normal; font-family: 
+               Arial, Arial, Helvetica }
+h6           { font-family: Arial, Arial, Helvetica; font-size: 8pt; font-style: normal; 
+               font-weight: normal }
+label        { font-style: normal; font-family: Arial, Arial, Helvetica; font-size: 8pt }
+label, .mstheme-label { font-size: 8pt; font-family: Arial, Arial, Helvetica; font-style: normal }
+legend       { font-style: normal; font-size: 8pt; font-family: Arial, Arial, Helvetica }
+marquee      { font-family: Arial, Arial, Helvetica; font-size: 14pt }
+select       { font-style: normal; font-family: Arial, Arial, Helvetica; font-size: 8pt; 
+               border-style: solid;  }
+table        { font-family: Arial, Arial, Helvetica; font-style: normal }
+textarea     { font-style: normal; font-size: 8pt; font-family: Arial, Arial, Helvetica; 
+               border-style: solid;  }
+th           { font-family: Arial, Arial, Helvetica; font-style: normal }

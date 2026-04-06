@@ -1,0 +1,1398 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/file_structure.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:19 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Структуры данных для внешней памяти</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><font face="MS Sans Serif" size="2">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/file_structure.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Структуры данных для внешней памяти"><!--webbot bot="Navigation" i-checksum="15085" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="hash_table.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="exhaustive_search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="36499" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial"><p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Плотный индексный файл">Плотный
+        индексный файл</a></span></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Разреженный индексный файл">Разреженный
+        индексный файл</a></span></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Хешированный файл">Хешированный
+        файл</a></span></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><a href="#В-дерево">В-дерево</a></font></span></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Включение записей в B+ - дерево">B+
+        - дерево</a></span></font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Для
+        хранения таблиц, насчитывающих
+        миллионы записей обычно используется
+        внешняя память компьютера с файловой
+        системой организации данных. Как
+        правило - это жесткий диск, объем
+        которого на несколько порядков
+        превосходит объем оперативной памяти.
+        Диск состоит из дорожек, которые
+        делятся на секторы. Размер отдельного
+        сектора достигает нескольких
+        килобайтов. Особенностью организации
+        ввода и вывода на&nbsp; жесткий диск
+        является прямой доступ к отдельным
+        секторам диска, чтение или запись
+        сектора целиком, сравнительно большое
+        время доступа к сектору (до 20
+        миллисекунд).</font></p>
+        <p class="MsoBodyTextIndent" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2">Файл
+        рассматривается как
+        последовательность записей,
+        размещенных в секторах диска. Записью
+        может быть что угодно: обычное число,
+        строка текста, сложная структура с
+        многими полями. Поля могут иметь
+        либо фиксированную длину в байтах, либо
+        переменную. Файлы с записями
+        фиксированной длины широко
+        используются в системах управления
+        базами данных для хранения данных со
+        сложной структурой. Файлы с записями
+        переменной длины, как правило,
+        используются для хранения текстовой
+        информации [<a href="liter.html">1</a>].</font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">&nbsp;
+        Записи файла обычно группируются в
+        блоки, соответствующие секторам диска:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/file1.gif" width="538" height="214"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Количество
+        записей, размещенных в блоке,
+        определяется размером блока (сектора) в
+        байтах, который определяется
+        устройствами и&nbsp; программным
+        обеспечением компьютера. Количество
+        записей в блоке зависит от соотношения
+        размера блока и размера&nbsp; </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">отдельной
+        записи.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Рассматривая
+        операции с файлами,&nbsp; можно считать,
+        что <a name="файлы"><i> файлы</i></a>&nbsp; - это&nbsp; последовательности&nbsp;
+        записей или блоков с записями, над которыми можно выполнять&nbsp;
+        операции поиска, вставки и
+        удаления. Учитывая описанные выше
+        особенности организации данных&nbsp; в
+        файлах, операции используют прямой
+        доступ к записям или блокам и, как
+        правило,&nbsp; считывание блоков с
+        записями целиком (<a name="блочный доступ"><i>блочный доступ</i></a><a name="блочный доступ"><i>
+        </i></a>).&nbsp;
+        При блочной организации файла
+        предполагается, что&nbsp; затраты на
+        выполнение операции пропорциональны
+        количеству блоков, которые нужно
+        считать в основную память или записать
+        из основной памяти на устройство
+        внешней памяти. Если записи не
+        сгруппированы в блоки, то затраты на
+        выполнение операций пропорциональны
+        количеству записей.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В
+        файлах для поиска записей
+        используются&nbsp; указатели на адреса
+        записей в файле. Одним из способов
+        представления адресов записи является
+        задание <a name="файлового указателя"><i>файлового
+        указателя</i></a>:&nbsp; физического адреса блока
+        на внешнем устройстве, содержащего
+        интересующую нас запись, и смещения в
+        байтах от начала блока до этой записи. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">&nbsp;Часто
+        в системах баз данных при организации
+        данных&nbsp; используются несколько
+        указателей на запись. Следствием этого
+        является то, что записи&nbsp; приходится
+        считать <a name="закрепленными"><i> закрепленными</i></a>: их нельзя
+        перемещать во внешней памяти,
+        поскольку не исключено, что какой-либо
+        другой указатель, ссылающийся на
+        перемещенную запись будет указывать на
+        неправильный адрес этой записи.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Простейшим
+        и наименее эффективным способом
+        реализации операций с файлами является
+        использование&nbsp; примитивов чтения и
+        записи файлов, принятых в языках
+        программирования. В этом случае&nbsp;
+        записи могут хранится в файле в любом
+        порядке. Поиск записи с указанными
+        значениями в определённых полях<span style="mso-spacerun:yes">&nbsp;
+        </span>осуществляется путем полного
+        перебора всех записей в файле и
+        проверки каждой его записи на наличие в
+        ней заданных значений. Вставку в файл
+        можно выполнять путем добавления
+        записи в конец файла. При удалении
+        записи после ее поиска путем полного
+        перебора выполняется либо сдвиг всех
+        последующих записей&nbsp; на одну позицию
+        к началу файла, либо пометка </font></span><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">места
+        с удаленной записью признаком &quot;удалено&quot;,
+        если записи закрепленные. В последнем
+        случае </font></span> <font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">нельзя
+        смещать оставшиеся записи на место
+        удаленной, нельзя вставлять на ее место
+        новую запись. Вместо сдвига путем
+        пометки выполняется логическое
+        удаление записи из файла, но её место в
+        файле остаётся незанятым. В случае
+        использования другого указателя на
+        удалённую запись по признаку &quot;удалено&quot;
+        можно понять, что указываемая запись
+        уже удалена, и, &nbsp; например, присвоить
+        этому указателю значение </span><i><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">nil</span></i><span style="mso-bidi-font-size: 10.0pt">.</span><span style="mso-bidi-font-size: 10.0pt">&nbsp;
+        Существуют два способа помечать
+        удаленные записи:</span></font> <font face="MS Sans Serif" size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-list: Ignore">
+        </span>заменить запись на какое-то
+        значение, которое никогда не может
+        стать значением «настоящей» записи, </font><font face="MS Sans Serif" size="2">или</font>
+        <font face="MS Sans Serif" size="2"><span style="font-style: normal; font-variant: normal; font-weight: normal; mso-list: Ignore">
+        </span>предусмотреть для каждой записи
+        специальный бит удаления. </font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Очевидным
+        недостатком последовательного файла
+        является то, что операции с такими
+        файлами выполняются медленно.
+        Выполнение каждой операции требует,
+        чтобы был прочитан весь файл, а после
+        этого еще и выполняется перезапись
+        некоторых блоков или записей.
+        Требуется сократить количество
+        обращений к файлу.&nbsp;&nbsp;</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Существуют такие
+        формы таблиц в файлах, которые
+        обеспечивают эффективный доступ к
+        записям , обрабатывая лишь
+        небольшую часть файла. Такие таблицы предусматривают
+        наличие у каждой записи&nbsp; ключа
+        поиска, то есть поля или совокупности полей,
+        которое уникальным образом
+        идентифицирует каждую запись. Поиск
+        записи, когда заданы значения её
+        ключевых полей, является типичной
+        операцией, на обеспечение максимальной
+        эффективности которой ориентированы
+        многие широко распространенные
+        способы организации файловых таблиц. В
+        таких таблицах записи регистрируются с
+        помощью <a name="индекса"><i> индекса</i></a>&nbsp;
+        - пары &quot;ключ -
+        файловый указатель на запись или блок с
+        записью&quot;. Индексы записей
+        регистрируются в файловой структуре
+        поиска, которая может быть размещена
+        в&nbsp; файле с записями или в отдельном&nbsp;
+        <a name="индексном файле"><i>индексном файле</i></a>.&nbsp;
+        Структура поиска с индексами
+        записей должна обеспечивать быстрый
+        поиск индекса нужной записи по ключу.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Наиболее
+        известными файловыми структурами
+        поиска являются&nbsp;&nbsp; плотный
+        индексный файл, разреженный&nbsp;
+        индексный файл, хешированный файл, Б -
+        дерево поиска [<a href="liter.html">1 - 4</a>].</span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><b><a name="Плотный индексный файл">Плотный
+        индексный файл</a></b></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Плотный
+        индексный файл</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        предполагает размещение записей в
+        файле в&nbsp; произвольном порядке и
+        создание другого файла с индексами, с
+        помощью которого будут отыскиваться
+        требуемые записи. Этот дополнительный
+        файл&nbsp; называется плотным индексом.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Плотный
+        индекс состоит из индексов&nbsp; (k,</span></font>
+        <font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">р),
+        где р - указатель на запись с ключом k в
+        основном файле. Все индексы в индексном
+        файле&nbsp; отсортированы по значению
+        ключа.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">&nbsp;</span></font><img border="0" src="images/file2.gif" width="668" height="316"></p>
+        <blockquote>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">K<sub>i</sub>
+          – ключ записи для поиска, K<sub>1</sub> <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">
+          K<sub>2</sub> <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">&nbsp;
+          · · · <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">K<sub>N</sub>,</span></font></p>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">P<sub>i</sub>
+          – файловый указатель на запись с
+          данными,</span></font></p>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">M
+          – количество индексов в блоке
+          индексного файла,</span></font></p>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">N
+          - количество записей в файле с данными.</span></font></p>
+        </blockquote>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Индексный
+        файл разделен на блоки для блочного
+        доступа. В каждом блоке выделен резерв
+        для&nbsp; новых индексов при добавлении в
+        файл с данными новых записей. Разбиение
+        файла с данными на блоки не обязательно,
+        поскольку индекс каждой записи
+        фиксируется в плотном индексе и можно
+        выполнять прямой доступ к записи по
+        файловому указателю записи, считанному
+        из индексного файла</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">При
+        использовании такой организации
+        плотный индекс служит для поиска в
+        основном файле записи с заданным
+        ключом.&nbsp; Благодаря упорядоченности
+        ключей, в индексном файле можно
+        организовать двоичный поиск блока с
+        заданным ключом, что существенно
+        сокращает число обращений к индексному
+        файлу по сравнению с полным перебором
+        всех блоков индекса.&nbsp; </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">При
+        добавлении новой записи она может быть
+        размещена в конце файла с данными или
+        по месту удаленной ранее записи (если
+        записи в файле с данными не закреплены).
+        Индекс новой записи размещается в
+        соответствующем блоке плотного
+        индекса с соблюдением упорядоченности
+        ключей индексов. Для этого методом
+        двоичного поиска отыскивается&nbsp;
+        соответствующий блок и в него
+        записывается индекс новой записи. </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">При
+        вставке нового индекса может
+        возникнуть переполнение блока
+        индексного файла, когда резерв для
+        новых индексов в блоке исчерпан. В этом
+        случае необходима <a name="перестройка индексного файла"><i>перестройка
+        индексного файла</i></a>, заключающаяся в
+        вытеснении части индексов в
+        последующий блок или расщеплении
+        переполненного блока. <a name="Расщепление"><i> Расщепление</i></a>&nbsp;
+        выполняется путем создания нового
+        блока индексного файла и вставки его
+        вслед за переполненным блоком. Часть
+        индексов переносится из
+        переполненного блока в новый блок
+        индекса.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        удалить запись, прежде выполняется
+        двоичный поиск по ключу блока&nbsp;
+        индексом&nbsp; записи и затем запись
+        удаляется из файла с данными во месту.
+        указанному файловым указателем
+        индекса. По месту записи&nbsp;
+        устанавливается бит удаления и
+        удаляется соответствующий индекс в
+        плотном индексе (возможно, также
+        устанавливая&nbsp; бит удаления индекса).
+        Файловый указатель удаленной записи
+        можно зафиксировать во
+        вспомогательной структуре для того
+        чтобы разместить на этом месте новую
+        запись при выполнении операции включения.</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Разреженный индексный файл">Разреженный
+        индексный файл</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Еще
+        одним распространенным способом
+        организации индексного файла является
+        поддержание файла с данными в
+        отсортированном по значениям ключей
+        порядке. Чтобы облегчить процедуру
+        поиска, можно создать второй файл,
+        называемый разреженным индексом,
+        который состоит из пар (k, p), где k-значение
+        ключа, а p-файловый указатель блока, в
+        котором значение ключа первой записи
+        равняется k. Этот разреженный индекс
+        также отсортирован по значениям ключей.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/file3.gif" width="672" height="302"></p>
+        <blockquote>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">K<sub>i</sub>
+          – минимальный ключ поиска в блоке
+          записей с данными, K<sub>1</sub> <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">
+          K<sub>2</sub> <img border="0" src="images/l_e.gif" width="13" height="16">&nbsp; ··· <img border="0" src="images/l_e.gif" width="13" height="16">
+          K<sub>N</sub>,</span></font></p>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">P<sub>i</sub>
+          – файловый указатель на блок записей
+          с данными,</span></font></p>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">M
+          – количество индексов в блоке
+          индексного файла,</span></font></p>
+          <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">N
+          - количество записей в файле с данными.</span></font></p>
+        </blockquote>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        отыскать запись с заданным ключом k,
+        надо сначала просмотреть индексный
+        файл, отыскивая в нем индекс&nbsp; (k,p). В
+        действительности отыскивается блок
+        индекса с наибольшим ключом&nbsp; x таким,
+        что </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">x<img border="0" src="images/l_e.gif" align="middle" width="13" height="16"></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">k
+        и далее в считанном по индексу блоке
+        файла с данными находится запись с
+        ключом k.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Разработано
+        несколько стратегий просмотра
+        индексного файла. Простейшим из них
+        является линейный поиск. Индексный
+        файл по блокам читается с самого начала,
+        пока в очередном блоке не встретится
+        индекс (k, p) или (x, p), причем x &gt; k.&nbsp; В
+        последнем случае у предыдущего&nbsp;
+        индекса (y, p<sub>1</sub>) должно быть y &lt; k, и
+        если запись с ключом k действительно
+        существует, то она находится в блоке p<sub>1</sub>.
+        Линейный поиск годится лишь для
+        небольших индексных файлов. Более
+        эффективным методом является <a name="двоичный поиск"><i> двоичный
+        поиск</i></a>..&nbsp; Допустим, индексный файл
+        хранится в блоках b<sub>1</sub>,b<sub>2</sub>, . . , b<sub>n</sub>.
+        Чтобы отыскать значение ключа k,
+        берется средний блок b<sub>n/2 </sub>и ключ k
+        сравнивается со значением ключа&nbsp; в
+        первом индексе данного блока. Если
+        ключ&nbsp; k меньше, чем ключ в первом
+        индексе, то продолжается двоичный
+        поиск нужного блока&nbsp; среди блоков b<sub>1</sub>
+        . . b<sub>n</sub><sub>/2-1</sub>.<sub> </sub>Если ключ k&nbsp;
+        больше ключа в первом индексе блока b<sub>n/2,
+        </sub>то выполняется поиск в блоке <sub> </sub>b<sub>n</sub><sub>/2
+        </sub>ключа x &gt; k&nbsp; и чтение блока p1 из
+        файла данных для дальнейшего поиска
+        записи с ключом k в считанном блоке.
+        Если ключ k больше ключа в первом
+        индексе блока b<sub>n/2+1 </sub>, то
+        продолжается двоичный поиск нужного
+        блока индекса среди блоков&nbsp; b<sub>n</sub><sub>/2+1</sub>
+        . . b<sub>n</sub>.<sub>&nbsp; </sub> При использовании
+        двоичного поиска нужно проверить лишь
+        log<sub>2</sub>(n+1) блоков индексного файла.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Пример:
+        поиск записи с ключом 81.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/file5.gif" width="744" height="221"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        создать индексированный файл, в файле с
+        данными записи сортируются по
+        значениям их ключей, а затем
+        распределяются по блокам в
+        возрастающем порядке ключей. В каждый
+        блок можно упаковать столько записей,
+        сколько туда помещается. Однако в
+        каждом блоке можно оставить место для
+        дополнительных записей, которые могут
+        вставляться туда впоследствии.
+        Преимущество такого подхода
+        заключается в том, что вероятность
+        переполнения блока, куда вставляются
+        новые записи, в этом случае оказывается
+        ниже (иначе надо будет обращаться к
+        смежным блокам). После распределения
+        записей по блокам создается индексный
+        файл: просматривается по очереди
+        каждый блок в файле с данными и&nbsp;
+        первый ключ&nbsp; каждого блока
+        записывается в очередной блок
+        индексного файла. Подобно тому, как это
+        сделано в основном файле, в блоках
+        индексного файла&nbsp; можно оставить
+        резерв на количество индексов для
+        последующего роста.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Допустим,
+        что есть отсортированный файл записей,
+        хранящихся в блоках b<sub>1</sub>,b<sub>2</sub>, . . ,b<sub>n</sub>.
+        Чтобы вставить в этот отсортированный
+        файл новую запись, используется
+        индексный файл, с помощью которого
+        определяется, какой блок b<sub>i</sub> должен
+        содержать новую запись. Если новая
+        запись умещается в блок b<sub>i </sub>, она
+        туда помещается в правильной
+        последовательности. Если новая запись
+        становится первой записью в блоке b<sub>i</sub>
+        , тогда выполняется корректировка
+        индексного файла.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        новая запись не умещается в блок </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        , то можно применить одну из нескольких
+        стратегий. Простейшая из них
+        заключается в том, чтобы перейти на
+        блок </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><sub>+1
+        </sub>(который можно найти с помощью
+        индексного файла) и узнать, можно ли
+        последнюю запись </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        переместить в начало </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><sub>+1</sub>.
+        Если можно, последняя запись&nbsp; из </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i
+        </sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        перемещается в </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><sub>+1</sub>
+        , а новую запись можно затем вставить на
+        подходящее место в </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        . В этом случае нужно скорректировать
+        индекс в&nbsp; индексном файле для </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><sub>+1</sub>
+        и, возможно, для </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        блок </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><sub>+1</sub>
+        так же заполнен или если </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        является последним блоком, то в конец
+        файла с данными записывается новый
+        блок. Новая запись вставляется в этот
+        новый блок, который должен размещаться
+        вслед за блоком </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        . Затем индекс нового блока
+        записывается в соответствующий блок
+        индексного файла. В новый блок файла с
+        данными можно перенести некоторую
+        часть записей из переполненного блока </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        , восстановив тем самым резервное место
+        в блоке </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">b<sub>i</sub></span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        .</font></span></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">При
+        добавлении индексов новых блоков в
+        индексный файл также может произойти
+        переполнение какого либо блока
+        индексного файла. в этом случае
+        выполняется перестройка индексного
+        файла, подобная <a href="#перестройка индексного файла">перестройке
+        плотного индексного файла.</a></span></font></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><b style="mso-bidi-font-size: 10.0pt"><a name="Хешированный файл">Хешированный
+        файл</a></b></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Хеширование
+        - широко распространенный метод
+        обеспечения быстрого доступа к
+        информации, хранящейся во вторичной
+        памяти. Записи файла распределяются
+        между так называемыми сегментами,
+        каждый из которых состоит из связного
+        списка одного или нескольких блоков
+        внешней памяти. Такая организация
+        хешированного файла подобна <a href="hash_table.html#Хеш - таблица с цепочками коллизий">хеш
+        - таблице с цепочками коллизий</a> в
+        оперативной памяти.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/file6.gif" width="487" height="556"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Имеется
+        таблица сегментов, содержащая m&nbsp;
+        указателей, по одному на каждый сегмент.
+        Каждый указатель в таблице сегментов
+        представляет собой физический адрес
+        первого блока связного списка блоков
+        для соответствующего сегмента.
+        Сегменты пронумерованы от 0 до&nbsp;&nbsp; m-1.&nbsp;
+        <a href="hash_table.html#Функция хеширования">Хеш-функция</a>
+        h(k) отображает каждое значение ключа в
+        одно из целых чисел от 1 до m . Если k –ключ,
+        то h(k)&nbsp; является номером сегмента,
+        который содержит индекс записи с
+        ключом k (если такая запись вообще
+        существует). Блоки, составляющие каждый
+        сегмент, образуют связный список. Таким
+        образом, заголовок i-го блока содержит
+        файловый указатель на&nbsp; (i+1)-й блок.
+        Последний блок сегмента содержит в
+        своём заголовке <i>nil&nbsp; </i>- указатель.
+        Каждый блок содержит несколько
+        индексов с&nbsp; файловыми указателями на
+        записи, хранящиеся в отдельном файле с
+        данными.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        размер таблицы сегментов невелик, её
+        можно хранить в основной памяти. В
+        противном случае ее можно хранить в
+        последовательных&nbsp; блоках в начале
+        хеш - файла. Если нужно найти запись с
+        ключом k, вычисляется h(k) и определяется
+        файловый указатель на элемент таблицы
+        сегментов, содержащий указатель на
+        первый блок списка сегмента. Затем
+        последовательно считываются блоки из
+        списка сегмента , пока не обнаружится
+        блок, который содержит запись с ключом k.
+        Если исчерпаны все блоки в связном
+        списке для сегмента h(k), то ключа&nbsp; k
+        нет ни в одной из записей хешированного
+        файла.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Такая
+        структура оказывается вполне
+        эффективной при доступе к записям по
+        ключу. Среднее количество обращений к
+        блокам, требующееся для выполнения операций
+        над таблицей приблизительно равно
+        среднему количеству блоков в сегменте,
+        которое равно n/(q<img border="0" src="images/mul.gif" width="9" height="8">m),
+        если n-количество записей в файле с
+        данными, q - количество индексов&nbsp; в
+        блоке списка сегмента,&nbsp; m - количество
+        сегментов. Операции поиска, вставки и
+        удаления по ключу&nbsp; в хешированном
+        файле&nbsp; выполняются в среднем в m раз
+        быстрее, чем в случае
+        неорганизованного файла. </span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        вставить запись с ключом k, нужно
+        сначала проверить, нет ли в файле
+        записи с таким же значением ключа. Если
+        такая запись есть, то выдается
+        сообщение об ошибке, поскольку
+        предполагается, что ключ уникальным
+        образом идентифицирует каждую запись.
+        Если записи с ключом k нет, то
+        вставляется новая запись в первый же
+        блок цепочки для сегмента h(k), в который
+        эту запись удается вставить. Если
+        запись не удается вставить ни в один из
+        существующих блоков сегмента h(k) ввиду
+        отсутствия резерва в блоках, в хеш -
+        файле&nbsp; создается новый блок, в
+        который будет помещена эта запись. Этот
+        новый блок затем добавляется в конец
+        списка блоков сегмента h(k).</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        удалить запись с ключом k, нужно сначала
+        найти эту запись, а затем установить ее
+        бит удаления в файле с данными.
+        Одновременно необходимо удалить
+        индекс этой записи из соответствующего
+        блока списка сегмента h(k). Еще одной
+        возможной стратегией удаления (которой
+        нельзя пользоваться, если запись
+        закрепленная) является замена
+        удаленной записи на последнюю запись в
+        цепочке блоков сегмента h(k). Если такое
+        изъятие последней записи приводит к
+        опустошению последнего блока в
+        сегменте h(k), указатель на этот пустой
+        блок можно сохранить в дополнительной
+        структуре для повторного
+        использования или&nbsp; вернуть файловой
+        системе. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Хорошо
+        продуманная организация файлов с
+        хешированным доступом требует лишь
+        незначительного числа обращений к
+        блокам при выполнении каждой операции.
+        Если функция хеширования хорошая и m =&nbsp;
+        n / q, тогда средняя длина списка
+        сегмента равна единице. Если не
+        учитывать обращения к блокам, которые
+        требуются для просмотра таблицы
+        сегментов, типичная операция поиска
+        данных по ключу потребует лишь двух
+        обращений к блоку сегмента и к записи в
+        файле с данными, а операции вставки,
+        удаления или изменения потребуют трех
+        обращений.. Если среднее количество
+        записей в сегменте намного превосходит
+        количество записей, которые могут
+        уместиться в одном блоке, можно
+        периодически реорганизовывать таблицу
+        сегментов, удваивая количество
+        сегментов и деля каждый сегмент на две
+        части.</font></span>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Внешние
+        деревья поиска.</font></span></b></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+        хранения таблиц во внешней памяти
+        можно использовать </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">древовидные
+        структуры&nbsp; В - дерево
+        и В+ - дерево, которые&nbsp; особенно удачно подходят для
+        представления внешней памяти и стали
+        стандартным способом организации
+        индексных файлов в системах баз данных.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Обобщением
+        дерева двоичного поиска является m - арное
+        дерево, в котором каждый узел имеет не
+        более m сыновей. Так же, как и для
+        деревьев двоичного поиска, считается,
+        что выполняется следующее условие:
+        если n1 и n2 являются двумя сыновьями
+        одного узла и n1 находится слева от n2,
+        тогда все потомки узла&nbsp; n1
+        оказываются меньше потомков узла&nbsp;
+        n2.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Однако
+        в данном случае существует проблема
+        хранения узлов в файлах, когда файлы
+        хранятся в виде блоков внешней памяти.
+        Правильным применением идеи
+        разветвленного дерева является
+        представление об узлах как о
+        физических блоках на диске. Внутренний узел
+        содержит указатели на свои m сыновей, а
+        так же m-1 ключевых значений, которые
+        разделяют потомков этих сыновей.
+        Листья так же являются блоками.<font color="#FF0000">
+        </font>
+        Эти
+        блоки содержат файловые указатели на записи&nbsp;
+        файла с данными.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Использование
+        m - арного дерева поиска значительно
+        сокращает число обращений к блокам и
+        время поиска записи по сравнению с
+        деревом двоичного поиска, состоящего
+        из n узлов.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Однако
+        нельзя сделать m сколько угодно большим,
+        поскольку, чем больше m, тем больше
+        должен быть размер блока. Считывание и
+        обработка более крупного блока
+        занимает больше времени, поэтому
+        существует оптимальное значение m,
+        которое позволяет минимизировать
+        время, требующееся для просмотра
+        внешнего m - арного дерева поиска. На
+        практике значение, близкое к такому
+        минимуму, получается для довольно
+        широкого диапазона величин m.</font></span></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><a name="В-дерево">В-дерево</a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Б-дерево
+        – сбалансированное дерево, удобное
+        для хранения информации на дисках [<a href="content.html">1-4</a>].
+        Характерным для Б-дерева является его малая высота h. Представление
+        информации во внешней памяти в виде Б-дерева
+        стало стандартным способом в системах
+        баз данных. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В
+        Б-дереве узел может иметь много сыновей,
+        на практике до тысячи. Количество
+        сыновей (максимальное) определяет <a name="степень"><i>
+        степень</i></a>&nbsp; Б-дерева. </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Узлы Б-дерева
+        содержат не один элемент, а группу
+        элементов с суммарным объемом в один блок файла,
+        который обычно по размеру
+        соответствует одному сектору диска. Чтобы
+        уменьшить количество операций чтения-записи
+        на диск при поиске элемента в Б-дереве,
+        нужно максимально уменьшить его высоту.
+        Для этого степень Б-дерева делается
+        максимальной. Типичная степень узла – (50-2000).
+        Она зависит от соотношения размера
+        сектора и размера отдельного элемента.
+        Например, Б-дерево степени 1000 и высоты 2
+        может хранить более миллиарда ключей. </span></font>
+        </p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/file8.gif" width="618" height="128"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Общая
+        схема обработки отдельных узлов B -
+        дерева выглядит так:</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        . . .</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        x &#8592; указатель на какой-либо узел</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Disk_Read(x)</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        обработка и изменение узла х</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Disk_Wirte(x)</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        операции, которые только используют
+        узел х, но не изменяют его</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">.
+        . .</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">&nbsp; </span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Узел-корень
+        дерева обычно всегда хранится в ОП, для
+        доступа к остальным ключам требуется
+        всего 2 операции чтения с диска.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Представление
+        Б-дерева</font></span></b></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Как
+        и в других деревьях, данные и ключи хранятся в узлах
+        дерева. Обычно данные представлены в виде
+        файлового указателя на запись в файле с
+        данными. При перемещении в B - дереве
+        ключа вместе с ключом&nbsp; перемещается
+        и указатель.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В
+        отличие от<a href="2_3_tree.html"> 2-3 дерева</a> ключи и
+        дополнительная информация размещается
+        не только в листьях, но и во внутренних
+        узлах дерева. Хотя возможна
+        организация Б-деревьев, в которых
+        дополнительная информация хранится
+        только в листьях, а во внутренних узлах
+        – только ключи и указатели на сыновей (<a href="#В+дерево">B+
+        - дерево</a>). Это
+        экономит память во внутренних узлах и
+        позволяет увеличить их степень при том
+        же размере сектора.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><a name="Узел B - дерева"><i>Узел
+        B - дерева</i></a>&nbsp; хранит:</font></span></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">n[x] – текущее количество ключей,
+        хранящихся в узле,</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">сами ключи в неубывающем порядке&nbsp;
+              key<sub>1</sub>[x]
+        &#8804; key<sub>2</sub>[x] &#8804; . . . &#8804; key<sub>n[x]</sub>[x],</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        n[x] указателей на записи в файле с
+              данными d<sub>1</sub>[x], d<sub>2</sub>[x], . . . , d<sub>n[x]</sub>[x],&nbsp;</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">булевский признак leaf[x], истинный, если
+        узел – лист,</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">n[x]+1 указателей
+              p<sub>1</sub>[x], p<sub>2</sub>[x], . . . ,p<sub>n[x]+1</sub>[x] на
+        сыновей. У листьев эти поля не
+        определены.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal" align="center"><img border="0" src="images/file7.gif" width="656" height="392"></p>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Узел
+        х, хранящий n[x] ключей, имеет n[x]+1
+        сыновей. Хранящиеся в х ключи </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">key<sub>1</sub>[x],
+        . . . , key<sub>n</sub><sub>[x]</sub>[x]</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        служат границами, разделяющими всех
+        потомков узла на n[x]+1 групп. За каждую
+        группу отвечает один из сыновей х - </font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">p<sub>i</sub>[x]</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">.&nbsp;
+        Алгоритм поиска в Б-дереве сравнивает
+        искомый ключ с границами в узле х и
+        выбирает один из n[x]+1 путей для
+        дальнейшего поиска. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Все
+        листья находятся на одной глубине,
+        равной высоте дерева h.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Число
+        ключей, хранящихся в одном узле,
+        ограничено сверху и снизу единым для Б-дерева
+        числом t, где t – минимальная степень
+        дерева (t &#8805; 2).</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Каждый
+        узел, кроме корня содержит минимум t - 1
+        ключей и t сыновей. Если дерево не пусто,
+        то в корне должен храниться хотя бы
+        один ключ. В узле хранится не более 2t - 1
+        ключей, и внутренний узел имеет не более 2t
+        сыновей. Узел, хранящий 2t - 1 ключей,
+        называется полным.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        Если t=2, то у каждого внутреннего узла
+        может быть 2, 3 или 4 сына и такое дерево
+        называется <a href="2_3_4_tree.html"> 2-3-4 деревом</a>.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Высота
+        B - дерева оценивается формулой <img border="0" src="images/file9.gif" align="middle" width="114" height="46">,
+        где n - число индексов в B - дереве.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">То
+        есть,&nbsp; временная сложность операций для Б-дерева
+        оценивается как O(log<sub>t </sub> n).</font></span>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">&nbsp;</span></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Оп<b style="mso-bidi-font-size: 10.0pt">е</b></span></font><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">рации
+        для Б-дерева</font></span></b></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Считаем,
+        что корень дерева всегда находится в
+        оперативной памяти и операция Disk_Read для корня не
+        выполняется. Но когда корень
+        изменяется, его нужно сохранять на
+        диске. </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Все
+        узлы, передаваемые операциям, как
+        входные параметры, уже считаны с диска.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><b style="mso-bidi-font-size: 10.0pt"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><a name="Поиск в Б-дереве">Поиск
+        в Б-дереве</a></font></span></b></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Рассмотрим
+        рекурсивную операцию B_Tree_Search,
+        параметрами которой является
+        указатель х на корень поддерева и ключ k
+        искомого элемента. Операция вызывается
+        первоначально для корня дерева B_Tree_Search(root[T],
+        k). При нахождении в дереве элемента с
+        заданным ключом операция возвращает
+        пару (y, i), где у – узел Б-дерева, i –
+        порядковый номер указателя , для
+        которого key<sub>i</sub> [y]=k. Иначе операция
+        возвращает nil.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:10px; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b>B_Tree_Search(<i>x,
+        k</i>)</b></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        i &#8592; 1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>while</b> i &#8804; n[<b><i>x</i></b>] <b>and</b> <b><i>k </i></b>&gt; key<sub>i </sub> [<b><i>x</i></b>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b>&nbsp; i &#8592; i+1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>if</b>&nbsp; i &#8804; n[<b><i>x</i></b>]&nbsp;<b> and</b>&nbsp; <b>
+		<i>k</i></b> = key<sub>i</sub> [<b><i>x</i></b>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then return</b> d<sub>i</sub></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> if</b> leaf [<b><i>x</i></b>] = TRUE</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then return</b> nil</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b>&nbsp; Disk_Read (p<sub>i</sub> [<b><i>x</i></b>])</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return
+		</b>B_Tree_Search (p<sub>i</sub> [<b><i>x</i></b>], <b><i>k</i></b>)</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+		<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt">
+		<font face="MS Sans Serif" size="2">При
+        проходе по Б-дереву число обращений к
+        диску O (log<sub>t </sub>n).&nbsp;</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Создание
+        пустого Б-дерева</font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Чтобы
+        построить дерево, сначала создается
+        пустое дерево с помощью операции
+        B_Tree_Create, а затем в него включаются
+        элементы с помощью операции B_Tree_Insert.
+        Обе эти операции используют
+        вспомогательную операцию Allocate_Node,
+        которая выделяет на диске место для
+        нового узла. Эта операция занимает O(1)
+        времени и не использует операцию Disk_Read.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:10px; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><b><font face="MS Sans Serif" size="2">&nbsp;</font><font face="Arial" size="2">B_Tree_Create(<i>T</i>)</font></b></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        x &#8592;<b style="mso-bidi-font-size: 10.0pt"> </b><b>Allocate_Node</b>()</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        leaf [x] &#8592; TRUE</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        n[x] &#8592; 0</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>Disk_Write</b> (x)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        root[T] &#8592; x</span></font></p>
+		<p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Операция
+        требует O (1) времени, так как выполняется
+        одно обращение к диску.&nbsp; </font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><b style="mso-bidi-font-size: 10.0pt">Операция
+        <a name="расщепления узла Б-дерева">расщепления узла Б-дерева</a></b></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Ключевым
+        моментом добавления элемента в дерево
+        является разбиение полного узла&nbsp; y&nbsp;
+        с 2t - 1
+        ключами на два узла, имеющие по t - 1
+        элементов в каждом. При этом <a name="ключ-медиана"><i> ключ-медиана</i></a>&nbsp;
+        отправляется к родителю узла y – x. Этот
+        ключ становится разделителем двух
+        полученных узлов. Ключ-медиана
+        вставляется в упорядоченное множество
+        ключей узла х.</span></font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">&nbsp;<img border="0" src="images/file10.gif" width="540" height="150"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Элементы
+        с большими, чем медиана ключами,
+        переходят в новый узел z. Входными
+        параметрами операции является
+        неполный узел х, индекс&nbsp; i&nbsp; и полный
+        узел y (y = p<sub>i </sub> [x]).</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">&nbsp;</p>
+		<p class="MsoNormal" align="left" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<b><span lang="EN-US"><font size="2">B_Tree_Split (<i>x, i, y</i>)</font></span></b></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">1&nbsp; z &#8592; <b>Allocate_Node</b>()</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">2&nbsp; leaf [z] &#8592; leaf [<b><i>y</i></b>]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">3&nbsp; n [z] &#8592; t–1</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">4&nbsp; <b>for</b>&nbsp; j &#8592; 1&nbsp;&nbsp; <b>to</b>&nbsp;&nbsp; t–1</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>do</b>&nbsp; key<sub>j</sub> [z] 
+		&#8592; key<sub>t+j</sub> [</font></span><font size="2"><b><i>y</i></b></font><span lang="EN-US"><font size="2">]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">6&nbsp; <b>if not</b> leaf [y]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then for</b> j &#8592; 1&nbsp; <b>to</b> 
+		t</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>do</b> p<sub>j</sub> 
+		[z] &#8592; p<sub> t+j</sub> [</font></span><font size="2"><b><i>y</i></b>]</font></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">9&nbsp; n [<b><i>y</i></b>] &#8592; t -1</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">10 <b>for</b> j &#8592; n [</font></span><font size="2"><b><i>x</i></b><span lang="EN-US">]+1
+		<b>downto</b> </span><i><b>i</b></i></font><span lang="EN-US"><font size="2"> 
+		+1</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">11&nbsp;&nbsp;&nbsp;&nbsp; <b>do</b>&nbsp; p<sub>j+1</sub> [</font></span><font size="2"><b><i>x</i></b><span lang="EN-US">] 
+		&#8592; p<sub>j</sub> [</span><b><i>x</i></b></font><span lang="EN-US"><font size="2">]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">12 p<sub>j+1</sub> [</font></span><font size="2"><b><i>x</i></b></font><span lang="EN-US"><font size="2">] 
+		&#8592; z</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">13 <b>for</b> j &#8592; n [<i><b>x</b></i>]
+		<b>downto</b></font></span><i><b><font size="2"> i</font></b></i></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">14&nbsp;&nbsp;&nbsp;&nbsp; <b>do</b>&nbsp; key<sub>j+1</sub> [<b><i>x</i></b>] 
+		&#8592; key<sub>j</sub> [</font></span><font size="2"><b><i>x</i></b></font><span lang="EN-US"><font size="2">]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">15 key</font></span><font size="2"><sub><i><b>i</b></i></sub><span lang="EN-US"><sub>
+		</sub>[</span><i><b>x</b></i><span lang="EN-US">] &#8592; key<sub>t</sub> [</span><i><b>y</b></i>]</font></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">16 n [</font></span><font size="2"><i><b>x</b></i><span lang="EN-US">] 
+		&#8592; n [</span><i><b>x</b></i></font><span lang="EN-US"><font size="2">]+1</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">17 <b>Disk_Write</b> [</font></span><font size="2"><i><b>x</b></i></font><span lang="EN-US"><font size="2">]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">18 </font></span><font size="2"><b>
+		Disk_Write</b><span lang="EN-US"> [</span><i><b>y</b></i></font><span lang="EN-US"><font size="2">]</font></span></p>
+		<p class="MsoNormal" style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US"><font size="2">19 </font></span><font size="2"><b>
+		Disk_Write</b></font><span lang="EN-US"><font size="2"> [z]</font></span></p>
+		<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">
+		<font face="MS Sans Serif" size="2">
+		<span style="mso-bidi-font-size: 10.0pt"><b>&nbsp;</b></span></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><b style="mso-bidi-font-size: 10.0pt"><a name="Добавление элемента в Б-дерево">Добавление
+        элемента в Б-дерево</a></b></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Входными
+        параметрами функции включения в B -
+        дерево - </font><font face="Arial" size="2"><i><b>T</b></i>&nbsp; </font><font face="MS Sans Serif" size="2">являются ключ 
+		<b><i>k </i></b>и файловый
+        указатель на запись в файле с данными - <b><i>fd</i></b>.
+        Операция
+        при включении проходит по одному из
+        путей поиска от корня к месту включения,
+        которое является листом B - дерева.&nbsp; Для этого
+        требуется время O(th)=O(t log<sub>t </sub> n) и O(h) = O(log<sub>t
+        </sub> n) обращений к диску. На пути поиска
+        встречающиеся полные узлы
+        расщепляются с помощью операции B_Tree_Split.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt"><b>
+		B_Tree_Insert (<i>T, k, fd</i> )</b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		r &#8592; root [<b><i>T</i></b>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>if </b>&nbsp;n [r] = 2t –1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;<b>then</b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s &#8592; <b>Allocate_Node</b>( )</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root &#8592; s</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leaf [s] &#8592; FALSE</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n [s] &#8592; 0</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p<sub>1</sub> [s] &#8592; r</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>B_Tree_Split</b> (s, 1, r)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>B_Tree_Insert_Nonfull </b>(s, <b><i>k</i></b>, <b><i>fd</i> </b>)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">11&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b> <b>B_Tree_Insert_Nonfull</b> (r, <b><i>k</i></b>, <b><i>
+		fd</i> </b>)</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Точкой
+        роста Б-дерева является не лист, а
+        корень.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Новый
+        корень содержит ключ-медиану старого
+        корня.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Сделав
+        корень неполным (или он не был таковым с
+        самого начала), мы вызываем операцию
+        B_Tree_Insert_Nonfull (x, k, d), которая добавляет
+        индекс&nbsp; (k, d) в поддерево с корнем в
+        неполном узле х. Это рекурсивная
+        операция.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b>B_Tree_Insert_Nonfull
+        (<i>x, k, fd</i>)</b></font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        i&nbsp; &#8592;&nbsp; n [<i><b>x</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> if</b> leaf [<i><b>x</b></i>] = TRUE</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>then</b><b> while</b> i &#8805; 1&nbsp; <b>and</b>&nbsp; 
+		<i><b>k</b></i> &lt;&nbsp;
+        key<sub>i</sub> [<i><b>x</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp; do
+		</b>key<sub>i+1</sub> [<i><b>x</b></i>] &#8592; key<sub>i</sub> [<i><b>x</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b><i>fd</i></b><sub><b><i>i</i></b>+1</sub> [x]
+        &#8592; <b><i>fd</i></b><sub>i</sub> [x]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i &#8592;&nbsp; i –1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; key<sub>i+1</sub>
+        [<i><b>x</b></i>] &#8592; <i><b>k</b></i></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b><i>fd</i></b><sub>i+1</sub> 
+        [<i><b>x</b></i>] &#8592; <b><i>fd</i></b></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n
+        [<i><b>x</b></i>]&#8592; n [<i><b>x</b></i>]+1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">10&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Disk_Write</b>
+        [<i><b>x</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">11&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;<b>&nbsp;else while</b> i &#8805; 1&nbsp; <b>and&nbsp;</b>
+		<i><b>k</b></i>&lt; key<sub>i</sub> [<i><b>x</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">12&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>do</b>
+        i &#8592;&nbsp; i –1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">13&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        i &#8592;&nbsp; i+1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">14&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>&nbsp;</b>y&nbsp;&#8592;&nbsp;<b>Disk_Read </b>(p<sub>i </sub> [<i><b>x</b></i>])</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">15&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> if
+		</b>n[y] = 2t – 1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">16&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; then
+        B_Tree_Split </b>(<i><b>x</b></i>, i, y)</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">17&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; if
+		</b><i><b>k</b></i>&gt; key<sub>i</sub> [<i><b>x</b></i>]</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">18&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then </b>i &#8592;&nbsp; i+1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">19&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>B_Tree_ Insert_Nonfull</b> (y, <i><b>k</b></i>, 
+        </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><b><i>fd</i></b></font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">)</span> </font>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Пример
+        включения в B - дерево элементов с
+        ключами 2, 17, 12:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/file11.gif" width="488" height="504">
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><font color="#0000FF"><b><a href="flash/test34.html">Тест</a></b></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2"><a name="В+дерево"><b style="mso-bidi-font-size: 10.0pt">В+
+        - дерево</b></a></font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В+
+        - дерево
+        – это особый вид сбалансированного m - арного
+        дерева, которое позволяет выполнять
+        операции поиска, вставки и удаления
+        записей из внешнего файла с
+        гарантированной производительностью
+        для самой неблагоприятной ситуации. С
+        формальной точки зрения В+ - дерево
+        порядка m представляет собой m - арное
+        дерево поиска, характеризующееся
+        следующими свойствами:</font></span></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        Корень&nbsp; является листом, либо имеет
+        по крайней мере двух сыновей.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        Каждый узел, за исключением корня и
+        листьев, имеет от (m/2) до m сыновей.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        Все пути от корня до любого листа имеют
+        одинаковую длину.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Указатели
+              на записи
+        файла с данными хранятся только в листьях.&nbsp;</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">В+
+        - дерево
+        можно рассматривать как иерархический
+        индексный файл, каждый узел в котором занимает
+        блок во внешней памяти. Корень В+ - дерева
+        является индексом первого уровня.
+        Каждый внутренний узел в В+ - дереве
+        имеет форму (p<sub>0</sub>, key<sub>1</sub>, p<sub>1</sub>,
+        key<sub>2</sub>, p<sub>2</sub> , . . . ,key<sub>n</sub>, p<sub>n</sub>), где р<sub>i</sub>
+        является указателем на i - го сына, 0 <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">&nbsp;i
+        <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">&nbsp;n, а key<sub>i</sub> – ключ, 1 <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">&nbsp;i
+        <img border="0" src="images/l_e.gif" align="middle" width="13" height="16">&nbsp;n. Ключи в узле
+        упорядочены, поэтому key<sub>1 </sub>&lt; key<sub>2 </sub>&lt;
+        . . . &lt; key<sub>n</sub>. Все
+        ключи в поддереве, на которые указывает
+        р<sub>0</sub>, меньше, чем k<sub>1</sub>. В случае 1<img border="0" src="images/l_e.gif" align="middle" width="13" height="16">&nbsp;i
+        &lt; n все ключи в поддереве, на которое
+        указывает р<sub>i</sub>, имеют значения не меньше,
+        чем, key<sub>i</sub>, и меньше, чем key<sub>i+1</sub>. Все ключи в
+        поддереве, на которое указывает p<sub>n</sub>,
+        имеют значения, не меньшие, чем key<sub>n</sub>.</font></span>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p align="center" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" class="MsoNormal"><img border="0" src="images/file12.gif" width="658" height="378"></p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Поиск
+        записей в B+ - дереве</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        требуется найти запись со значением
+        ключа k, нужно пройти путь от корня
+        до листа, который содержит запись. При
+        прохождении по пути последовательно
+        считываются из внешней памяти
+        внутренние узлы дерева (p<sub>0</sub>,key<sub>1</sub>,p<sub>1</sub>,
+        . . . ,key<sub>n</sub>, p<sub>n</sub>) и
+        вычисляется положение k относительно
+        ключей key<sub>1</sub>, key<sub>2</sub>, . . . ,key<sub>n</sub> считанного узла. Если
+        key<sub>i</sub><img border="0" src="images/l_e.gif" align="middle" width="13" height="16">k<img border="0" src="images/l_e.gif" align="middle" width="13" height="16">key<sub>i+1</sub>,тогда
+        в основную память считывается узел, на
+        который указывает р<sub>i,</sub> и повторяется
+        описанный процесс. Если k &lt; key<sub>1</sub>, для
+        считывания в основную память
+        используется указатель р<sub>0</sub>,&nbsp; если
+        k &gt; key<sub>n,</sub>
+        тогда считывается р<sub>n</sub>. В результате
+        этого процесса получаем какой-либо
+        лист и пытаемся найти запись со
+        значением ключа k. Если количество
+        ключей в узле невелико, то в этом случае
+        можно использовать линейный поиск в
+        считанном узле,&nbsp; в
+        противном случае лучше
+        воспользоваться двоичным поиском.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Включение записей в B+ - дерево">Включение
+        записей в B+ - дерево</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Вставка
+        в В+ - дерево подобно вставке в <a href="2_3_tree.html"> 2-3-дерево</a>.
+        Если требуется вставить в В+ - дерево
+        запись с ключом k,&nbsp;&nbsp; сначала
+        выполняется поиск листа L, которому
+        должна принадлежать запись. Если в L
+        есть место для этой записи, то она
+        вставляется в L в требуемом порядке. В
+        этом случае внесение каких-либо
+        изменений в предков листа L не
+        требуется.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Если
+        же в блоке листа L нет места для записи,
+        то у файловой системы запрашивается
+        новый блок L<sub>1</sub> и перемещается вторая
+        половина записей из L в L<sub>1</sub>. Новая запись
+        с </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">ключом
+        k</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        вставляется в требуемое место в блок L
+        или в блок L<sub>1</sub>. Допустим, узел Р является
+        родителем узла L. Р известен, поскольку
+        операция вставки ранее прошла от корня к
+        листу L через узел Р. Теперь можно&nbsp; применить процедуру
+        вставки, чтобы разместить в Р ключ</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">
+        key</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><sub>1</sub>
+        из узла L<sub>1</sub> и
+        указатель на L<sub>1</sub>.&nbsp; </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Ключ
+        key</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><sub>1</sub> и
+        указатель на L<sub>1</sub> вставляются
+        сразу же после ключа и указателя на
+        лист L. Значение </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">key</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><sub>1</sub> является наименьшим
+        значением ключа в узле L<sub>1</sub>.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Если
+        Р уже имеет m указателей, вставка </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">key</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><sub>1</sub> и
+        указателя на L<sub>1 </sub>в узле Р приведет к расщеплению Р и потребует
+        вставки ключа и указателя в узел
+        родителя Р. Эта вставка может привести
+        к распространению расщепления на
+        предков узла L вплоть до&nbsp; корня
+        вдоль пути, который&nbsp; был пройден
+        операцией&nbsp; вставки. Это может даже
+        привести к тому, что понадобится
+        расщепить корень. В этом случае
+        создается новый корень, причем две
+        половины старого корня выступают в
+        роли двух его сыновей. Это единственная
+        ситуация, при которой узел может иметь
+        менее m/2 потомков.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Удаление
+        записей из&nbsp;B+ - дерева</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        требуется удалить запись&nbsp; со значением
+        ключа k,&nbsp; выполняется поиск листа L,
+        содержащего запись с ключом k. Если такая запись
+        существует, то она удаляется из L. Если
+        это первая запись в L, то&nbsp; в узле -&nbsp;
+        родителе Р, устанавливается новое значение
+        первого ключа key<sub>1</sub> из L. Но если L является
+        первым сыном узла Р, то первый ключ из L не
+        фиксируется в Р, а появляется в одном
+        из предков Р. Таким образом,&nbsp;
+        распространяется изменение значений
+        ключей по&nbsp; наименьшему значению ключа
+        из L в обратном направлении
+        вдоль пути от L к корню.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Если
+        блок листа L после удаления записи
+        оказывается пустым, он отдается
+        файловой системе. После этого
+        корректируются ключи и указатели в Р,
+        чтобы отразить факт удаления листа L.
+        Если количество сыновей узла Р
+        оказывается теперь меньшим, чем m/2,
+        проверяется узел Р<sub>1</sub>, расположенный в
+        дереве на том же уровне слева (или
+        справа) от Р. Если узел Р<sub>1</sub> имеет по
+        крайней мере m/2+1 сыновей, то ключи и
+        указатели распределяются поровну
+        между Р и Р<sub>1</sub> так, чтобы оба эти узла
+        имели по меньшей мере m/2 потомков. Затем
+        необходимо изменить значения
+        ключей&nbsp; в родителе
+        Р и, если необходимо,
+        распространить&nbsp; изменения на всех предков узла Р, на
+        которых это изменение отразилось.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="MS Sans Serif" size="2">Если
+        же у Р<sub>1</sub> имеется ровно m/2 - 1 ключей и
+        m/2 сыновей, то нужно объединить Р и Р<sub>1</sub> в один узел с
+        2m - 1
+        сыновьями на базе узла P. Затем необходимо удалить
+        ключ и указатель на Р<sub>1</sub> у&nbsp; родителя
+        узла&nbsp; Р. В свою очередь у родителя
+        узла P&nbsp; может остаться меньше m/2
+        сыновей и процесс удаления перейдет
+        вверх по дереву. Этот восходящий
+        процесс&nbsp; удаления может
+        распространиться до самого корня и,&nbsp; возможно,&nbsp;
+        придется объединить только
+        двух сыновей корня. В этом случае новым
+        корнем становится&nbsp; объединенный узел, а старый корень
+        можно вернуть файловой системе. Высота
+        В+ - дерева уменьшается на единицу.</font></span>&nbsp;</p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="MS Sans Serif" size="2">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="hash_table.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="exhaustive_search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="61849" endspan --></font><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/file_structure.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:22 GMT -->
+</html>

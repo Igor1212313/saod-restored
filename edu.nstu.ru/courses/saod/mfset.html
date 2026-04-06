@@ -1,0 +1,569 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/mfset.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:58 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Непересекающиеся множества</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/mfset.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Непересекающиеся множества"><!--webbot bot="Navigation" i-checksum="44241" endspan -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="list.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="30785" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#Система непересекающихся множеств на базе массива">Система
+        непересекающихся множеств на базе
+        массива</a></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a href="#Система непересекающихся множеств на базе связных списков">Система
+        непересекающихся множеств на базе
+        связных списков</a></span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">В
+        структуре данных &quot;Непересекающиеся
+        множества&quot;</font></span><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;
+        <span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">n</span>
+        элементов организованы в объединение
+        непустых непересекающихся множеств.&nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">Операции
+        для структуры &quot;Непересекающиеся
+        множества&quot;:</font></span>
+        <!--mstheme--></font><table style="text-indent: 0" border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Make_Set
+              (x) - <a name="создать"><i> создать</i></a> множество, содержащее
+              элемент x. Операция создает
+              множество&nbsp; с единственным
+              элементом x.&nbsp;</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Find_Set
+              (x) - <a name="определить"><i> определить</i></a> множество,
+              содержащее элемент x. Операция
+              возвращает идентификатор множества,
+              содержащего элемент x.&nbsp;</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Union_Set
+              (x, y) - <a name="объединить"><i> объединить</i></a> множества</span></font><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">,
+              содержащие элементы x и y. Операция
+              применима, если элементы x и y
+              принадлежат различным множествам.
+              Операция заменяет множества на их
+              объединение.&nbsp;</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif">Пример:</font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/mfset1.gif" width="242" height="254"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Систему
+        можно представить в виде множества
+        трех подмножеств { S<sub>1</sub>:{a, k, d},&nbsp; S<sub>2</sub>:{n,
+        m},&nbsp;&nbsp; S<sub>3</sub>:{b,&nbsp;
+        f} }.&nbsp;</span></font></p>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Система непересекающихся множеств на базе массива">Система
+        непересекающихся множеств на базе
+        массива</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Для
+        реализации системы подмножеств
+        объявим два типа данных - тип имен
+        множеств и тип элементов множеств [<a href="liter.html">1</a>].
+        В качестве имен множеств удобно
+        использовать целые числа. Если общее
+        количество элементов всех подмножеств
+        равно n, то можно использовать целые
+        числа на интервале от 1 до n, как
+        идентификаторы элементов подмножеств
+        и использовать идентификаторы в
+        качестве индексов в массиве. Тип имен
+        элементов не так важен, поскольку это
+        тип элементов массива, а не индексов. Но
+        если необходимо, чтобы тип элементов
+        множеств был отличным от числового, то
+        необходимо выполнить отображение типа
+        элементов в целые числа с помощью,
+        например, <a href="hash_table.html#Функция хеширования">хеш
+        - функции</a>.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt"> Каждое
+        подмножество можно представить в виде
+        отдельного списка. Списки для
+        отдельных подмножеств можно хранить
+        либо в массиве с индексными
+        указателями. &nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Для
+        реализации системы подмножеств
+        используются два массива - массив&nbsp;</span></font><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+        подмножеств и массив элементов
+        подмножеств. Размерность массивов
+        одинакова и равна n, исходя из
+        предположения, что количество
+        подмножеств может соответствовать
+        числу элементов всех подмножеств.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Пусть
+        n = 7. Тогда для приведенного выше
+        примера система непересекающихся
+        множеств на базе массива подмножеств и
+        массива элементов выглядит следующим
+        образом.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/mfset2.gif" width="676" height="254"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        массиве элементов все элементы
+        отдельного подмножества связаны в
+        список через индексные указатели (индексы
+        следующих элементов).&nbsp; Значение
+        индекса&nbsp; элемента, равное&nbsp; -1,
+        означает значение nil.&nbsp;</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Также&nbsp;
+        элементы снабжены именами подмножеств,
+        которым они принадлежат. Это позволяет
+        быстро определять принадлежность
+        элемента определенному подмножеству в
+        операции Find_Set(x).</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Отдельные
+        подмножества оформлены в массиве
+        подмножеств. Имя каждого подмножества (целое
+        число) используется в качестве индекса
+        в этом массиве. Для каждого
+        подмножества задается индекс первого
+        элемента в списке элементов,
+        принадлежащих данному подмножеству,
+        который расположен в массиве элементов.
+        Кроме того для подмножества задается
+        количество элементов в подмножестве.
+        Это позволяет ускорить операцию
+        объединения подмножеств - Union_Set&nbsp; (x, y).
+        Операция выполняется путем
+        присоединения списка одного
+        подмножества к концу списка другого
+        подмножества. Причем рекомендуется
+        присоединять более короткий список к
+        более длинному. Это сокращает
+        обработку элементов присоединяемого
+        списка, которые получают новое имя
+        подмножества, соответствующее имени
+        подмножества, к которому элементы
+        присоединяются. После объединения
+        подмножеств присоединенное&nbsp;
+        подмножество в массиве подмножеств
+        удаляется.</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Например,
+        после операции Union_Set (a,m) система
+        подмножеств в массиве выглядит
+        следующим образом:</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center">
+		<img border="0" src="images/mfset3.gif" width="710" height="198"><h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<b><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Псевдокод
+        операции создания множества Make_Set(x) с
+        элементом x:</span></font>
+        </b></h3>
+        <h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&nbsp;Make_Set(<i>x
+		</i>)</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Set&nbsp;
+        [1..n] &nbsp; -
+        массив подмножеств </span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Elems 
+		[1..n]&nbsp; -&nbsp; массив элементов</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp;&nbsp;
+        i &#8592; 1&nbsp;</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">4.&nbsp;&nbsp;
+        <b>repeat</b></font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        i +1</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">6.&nbsp;
+        <b>&nbsp;until </b>count [ Set[ i </font></span>
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">] </span></font>
+		<span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">] = 0</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;
+        j &#8592;&nbsp;
+        h(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">h(x) - 
+		<a href="hash_table.html#Функция хеширования">хеш -
+        функция</a></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">8.&nbsp;<b> if</b> name[ Elems [j</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">] </span></font>
+		<span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]
+        <img border="0" src="images/neravno.gif" align="middle" width="12" height="13"> 0</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">9.&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp; then</b>&nbsp;<b> repeat</b></font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        (j +1) <b>mod </b>n</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">11.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp; until</b> name [ Elems
+        [j]</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"> 
+		] </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">&nbsp;=
+        0</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">12.</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">
+        name[ Elems[ j] </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		] </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">&nbsp;=&nbsp; i</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">13.
+        val</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">[Elems[j]</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"> 
+		] </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">&nbsp;= x</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">14.
+        next</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">[ Elems
+        [j]</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"> 
+		] </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">&nbsp;= </font></span>
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" align="middle" width="14" height="14">nil
+        = -1</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">15.</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">
+        count [ Set [i
+        ] </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		] </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">
+        = 1</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">16.
+        first </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[Set
+        [i
+        ] 
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		] </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">= j</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">17.<b> return
+		</b>&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" align="middle" width="14" height="14">i
+        - имя подмножества</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+		<b>Псевдокод</b>
+        операции определения множества,
+        содержащего элемент x:</span></font></h3>
+		<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">Find_Set(<i>x</i>)</span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Set&nbsp;
+        [1..n] &nbsp; -
+        массив подмножеств </span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">Elems 
+		[1..n]&nbsp; -&nbsp; массив элементов</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3.&nbsp; j &#8592;&nbsp;
+        h(<b><i>x</i></b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">h(x) - 
+		<a href="hash_table.html#Функция хеширования">хеш -
+        функция</a></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font face="Arial" size="2">4</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">.&nbsp;
+		<b>if </b>val[ Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]<img border="0" src="images/neravno.gif" align="middle" width="12" height="13"> </font></span>
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><i>
+		<b>x</b></i></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font face="Arial" size="2">5<span style="mso-bidi-font-size: 10.0pt">.&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then</b>&nbsp; <b>repeat</b></font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        (j +1) <b>mod</b> n</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font face="Arial" size="2">7</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>until&nbsp;</b> val[ Elems </font></span>
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]= </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		<b><i>x</i></b></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font face="Arial" size="2">8<span style="mso-bidi-font-size: 10.0pt">.&nbsp;<b>
+        return</b>&nbsp; name </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[ Elems
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]]
+        </font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:20px; margin-bottom:0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">
+		<b>Псевдокод</b>
+        операции объединения множеств,
+        содержащих элементы x&nbsp; и y:</span></font></h3>
+		<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin-left:0; margin-right:0; margin-top:10px; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">U</font><font size="2" face="Arial">nion_Set
+              (<i>x, y</i>)</font></span></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1.&nbsp;
+        j &#8592;&nbsp;
+        <b>Find_Set </b>(<i><b>x</b></i>)</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2.&nbsp;
+        </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial"><font size="2">j</font>
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        <b>Find_Set </b>( <i><b>y</b></i>)</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">3.&nbsp;<b>
+        if</b> count[Set </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]
+        &gt; count[Set </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]&nbsp;</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>then</b> m&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        first </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]&nbsp;</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">11.</font><font face="Arial" size="3"><sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </sub></font><font size="2" face="Arial"><b>if </b>next[Elems
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]] <img border="0" src="images/neravno.gif" align="middle" width="12" height="13">
+        nil</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">12.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp; then&nbsp;</b></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; repeat </b></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        m</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        next[Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        until&nbsp;</b></span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">
+        next[Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]
+        = nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" align="middle" width="14" height="14">nil
+        = -1</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">next[Elems
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]&nbsp;</font><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        first </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]&nbsp;</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font face="Arial"><font size="2">9</font>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <font size="2">&nbsp;&nbsp; k&nbsp;</font></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        i</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">10&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>else </b>m&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        first </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">11.</font><font face="Arial" size="3"><sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </sub></font><font size="2" face="Arial"><b>if </b>next[Elems
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]] <img border="0" src="images/neravno.gif" align="middle" width="12" height="13">
+        nil</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">12.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then&nbsp;</b></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">13.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>repea</b>t</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">14.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        next[Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">15.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>until</b>&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">
+        next[Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]
+        = nil</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">16.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">next[Elems
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]&nbsp;</font><font face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">&#8592;&nbsp;
+        first </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]&nbsp;</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">17.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>k&nbsp;</font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">j</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">18.&nbsp;
+        m</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        next[Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">19.&nbsp;
+        <b>repeat</b></span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        name</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">[Elems</font><font size="2" face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]&nbsp;</font><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        k</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">21.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        m</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        next[Elems </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span>m</font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">]]</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">22.&nbsp;<b> 
+		until </b>m = nil</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">23.&nbsp;
+        <b>if</b> i = k</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">24.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+        then </b>count[Set </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]&nbsp;</font></span><font size="2" face="Arial">&nbsp;</font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        count[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]
+        + count[Set </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]]&nbsp;</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">25.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">count[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]&nbsp;</font><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        0</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">26.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; first</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">[Set</font><font size="2" face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]&nbsp;</font><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        nil</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">27.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;
+        else </b> </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">&nbsp;count[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]&nbsp;</font></span><font size="2" face="Arial">&nbsp;</font><span style="mso-bidi-font-size: 10.0pt"><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        count[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">j]
+        ]
+        + count[Set </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]&nbsp;</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">25.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font size="2" face="Arial">count[Set
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]&nbsp;</font><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        0</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">26.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; first</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">[Set</font><font size="2" face="Arial">
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">
+		[</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial">i]]&nbsp;</font><font face="Arial">
+        </font><font size="2" face="Arial">&#8592;&nbsp;
+        nil</font></span><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 150%; margin: 0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">28.&nbsp;
+		<b>return </b>k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/comment.gif" align="middle" width="14" height="14">k
+        - имя объединенного подмножества</span></font><p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<h3 style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt"><a name="Система непересекающихся множеств на базе связных списков">Система
+        непересекающихся множеств на базе
+        связных списков</a></span></font></h3>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">В
+        структуре n элементов распределены
+        на&nbsp; непустые списки на базе адресных
+        указателей. Каждому подмножеству
+        соответствует отдельный список [<a href="liter.html">3</a>].&nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/mfset4.gif" width="372" height="308"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Каждый
+        элемент списка, то есть подмножества,
+        содержит указатели на следующий
+        элемент&nbsp; и&nbsp; </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">на
+        заголовок списка, который служит
+        именем подмножества, которому
+        принадлежит элемент.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;Для
+        каждого списка в заголовке хранятся
+        указатели на его первый и последний
+        элементы, а также количество элементов
+        в списке.&nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Указатель
+        на последний элемент нужен для
+        добавления новых элементов в конец&nbsp;
+        списка. Порядок элементов в списке
+        может быть любым.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Количество
+        элементов в списке необходимо для того.
+        чтобы при выполнении операции </span></font><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Union_Set
+        присоединять более коротки список в
+        конец более длинного списка.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Операция
+        </span></font><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Make_Set(x)
+        создает список с единственным
+        элементом x. Этот элемент&nbsp; будет
+        содержать указатель на заголовок
+        списка, то есть имя&nbsp; созданного </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">множества.</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Операция
+        </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">Find_Set(x)
+        </font></span><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">возвращает
+        указатель на заголовок списка, в
+        котором находится элемент, как имя </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">множества,&nbsp;
+        которому принадлежит элемент x.&nbsp;</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">&nbsp;Операция
+        </span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">Union_Set
+        (x, y)</font></span> <span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">применима,
+        если элементы x и y принадлежат
+        различным </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">множествам
+        Sx и Sy. Операция заменяет </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">множества
+        Sx и Sy на их объединение&nbsp; Sx <img border="0" src="images/union.gif" align="middle" width="14" height="16">
+        Sy. При этом выбирается представитель
+        для Sx <img border="0" src="images/union.gif" align="middle" width="14" height="16">Sy - </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">множество
+        с большим количеством элементов.
+        Меньшее множество из&nbsp; Sx и Sy&nbsp;
+        включается в большее, то есть список
+        меньшего </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">множества
+        присоединяется в конец списка большего
+        </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">множества.&nbsp;
+        При этом в элементах присоединяемого
+        списка меняется указатель на заголовок
+        списка, то есть имя </font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">под</font></span><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Microsoft Sans Serif">множества.</font></span></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font size="2" face="Microsoft Sans Serif"><span style="mso-bidi-font-size: 10.0pt">Например,
+        после операции Union_Set (a, m) система
+        подмножеств выглядит
+        следующим образом:</span></font></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="center"><img border="0" src="images/mfset5.gif" width="538" height="232"></p>
+        <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify">&nbsp;<!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="list.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="9204" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/mfset.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:00 GMT -->
+</html>

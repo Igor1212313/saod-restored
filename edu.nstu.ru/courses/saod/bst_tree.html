@@ -1,0 +1,293 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/bst_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:01 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>BST - дерево</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center"><!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/bst_tree.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="BST - дерево"><!--webbot
+        bot="Navigation" endspan i-checksum="64661" -->
+        </p>
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="center"><!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="bst_op1.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot
+        bot="Navigation" endspan i-checksum="36277" --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial"><p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><i><a name="Двоичное">Двоичное</a>
+        <a name="бинарное дерево поиска">бинарное
+        дерево поиска</a></i>&nbsp; (<a name="BST - дерево"><i>BST
+        - дерево</i></a>) - упорядоченное дерево,
+        каждая <a name="вершина (узел)"><i>вершина (узел)</i></a>&nbsp;
+        которого имеет не более двух потомков,
+        причем каждый из потомков считается
+        либо <a name="левым сыном"><i>левым сыном</i></a>&nbsp;
+        либо <a name="правым сыном"><i>правым сыном</i></a>&nbsp;
+        своего <a name="родителя"><i>родителя</i></a>.</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Как
+        абстрактный тип данных, BST-дерево
+        предусматривает операции поиска,
+        вставки и удаления элементов по ключу.
+        Используя эти операции можно построить
+        любое бинарное дерево. Операции
+        вставки, удаления и поиска элементов
+        для BST-дерева используют правило
+        двоичного поиска при доступе к
+        элементу с заданным значением ключа.&nbsp;
+        Поэтому трудоёмкость этих операций
+        соответствует трудоёмкости бинарного
+        поиска в упорядоченном множестве и
+        имеет нотацию O(log<sub>2</sub>n). Необходимо
+        отметить структурную зависимость BST-дерева
+        от порядка поступления и удаления
+        элементов. Например, при
+        последовательных вставках элементов
+        со строго возрастающими ключами,
+        структура BST-дерева выродится в
+        линейный список правых сыновей. В этом
+        случае трудоёмкость операций
+        возрастёт до нотации O(n).</font></span></p>
+        <h3 style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Математические
+        свойства бинарных деревьев</span></font></h3>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Бинарное
+        дерево с n внутренними узлами имеет n+1
+        внешних узлов.&nbsp; Начальный узел в
+        дереве называется <a name="корнем"><i>корнем</i></a>.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2"><a name="Внутренним"><i>Внутренним</i></a>&nbsp;
+        узлом
+        является узел с двумя сыновьями. <a name="Внешним"><i>
+        Внешним</i></a>&nbsp; узлом является узел с одним
+        сыном или без сыновей. Узел без сыновей
+        называется <a name="листом"><i>листом</i></a>.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Бинарное
+        дерево с n внутренними узлами имеет 2n
+        ребер, n-1 ребро с внутренними узлами и n+1
+        ребро с внешними узлами.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font size="2">Для
+        любого узла в дереве все узлы, лежащие
+        на пути от корня до этого узла,
+        называются <a name="предками"><i>предками</i></a>.</font></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Совокупность
+        всех узлов, для которых заданный узел
+        является предком, называется <a name="потомками"><i>потомками</i></a>.</span></font></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Узел
+        вместе со всеми своими потомками
+        называется <a name="поддеревом"><i>поддеревом</i></a>&nbsp;
+        с корнем в данном узле, а узел
+        называется корнем поддерева.</span></font></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2"><a name="Уровень узла"><i>Уровень
+        узла</i></a>&nbsp; в дереве на единицу выше уровня
+        родительского узла. Уровень корня
+        равен 0.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Под
+        <a name="глубиной узла"><i>глубиной узла</i></a>&nbsp;
+        понимается длина пути от корня дерева
+        до данного узла.</span></font></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2"><a name="Высота дерева"><i>Высота
+        дерева</i></a>&nbsp; – максимальный из уровней узлов
+        в дереве.&nbsp;</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2"><a name="Длина пути"><i> Длина пути</i></a>&nbsp;
+        дерева – сумма
+        уровней всех узлов дерева.&nbsp; <a name="Длина внутреннего пути"><i>Длина
+        внутреннего пути</i></a>&nbsp; – сумма уровней всех
+        внутренних узлов дерева. <a name="Длина внешнего пути"> <i> Длина
+        внешнего пути</i></a>&nbsp; – сумма уровней всех
+        внешних узлов дерева.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Из
+        этих определений вытекают рекурсивные
+        определения: высота дерева на единицу
+        больше максимальной высоты
+        поддеревьев его корня.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">При
+        анализе рекурсивных алгоритмов
+        максимальная глубина рекурсии
+        соответствует высоте дерева рекурсии и
+        определяет размер стека, необходимого
+        для поддержки вычислений.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Высота
+        бинарного дерева с n внутренними узлами
+        не меньше log<sub>2</sub> n&nbsp; и не больше n - 1.</font></span></p>
+        <p class="MsoBodyText2" style="tab-stops: 134.7pt; text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Длина
+        внутреннего пути с n внутренними узлами
+        не меньше, чем&nbsp; n<img border="0" src="images/mul.gif" align="middle" width="9" height="8">log<sub>2 </sub>(n/4) и не
+        больше, чем n<img border="0" src="images/mul.gif" align="middle" width="9" height="8">(n-1)/2.</font></span></p>
+        <h3 style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font size="2">&nbsp;</font><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Структуры
+        BST - дерева</span></font></h3>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Для
+        хранения BST-деревьев используются две
+        альтернативные структуры – массив
+        элементов дерева и связная структура
+        дерева на базе адресных указателей.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2"><a name="Массив элементов"><i>Массив
+        элементов</i>&nbsp;</a> используется в случае, если
+        задано предельное количество
+        элементов (размер дерева), которые
+        будут размещены в BST-дереве. В этом
+        случае для хранения дерева выделяется
+        массив заданного размера, тип которого
+        совпадает с типом элементов множества,
+        хранящегося в дереве. Корень дерева
+        размещается в элементе массива с
+        индексом 1, а его левый и правый сыновья
+        – с индексом 2 и 3 соответственно. По
+        индексу любого элемента легко
+        вычислить индексы его сыновей и
+        родителя в массиве. Если некоторый
+        элемент имеет индекс i, то его левый сын
+        расположен по индексу 2i, а правый сын –
+        по индексу 2i+1. Индекс родителя
+        вычисляется, как целая часть от деления
+        i/2.</font></span>
+        <p style="text-indent: 10; word-spacing: 0; line-height: 100%; tab-stops: 134.7pt; margin: 0" align="center" class="MsoBodyText2"><font size="2"><img border="0" src="images/bst1.gif" width="626" height="202"></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Как
+        видно из примера, приведенного на рисунке,
+        хранение дерева приводит к
+        неэффективному использованию памяти
+        массива. Поэтому использовать массив
+        рекомендуется для хранения полных
+        деревьев, в которых каждый узел имеет
+        двух сыновей.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Наиболее
+        распространённой формой для хранения
+        деревьев является <a name="связная структура на базе адресных указателей"><i> связная структура на
+        базе адресных указателей</i></a>. Каждый <a name="узел дерева"> <i> узел
+        дерева</i>&nbsp;</a> размещается в динамической
+        памяти и содержит помимо ключа и данных
+        два <i> указателя на левого и правого <a name="сыновей">
+        сыновей</a></i>. Таким образом, структура через
+        указатели на сыновей обеспечивает
+        спуск по дереву от корня к
+        местоположению узла с заданным
+        значением ключа. Для некоторых
+        операций требуется подъём от
+        некоторого узла к родительскому узлу и
+        далее к корню. Для этого в структуру
+        узла можно ввести дополнительный <a name="указатель на родителя">
+        <i>
+        указатель на родителя</i></a>.&nbsp; Но это приводит
+        к неоправданным затратам памяти на
+        дополнительные указатели в узлах.
+        Поэтому эти указатели используются
+        только в отдельных разновидностях
+        деревьев. Как правило, естественное
+        поведение алгоритма операции,
+        обеспечивает возврат по ранее
+        пройденному пути в дереве.</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">В
+        дерево вводится вспомогательный
+        указатель, содержащий адрес <a name="корневого узла"> корневого
+        узла</a>. Если дерево пусто, то указатель
+        содержит значение nil .</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="center"><font size="2"><img border="0" src="images/bst2.gif" width="562" height="314"></font><h3 style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</h3>
+        <h3 style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><a name="Операции в BST - дереве">Операции
+        в </a> </span></font><a name="Операции в BST - дереве"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">BST -
+        дереве</span></font></a></h3>
+        <p class="MsoBodyText2" style="text-indent: 10; tab-stops: 134.7pt; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">BST
+        - дерево предусматривает операции
+        поиска, вставки и удаления элементов по
+        ключу. Используя эти операции можно
+        построить любое бинарное дерево.
+        Операции вставки, удаления и поиска
+        элементов для BST – дерева используют
+        правило двоичного поиска при доступе к
+        элементу с заданным значением ключа.
+        Поэтому трудоёмкость этих операций
+        соответствует трудоёмкости бинарного
+        поиска в упорядоченном множестве и
+        имеет нотацию O(log n). Необходимо
+        отметить структурную зависимость BST –
+        дерева от порядка поступления и
+        удаления элементов. Например, при
+        последовательных вставках элементов
+        со строго возрастающими ключами,
+        структура BST – дерева выродится в
+        линейный список правых сыновей. В этом
+        случае трудоёмкость операций
+        возрастёт до нотации O(n).</span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><font face="MS Sans Serif" size="2">Важной
+        операцией для BST-дерева является
+        перебор его элементов в определенном порядке
+        для выполнения какой–либо операции.&nbsp;
+        Для BST-дерева
+        существуют три основные схемы обхода –
+        прямой, симметричный и обратный. Прямой
+        обход выполняется по схеме t &#8594; Lt &#8594;
+        Rt, то есть, обход выполняется в порядке:
+        посетить узел t, обойти узлы левого
+        поддерева по схеме прямого обхода<b style="mso-bidi-font-size: 10.0pt; line-height: 150%">,
+        </b>обойти узлы правого поддерева по
+        схеме прямого обхода.<b style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </b>Аналогично,<b style="mso-bidi-font-size: 10.0pt; line-height: 150%">
+        </b>симметричный обход выполняется по
+        схеме Lt &#8594; t &#8594; Rt, а обратный обход –
+        по схеме Lt &#8594; Rt &#8594; t. Существует также
+        обход элементов дерева по уровням.&nbsp;
+        При обходе дерева по любой схеме каждый
+        узел дерева посещается только один раз
+        и трудоёмкость операций обхода имеет
+        нотацию O(n).</font></span></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Также
+        для BST - дерева используются ряд
+        вспомогательных операций, позволяющих
+        воспроизводить операции, характерные
+        для упорядоченных таблиц поиска:
+        доступ к k - му&nbsp; элементу, поиск
+        следующего или предыдущего по ключу
+        элемента,&nbsp; разбиение таблицы на две
+        части, объединение двух таблиц в одну и
+        другие.</span></font></p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center"><!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="search.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="bst_op1.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" endspan i-checksum="46040" --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/bst_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:01 GMT -->
+</html>

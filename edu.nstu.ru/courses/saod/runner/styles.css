@@ -1,0 +1,68 @@
+.runner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.runner__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.runner__title {
+  font-size: 14px;
+  color: #663300;
+  font-weight: bold;
+}
+
+.runner__titleLabel {
+  font-weight: bold;
+}
+
+.runner__titleValue {
+  color: #000;
+  font-weight: bold;
+}
+
+.runner__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.runner__link {
+  font-size: 12px;
+}
+
+.runner__btn {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px 8px;
+  border: 1px solid #999;
+  background: #f6f6f6;
+  cursor: pointer;
+}
+
+.runner__btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.runner__playerWrap {
+  text-align: center;
+  padding: 8px 0 12px;
+}
+
+.runner__playerMount {
+  display: inline-block;
+  width: 800px;
+  height: 600px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+}
+

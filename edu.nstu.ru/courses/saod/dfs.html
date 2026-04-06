@@ -1,0 +1,394 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/dfs.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:34 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Обход графа в глубину</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><font face="Microsoft Sans Serif" size="2">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/dfs.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Обход графа в глубину"><!--webbot bot="Navigation" i-checksum="4739" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="bfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="43688" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Дерево обхода в глубину">Дерево
+        обхода в глубину</a></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a href="#Классификация ребер графа">Классификация
+        ребер графа</a></span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Стратегия
+        <a name="поиска в глубину"><i>
+        поиска в глубину</i></a>&nbsp; (</font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Depth</span><span style="mso-bidi-font-size: 10.0pt">
+        - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">First</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Search</span><span style="mso-bidi-font-size: 10.0pt">
+        -&nbsp; </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span></font>)<font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">следующая:
+        идти &quot;вглубь&quot; пока это возможно (у
+        вершины есть не пройденные исходящие
+        ребра),&nbsp; возвращаться и искать другой
+        путь, когда таких ребер нет. Если после
+        этого остаются необнаруженные вершины,
+        можно выбрать одну из них и повторить
+        процесс и делать так до тех пор, пока не
+        будут обнаружены все вершины графа [<a href="liter.html">3</a>].</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Как
+        и при<span style="mso-spacerun:yes"> <a href="bfs.html"> </a></span><a href="bfs.html">поиске
+        в ширину</a> используются поля </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">p</span><span style="mso-bidi-font-size: 10.0pt">[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        с помощью которых формируется подграф
+        предшествования или несколько
+        подграфов предшествования в случае не
+        связного графа. Такой подграф
+        называется лесом<b style="mso-bidi-font-weight:normal"> </b>поиска
+        в глубину, состоящий из деревьев поиска
+        в глубину отдельных звязных компонент. </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Кроме
+        того, для вершины используются поле </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">],
+        задающее БЕЛЫЙ, СЕРЫЙ или ЧЕРНЫЙ цвет. В
+        начале все вершины белые. В процессе
+        поиска при обнаружении&nbsp; вершина
+        становится серой. Вершина становится
+        черной, когда она полностью обработана,
+        т. е. когда список смежных с ней вершин
+        полностью просмотрен. Каждая вершина
+        попадает только в одно дерево поиска в
+        глубину, и эти деревья не пересекаются.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Дополнительно
+        алгоритм поиска в глубину использует
+        метки времени. Каждая вершина имеет две
+        метки </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        отражает время, когда вершина впервые
+        обнаружена и стала серой, а </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">f</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        - время,&nbsp; когда закончена обработка
+        смежных с </span><span style="mso-bidi-font-size: 10.0pt">вершиной
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">
+        вершин.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Метки
+        времени используются во многих
+        алгоритмах, использующих поиск<span style="mso-spacerun:yes">&nbsp;
+        </span>в глубину.</font></span></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">В
+        алгоритме </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        метки являются целыми числами от 1 до </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">2<img border="0" src="images/mul.gif" width="9" height="8"></span><span style="mso-bidi-font-size: 10.0pt">|V|,
+        причем </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        &lt; </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">f</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">].</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Вершина
+        </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">
+        белая до </span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">времени
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">],
+        серая между </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">временем
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        и </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">временем
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">f</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">],
+        черная после </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">времени
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">f</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u</span><span style="mso-bidi-font-size: 10.0pt">].
+        Для меток времени в алгоритме </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        используется глобальная переменная
+        текущего времени </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">time</span><span style="mso-bidi-font-size: 10.0pt">.</span></font></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+		<font face="Arial" size="2"><a name="DFS">DFS</a></font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">
+        (</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic">G</span><span style="mso-bidi-font-size: 10.0pt">)</span></font></h3>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-style: normal; font-variant: normal; font-weight: 700">
+        </span></font></span><font face="Arial" size="2">
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700">for</span><span style="mso-bidi-font-size: 10.0pt">
+        для </span><span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u
+        <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"> V</span><span style="mso-bidi-font-size: 10.0pt">[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-weight:700">G</span><span style="mso-bidi-font-size: 10.0pt">]</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">do</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">
+        color [u]&nbsp; <span style="mso-no-proof:
+yes">&#8592;</span></span><span style="mso-bidi-font-size: 10.0pt"> БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">3.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;
+        </span>p[u]&nbsp; <span style="mso-no-proof:yes">&#8592;</span><span style="mso-no-proof: yes">
+        </span>nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img border="0" src="images/comment.gif" align="middle" width="14" height="14">nil = -1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">time
+        <span style="mso-no-proof:
+yes">&#8592;</span> 0</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2">
+		<span style="font-style: normal; font-variant: normal; font-weight: 700; mso-list: Ignore; mso-bidi-font-size: 10.0pt">for<span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore"> </span>
+		</span><span style="mso-bidi-font-size: 10.0pt">
+        для </span><span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt">
+        </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">u
+        <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10">&nbsp; V</span><span style="mso-bidi-font-size: 10.0pt">[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-weight:700">G</span><span style="mso-bidi-font-size: 10.0pt">]</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">do
+        if </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color [u] = </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l1 level1 lfo1; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">then
+        DFS -Visit</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> (u) </span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<span style="mso-spacerun:yes; mso-bidi-font-size:10.0pt; mso-ansi-language:EN-US" lang="EN-US">
+		<font face="Arial" size="2">&nbsp;&nbsp;&nbsp;
+        </font></span></p>
+        <h3 style="word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;<a name="DFS -Visit">DFS
+        -Visit</a> (</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-style:italic; font-weight:700">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">)&nbsp;</span></font></h3>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">1.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color</span><span style="mso-bidi-font-size: 10.0pt">
+        [</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span style="mso-bidi-font-size: 10.0pt">]
+        <span style="mso-no-proof:
+yes">&#8592; </span>СЕРЫЙ<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt">Вершина
+        </span>
+		<span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span style="mso-bidi-font-size: 10.0pt"> была белой</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">2.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">d[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]
+        <span style="mso-no-proof:
+yes">&#8592; </span>time</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        time&nbsp; <span style="mso-no-proof:yes">&#8592; </span>time + 1</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2">4.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt">
+		<span style="font-style: normal; font-variant: normal; font-weight: 700; mso-list: Ignore">for</span> 
+		для </span><span lang="ru">каждой вершины</span><span style="mso-bidi-font-size: 10.0pt"> </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">v
+        <img border="0" src="images/belong_to.gif" align="middle" width="12" height="10"> Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span style="mso-bidi-font-size: 10.0pt">]<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><img border="0" src="images/comment.gif" align="middle" width="14" height="14">Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span style="mso-bidi-font-size: 10.0pt">]<span style="mso-spacerun:yes">&nbsp;
+        - список смежности вершины <i><b>u</b></i></span></span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">5.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span style="mso-spacerun:yes"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore"><span style="font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore; mso-bidi-font-size:10.0pt">&nbsp;</span>do</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">if </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color [v] = </span><span style="mso-bidi-font-size: 10.0pt">БЕЛЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">6.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">then</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> p[v]&nbsp; <span style="mso-no-proof:
+yes">&#8592;</span><span style="mso-no-proof: yes"> </span> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> </span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">7.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; font-style:normal; font-variant:normal; font-weight:700; mso-list:Ignore">DFS -Visit</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"> (v)</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">8.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">color
+        [</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">] <span style="mso-no-proof:yes">&#8592;</span> </span><span style="mso-bidi-font-size: 10.0pt">ЧЕРНЫЙ</span></font></p>
+        <p class="MsoNormal" style="mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; word-spacing: 0; line-height: 100%; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-list: Ignore; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">9.<span style="font-style: normal; font-variant: normal; font-weight: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font face="Arial" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">f[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; font-weight:700; font-style:italic">u</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">]
+        <span style="mso-no-proof:
+yes">&#8592;&nbsp; </span>time</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; line-height: 100%; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">10.&nbsp;&nbsp;&nbsp;&nbsp;
+        time&nbsp; <span style="mso-no-proof:yes">&#8592; </span>time + 1</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Вершины,
+        для которых вызывается функция </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        -</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Visit</span><span style="mso-bidi-font-size: 10.0pt">
+        из функции </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">,
+        становятся корнями деревьев поиска в
+        глубину.</span></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Иллюстрация
+        работы алгоритма DFS для орграфа:</font></span></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_dfs1.gif" width="440" height="536"></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;</p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><font color="#0000FF"><b><a href="flash/test35.html">Тест</a></b></font>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify" class="MsoNormal">&nbsp;
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</h3>
+        <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Трудоемкость
+        алгоритма поиска в глубину</font></span></h3>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Циклы
+        в функции </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        1 - 3 и 5 - 7 требуют </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">O</span><span style="mso-bidi-font-size: 10.0pt">(<span style="mso-ansi-language: EN-US" lang="EN-US">V</span>)
+        времени. Функция </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Visit</span><span style="mso-bidi-font-size: 10.0pt">
+        вызывается один раз для каждой вершины.
+        В функции </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Visit</span><span style="mso-bidi-font-size: 10.0pt">
+        цикл 3 - 6 выполняется </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Adj</span><span style="mso-bidi-font-size: 10.0pt">[</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US" lang="EN-US">V</span><span style="mso-bidi-font-size: 10.0pt">]
+        раз.</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">По
+        всем вершинам </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">графа
+        общее время функции </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">DFS</span><span style="mso-bidi-font-size: 10.0pt">
+        - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">Visit</span><span style="mso-bidi-font-size: 10.0pt">
+        оценивается как </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">O</span><span style="mso-bidi-font-size: 10.0pt">[</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">E</span><span style="mso-bidi-font-size: 10.0pt">].</span></font></p>
+        <p class="MsoNormal" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Таким
+        образом общее время обхода в глубину
+        оценивается,&nbsp; как </font></span><font face="Microsoft Sans Serif" size="2"><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">O</span><span style="mso-bidi-font-size: 10.0pt">(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">V</span><span style="mso-bidi-font-size: 10.0pt">
+        + </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">E</span><span style="mso-bidi-font-size: 10.0pt">).</span></font></p>
+        <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</p>
+        <h3 style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Дерево обхода в глубину">Дерево
+        обхода в глубину</a></span></font></h3>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">В
+      ходе работы алгоритма в вершинах
+      фиксируются параметры d[v] / f[v]&nbsp; - метки
+      времени обнаружения вершины (d[v] ) и
+      времени завершения обработки вершины (f[v]
+      ). Кроме того, в вершинах фиксируются&nbsp;
+      номера вершин - предшественников ( p[v])</font><font face="Microsoft Sans Serif" size="2">.
+      Эти номера&nbsp; позволяют выделить в
+      графе подграф предшествования,
+      построенный с помощью алгоритма <span lang="EN-US" style="mso-ansi-language:EN-US">DFS</span>,
+      который в точности соответствует
+      структуре рекурсивных вызовов <span lang="EN-US" style="mso-ansi-language:EN-US">DFS</span>
+      - <span lang="EN-US" style="mso-ansi-language:EN-US">Visit</span>.</font>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_dfs2.gif" width="200" height="108">
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center">&nbsp;
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Подграф
+      предшествования является&nbsp; <a name="деревом поиска в глубину"><i>деревом
+      поиска в глубину</i></a>, задаваемым полями p[v]. В
+      частности для рассматриваемого примера
+      получилось дерево: </font>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center"><img border="0" src="images/graph_dfs3.gif" width="90" height="190"></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2">Если
+      граф не связный, то в результате полного
+      обхода в глубину строится <a name="лес обхода в глубину"><i>лес
+      обхода в глубину</i></a>, состоящий из&nbsp;
+      деревьев обхода в глубину,
+      соответствующих отдельным связным
+      компонентам.</font></p>
+      <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify">&nbsp;</p>
+      <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0">&nbsp;</h3>
+      <h3 align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><a name="Классификация ребер графа">К</a></span></font><a name="Классификация ребер графа"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">лассификация
+      ребер</font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">
+      графа</span></font></a></h3>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">При
+      поиске в глубину ребра графа делятся на
+      несколько категорий. Классификация
+      ребер оказывается полезной в различных
+      задачах. Она позволяет, например,
+      распознать в графах циклы.</font></span></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">Ребра
+      при поиске в глубину делятся на
+      древесные ребра </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">(<b>T</b>ree
+      edges),</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">
+      обратные&nbsp; ребра </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">(<b>B</b>ack
+      edges)</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">,
+      прямые дуги </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">(<b>F</b>orwarg
+      edges)</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">
+      и перекрестные дуги </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">(<b>C</b>ross
+      edges)</span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">.</font></span></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2"><a name="Древесные ребра"><i>Древесные
+      ребра </i></a>(T) - ребра подграфа
+      предшествования.</font></span></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><i><a name="Обратные ребра">Обратные
+      ребра</a></i> <a name="Обратные ребра"> </a> (B) - ребра (u, v), соединяющие вершину
+      u с ее предком v в дереве поиска в глубину.</span></font></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt"><i><a name="Прямые дуги">Прямые
+      дуги</a></i><a name="Прямые дуги"> </a>(F) - соединяют вершину u с ее
+      потомком, но не входят в дерево поиска в
+      глубину.</span></font></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2"><a name="Перекрестные дуги"><i>Перекрестные
+      дуги&nbsp;</i></a> </font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">(C)
+      </span></font><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">
+      - все остальные ребра графа. Они могут
+      соединять две вершины одного дерева
+      поиска в глубину, если ни одна из этих
+      вершин не является предком другой, или
+      вершины разных поддеревьев.</font></span></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Понятия
+      прямых и перекрестных дуги применимо
+      только для ориентированных графов</span></font></p>
+      <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+      рассмотренного в примере дерева
+      поиска&nbsp; орграфа ребра&nbsp; классифицируются&nbsp; следующим образом:</span></font></p>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center" class="MsoNormal"><img border="0" src="images/graph_dfs4.gif" width="130" height="188">
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center" class="MsoNormal">&nbsp;
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="center" class="MsoNormal"><b><font color="#0000FF"><a href="flash/test36.html">Тест</a></font></b>
+        <p style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0" align="justify" class="MsoNormal">&nbsp;
+      <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">В
+      ходе алгоритма DFS ребро можно различить
+      по цвету вершины, к которой оно ведет.
+      Если вершина - белая - то это ребро дерева
+      поиска (T), если цвет вершины серый - то
+      это обратное ребро (B), если цвет черный -
+      то это прямое (F) или перекрестное ребро
+      (C).</span></font>
+      <p class="MsoNormal" align="justify" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Чтобы
+      отличить прямые и перекрестные ребра
+      можно воспользоваться меткой времени d[v].&nbsp;
+      Ребро (u, v) оказывается прямым, если d[u]&lt;d[v],
+      и перекрестным, если d[u] &gt; d[v].</span></font></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Для
+      неориентированных графов ребро (u, v)
+      рассматривается дважды и может попасть
+      в разные категории. Поэтому ребро
+      относится&nbsp; к категории, которая стоит
+      раньше в перечне из 4 - х категорий. Либо
+      тип ребра определяется при первой его
+      обработке и не меняется при второй.</span></font></p>
+      <p class="MsoNormal" style="text-indent: 10; word-spacing: 0; line-height: 100%; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt"><font face="Microsoft Sans Serif" size="2">В
+      неориентированном графе ребро
+      оказывается либо ребром дерева поиска
+      (T), либо обратным ребром (B)</font></span><font face="Microsoft Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">,
+      прямых и поперечных ребер в
+      неориентированном графе нет.</span></font><!--mstheme--></font></td>
+    </tr>
+  <center>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="word-spacing: 0; text-indent: 10; line-height: 100%; margin: 0"><font face="Microsoft Sans Serif" size="2">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="bfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="alg_dfs.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="4517" endspan --></font><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial"><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/dfs.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:35 GMT -->
+</html>

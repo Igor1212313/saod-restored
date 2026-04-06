@@ -1,0 +1,341 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_ins.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:41 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Новая страница 1</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <center>
+  <!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center" style="text-indent: 0; line-height: 100%; word-spacing: 0; margin: 0">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/sort_ins.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Сортировка включениями"><!--webbot bot="Navigation" i-checksum="35995" endspan -->
+        </p>
+        <p align="center" style="text-indent: 0; line-height: 100%; word-spacing: 0; margin: 0">
+		<!--webbot
+        bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+        S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page
+        S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_princ.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_exch.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="12173" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+<p align="justify"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;При
+сортировке вставками каждый очередной
+элемент помещается в надлежащее место
+среди отсортированных элементов. Для
+освобождения места для вставляемого
+элемента производится смещение части
+элементов в отсортированной части на одну
+позицию вправо. </font></p>
+<p align="center"><img border="0" src="images/sort_insertion.gif" width="258" height="211"></p>
+<p align="center"><a href="flash/test7.html"><font size="3"><b>Тест</b></font></a></p>
+<p align="justify"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;Сортировка
+включениями имеет показатель
+эффективности О(n&sup2;). Но в отличие от
+сортировки выбором это адаптивный алгоритм,
+поскольку число повторений внутреннего
+цикла зависит от значения ключа
+включаемого элемента. Если массив
+изначально упорядочен, то внутренний цикл
+вообще не выполняется. В этом эффективность
+алгоритма максимальна и оценивается
+нотацией О(n).&nbsp; </font></p>
+        <p align="justify"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Приведенный алгоритм можно ускорить, если убрать из внутреннего цикла
+проверку j&gt;0. Для этого перед сортировкой
+нужно найти в массиве минимальный элемент и
+переместить его в начало&nbsp;массива.</font></p>
+  <p><b><font size="2" face="MS Sans Serif"><a name="Insertion_Sort">Insertion_Sort&nbsp;</a>(<i>A</i> [<i>1..n
+	</i>])</font>&nbsp;</b></p>
+<ol>
+  <li>
+    <p style="text-indent: -18.0pt; line-height: 150%; text-align: justify; mso-list: l0 level1 lfo1; tab-stops: list 18.0pt; margin-left: 18.0pt">
+	<img border="0" src="images/comment.gif" width="14" height="14"><font size="2" face="MS Sans Serif"><span style="line-height: 150%; mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US"><b><!--[if gte mso 9]><![endif]--><i>A
+	</i>[<i>1 .. n </i>] </b>– массив размерностью n</span></font></li>
+	<li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+	<font size="2" face="MS Sans Serif">
+	<span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="MS Sans Serif"><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">for</span></b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+i<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">&nbsp;</span>
+    </span>&#8592; <span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+2 <b>to</b> <b><i>n</i></b>&nbsp;
+</span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font size="2" face="MS Sans Serif"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;
+    </span></font></span><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b>do</b>
+x<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">&nbsp;</span></span>
+    &#8592;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;<b><i>
+    A </i></b>[i]&nbsp;&nbsp;</span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font size="2" face="MS Sans Serif"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;</span>j<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">
+ </span>
+</span>&#8592;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    i - 1&nbsp;
+</span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font size="2" face="MS Sans Serif"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;
+    </span></font></span><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span><b>while</b>
+j&gt;0 <b>and</b> <b><i>A </i></b>[j] &gt;&nbsp; x&nbsp;
+</span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font size="2" face="MS Sans Serif"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>do</b>
+<b><i>A</i></b> [j+1]&nbsp;<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">
+    </span></span>&#8592;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    <b><i>A </i></b>[j]&nbsp;
+</span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font size="2" face="MS Sans Serif"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;
+    </span>j<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">
+ </span>
+</span>&#8592;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+    j - 1&nbsp;
+</span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font size="2" face="MS Sans Serif"><span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;
+    </span></font></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><font size="2" face="MS Sans Serif"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></span><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span></font>
+	<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<font size="2" face="MS Sans Serif">
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;&nbsp;&nbsp;</span><b><i>A
+    </i></b>[j+1]&nbsp;<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">
+    </span></font></span><font size="2" face="MS Sans Serif">&#8592; </font><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><font size="2" face="MS Sans Serif">
+    x</font><font size="2" face="MS Reference Sans Serif">
+    &nbsp;
+</font></span></li>
+	<li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<span style="mso-list: Ignore; mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+	<font size="2" face="MS Sans Serif">
+	<span style="font-style: normal; font-variant: normal; font-weight: normal; line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></font></span><b><font size="2" face="MS Sans Serif">
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">return</span></font></b></li>
+</ol>
+<p align="justify"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><font size="2" face="MS Reference Sans Serif">
+&nbsp;
+</font></span><font size="2" face="MS Sans Serif" color="#000000">Ещё
+одно усовершенствование - применить
+бинарный поиск места включения в
+отсортированной части. Такой алгоритм
+называется сортировкой бинарными
+включениями:</font></p>
+<p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><b><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">Bin_Insert_Sort
+(</span></font></span><font size="2" face="MS Sans Serif"><i><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">A</span></i> [<i><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">1..n
+</span></i>]</font><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">)</span></font></span></b></p>
+<ol>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><font size="2" face="MS Sans Serif"><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US"><b>for</b>
+    i<b> </b></span></font></span><font size="2" face="MS Sans Serif">&#8592; 2 <b>to
+	<i><span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">n</span></i></b></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">
+	<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b>do</b> x<span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; line-height: 150%">&nbsp;</span></span> 
+	&#8592;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<b><i>A </i></b>[j]&nbsp; <i>&nbsp;</i></span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
+	<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>
+	<span lang="EN-US" style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+EN-US;mso-fareast-language:RU;mso-bidi-language:AR-SA">
+	<span style="position:
+relative;top:3.0pt;mso-text-raise:-3.0pt; font-weight:700; font-style:italic">l
+	</span></span>&#8592;&nbsp;1</font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Times New Roman">&nbsp;</font><font size="2" face="MS Sans Serif"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span></font><font size="2" face="Times New Roman"><b>r</b></font><font size="2" face="MS Sans Serif">&nbsp; 
+	&#8592;&nbsp;i - 1</font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span><b>while</b>
+	<span lang="EN-US" style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+EN-US;mso-fareast-language:RU;mso-bidi-language:AR-SA">
+	<span style="position:
+relative;top:3.0pt;mso-text-raise:-3.0pt; font-weight:700; font-style:italic">l</span><i><span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; font-size: 12.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA" lang="EN-US">
+	</span></i>
+	<span style="position:
+relative;top:3.0pt;mso-text-raise:-3.0pt">&lt;=</span><span style="position: relative; top: 3.0pt; mso-text-raise: -3.0pt; font-size: 12.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA" lang="EN-US">
+	</span><span style="position:
+relative;top:3.0pt;mso-text-raise:-3.0pt"><b>r</b></span></span></font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">
+	<span style="mso-text-raise: -3.0pt; font-size: 12.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>
+	<span style="mso-text-raise: -3.0pt; font-size: 12.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: RU; mso-bidi-language: AR-SA" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;
+    do</b>&nbsp;&nbsp;&nbsp; m&nbsp;</span>
+    &#8592;&nbsp; (<i><b>l</b></i><span lang="EN-US" style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+EN-US;mso-fareast-language:RU;mso-bidi-language:AR-SA"><span style="position:
+relative;top:3.0pt;mso-text-raise:-3.0pt; font-weight:700; font-style:italic">l</span></span>+</font><font size="2" face="Times New Roman">&nbsp;<b>r</b></font><font size="2" face="MS Sans Serif"><b><i>
+	</i></b>/2</font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if&nbsp;</b> x &lt; <b><i>
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">A</span></i></b> [m]&nbsp;
+	</font></li>
+	<li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font face="MS Sans Serif" size="2">&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</b>
+	<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then</b>
+	<b><i>r</i>&nbsp;</b>
+    &#8592;&nbsp;m - 1</font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else</b> <i>l</i><span lang="EN-US" style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+EN-US;mso-fareast-language:RU;mso-bidi-language:AR-SA"><span style="position:
+relative;top:3.0pt;mso-text-raise:-3.0pt; font-weight:700; font-style:italic">l</span></span>&#8592;&nbsp; m+1</font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span><b>for&nbsp;</b>&nbsp;
+    i&nbsp;
+    &#8592;&nbsp;j - 1 <b>down</b> <b><i>l</i></b></font></li>
+	<li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>&nbsp;&nbsp;<b>do</b> <b><i>
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">A </span>
+	</i></b>[j+1]&nbsp;
+    &#8592;&nbsp; <b><i>
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">A </span>
+	</i></b>[j]</font></li>
+  <li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt">
+	<font size="2" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span lang="EN-US" style="mso-bidi-font-size: 12.0pt; line-height: 150%; mso-ansi-language: EN-US">
+	<span style="mso-spacerun: yes; line-height: 150%">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span><b><i>
+	<span style="mso-bidi-font-size: 12.0pt; mso-ansi-language: EN-US">A</span></i></b> [j]&nbsp;
+    &#8592;&nbsp; x&nbsp;&nbsp;&nbsp;</font></li>
+	<li>
+    <p style="margin-left:18.0pt;text-align:justify;text-indent:
+-18.0pt;line-height:150%;mso-list:l0 level1 lfo1;tab-stops:list 18.0pt"><b>
+	<font size="2" face="MS Sans Serif">&nbsp;return</font></b></li>
+</ol>
+<p align="justify">&nbsp; <font face="MS Sans Serif" size="2" color="#000000">К сожалению, это улучшение
+уменьшает только количество операций
+сравнения до оценки О(log n), но не влияет&nbsp; на количество операций
+сдвига.
+Поскольку сдвиги ключей и сопутствующих
+данных требует значительно больше времени,
+то это улучшение не является решающим.
+Общая оценка эффективности по прежнему&nbsp;
+равна О(n&sup2;).</font></p>
+<p align="justify"><font face="MS Sans Serif" size="2" color="#000000">&nbsp;
+Этот пример показывает, что очевидное
+улучшение часто оказывается немного менее
+существенным, чем ожидалось.</font></p>
+<p align="justify"><font face="MS Sans Serif" size="2" color="#000000">&nbsp; В
+конечном счете сортировка включениями
+оказывается не очень подходящим методом
+для вычислительных машин, поскольку сопровождается
+не экономичным сдвигом ряда элементов на одну
+позицию. Лучших результатов следует
+ожидать от метода, при котором пересылки
+выполняются для отдельных элементов и на
+большие расстояния.</font></p>
+      <!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="sort_princ.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="sort_exch.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="38555" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial">
+  </center>
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/sort_ins.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:41 GMT -->
+</html>

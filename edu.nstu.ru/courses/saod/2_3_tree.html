@@ -1,0 +1,915 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/2_3_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:08 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>2 - 3 дерево</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+  <center><!--mstheme--></font><table border="0" width="800">
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="word-spacing: 0; text-indent: 0; line-height: 100%; margin: 0" align="center">
+		<!--webbot
+        bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+        B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/2_3_tree.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="2 - 3 дерево"><!--webbot bot="Navigation" i-checksum="60453" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav1h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="avl_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav2h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav3h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav3"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav4h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="2_3_4_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav4"></a><!--webbot bot="Navigation" i-checksum="50833" endspan --><!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Поиск элемента  в 2 – 3 дереве"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%">Поиск
+        элемента<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;
+        </span>в 2 – 3 дереве</b></a></font></p>
+        <p style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Включение элемента  в 2 – 3 дерево"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%">Включение
+        элемента<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;
+        </span>в 2 – 3 дерево</b></a><b style="mso-bidi-font-size: 10.0pt; line-height: 150%">.</b></font></p>
+        <p style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><a href="#Удаление элемента из 2 – 3 дерева"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%">Удаление
+        элемента из 2 – 3 дерева</b></a></font></p>
+        <p style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">2-3</span></b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">-дерево
+        является
+        идеально сбалансированным деревом
+        поиска. Все пути от корня до любого
+        листа имеют одинаковую длину [<a href="liter.html">1</a>]. </span></font></p>
+        <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Свойства
+        структуры 2-3 дерева:</span></font></p>
+        <!--mstheme--></font><table border="0" cellpadding="0" cellspacing="0" width="100%" msimagelist>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Узлы
+              дерева делятся на два вида -
+              внутренние и листья. </span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoBodyText2" style="text-indent: 10; line-height: 100%; tab-stops: 134.7pt; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">Элементы
+              множества располагаются только в
+              листьях дерева в линейном
+              возрастающем порядке.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p class="MsoNormal" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">Внутренний
+              узел имеет 2 или 3 сына&nbsp; (son1, son2, son3).</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+          <tr msimagelist>
+            <td valign="baseline" width="42" msimagelist><!--mstheme--><font face="Arial"><img src="_themes/my/ablbull3.gif" width="12" height="12" hspace="15"><!--mstheme--></font></td>
+            <td valign="top" width="100%"><!--mstheme--><font face="Arial">
+              <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt">В
+              каждый внутренний узел
+              записывается ключ наименьшего
+              элемента (low2), являющегося потомком
+              второго сына и ключ наименьшего
+              элемента – потомка третьего сына
+              (low3),
+              если третий сын есть.</span></font><!--mstheme--></font></td msimagelist>
+          </tr>
+        </table msimagelist><!--mstheme--><font face="Arial">
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/2_3_tree1.gif" width="272" height="152">
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">2-3
+        - дерево соответствует полному,
+        идеально сбалансированному </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">BST</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">-дереву,
+        если все его узлы являются 2-узлами. В
+        этом случае его высота равна </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">log</span><sub><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">2</span></sub><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>
+        </sub></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">.
+        С другой стороны, если все узлы в 2-3 -
+        дереве – 3-узлы, то высота 2-3-дерева
+        равна </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">log</span><sub><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">3</span></sub><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>
+        </sub></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">.
+        Таким образом, длина прохода от корня
+        дерева к листьям с элементами и,
+        следовательно, трудоёмкость операций
+        лежит в пределах </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">O</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">log</span><sub><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">3</span></sub><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>
+        </sub></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">)
+        - </span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">O</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">(</span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">log</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>2
+        </sub></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">n</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%">).</span></font></p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><font face="MS Sans Serif" size="2"><span lang="EN-US"><a name="Поиск элемента  в 2 – 3 дереве">Поиск
+        элемента<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;
+        </span>в 2 – 3 дереве</a></span></font></b></h3>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">Элемент
+        можно найти за время O(log</font></span><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%"><sub>2</sub></span></font><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2"> n), сравнивая
+        ключ искомого элемента с параметрами в
+        узлах. Если ключ меньше, чем
+        минимальный элемент у второго сына, то
+        выбирается первый сын. Иначе, если узел
+        имеет двух сыновей, выбирается второй
+        сын. Если есть третий сын, то выбирается
+        второй сын, если ключ меньше
+        минимального ключа третьего сына, или
+        третий сын в противном случае. Таким образом,&nbsp;
+        поиск приводит к листу с искомым ключом.</font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span lang="EN-US"><font face="MS Sans Serif" size="2"><a name="Включение элемента  в 2 – 3 дерево">Включение
+        элемента<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;
+        </span>в 2 – 3 дерево</a></font></span></b></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span lang="EN-US"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">Включение
+        нового элемента начинается также как и
+        процесс поиска. Пусть мы находимся в
+        некотором внутреннем узле х, чьи
+        сыновья не содержат элемента с
+        заданным ключом k. Если узел содержит
+        двух сыновей, то новый элемент
+        подключается к этому узлу в качестве
+        третьего сына. Новый элемент
+        помещается так, чтобы не нарушить
+        упорядоченность сыновей. После этого
+        корректируются значения минимальных
+        ключей в узле.</span></font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span lang="EN-US"><font face="MS Sans Serif" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">Например,
+        включаем элемент с ключом 18. При поиске
+        мы приходим к самому правому
+        внутреннему узлу x. Помещаем 18 среди
+        сыновей этого узла в порядке 16, 18, 19. В
+        узле x записываются копии ключей 18 и 19.</span></font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/2_3_tree2.gif" width="300" height="140"></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">Если
+        при подключении к узлу, новый элемент
+        является четвертым, то узел х <a name="расщепляется"><i>расщепляется</i></a>&nbsp;
+        на 2 узла x и x`. Два
+        наименьших элемента переносятся в узел
+        х, а два наибольших – в x`. Теперь надо
+        вставить узел x` среди сыновей родителя
+        х. Здесь ситуация повторяется. Если
+        родитель имеет двух сыновей, то узел x`
+        становится третьим сыном. Если
+        родитель имеет трех сыновей, то он в
+        свою очередь расщепляется на два узла.
+        Процесс <a name="восходящего расщепления"><i>восходящего
+        расщепления</i></a>&nbsp; идет в случае необходимости
+        выше и может достигнуть корня дерева.
+        При необходимости расщепления корня
+        создается новый корень, сыновьями
+        которого становятся два узла,
+        получившиеся при разбиении старого
+        корня.</font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">Пусть
+        мы вставляем элемент с ключом 10.
+        Выбранный внутренний узел до
+        подключения имеет трех сыновей,
+        поэтому он разбивается на два&nbsp; узла.</font></span>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/2_3_tree3.gif" width="354" height="136"></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">В
+        свою очередь корень теперь имеет 4&nbsp;
+        сына и также&nbsp; разбивается на</font></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">
+        </span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">два
+        узла. При этом создается новый корень,
+        объединяющий два узла, получившихся
+        после разбиения старого корня. </font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center"><img border="0" src="images/2_3_tree4.gif" width="362" height="178"></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center">&nbsp;</p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center"><a href="flash/test30.html"><b><font face="MS Sans Serif" size="3" color="#0000FF">Тест</font></b></a></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">Алгоритм
+        вставки элемента в 2-3 - дерево</font></span></h3>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b><a name="T23_Insert (root, k, data)">T23_Insert<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+        (<i>root, k, data)</i></span></a></b></span></font></span></p>
+		<p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<span lang="EN-US"><font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		1</span></font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US"><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%; font-weight:700; font-style:italic">k</span>
+        –ключ</span></font></span></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left"><span lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		2</span></font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"></span></font><span lang="EN-US"><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%; font-weight:700; font-style:italic">data</span>
+        - данные</span></font></span></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left"><span lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+		3</span></font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"><span style="mso-ansi-language: EN-US; line-height: 150%; font-weight: 700; font-style: italic">root</span></span><span lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+        – </span>корень<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+        2-3 </span>дерева</span></font></p>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="ru">3</span><span lang="EN-US">&nbsp;<b> </b>
+		</span></font><span lang="ru"><font size="2">Создание узла листа </font>
+		</span><font size="2"><span lang="ru">с ключом&nbsp; </span><i><b>k</b></i><span lang="ru"> 
+		и данными </span></font><i><b><font size="2">data - lt</font></b></i></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">4</font></span><font size="2"><span lang="EN-US">&nbsp;
+		<b>if</b> </span><span lang="ru">дерево пусто</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">5</font></span><span lang="EN-US"><font size="2">&nbsp;&nbsp;&nbsp;
+		<b>then</b> </font></span><span lang="ru"><font size="2">с</font></span><font size="2"><span lang="ru">оздание 
+		внутреннего узла - корня </span><b>- <i>root</i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">6</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		son1[<b><i>root</i></b>] &#8592; <i><b>lt</b></i></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">7</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>return</b> TRUE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">8 </font></span><font size="2">
+		<span lang="EN-US" style="line-height: 150%">&nbsp;</span><b><span lang="ru" style="line-height: 150%">
+		</span><span lang="EN-US" style="line-height: 150%">if</span></b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="line-height: 150%">
+		</span></span><span style="line-height: 150%" lang="ru">корень имеет 
+		одного сына</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%" lang="ru">9 </span>
+		<span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp; </span><b>
+		<span lang="ru" style="line-height: 150%">&nbsp;&nbsp; </span>
+		<span lang="EN-US" style="line-height: 150%">then</span></b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="line-height: 150%">&nbsp;
+		<b>if</b> key[son1] &lt; </span></span></font>
+		<span lang="EN-US" style="line-height: 150%"><b><i><font size="2">k</font></i></b></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">1</span><span lang="ru" style="line-height: 150%">0</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then</b> </span></font><font size="2"><span lang="ru">прикрепить узел
+		</span></font><font size="2"><b><i>lt </i></b><span lang="ru">вторым 
+		сыном корня </span></font><span lang="EN-US" style="line-height: 150%">
+		<font size="2"><b><i>root</i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">1</span><span lang="ru" style="line-height: 150%">1</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b> 
+		TRUE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">1</span><span style="line-height: 150%" lang="ru">2</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>else</b> <b>if</b> key[son1] &gt; </span></font>
+		<span lang="EN-US" style="line-height: 150%">
+		<span lang="EN-US" style="line-height: 150%"><b><i><font size="2">k</font></i></b></span></span></p>
+		<p class="MsoHeader" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="EN-US" style="line-height: 150%"><font size="2">1</span><span lang="ru" style="line-height: 150%">3</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then</b>&nbsp; </span></font><font size="2"><span lang="ru">прикрепить 
+		узел </span><b><i>lt </i></b><span lang="ru">первым сыном корня </span>
+		</font><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		<i>root</i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">1</span><span lang="ru" style="line-height: 150%">4</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b><span lang="ru" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><span lang="EN-US" style="line-height: 150%">return</span></b><span lang="EN-US" style="line-height: 150%"><span lang="EN-US" style="line-height: 150%"> 
+		TRUE</span></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">15</font></span><font size="2"><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>else</b> </span></font><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"><span lang="ru">
+		</span></span></font><font face="Arial" size="2"><span lang="EN-US">
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%; font-weight:700; font-style:italic">
+		k</span></span><span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%; font-weight: 700; font-style: italic">
+		</span>
+		<span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+		совпадает с</span></font><font size="2">
+		<span lang="EN-US" style="line-height: 150%">key[son1]</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</font></span><font size="2"><span style="line-height: 150%" lang="ru">
+		уничтожить узел - лист </span></font><i><b><font size="2">lt</font></b></i></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">17</font></span><span lang="EN-US" style="line-height: 150%"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>return</b> FALSE</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">18 </font></span>
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"><span lang="ru">корень
+		</span></span></font><font size="2"><b><i>root</i></b></font><font size="2" face="Arial"><span lang="ru" style="mso-bidi-font-size: 10.0pt"> 
+		имеет 2 и 3 сына</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%" lang="ru">1</span><span style="line-height: 150%">9</span><span lang="EN-US" style="line-height: 150%">&nbsp; 
+		inserted &#8592; <b>Insert1</b>(<b><i>root</i></b>, lt, tbk, lbk)</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">20&nbsp; <b>if</b> 
+		inserted = TRUE</span><span style="line-height: 150%" lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font><font size="2" face="Arial"><span lang="ru">вставка 
+		произошла</span></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%" lang="ru">2</span><span style="line-height: 150%">1</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then</b>&nbsp; <b>if</b> tbk &#8800; </span></font>
+		<span lang="EN-US" style="line-height: 150%"><b><i><font size="2">nil</font></i></b></span><b><i><font size="2"><span style="line-height: 150%" lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></font></i></b><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="MS Sans Serif"><img border="0" src="images/comment.gif" width="14" height="14"></font><font size="2" face="Arial"><span lang="ru">у 
+		корня создан новый брат </span></font></span>
+		<span lang="EN-US" style="line-height: 150%">
+		<font size="2" face="Arial">tbk</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span style="line-height: 150%" lang="ru">2</span><span style="line-height: 150%">2</span><span lang="EN-US" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then</b> </span><span style="line-height: 150%" lang="ru">&nbsp;создание 
+		нового корня&nbsp; </span></font><font size="2">
+		<span lang="EN-US" style="line-height: 150%"><b><i>root</i></b></span><sub><b><i><span style="line-height: 150%" lang="ru">1</span></i></b></sub></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">
+		23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; son1[<b><i>root</i></b></span><sub><b><i><span style="line-height: 150%" lang="ru">1</span></i></b></sub><span lang="EN-US" style="line-height: 150%">] 
+		&#8592; </span><span style="line-height: 150%" lang="ru">старый корень&nbsp;
+		</span></font><span lang="EN-US" style="line-height: 150%">
+		<font size="2"><b><i>root</i></b></font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">
+		24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; son2[<b><i>root</i></b></span></font><font size="2"><sub><b><i><span style="line-height: 150%" lang="ru">1</span></i></b></sub></font><span lang="EN-US" style="line-height: 150%"><font size="2">] 
+		&#8592; tbk</font></span></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<font size="2"><span lang="EN-US" style="line-height: 150%">25&nbsp;&nbsp;</span><span lang="ru" style="line-height: 150%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>н<span lang="ru">азначить </span></font>
+		<span lang="EN-US" style="line-height: 150%"><font size="2"><b><i>root</i></b></font></span><font size="2"><span style="line-height: 150%" lang="ru"><i><b><sub>1
+		</sub></b></i></span><span style="line-height: 150%">н<span lang="ru">овым
+		</span>корнем <span lang="ru">дерева</span></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0">
+		<span lang="ru"><font size="2">2</span>6<span lang="ru">&nbsp; </span>
+		</font><span lang="EN-US" style="line-height: 150%"><font size="2"><b>
+		return</b> inserted</font></span></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b>T23_Insert1<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">(<i>t,
+        lt, tnew, low</i>)</span></b></span></font></span></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">1</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b><i>t</i></b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+        – <span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">текущий
+        узел 2-3 дерева</span></span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">2</font></span><font face="Arial" size="2"><b><i><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><img border="0" src="images/comment.gif" width="14" height="14"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">lt</span></span></i></b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+        – новый узел</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">3</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b><i>tnew</i></b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+        – </span>
+		<span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		возвращаемый </span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">адрес нового узла</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="ru"> 
+		- брата узла </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<b><i>t</i></b></span></font></p>
+		<p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">4</font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b><i>low
+		</i></b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		– </span></font><font face="Arial" size="2">
+		<span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		возвращаемый </span></font>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2">минимальный ключ в поддереве нового
+        узла <i><b>tnew</b></i></font></span></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">5<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;
+        </span></span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+		<i><b>tnew</b></i></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> &#8592; nil</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span lang="EN-US">6
+        &nbsp;<b>if </b></span></span><i><b>t</b></i></span><span lang="EN-US" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%"> - </span>лист</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<span lang="ru"><font face="Arial" size="2">7</font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<b>then&nbsp; if</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> key[</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">] = key [</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>lt</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">]</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<span lang="ru"><font face="Arial" size="2">8</font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b>&nbsp;then return</b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> 
+		FALSE</span></span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<span lang="ru"><font face="Arial" size="2">9 </font></span>
+		<font face="Arial" size="2">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b><span lang="ru">&nbsp;</span>else</b><i><b> tnew</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> &#8592; </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> или </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>lt</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> с большим ключом</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">0</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span lang="ru">
+		</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>low</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> &#8592; больший из key[</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">] и key[</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b>lt</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">]</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">1</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span lang="ru">
+		</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;</span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b>return</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+        TRUE</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">1</span></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="ru">2</span></span><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"><i><b><span style="line-height: 150%; mso-ansi-language: EN-US">t</span></b></i>
+        - внутренний узел</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">3</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> выбрать w – сына </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> узла для вставки </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>lt</b></i></span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">4</span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">
+        inserted &#8592; <b>T23_Insert1</b>(w, </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+		<i><b>lt</b></i></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">, tbk, lbk)</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">1</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="ru">5</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b>
+        if&nbsp;</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> inserted = TRUE </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<b>and </b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">tbk &#8800; nil</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">6</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;
+        </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<b>then</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> вставка tbk среди сыновей узла </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">,
+        справа от w</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">7</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<b>if</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> имеет 4 сына</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US">1</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">8</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%">
+		<b>then</b></span><span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US; line-height: 150%" lang="ru">
+		создание нового внутреннего узла </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>tnew</b></i></span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<span lang="ru"><font face="Arial" size="2">19</font></span><font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>перенос
+        двух правых сыновей из</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><i><b> t</b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> в </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>tnew</b></i></span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">2</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">0</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>low </b></i></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">&#8592; минимальный ключ первого
+        сына </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<i><b>tnew</b></i></span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		2</span><span lang="ru" style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">1</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> </span>
+		<span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">
+		<b>return</b></span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> 
+		inserted</span></font></p>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">&nbsp;</p>
+        <h3 align="justify" style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0"><b style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span lang="EN-US"><font face="MS Sans Serif" size="2"><a name="Удаление элемента из 2 – 3 дерева">Удаление
+        элемента из 2 – 3 дерева</a></font></span></b></h3>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">Если
+        при удалении узла&nbsp; <i>x</i>&nbsp; у родителя
+        - <i>у</i>&nbsp; останется один сын и узел <i> у&nbsp;
+        </i>является
+        корнем, то родитель удаляется из дерева,
+        а корнем становится его единственный
+        сын. Пусть родитель не является корнем.
+        Тогда, если братья узла <i> у</i> имеют трех
+        сыновей, то один из этих сыновей
+        передаются узлу <i> у</i>, и у него становится
+        двое сыновей. Если братья имеют двух
+        сыновей, то единственный сын узла <i> у</i>&nbsp;
+        передается одному из братьев в
+        качестве третьего сына. Узел <i> у</i> после
+        этого удаляется. Если после этого у
+        родителя удаленного узла <i> у</i>&nbsp; останется
+        один сын, то процесс перестройки
+        повторяется для него.</font></span>
+        <p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="center">&nbsp;<img border="0" src="images/2_3_tree5.gif" width="762" height="422"><p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">&nbsp;
+        <h3 style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"><font face="MS Sans Serif" size="2">Алгоритм
+        удаления элемента из 2-3 - дерева</font></span></h3>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><b><a name="T23_ Delete (root, k)">T23_
+        Delete (<i>root, k</i>)</a></b></span></font></span><font face="Arial" size="2">
+		</font>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">1&nbsp;
+        <b>if</b> </span></font></span><span lang="ru">
+		<font face="Arial" size="2">дерево пусто</font></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><b>then</b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<b>return</b> FALSE</span></span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		3 </span><b>&nbsp;if</b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> </span></span></font>
+		<span lang="ru"><font face="Arial" size="2">корень имеет одного сына</font></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>&nbsp;then if</b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> 
+		key[son1[<i><b>root</b></i>]] = </span><i><b>k</b></i></span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>
+        then</b><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> </span></span></font>
+		<span lang="ru"><font face="Arial" size="2">уничтожение первого сына 
+		корня</font></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US">6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><span lang="ru"><font face="Arial" size="2">&nbsp;уничтожение 
+		корня</font></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US"><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">
+		7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<i><b>&nbsp;<span lang="ru"> </span>root</b></i><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US"> </span> </span></font><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"> &#8592;
+        nil</font></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<b><span lang="ru">&nbsp;</span>return </b><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		TRUE</span></span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span lang="ru">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>else return </b><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		FALSE</span></span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">10
+        deleted </span>&#8592;
+        <b>T23_Delete1</b>(</span><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><i><b>root,<span lang="ru">
+		</span>k</b></i></span><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">,</span><span lang="ru" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		</span><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		tmin,</span><span lang="ru" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		</span><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		one)</span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		11 </span><b>if </b>deleted <span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		= TRUE</span></span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>then if</b><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"> 
+		one = TRUE</span></span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14">корень
+        остался с одним сыном</span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><span style="line-height: 150%; mso-ansi-language: EN-US">
+        then if</span></b> son1[<i><b><span style="line-height: 150%; mso-ansi-language: EN-US">root</span></b></i>] не лист</span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><span style="line-height: 150%; mso-ansi-language: EN-US">
+        then</span></b> </span></font><span lang="ru">
+		<font face="Arial" size="2">уничтожение корня </font></span>
+		<span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<i><b><font face="Arial" size="2">root</font></b></i></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></font></span><span lang="ru"><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		назначение </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">son1[<i><b><span style="line-height: 150%; mso-ansi-language: EN-US">root</span></b></i>]</span></font><span lang="ru"><font face="Arial" size="2"> 
+		корнем дерева</font></span><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">
+		<span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>else if</b><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"> tmin <img border="0" src="images/neravno.gif" width="12" height="13"> nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span><span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14">tmin
+        - лист с минимальным ключом в поддереве</span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></span><font face="Arial" size="2"><b>t</b><span style="mso-bidi-font-size: 10.0pt"><b>hen</b> корректировка
+        границ поиска в корне - low2</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">[<i><b>root</b></i>]</span><span style="mso-bidi-font-size: 10.0pt"> или
+        low3</span><span style="mso-bidi-font-size: 10.0pt; line-height: 150%; mso-ansi-language: EN-US" lang="EN-US">[<i><b>root</b></i>]</span></font><p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="justify">
+		<font face="Arial" size="2">1<span style="mso-bidi-font-size: 10.0pt">9</span><span style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"> </span>
+		<b>return</b><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"> 
+		deleted</span></span></font><p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">
+		<font face="Arial" size="2">&nbsp;
+        </font>
+		<p class="MsoNormal" style="margin-left: 10px; margin-top: 20px; margin-bottom: 0">
+		<b><span lang="EN-US" style="font-size: 10.0pt">T23_Delete(<i>t,</i></span><i><span lang="ru" style="font-size: 10.0pt">
+		</span><span lang="EN-US" style="font-size: 10.0pt">k,</span><span lang="ru" style="font-size: 10.0pt">
+		</span><span lang="EN-US" style="font-size: 10.0pt">tmin, one </span>
+		</i><span lang="EN-US" style="font-size: 10.0pt">)</span></b></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">1
+        <img border="0" src="images/comment.gif" width="14" height="14"><b><i>t</i></b> – текущий узел
+        рекурсии&nbsp;</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">2
+        <img border="0" src="images/comment.gif" width="14" height="14"></span></font><span style="mso-bidi-font-size: 10.0pt"><font size="2" face="Arial"><b><i>k</i></b>
+        </font></span><font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">–
+        ключ&nbsp; удаляемого узла</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">3</span> <span style="mso-bidi-font-size: 10.0pt"><img border="0" src="images/comment.gif" width="14" height="14"><b><i>tmin</i></b>
+        - возвращаемый адрес листа с
+        минимальным ключом в поддереве</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">4
+        <img border="0" src="images/comment.gif" width="14" height="14"><b><i>one</i></b>
+        - возвращаемый признак узла с одним
+        сыном</span></font></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">5&nbsp;<b><i> tmin
+		</i></b> </span></font><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"> &#8592;
+        nil</font></span></p>
+        <p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font size="2" face="Arial"><span style="mso-bidi-font-size: 10.0pt">6&nbsp;
+        <b><i>one</i></b> </span></font><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"> &#8592;
+        FALSE</font></span></p>
+        <p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">7</font><font face="Arial"><span style="font-size: 10.0pt"><b>
+		</b></span><b><span lang="EN-US" style="font-size: 10.0pt">if</span></b><span style="font-size:10.0pt"> 
+		сыновья&nbsp; узла </span><b><i><span lang="EN-US" style="font-size: 10.0pt">
+		t</span><span lang="EN-US" style="font-size:10.0pt"> </span></i></b>
+		<span style="font-size:
+10.0pt">– листья</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">8</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="font-size: 10.0pt">then if </span>
+		<i><span lang="EN-US" style="font-size: 10.0pt">t</span></i></b><span style="font-size:10.0pt"> 
+		имеет сына с ключом&nbsp; </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">k</span></i></b><span style="font-size:10.0pt">
+		</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">9</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>&nbsp;</b></span><b><span lang="EN-US" style="font-size: 10.0pt">then</span></b><span style="font-size:10.0pt"> 
+		удаление сына с ключом<i> </i></span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">k</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">10</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">tmin</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:
+10.0pt">&#8592;адрес первого сына узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">11 </font><font face="Arial">
+		<span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+		if</b> <b><i>t</i> </b></span><span style="font-size:10.0pt">имеет</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">одного</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">сына</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">12</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>then</b> <b><i>one</i></b>&#8592;TRUE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">13</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>else</b> <b><i>one</i></b>&#8592; FALSE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">14</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="font-size: 10.0pt">return</span></b><span lang="EN-US" style="font-size:
+10.0pt"> </span><span lang="EN-US" style="font-size: 10.0pt">TRUE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">15</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="font-size: 10.0pt">else</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><span lang="EN-US" style="font-size: 10.0pt">return</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><span lang="EN-US" style="font-size: 10.0pt">FALSE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">16 </span></font>
+		<span style="mso-bidi-font-size: 10.0pt"><font face="Arial" size="2"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><span lang="EN-US" style="font-size: 10.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial"><b><i>t</i></b></font></span><font face="Arial"><span style="font-size:10.0pt"> 
+		– внутренний узел, сыновья которого - не листья</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">17
+		</span><span style="font-size:10.0pt">выбрать</span><span style="font-size: 10.0pt">
+		<b><i><span lang="EN-US">w</span></i></b><span lang="EN-US"> – </span>
+		</span><span style="font-size:10.0pt">сына</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">узла</span><span style="font-size: 10.0pt">
+		<b><i><span lang="EN-US">t</span></i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">18
+		</span></font><font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">deleted</span></font><font face="Arial"><span style="font-size: 10.0pt" lang="ru">
+		</span><span lang="EN-US" style="font-size: 10.0pt">&#8592; <b>T23_Delete</b>(<b><i>w</i></b>,</span><b><i><span lang="ru" style="font-size: 10.0pt">
+		</span><span lang="EN-US" style="font-size: 10.0pt">k</span></i></b><span lang="EN-US" style="font-size: 10.0pt"><span lang="EN-US" style="font-size: 10.0pt"><i>,<b> 
+		tmin_bk, one_bk</b></i>) = FALSE</span></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="ru"><font face="Arial" size="2">1</span>9<span lang="ru">
+		</span></font><font face="Arial">
+		<span lang="EN-US" style="font-size: 10.0pt"><b>if</b> </span></font>
+		<font face="Arial" size="2"><span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">deleted</span><span lang="ru" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt"> 
+		= </span>TRUE</font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">20</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>then </b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">21</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">
+		<b><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		tmin </i></b>&#8592; <b><i>tmin_bk</i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">22</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">
+		<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><b><span lang="EN-US" style="font-size: 10.0pt">if</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">tmin</span><span style="font-size:10.0pt">_</span><span lang="EN-US" style="font-size: 10.0pt">bk</span><span style="font-size:10.0pt"> 
+		&#8800; </span><span lang="EN-US" style="font-size: 10.0pt">nil</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size: 10.0pt">и </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">w</span><span style="font-size:10.0pt"> 
+		– </span></i></b><span style="font-size:10.0pt">второй или третий сын 
+		узла<b><i> </i></b></span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">23</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">then </span></b>
+		<span style="font-size:10.0pt">корректировка <b>low2</b>[<b><i>t</i></b>] 
+		или <b>low3</b>[<b><i>t</i></b>] соответственно</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">24</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>tmin </i></b>&#8592; <b><i>nil</i></b></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">25</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;<b>if</b> <b><i>one_bk</i></b> = TRUE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">26</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">then </span></b></font>
+		<span style="mso-bidi-font-size: 10.0pt"><font face="Arial" size="2"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial"><span lang="EN-US" style="font-size:10.0pt">&nbsp;</span><b><i><span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		остался с одним сыном </span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">27&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">if</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		– первый сын узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i><span lang="EN-US" style="font-size:10.0pt">
+		</span></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">28</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">then if</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b><span style="font-size:10.0pt"> 
+		– второй сын узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b><span style="font-size:10.0pt"> 
+		имеет 3-х сыновей</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">29&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="font-size: 10.0pt">then</span></b><span style="font-size:10.0pt"> 
+		1-й сын </span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b><span style="font-size:10.0pt"> 
+		делается 2-м сыном узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">w</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">30</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span><b><span lang="EN-US" style="font-size: 10.0pt">else</span></b><span style="font-size:10.0pt"> 
+		сын узла </span><b><i><span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		делается 1-м сыном узла<b><i> </i></b></span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">y</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">31</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; удаление узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		из сыновей узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">32</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</b> <b><i>t</i></b> </span>
+		<span style="font-size:10.0pt">имеет</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">одного</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">сына</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">33</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then <i>one </i></b>&#8592; 
+		TRUE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">34</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else <i>one </i></b>&#8592; 
+		FALSE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">35</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>if</b> <b><i>w </i></b>– </span>
+		<span style="font-size:10.0pt">второй</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">сын</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">узла</span><span style="font-size: 10.0pt">
+		<b><i><span lang="EN-US">t</span></i></b><span lang="EN-US"> </span>
+		</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">36</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">then if</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b><span style="font-size:10.0pt"> 
+		– первый сын узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:
+10.0pt">имеет 3-х сыновей</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">37&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">then</span></b><span style="font-size:10.0pt"> 
+		3-й сын узла </span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b><span style="font-size:10.0pt"> 
+		делается 1-м сыном узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">w</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size: 10.0pt">38 <b>&nbsp;</b></span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size: 10.0pt"><b>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span><b><i><span lang="EN-US" style="font-size: 10.0pt">one</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:
+10.0pt">&#8592; </span><span lang="EN-US" style="font-size: 10.0pt">FALSE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">39&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span><b><span lang="EN-US" style="font-size: 10.0pt">if</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">z</span></i></b><span style="font-size:10.0pt"> 
+		– третий сын узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b><span style="font-size:10.0pt"> 
+		имеет 3-х сыновей</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">40</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">then</span></b><span style="font-size:10.0pt"> 
+		1-й сын узла </span><b><i><span lang="EN-US" style="font-size: 10.0pt">z</span></i></b><span style="font-size:10.0pt"> 
+		делается 2-м сыном узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt">
+		</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">41</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">one</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:
+10.0pt">&#8592; </span><span lang="EN-US" style="font-size: 10.0pt">FALSE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">42</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial"><span style="font-size:10.0pt">первый 
+		и третий сыновья узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:10.0pt">имеют 2-х сыновей</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">43</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		сын узла </span><b><i><span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		делается 3-м сыном первого сына узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b><span style="font-size:10.0pt">-</span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">44</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		удаление </span><b><i><span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		из сыновей узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">45</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>if</b> <b><i>t</i></b> </span>
+		<span style="font-size:10.0pt">имеет</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">одного</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">сына</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">46</font><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>then <i>one </i></b>&#8592; TRUE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">47&nbsp;&nbsp;<i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else <i>one </i></b>&#8592; FALSE
+		</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<span lang="EN-US" style="font-size: 10.0pt"><font face="Arial">48&nbsp;&nbsp;</font></span><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span></font><span lang="EN-US" style="font-size: 10.0pt">
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+		<span style="mso-bidi-font-size: 10.0pt"><font face="Arial" size="2"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><span lang="EN-US" style="font-size: 10.0pt"><!--[if gte mso 9]><![endif]--><font face="Arial"><b><i>w</i></b> 
+		– </font></span><font face="Arial"><span style="font-size:10.0pt">третий</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">сын</span><span style="font-size: 10.0pt">
+		</span><span style="font-size:10.0pt">узла</span><span style="font-size: 10.0pt">
+		<i><span lang="EN-US">t</span></i></span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial"><span style="font-size:10.0pt">49&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b><i><span lang="EN-US" style="font-size: 10.0pt">one</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:
+10.0pt">&#8592; </span><span lang="EN-US" style="font-size: 10.0pt">FALSE</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">50</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b><span lang="EN-US" style="font-size: 10.0pt">if</span></b><span lang="EN-US" style="font-size:10.0pt">
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span><span lang="EN-US" style="font-size:10.0pt">
+		</span></i></b><span style="font-size:
+10.0pt">– второй сын узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">t</span></i></b><span style="font-size:10.0pt"> 
+		имеет 3-х сыновей</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">51</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</span><b><span lang="EN-US" style="font-size: 10.0pt">then</span></b><span style="font-size:10.0pt"> 
+		3-й сын узла </span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b><span style="font-size:10.0pt"> 
+		делается 1-м сыном узла </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt">w</span></i></b></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">52</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>
+		<span lang="EN-US" style="font-size: 10.0pt">else</span></b><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;
+		</span></font><span style="mso-bidi-font-size: 10.0pt">
+		<font face="Arial" size="2"><img border="0" src="images/comment.gif" width="14" height="14"></font></span><!--[if gte mso 9]><![endif]--><font face="Arial"><span style="font-size:10.0pt">узел
+		</span><b><i><span lang="EN-US" style="font-size: 10.0pt">y</span></i></b><span style="font-size:10.0pt"> 
+		имеет 2-х сыновей</span></font></p>
+		<p class="MsoNormal" style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font face="Arial" size="2">53</font><font face="Arial"><span style="font-size:10.0pt">&nbsp;</span><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span><span style="font-size:10.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		сын </span><b><i><span lang="EN-US" style="font-size: 10.0pt">w</span></i></b><span style="font-size:10.0pt"> 
+		делается 3-м сыном узла <b><i>у</i></b></span></font></p>
+		<p style="margin-left: 40px; margin-top: 0; margin-bottom: 0" align="left">
+		<font size="2"><span style="font-family: Arial">54</span></font><span style="font-size: 10.0pt; font-family: Arial">&nbsp;&nbsp;</span><font face="Arial"><span lang="EN-US" style="font-size: 10.0pt"><i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</b></i></span></font>
+		<span style="font-size: 10.0pt; font-family: Arial">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; удаление </span><b><i>
+		<span lang="EN-US" style="font-size: 10.0pt; font-family: Arial">w</span></i></b><span style="font-size: 10.0pt; font-family: Arial"> 
+		из сыновей </span></p>
+		<p style="line-height: 100%; word-spacing: 0; margin-left:40px; margin-right:0; margin-top:0; margin-bottom:0" align="left">
+		<font face="Arial"><span lang="EN-US" style="font-size: 10.0pt">55<i><b>
+		</b></i></span></font><font face="Arial" size="2">
+		<span lang="EN-US" style="mso-ansi-language: EN-US; line-height: 150%; mso-bidi-font-size: 10.0pt">
+		<b>return</b> deleted</span></font><p style="text-indent: 10; line-height: 100%; word-spacing: 0; margin: 0" align="justify">&nbsp;<!--mstheme--></font></td>
+    </tr>
+    <tr>
+      <td width="100%"><!--mstheme--><font face="Arial">
+        <p align="center">
+		<!--webbot bot="Navigation" S-Type="arrows"
+        S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+        B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/back_cmp_my010_back.gif"); MSFPnav5h=MSFPpreload("_derived/back_cmp_my010_back_a.gif"); }
+// --></script><a href="avl_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/back_cmp_my010_back.gif" width="100" height="20" border="0" alt="Назад" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav6h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav6"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav7n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav7h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7h.src" onmouseout="if(MSFPhover) document['MSFPnav7'].src=MSFPnav7n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav7"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav8n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav8h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="2_3_4_tree.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8h.src" onmouseout="if(MSFPhover) document['MSFPnav8'].src=MSFPnav8n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav8"></a><!--webbot bot="Navigation" i-checksum="772" endspan --><!--mstheme--></font></td>
+    </tr>
+  </table><!--mstheme--><font face="Arial"></center>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/2_3_tree.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:32:10 GMT -->
+</html>

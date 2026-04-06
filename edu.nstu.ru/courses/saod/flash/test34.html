@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/flash/test34.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:33:50 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r" />
+<title>test34</title>
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+<body bgcolor="#ffffff">
+<!--url's used in the movie-->
+<!--text used in the movie-->
+<!--
+0
+-->
+<!-- saved from url=(0013)about:internet -->
+<div id="ruffle-container" data-swf="test34.swf" data-width="800" data-height="600" data-bgcolor="#ffffff" style="text-align: center;"></div>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var ruffle = window.RufflePlayer && window.RufflePlayer.newest ? window.RufflePlayer.newest() : null;
+  var container = document.getElementById("ruffle-container");
+  if (!ruffle || !container) return;
+
+  var player = ruffle.createPlayer();
+  var width = container.getAttribute("data-width") || "800";
+  var height = container.getAttribute("data-height") || "600";
+  var bg = container.getAttribute("data-bgcolor") || "#ffffff";
+  var swf = container.getAttribute("data-swf");
+
+  player.style.width = width + "px";
+  player.style.height = height + "px";
+  player.style.display = "inline-block";
+  player.style.backgroundColor = bg;
+  container.appendChild(player);
+
+  try {
+    player.load({ url: swf, backgroundColor: bg });
+  } catch (e) {
+    try { player.load(swf); } catch (e2) {}
+  }
+});
+</script>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p align="right">&nbsp;</p>
+</body>
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/flash/test34.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:33:53 GMT -->
+</html>

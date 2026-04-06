@@ -1,0 +1,172 @@
+<html>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/psevdocod.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:37 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Новая страница 1</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="my 0011, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#000080" alink="#CC3300"><!--mstheme--><font face="Arial">
+<div align="center">
+  <!--mstheme--></font><table width='900' bgcolor="#FFFFFF" border="0">
+<tr>
+<td width='800'><!--mstheme--><font face="Arial">
+<p align="center" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0">
+<!--webbot
+bot="Navigation" S-Type="banner" S-Rendering="graphics" S-Orientation
+B-Include-Home B-Include-Up U-Page S-Target startspan --><img src="_derived/psevdocod.htm_cmp_my010_bnr.gif" width="600" height="31" border="0" alt="Псевдокод"><!--webbot bot="Navigation" i-checksum="29100" endspan -->
+</p>
+<p align="center" style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0">
+<!--webbot
+bot="Navigation" S-Type="arrows" S-Orientation="horizontal"
+S-Rendering="graphics" B-Include-Home="TRUE" B-Include-Up="TRUE" U-Page S-Target startspan
+--><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav1h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav2h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav3h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="effectivnost.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav3"></a><!--webbot bot="Navigation" i-checksum="37249" endspan --><!--mstheme--></font></td></tr>
+<tr>
+<td width='800'><!--mstheme--><font face="Arial">
+<p ALIGN="JUSTIFY"><font size="2" color="#000000" face="MS Sans Serif">Чтобы
+не отвлекаться при изложении алгоритмов на
+особенности программирования на
+конкретном языке программирования, принято
+вести записи алгоритмов на псевдокоде.
+Действия алгоритма описываются
+полуформально. Можно пропустить
+технические подробности, затеняющие суть
+алгоритма.</font></p>
+<b>
+<p ALIGN="CENTER"><font face="MS Sans Serif" size="2">&nbsp;</font><font size="2" color="#000000" face="MS Sans Serif">Пример
+алгоритма сортировки вставками.</font></p>
+</b>
+<p ALIGN="JUSTIFY" style="text-indent: 10; line-height: 100%; margin-top: 0; margin-bottom: 0"><a name="Сортировка вставками"><font size="2" color="#000000" face="MS Sans Serif">Сортировка
+вставками </font> </a> <font size="2" color="#000000" face="MS Sans Serif">удобна&nbsp;
+для коротких последовательностей. Входом
+алгоритма является последовательность {а<sub>1</sub>,а<sub>2</sub>,…,а<sub>n</sub>},
+представленная в виде массива А[1 .. n].
+Обозначим число элементов в массиве через n.
+Последовательность сортируется “на месте”
+без использования дополнительной памяти.
+После сортировки массив упорядочен по
+возрастанию.</font></p>
+<p align="center"><font size="2" face="MS Sans Serif" color="#000000"><img SRC="images/Image15.gif" width="137" height="145"></font></p>
+<p><font size="2" face="MS Sans Serif" color="#000000">Insertion–Sort (A [ 1..n
+])</font></p>
+<ol>
+  <li><font size="2" face="MS Sans Serif" color="#000000">for j&#8592;2 to n</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;
+    do Key &#8592; A[j]</font></li>
+  <li><font size="2" color="#000000" face="MS Sans Serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img border="0" src="images/comment.gif" width="14" height="14"> добавить A[j] к отсортированной части A[1 …&nbsp;
+    j-1]</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    i &#8592; j<span lang="en-us"> </span>- 1</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    while i&gt;0 and A[<span lang="en-us">i</span>]&gt;Key</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    do A[i+1]&#8592;A[<span lang="en-us">i</span>]</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    i &#8592; i<span lang="en-us"> </span>- 1</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">A[i+1] &#8592; Key</font></li>
+</ol>
+<p ALIGN="JUSTIFY"><font size="2" face="MS Sans Serif" color="#000000">Основные
+правила и соглашения псевдокода:</font></p>
+<ol>
+  <li><font size="2" face="MS Sans Serif" color="#000000">Отступ
+    от левого поля
+  указывает на уровень вложенности. Это
+  делает излишним использование блочных
+  скобок ( {} – в Си, begin–end–в Паскале).</font></li>
+  <li><font size="2" color="#000000" face="MS Sans Serif">Циклы while, for,
+    repeat  и условные операторы if–then–else
+    имеют тот же смысл, что и в Си и Паскале.</font>
+  <b>
+  <li><font size="2" face="MS Sans Serif" color="#000000"><img border="0" src="images/comment.gif" width="14" height="14">-
+    </font>
+    </b><font size="2" face="MS Sans Serif" color="#000000">символ начинает
+  комментарий, идущий до конца строки.
+    </font><b>
+  <li><font color="#000000">i&#8592;e</font></b><font size="2" face="MS Sans Serif" color="#000000">
+  означает присваивание переменной i
+  значения e.</font>
+  <p><b><font size="2" face="MS Sans Serif" color="#000000">i&#8592;j&#8592;e</font></b>
+  <font size="2" face="MS Sans Serif" color="#000000"> означает
+  одновременное присваивание значения e
+  переменной i и j.</font></p>
+  <li><font size="2" color="#000000" face="MS Sans Serif">Индекс
+    массива указывается в квадратных скобках
+    -&nbsp; А[i]. Знак “ .. ” выделяет часть
+    массива А[i..j]  от i–го до j–го значения.
+    Индекс начинается с 1.</font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">Переменные
+    локальны внутри функции.</font></li>
+  <li><font size="2" color="#000000" face="MS Sans Serif">Часто
+    используются объекты, состоящие из
+    нескольких полей, называемых атрибутами
+    (прямое произведение). Значение поля
+    записывается как имя поля [имя объекта].
+    Например, длина массива считается
+    атрибутом массива и записывается как lingth[A].</font></li>
+  <li><font size="2" color="#000000" face="MS Sans Serif">Переменная
+    означающая массив или объект считается указателем
+    на его данные. После присваивания y&#8592;x
+    для любого поля f выполняется f[y]&#8592;f[x].
+    Более того, если выполним f[x]&#8592;3, то будет
+    и f[y]=3, поскольку после y&#8592;x переменные y и
+    x указывают на один объект.</font></li>
+  <li><font size="2" color="#000000" face="MS Sans Serif">Указатель
+  может иметь специальное значение<b><i> </i>
+  </b><a name="nil"><i>nil</i></a><b>,
+  </b>означающее отсутствие указуемого
+  объекта<b>.</b></font></li>
+  <li><font size="2" face="MS Sans Serif" color="#000000">Параметры
+    передаются функциям по значению:
+    вызванная функция получает собственную
+    копию параметров. Изменение параметра
+    внутри функции означает и снаружи не
+    видно. При передаче объектов копируется
+    указатель на данные.</font></li>
+</ol>
+<blockquote>
+  <p><font size="2" face="MS Sans Serif" color="#000000">Присваивание
+  внутри y&#8592;x заменить нельзя, а f[x]&#8592;3 или f[y]&#8592;3
+  - можно.</font></p>
+</blockquote>
+<!--mstheme--></font></td></tr>
+<tr>
+<td width='800'><!--mstheme--><font face="Arial">
+<p align="center">
+<!--webbot bot="Navigation" S-Type="arrows"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/home_cmp_my010_home.gif"); MSFPnav4h=MSFPpreload("_derived/home_cmp_my010_home_a.gif"); }
+// --></script><a href="index-2.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/home_cmp_my010_home.gif" width="100" height="20" border="0" alt="Домой" align="middle" name="MSFPnav4"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/up_cmp_my010_up.gif"); MSFPnav5h=MSFPpreload("_derived/up_cmp_my010_up_a.gif"); }
+// --></script><a href="content.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/up_cmp_my010_up.gif" width="100" height="20" border="0" alt="Вверх" align="middle" name="MSFPnav5"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav6n=MSFPpreload("_derived/next_cmp_my010_next.gif"); MSFPnav6h=MSFPpreload("_derived/next_cmp_my010_next_a.gif"); }
+// --></script><a href="effectivnost.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6h.src" onmouseout="if(MSFPhover) document['MSFPnav6'].src=MSFPnav6n.src"><img src="_derived/next_cmp_my010_next.gif" width="100" height="20" border="0" alt="Дальше" align="middle" name="MSFPnav6"></a><!--webbot bot="Navigation" i-checksum="35980" endspan --><!--mstheme--></font></td></tr></table><!--mstheme--><font face="Arial">
+</div>
+
+<!--mstheme--></font></body>
+
+
+<!-- Mirrored from edu.nstu.ru/courses/saod/psevdocod.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2026 14:31:37 GMT -->
+</html>
